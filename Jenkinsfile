@@ -100,7 +100,8 @@ pipeline {
      stage("mytest") {
         steps{
            script {
-           def result=readHabsRecipes("habs_recipes")
+           def pwd=WORKSPACE
+           def result=readHabsRecipes("${pwd}/habs_recipes")
            dynamicStages(result)
 }}}
 }}

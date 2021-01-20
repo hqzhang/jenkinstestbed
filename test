@@ -1,0 +1,290 @@
+#!/usr/bin/env groovy
+    import groovy.json.JsonSlurper
+    import groovy.json.JsonOutput
+    import groovy.yaml.YamlSlurper
+    import mylib
+    import sayHello
+    //example
+    def xmlString = """<properties extends="habs_base">
+      <category name="general">
+         <property name="config.folder" value="habs"/>
+      </category>
+      <category name="reporting">
+         <property name="reporting.server" value="rptsvr_uapphabdv"/>
+      </category>
+    </properties> """
+    xmlString ="""<root>
+  <foo>
+    <bar id="test">
+      test
+    </bar>
+    <baz id="test">
+      test
+    </baz>
+  </foo>
+</root>"""
+    println "xmlString=$xmlString"
+
+    def props = new XmlSlurper().parseText(xmlString)
+    props.category.each { var->
+       println "var=$var"
+    }
+
+    //def ltrData = myxml.'**'.find{it.name() == 'general'}
+   // ltrData.replaceBody()
+   // ltrData.appendNode {
+   //    Salutation('text')
+   // }
+    //println groovy.xml.XmlUtil.serialize(myxml)
+    System.exit(1);
+    
+    //xml file read/write
+
+    def xmlFile = "/tmp/habs_config.xml"
+    xml = new XmlParser().parse(xmlFile)
+    println("xml=$xml")
+    //properties->category->property
+    xml.category.each { var->
+      println var.@id
+      println var.value
+    } 
+    //println xml.foo
+
+    //def writer = new FileWriter('/tmp/file.xml') 
+    //XmlUtil.serialize(xml, writer)
+   //Open file 
+    
+   System.exit(1);    
+    Map SBMS_paasList = [ DC1_SBMS_STAGING : [name : "DC1_SBMS_STAGING"], DC2_SBMS_STAGING : [name : "DC2_SBMS_STAGING"]]
+    Map projectSettings = ["sbms-staging":[paasName : SBMS_paasList.DC1_SBMS_STAGING]]
+    def paas=SBMS_paasList.keySet()
+    def proj=projectSettings.keySet()
+    def target= SBMS_paasList["DC1_SBMS_STAGING"]
+    println(paas)
+    println(proj)
+    println(target)
+   
+    //two ways for declaration
+    String x = "Hello";
+    def y = "zhang";
+    println(y);
+    println(x);
+    for( i in 1..5){
+        println "Item: $i" // `it` is an implicit parameter corresponding to the current element
+    }
+    //regex
+    println "using the find operator"
+    /**\d (i.e. 0-9).	a\d matches a1, a2, a3 etc. but not aa, ab etc.
+       \D a non-digit character.	a\D matches ab but not a1, a2, a3 etc.
+       \s any whitespace character (space, tab, newline).	ab\sd matches ab d but not abcd, abxd etc.
+       \S any non-whitespace character.	ab\Sd matches abcd, abxd etc. but not ab d
+       \w Shorthand for [a-zA-Z0-9_].
+       *	 0 or more       	ab*c matches ac, abc, abbc, but not ab or abd
+       +  1 or more 
+       ?	 0 or 1 	ab?c matches ac and abc, but not ab, abbc or abd
+       .* 	  Matches against any sequence of characters.	a.* matches everything beginning with a
+       {n} n exactly
+       (...)	Groups a set of matching
+       [...]	Matches the characters specified in the brackets
+       [^...]	Matches the characters specified in the brackets.
+    **/
+
+    def mylist1 = ["9","2-R1.0.1My code", "3-R0.0.0groovier", "4-R1.0.0better", "2-when I use","2-Groovy there"]
+    mylist1 = ["0.0.0-20201118143800-f483e22-develop","develop"];
+
+    mylist1.each { var->
+      if ( var =~ /^\d(-R[^0].\d.\d\w*\b|$)/ ) {
+        println "match= $var"
+      }
+    }
+    println "use single quote"
+    mylist1.each { var->
+      if ( var =~ '^\\d(-R[^0].\\d.\\d\\w*\\b|$)' ) {
+        println "match= $var"
+      }
+    }
+    def mymap1 =[:]
+    mymap1.develop="sbms/sbms-server"
+    mymap1.R12121="sbms/sbms-web"
+    mymap1.other="sbms"
+    
+    println("--------")
+    mymap1.each { version, name ->
+    if ( name.startsWith("sbms") && !(version.startsWith("develop")  ||version.startsWith("R1" ))  ) {
+     // if ( version =~ '^\\d(-R[^0].\\d.\\d\\w*\\b|$)' ) {
+        println "match= $version:$name"
+      } else { println("startwith sbms");
+     }
+    }
+
+
+    System.exit(1)
+    //groovy range
+    def myrange = 2..5 ;
+    for(var in myrange) {
+               println(var);
+    }
+
+    //groovy list two way for loop
+    println("closure test it")
+    def mylist = ['hello','wolrd','hongqi'];
+    mylist.add('sucessful')
+    mylist.remove('hongqi')
+    mylist.each{var -> println var}
+
+    mylist.each{println it}
+
+    //groovy get tag list    
+    def gettags = ("git ls-remote -t https://github.com/hqzhang/octest.git").execute().text
+    def ret=gettags.readLines().collect { it.split()[1].replaceAll('refs/tags/|\\^\\{\\}', '') }
+    println (ret)
+    
+    //groovy map
+    def mymap = [name: "Jerry", age: 42, city: "New York"]
+    mymap.put('address','302 oakcrest way') 
+    mymap.remove('age')
+    mymap.phone='613-6562836'
+    println(mymap["city"]);
+    println(mymap.city);
+    mymap.each{var -> println "$var.key: $var.value"};
+   
+    //readYaml
+    def cfgmp=false
+    def secret=false
+    String Contents = new File('projecttemp.yaml').text
+    def yamlSlurper = new YamlSlurper()
+    def myobj = yamlSlurper.parseText(Contents) 
+    println myobj.objects[0]
+    kinds=["ConfigMap","Secret","PersistentVolumeClaim","PersistentVolume"]
+    configs=[false,false,false,false]
+
+    for ( obj in myobj.objects ) {
+        println obj.kind
+        [kinds,configs].transpose().each { kind, config ->
+            if (obj.kind==kind && !config){
+                println "del $kind"
+                myobj.objects -=obj
+            }
+        }
+    }
+    def pret = JsonOutput.prettyPrint(JsonOutput.toJson(myobj.parameters) )
+    println pret
+    println("*********************************")    
+    cmd="git ls-remote --tags https://github.com/hqzhang/octest|cut -c52-"
+    def list=cmd.execute().text
+    println( list)
+    println("*********************************")
+    System.exit(1)
+
+    //readJSON
+    def configMaps=true
+    String fileContents = new File('myjson.json').text
+    def jsonSlurper = new JsonSlurper()
+    def objs = jsonSlurper.parseText(fileContents)
+    println("*************")
+    println("*************")
+    
+    for ( depl in objs.deployments ) {
+        if (depl.name=="sbms-server") {
+            if (configMaps) {
+               println "reset prod"
+               depl.items.each{ if(it.name=="serverDeploymentConfigProd.yaml" ){
+                                  println "remove prod"
+                                  depl.items -=it }}
+           }else{
+               println "Set prod"
+               def tmp
+               depl.items.each { println "${it.name} vs serverDeploymentConfig.yaml" 
+                                 if(it.name=="serverDeploymentConfig.yaml" ) { 
+                                 println "GetPara"
+                                 tmp=it.parameterFile
+                                 depl.items -=it   }}
+               println "Get tempFile $tmp"
+               depl.items.each {    println "${it.name} vs serverDeploymentConfigProd.yaml"
+                                    if(it.name=="serverDeploymentConfigProd.yaml" ) {
+                                    println "SetPara" 
+                                    it.parameterFile=tmp }}
+           }
+    }}
+    println("last result !!!!!!!!!")
+    println(objs.deployments[0].items)
+    
+    def pretty = JsonOutput.prettyPrint(JsonOutput.toJson(objs) )
+    println pretty
+    System.exit(1) 
+    //call static method in file mylib
+    def my = new mylib()
+    my.mycall("hello")    
+    
+    //Closures
+    def clos = {println("hello Closure") }
+    clos.call()
+    println("find(closeure)")
+    def ls = [1,2,3,4]
+    def val = ls.findAll{ it>1}
+    def vl = ls.findAll{ it%2 == 0}
+    println val
+    println vl
+
+    //more closure
+    def res = [a:1,b:2,c:4,d:5].findAll{ it.value%2 == 0 }
+    println(res)
+
+    //read properties file
+    Properties properties = new Properties()
+   /*File propertiesFile = new File('projecttemp.env')
+    propertiesFile.withInputStream {
+        properties.load(it)
+    }
+   */
+    def readPara = '''\
+MY_PARAMS=areyou
+MY_PORT=8888
+'''
+    def read=new StringReader(readPara)
+    properties.load(read)
+        
+    println properties
+    properties.each{var -> println "$var.key: $var.value"};
+    def mystr1=properties.collect{key,value-> "$key=$value"}
+        mystr1.add(0,"-p")
+    println mystr1
+
+    //read properties section
+    def configYaml = '''\
+---
+parameters:
+      - name: APP_NAME
+        dscription: "app"
+        required: true
+        value: "server"
+      - name: APP_PORT
+        dscription: "port"
+        required: true
+        value: "8080"
+     '''
+     def config = new YamlSlurper().parseText(configYaml)
+     println "=============="
+     def mymp = config.parameters
+     println mymp
+     def mapmy = [:]
+     mymp.each { var -> mapmy[var.name] = var.value }
+
+     // overide map    
+     println mapmy
+     println mystr1
+     def overid = [:]
+     overid.putAll(properties)
+     overid.putAll(mapmy)
+     println overid
+
+     //list test
+     def myls = ['R1.0','R1.1',]
+     def mysec = ['first','second']
+     [myls,mysec].transpose().each {fst,scd-> println fst; println scd}
+
+     //read properties
+
+     def myarr = [[name:sbms-sever]]
+     println "myarr[0]"
+

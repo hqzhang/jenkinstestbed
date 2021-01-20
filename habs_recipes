@@ -1,0 +1,22 @@
+[DB PATHES]
+ru flyway from corret branch
+ok
+
+[CONFIG UPDATE]
+habs_base_config.xml
+<category name="general">
+   <property name="a" value="b" />
+</category>
+[HABS]
+deploy ear
+
+[SENS]
+deploy ear
+
+[REPORTs]
+add sth
+delete sth
+
+[SOA]
+add sth
+delete sth

@@ -1,0 +1,37 @@
+{
+       "packageReposoryAddress": "Foo Bar",
+       "year": 2018,
+       "deployments": 
+                 [{ "name":"sbms-server",
+                    "type":"openshift-app",
+                    "deploymentGroup":0,
+                    "items":[{
+                               "name":"sbms/sbms-server",
+                               "type":"docker-image"
+                              },
+                              {
+                               "name":"serverDeploymentConfig.yaml",
+                               "type":"openshift-template",
+                               "templateFile": {"path": "serverDeploymentConfig.yaml"},
+                               "parameterFile":{"path": "serverDeploymentConfig.env"}
+                               },
+                               {
+                                "name":"serverDeploymentConfigProd.yaml",
+                                "type":"openshift-template",
+                                "templateFile": {"path": "serverDeploymentConfigProd.yaml"}
+                               }
+                              ] 
+                   },
+             
+                   { "name":"sbms-web",
+                    "type":"openshift-app",
+                    "deploymentGroup":0,
+                    "items":[{"name":"sbms/sbms-web",
+                             "type":"docker-image"},
+                              {"name":"webDoployConfig.yaml",
+                               "type":"openshift-template"} ] }
+                   ],
+       "timestamp": "2018-03-08T00:00:00",
+       "tags": [ "person", "employee" ],
+       "grade": 3.14 
+}

@@ -1,0 +1,7 @@
+<testsuites status="Failure" count="5" duration="10">
+<testsuite status="Failure">
+<testcase>
+Simple example of xml file
+</testcase>
+<testsuite>
+</testsuites>

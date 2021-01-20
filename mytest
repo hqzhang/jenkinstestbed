@@ -1,0 +1,103 @@
+#!/usr/bin/env groovy
+
+import groovy.transform.Field;
+import groovy.xml.XmlUtil
+
+    def str= """<pros>
+              <cat name="general">
+               <prop a1="uno"/>
+               <prop a1="ok"      />
+              </cat>
+        </pros>"""
+def rN1 = new XmlSlurper().parseText(str)
+//rN1.cat.children().findAll { it.@a1 == 'uno' }.replaceNode {}
+
+  rN1.cat.each {
+     println it.@name
+     it.children().findAll { it.@a1 == 'uno' }.replaceNode {}
+  }
+println XmlUtil.serialize(rN1)
+System.exit(1)
+def rootNode = new XmlSlurper().parseText(
+    '''<pros>
+          <cat name="general">
+            <prop name='x'  value='1'/>
+            <prop name='y'  value='2'/>
+          </cat>
+          <cat name="report">
+            <prop name='s'/>
+            <prop name='t'/>
+          </cat>
+       </pros>''' )
+
+ flag=0 
+ rootNode.cat.each { var->
+        println ("each=${var.@name}")
+        if(  var.@name == 'general') {
+           println var.@name
+           println ("size=${var.prop.size() }")
+           var.prop.each { println it.@name
+              if( it.@name == 'x') {
+                 println("just remove modify")
+                it.replace{}          
+              } 
+              
+           }
+
+           
+        } 
+}
+println groovy.xml.XmlUtil.serialize(rootNode)
+// assert rootNode.dir.a.size() == 1
+System.exit(1)
+def mylist = ['hello','wolrd','hongqi'];
+for(var: mylist) {
+  println var
+}
+i=0;
+mylist.each { println it}
+      def value;
+      value = mylist.find {it=='hongqi' }
+      println(value);
+System.exit(1)
+@Field def lines4 = "a";
+
+void initVars(String pref){
+    println('init:'+lines4+'  '+pref)      //*3.init:a  b   *7.init:b  c
+    lines4 = pref;  
+}
+println("closure1")    ///1. closure1
+1.times {
+    println(lines4)    ///2. a
+    initVars('b')      ///3. init:a  b
+    lines4 += 'p1'
+    println(lines4)    ///4. bp1
+}
+println("closure2")    ///5. closure2
+1.times {
+    println(lines4)    ///6. bp1
+    initVars('c')      ///7. init:b  c
+    println(lines4)    ///8. bp1     Why not c
+    lines4 += 'q1'
+    println(lines4)    ///9. bp1q1   Why not cq1
+}
+   
+    println("*********************************")
+    cmd="git ls-remote --refs --tags https://github.com/hqzhang/octest.git"
+    //cmd="git ls-remote -t https://github.com/hqzhang/octest.git"
+    
+    def gettags = cmd.execute().text
+    println (gettags)
+    def ret=gettags.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }[1]
+    
+  println ("ret="+ret)  
+    def my="refs/tags/ear1^{}"
+    def filter=my.replaceAll('\\^\\{\\}|refs/tags/', '')
+    println (filter)           
+    println("*********************************")
+   list=['D','a','B','b','C']
+   println list.sort()
+   def lst = [1,2,3,4]
+   def newlst =[]
+   newlst = lst.collect{ it>2 }
+   println newlst

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
+  <category name="general">
+    <property name="config.folder" value="habs"/>
+    <property name="a" value="b"/>
+  </category>
+  <category name="reporting">
+    <property name="reporting.server" value="rptsvr_uapphabdv"/>
+  </category>
+</properties>

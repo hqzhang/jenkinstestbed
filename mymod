@@ -1,0 +1,44 @@
+#!/usr/bin/env groovy
+    import groovy.json.JsonSlurper
+    import groovy.json.JsonOutput
+    import groovy.yaml.YamlSlurper
+    import mylib
+    import sayHello
+    //example 1
+    def xmlStr = """<properties extends="habs_base">
+      <category name="general">
+         <property name="config.folder" value="habs"/>
+      </category>
+      <category name="reporting">
+         <property name="reporting.server" value="rptsvr_uapphabdv"/>
+      </category>
+    </properties> """
+    //example 2
+    def xmlFile = """<properties extends="habs_base">
+      <category name="general">
+        test
+      </category>
+      <category name="reporting">
+         test
+      </category>
+  </properties> """
+
+//def xmlFile = "/tmp/test.xml"
+  def xml = new XmlParser().parse(xmlFile)
+xml.foo[0].each { 
+    it.@id = "test2"
+    it.value = "test2"
+}
+  println xmlStr
+  xml.each { 
+    it.@name = "test2"
+    it.value = "test2"
+  }
+xml.appendNode {
+   category(bar: "bar value")
+}
+println groovy.xml.XmlUtil.serialize(xml)
+System.exit(1);
+
+
+

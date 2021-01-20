@@ -1,0 +1,203 @@
+apiVersion: v1
+kind: Template
+metadata:
+  creationTimestamp: null
+  name: nginx-myoc
+objects:
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: null
+    name: game-config-2
+  data:
+    SPECIAL_LEVEL: very
+    SPECIAL_TYPE: charm
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    generation: 1
+    labels:
+      app: nginx-app
+      name: dcnginx
+    name: dcnginx
+  spec:
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      app: nginx-app
+      deploymentconfig: dcnginx
+      name: dcnginx
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: nginx-app
+          deploymentconfig: dcnginx
+          name: dcnginx
+      spec:
+        containers:
+        - image: wavecloud/nginx-oc:latest
+          imagePullPolicy: Always
+          name: nginx
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 8081
+            protocol: TCP
+          env:
+          - name: lives
+            value: "8"
+          - name: SPECIAL_LEVEL
+            value: "very sorrow"
+          envFrom:
+            - configMapRef:
+                name: game-config-2
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - nginx
+        from:
+          kind: ImageStreamTag
+          name: nginx-oc:latest
+          namespace: myproject
+      type: ImageChange
+  status: {}
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/image.dockerRepositoryCheck: 2020-07-05T18:37:09Z
+
+    creationTimestamp: 2020-07-05T18:37:05Z
+    generation: 2
+    labels:
+      app: nginx-app
+      name: dcnginx
+    name: nginx-oc
+    namespace: myproject
+    resourceVersion: "32909"
+    selfLink: /apis/image.openshift.io/v1/namespaces/myproject/imagestreams/nginx-oc
+    uid: 868d9436-beee-11ea-9efb-025000000001
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: wavecloud/nginx-oc:latest
+      from:
+        kind: DockerImage
+        name: wavecloud/nginx-oc:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: null
+    labels:
+      app: nginx-app
+      name: dcnginx
+    name: mynginx
+  spec:
+    host: nginx-myproject.127.0.0.1.nip.io
+    port:
+      targetPort: 8081
+    to:
+      kind: Service
+      name: mynginx
+      weight: 100
+    wildcardPolicy: None
+    tls:
+      insecurityEdgeTerminationPolicy: Allow
+      termination: Edge
+  status: 
+    ingress: null
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: null
+    labels:
+      app: nginx-app
+      name: dcnginx
+    name: mynginx
+  spec:
+    ports:
+    - name: 80-tcp
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    - name: 8081-tcp
+      port: 8081
+      protocol: TCP
+      targetPort: 8081
+    selector:
+      app: nginx-app
+      deploymentconfig: dcnginx
+      name: dcnginx
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+parameters:
+  - name: NGINX_VERSION
+    description: "Specify the nginx version you are using, valid options are: nginx-112, nginx-110, nginx-18, nginx-16"
+    value: "nginx-112"
+    required: true
+  - name: NGINX_DEFAULT_HTTP_PORT
+    description: "Default port nginx uses to listen on, if you specify a port lower than 1024, the container must run as privileged"
+    value: "8080"
+    required: true
+  - name: NGINX_ACCESS_LOG_PATH
+    description: "Path where nginx should write the access logs, either specify the file or if you want it the logs to be printed in the container logs redirect it to STDOUT by entering the value /dev/stdout "
+    value: "/var/opt/rh/rh-nginx112/log/nginx/access.log"
+    required: true
+  - name: NGINX_ERROR_LOG_PATH
+    description: "Path where nginx should write the error logs, either specify the file or if you want it the logs to be printed in the container logs use  /dev/stdout"
+    value: "stderr"
+    required: true
+  - name: NGINX_ROUTE_HOSTNAME
+    value: ""
+    required: true
+  - name: APP_NAME
+    value: "nginx"
+    required: true
+  - name: ROOT_DIRECTORY_SIZE_IN_GB
+    value: "5"
+    required: true
+
+

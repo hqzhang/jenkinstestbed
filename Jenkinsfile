@@ -1,6 +1,3 @@
-#!/usr/bin/env groovy
- import groovy.yaml.YamlSlurper
-
 def addProperty(fileName, directoryName, propName, propValue) {
     println("enter addProperties=$fileName")
     

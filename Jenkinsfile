@@ -18,7 +18,9 @@ def addProperty(fileName, directoryName, propName, propValue) {
     //println groovy.xml.XmlUtil.serialize(xml)
     println("enter *****3***")
     def writer = new FileWriter(fileName)
+    println("enter *****4***")
     groovy.xml.XmlUtil.serialize(xml, writer)
+    println("enter *****5***")
 }
 
 def readHabsRecipes(recipeFile){

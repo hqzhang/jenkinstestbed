@@ -1,7 +1,7 @@
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
 def workspace
-
+@NonCPS
 def addProperty(fileName, directoryName, propName, propValue) {
     println("enter *****0****addProperties=$fileName")
     def xmlStr = """<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">

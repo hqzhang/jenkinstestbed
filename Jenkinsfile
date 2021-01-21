@@ -1,8 +1,9 @@
 def workspace
 def addProperty(fileName, directoryName, propName, propValue) {
-    println("enter addProperties=$fileName")
+    println("enter *****0****addProperties=$fileName")
     
     def xml = new XmlSlurper().parse(fileName)
+    println("enter *****1***")
     xml.category.each {
         if (it.@name==directoryName ) {
           println it.@name
@@ -10,7 +11,9 @@ def addProperty(fileName, directoryName, propName, propValue) {
           it.appendNode {  property(name: propName, value: propValue)  }
         }
     }
+    println("enter *****2***")
     println groovy.xml.XmlUtil.serialize(xml)
+    println("enter *****3***")
     def writer = new FileWriter(fileName)
     XmlUtil.serialize(xml, writer)
 }
@@ -57,6 +60,7 @@ def readHabsRecipes(recipeFile){
 }
 
 def dynamicStages( result ,workspace){
+ println "enter dynamicStages()"
  result.each { mykey, myval->
    println("sect=${myval.sect}")
    switch(myval.sect) { 

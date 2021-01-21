@@ -22,7 +22,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
     //groovy.xml.XmlUtil.serialize(xml, writer)
     // TRICKY: FileWriter does NOT work
     def outWriter = new StringWriter()
-    XmlUtil.serialize( xmlRoot, outWriter )
+    XmlUtil.serialize( xml, outWriter )
     
     writeFile file: fileName, text: outWriter.toString()
 

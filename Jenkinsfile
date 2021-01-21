@@ -17,6 +17,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
           println it['@name']
           //it.children().findAll { it['@name'] == propName }.replaceNode {}
           //it.appendNode  property(name: propName, value: propValue)  }
+          it.appendNode(node)
         }
     }
     def Writer = new StringWriter()

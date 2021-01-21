@@ -4,11 +4,7 @@ def workspace
 @NonCPS
 def addProperty(fileName, directoryName, propName, propValue) {
     println("enter *****0****addProperties=$fileName")
-    def xmlStr = """<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
-                <category name="general">
-                       <property name="config.folder" value="habs"/>
-                </category>
-    </properties>""" 
+    
     def xml = new XmlSlurper().parse(fileName)
     def node = new XmlSlurper().parseText('<property name="a" value="b"/>')
     println("enter *****1***")

@@ -7,7 +7,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
     xml.category.each {
         if (it['@name']==directoryName ) {
           println it['@name']
-          it.children().findAll { it['@name'] == propName }.replaceNode {}
+          //it.children().findAll { it['@name'] == propName }.replaceNode {}
           it.appendNode {  property(name: propName, value: propValue)  }
         }
     }

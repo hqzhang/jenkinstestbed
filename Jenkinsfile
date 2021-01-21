@@ -5,14 +5,14 @@ def addProperty(fileName, directoryName, propName, propValue) {
     def xml = new XmlSlurper().parse(fileName)
     println("enter *****1***")
     xml.category.each {
-        if (it.@name==directoryName ) {
-          println it.@name
-          it.children().findAll { it.@name == propName }.replaceNode {}
+        if (it['@name']==directoryName ) {
+          println it['@name']
+          it.children().findAll { it['@name'] == propName }.replaceNode {}
           it.appendNode {  property(name: propName, value: propValue)  }
         }
     }
     println("enter *****2***")
-    println groovy.xml.XmlUtil.serialize(xml)
+    //println groovy.xml.XmlUtil.serialize(xml)
     println("enter *****3***")
     def writer = new FileWriter(fileName)
     XmlUtil.serialize(xml, writer)

@@ -5,7 +5,7 @@ ok
 [CONFIG UPDATE]
 habs_base_config.xml
 <category name="general">
-   <property name="a" value="b" />
+   <property name="mya" value="myb" />
 </category>
 [HABS]
 deploy ear

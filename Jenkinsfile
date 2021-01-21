@@ -14,7 +14,11 @@ def addProperty(fileName, directoryName, propName, propValue) {
           it.appendNode {  property(name: propName, value: propValue)  }
         }
     }
-    println("enter *****2***=${xml}")
+    def Writer = new StringWriter()
+    XmlUtil.serialize( xml, Writer )
+    writeFile file: fileName, text: Writer.toString()
+
+/**    println("enter *****2***=${xml}")
     //println groovy.xml.XmlUtil.serialize(xml)
     println("enter *****3***")
     def writer = new FileWriter(fileName)
@@ -25,7 +29,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
     XmlUtil.serialize( xml, outWriter )
     
     writeFile file: fileName, text: outWriter.toString()
-
+**/
     println("enter *****5***")
 }
 

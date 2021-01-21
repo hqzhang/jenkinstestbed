@@ -1,4 +1,4 @@
-import groovy.xml.xmlUtil
+//import groovy.xml.xmlUtil
 def workspace
 def addProperty(fileName, directoryName, propName, propValue) {
     println("enter *****0****addProperties=$fileName")

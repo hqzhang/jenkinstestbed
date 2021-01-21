@@ -67,9 +67,9 @@ def dynamicStages( result ){
           def fileName= myval.cont.split("\n")[0]
           def content= myval.cont.split().drop(1).join("\n")
           def xml = new XmlSlurper().parseText(content)
-          def dirName=xml.@name
-          def propName=xml.property[0].@name
-          def propValue=xml.property[0].@value
+          def dirName=xml.['@name']
+          def propName=xml.property[0].['@name']
+          def propValue=xml.property[0].['@value']
           println fileName
           println dirName
           println propName

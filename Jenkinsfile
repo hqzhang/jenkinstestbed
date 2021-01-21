@@ -1,3 +1,4 @@
+def workspace
 def addProperty(fileName, directoryName, propName, propValue) {
     println("enter addProperties=$fileName")
     
@@ -55,7 +56,7 @@ def readHabsRecipes(recipeFile){
  return result
 }
 
-def dynamicStages( result ){
+def dynamicStages( result ,workspace){
  result.each { mykey, myval->
    println("sect=${myval.sect}")
    switch(myval.sect) { 
@@ -73,7 +74,7 @@ def dynamicStages( result ){
           println fileName
           println dirName
           println propName
-          addProperty(fileName,dirName,propName,propValue)     
+          addProperty("${workspace}/${fileName}",dirName,propName,propValue)     
           break
       case 'HABS': 
           println "case HABS"
@@ -100,9 +101,9 @@ pipeline {
      stage("mytest") {
         steps{
            script {
-           def pwd=WORKSPACE
-           def result=readHabsRecipes("${pwd}/habs_recipes")
-           dynamicStages(result)
+           workspace=WORKSPACE
+           def result=readHabsRecipes("${workspace}/habs_recipes")
+           dynamicStages(result,workspace)
 }}}
 }}
 

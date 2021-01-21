@@ -17,9 +17,11 @@ def addProperty(fileName, directoryName, propName, propValue) {
           println it['@name']
           //it.children().findAll { it['@name'] == propName }.replaceNode {}
           //it.appendNode  property(name: propName, value: propValue)  }
-          it.appendNode(node)
+        println("enter *****2***")  
+        it.appendNode(node)
         }
     }
+    println("enter *****3***")
     def Writer = new StringWriter()
     XmlUtil.serialize( xml, Writer )
     writeFile file: fileName, text: Writer.toString()

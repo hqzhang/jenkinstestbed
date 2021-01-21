@@ -7,15 +7,15 @@ def addProperty(fileName, directoryName, propName, propValue) {
     def xml = new XmlSlurper().parse(fileName)
     def a="myname"
     def b="myvalue"
-    def str="<property name=${a} value=${b}/>"
+    def str="<property name="a" value="b"/>"
     println "str=${str}"
-    def node = new XmlSlurper().parseText(str)
+    def node = new XmlSlurper().parseText('<property name="a" value="b"/>')
     println("enter *****1***")
     xml.category.each {
         if (it['@name']==directoryName ) {
           println it['@name']
           it.children().findAll { it['@name'] == propName }.replaceNode {}
-          //it.appendNode  property(name: propName, value: propValue)  }
+          it.appendNode{ property(name: propName, value: propValue)  }
         println("enter *****2***")  
         it.appendNode(node)
         }

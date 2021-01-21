@@ -2,31 +2,28 @@ import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
 def workspace
 @NonCPS
-def addProperty(fileName, directoryName,mynode, propName, propValue) {
+def addProperty(fileName, directoryName, propName, propValue) {
     println("enter *****0****addProperties=$fileName")
+    def xmlStr = """<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
+                <category name="general">
+                       <property name="config.folder" value="habs"/>
+                </category>
+    </properties>""" 
     def xml = new XmlSlurper().parse(fileName)
     def a="myname"
     def b="myvalue"
-    def str="<property name="a" value="b"/>"
-    println "str=${str}"
-    def node = new XmlSlurper().parseText('<property name="a" value="b"/>')
+    def node = new XmlSlurper().parseText('<property name=${a} value=${b}/>')
     println("enter *****1***")
     xml.category.each {
         if (it['@name']==directoryName ) {
           println it['@name']
           it.children().findAll { it['@name'] == propName }.replaceNode {}
-          //it.appendNode{ property(name: propName, value: propValue)  }
-          println("enter *****2***")  
-          it.appendNode(node)
+          //it.appendNode  property(name: propName, value: propValue)  }
+        println("enter *****2***")  
+        it.appendNode(node)
         }
     }
 /**    println("enter *****3***")
-    def Writer = new StringWriter()
-    println("enter *****3***")
-    XmlUtil.serialize( xml, Writer )
-    println("enter *****4***")
-    writeFile file: fileName, text: Writer.toString()
-    println("enter *****5***")
 **/    println("enter *****2***=${xml}")
     println groovy.xml.XmlUtil.serialize(xml)
     println("enter *****3***")
@@ -99,12 +96,11 @@ def dynamicStages( result ,workspace){
           def dirName=xml['@name']
           def propName=xml.property[0]['@name']
           def propValue=xml.property[0]['@value']
-          def mynod = xml.property
           println fileName
           println dirName
           println propName
           println propValue
-          addProperty("${workspace}/${fileName}",dirName,mynod,propName,propValue)     
+          addProperty("${workspace}/${fileName}",dirName,propName,propValue)     
           break
       case 'HABS': 
           println "case HABS"
@@ -136,5 +132,6 @@ pipeline {
            dynamicStages(result,workspace)
 }}}
 }}
+
 
 

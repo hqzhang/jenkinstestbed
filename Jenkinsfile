@@ -26,7 +26,7 @@ pipeline {
            steps {
                
                    script {
-                        def xmlTemplate = readFile( 'settings.xml' )
+                        def xmlTemplate = readFile( 'habs_base_config.xml' )
                          xmlTemplate = """<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
   <category name="general">
     <property name="config.folder" value="habs"/>

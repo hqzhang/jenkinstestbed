@@ -2,7 +2,7 @@ import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
 def workspace
 @NonCPS
-def addProperty(fileName, directoryName, propName, propValue) {
+def addProperty(fileName, directoryName, propName, propValue, propNode) {
     println("enter *****0****addProperties=$fileName")
     
     def xml = new XmlSlurper().parse(fileName)
@@ -82,11 +82,12 @@ def dynamicStages( result ,workspace){
           def dirName=xml['@name']
           def propName=xml.property[0]['@name']
           def propValue=xml.property[0]['@value']
+          def propNod = xml.property[0]
           println fileName
           println dirName
           println propName
           println propValue
-          addProperty("${workspace}/${fileName}",dirName,propName,propValue)     
+          addProperty("${workspace}/${fileName}",dirName,propName,propValue, propNod)     
           break
       case 'HABS': 
           println "case HABS"

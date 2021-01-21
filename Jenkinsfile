@@ -19,7 +19,13 @@ def addProperty(fileName, directoryName, propName, propValue) {
     println("enter *****3***")
     def writer = new FileWriter(fileName)
     println("enter *****4***")
-    groovy.xml.XmlUtil.serialize(xml, writer)
+    //groovy.xml.XmlUtil.serialize(xml, writer)
+    // TRICKY: FileWriter does NOT work
+    def outWriter = new StringWriter()
+    XmlUtil.serialize( xmlRoot, outWriter )
+    
+    writeFile file: fileName, text: outWriter.toString()
+
     println("enter *****5***")
 }
 

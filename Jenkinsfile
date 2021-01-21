@@ -12,7 +12,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
           it.appendNode {  property(name: propName, value: propValue)  }
         }
     }
-    println("enter *****2***")
+    println("enter *****2***=${xml}")
     println groovy.xml.XmlUtil.serialize(xml)
     println("enter *****3***")
     def writer = new FileWriter(fileName)

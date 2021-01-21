@@ -10,9 +10,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
                 </category>
     </properties>""" 
     def xml = new XmlSlurper().parse(fileName)
-    def a="myname"
-    def b="myvalue"
-    def node = new XmlSlurper().parseText('<property name=${a} value=${b}/>')
+    def node = new XmlSlurper().parseText('<property name="a" value="b"/>')
     println("enter *****1***")
     xml.category.each {
         if (it['@name']==directoryName ) {
@@ -24,6 +22,12 @@ def addProperty(fileName, directoryName, propName, propValue) {
         }
     }
 /**    println("enter *****3***")
+    def Writer = new StringWriter()
+    println("enter *****3***")
+    XmlUtil.serialize( xml, Writer )
+    println("enter *****4***")
+    writeFile file: fileName, text: Writer.toString()
+    println("enter *****5***")
 **/    println("enter *****2***=${xml}")
     println groovy.xml.XmlUtil.serialize(xml)
     println("enter *****3***")

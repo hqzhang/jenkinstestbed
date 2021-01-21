@@ -10,12 +10,13 @@ def addProperty(fileName, directoryName, propName, propValue) {
                 </category>
     </properties>""" 
     def xml = new XmlSlurper().parseText(xmlStr)
+    def node = new XmlSlurper().parseText('<property name="a" value="b"/>')
     println("enter *****1***")
     xml.category.each {
         if (it['@name']==directoryName ) {
           println it['@name']
           //it.children().findAll { it['@name'] == propName }.replaceNode {}
-          it.appendNode {  property(name: propName, value: propValue)  }
+          //it.appendNode  property(name: propName, value: propValue)  }
         }
     }
     def Writer = new StringWriter()

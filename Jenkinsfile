@@ -14,7 +14,7 @@ def addProperty(fileName, directoryName, propName, propValue, propNode) {
           it.children().findAll { it['@name'] == propName }.replaceNode {}
           //it.appendNode  property(name: propName, value: propValue)  }
         println("enter *****2***")  
-        it.appendNode(node)
+        it.appendNode(propNode)
         }
     }
     println groovy.xml.XmlUtil.serialize(xml)

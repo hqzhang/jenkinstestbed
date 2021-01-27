@@ -1,10 +1,7 @@
 node {
-  def workspace=WORKSPACE
-  def props = readProperties file: "$workspace/jenkinsfile.pipeline.properties"
+  def distribution= "a" 
 
-  def distribution= props['distribution_property'] 
-
-  def tag= props['tag_property']
+  def tag= "b"
   properties([
     parameters([ 
      string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),

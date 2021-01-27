@@ -10,8 +10,15 @@ pipeline{
      string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
    ])
  ])
- echo "distribution: $distribution"
+ //echo "distribution: $distribution"
+ //echo "tag: $tag"
+ stages{
+   stage('init') {
+    steps{
+echo "distribution: $distribution"
  echo "tag: $tag"
-
+}
+}
+ }
 }
 

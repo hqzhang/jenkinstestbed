@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
-List fruits_list = ["\"apple\"","\"banana\"","\"mango\""]
-List vegetables_list = ["\"potato\"","\"tomato\"","\"broccoli\""]
-List default_item = ["\"Not Applicable\""]
+def fruits_list = ["\"apple\"","\"banana\"","\"mango\""]
+def vegetables_list = ["\"potato\"","\"tomato\"","\"broccoli\""]
+def default_item = ["\"Not Applicable\""]
 String vegetables = buildScript(vegetables_list)
 String fruits = buildScript(fruits_list)
 String items = populateItems(default_item,vegetables_list,fruits_list)
@@ -28,7 +28,7 @@ properties([
        parameters([
           choice(name: 'Categories', choices: ['Vegetables','Fruits'], description: 'input cluster'),
      
-          [$class: 'CascadeChoiceParameter', choiceType: 'PT_RADIO_BUTTONS',name: 'Items',
+          [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items',
           referencedParameters: 'Categories',
           script: [$class: 'GroovyScript',
           fallbackScript: [classpath: [], sandbox: false,

@@ -33,6 +33,12 @@ properties([
           script: [$class: 'GroovyScript',
           fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
           script: [classpath: [], sandbox: false,script:  categories]]],
+     
+          [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items',
+          referencedParameters: 'Categories',
+          script: [$class: 'GroovyScript',
+          fallbackScript: [classpath: [], sandbox: false,
+          script: 'return ["error"]'], script: [classpath: [], sandbox: false, script: items]]],
 
           string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
           string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
@@ -50,13 +56,12 @@ pipeline{
           script: [$class: 'GroovyScript', 
           fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], script: [classpath: [], sandbox: false,
           script:  categories]]],
-        [$class: 'CascadeChoiceParameter', 
-         choiceType: 'PT_SINGLE_SELECT',name: 'Items', 
+        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items', 
          referencedParameters: 'Categories', 
          script: [$class: 'GroovyScript', 
          fallbackScript: [classpath: [], sandbox: false, 
-         script: 'return ["error"]'], script: [classpath: [], sandbox: false, 
-         script: items]]],
+         script: 'return ["error"]'], script: [classpath: [], sandbox: false, script: items]]],
+
          string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
          string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
    ])

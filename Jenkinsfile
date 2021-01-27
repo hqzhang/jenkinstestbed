@@ -1,10 +1,7 @@
 #!/usr/bin/env groovy
-List category_list = ["\"Vegetables\"","\"Fruits\""]
 List fruits_list = ["\"apple\"","\"banana\"","\"mango\""]
 List vegetables_list = ["\"potato\"","\"tomato\"","\"broccoli\""]
 List default_item = ["\"Not Applicable\""]
-String categories = buildScript(category_list)
-//String categories = catagory_list
 String vegetables = buildScript(vegetables_list)
 String fruits = buildScript(fruits_list)
 String items = populateItems(default_item,vegetables_list,fruits_list)
@@ -30,12 +27,8 @@ return """if(Categories.equals('Vegetables')){
 properties([
        parameters([
           choice(name: 'Categories', choices: ['Vegetables','Fruits'], description: 'input cluster'),
-          /**[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', name: 'Categories',
-          script: [$class: 'GroovyScript',
-          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
-          script: [classpath: [], sandbox: false,script:  categories]]],**/
      
-          [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items',
+          [$class: 'CascadeChoiceParameter', choiceType: 'PT_RADIO_BUTTONS',name: 'Items',
           referencedParameters: 'Categories',
           script: [$class: 'GroovyScript',
           fallbackScript: [classpath: [], sandbox: false,

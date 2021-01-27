@@ -25,34 +25,21 @@ return """if(Categories.equals('Vegetables')){
 }
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting
-
-pipeline{
-  agent any
-
+node {
   def workspace=WORKSPACE
   def props = readProperties file: "$workspace/jenkinsfile.pipeline.properties"
+
   def distribution= props['distribution_property'] 
+
   def tag= props['tag_property']
   properties([
     parameters([ 
-        [$class: 'ChoiceParameter', 
-          choiceType: 'PT_SINGLE_SELECT',   
-          name: 'Categories', 
-          script: [$class: 'GroovyScript', 
-          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], script: [classpath: [], sandbox: false,
-          script:  categories]]],
-        [$class: 'CascadeChoiceParameter', 
-         choiceType: 'PT_SINGLE_SELECT',name: 'Items', 
-         referencedParameters: 'Categories', 
-         script: [$class: 'GroovyScript', 
-         fallbackScript: [classpath: [], sandbox: false, 
-         script: 'return ["error"]'], script: [classpath: [], sandbox: false, 
-         script: items]]],
-         string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
-         string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
+     string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
+     string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
    ])
  ])
  echo "distribution: $distribution"
  echo "tag: $tag"
 
 }
+

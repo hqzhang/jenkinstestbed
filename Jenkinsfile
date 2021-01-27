@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-def fruits_list =   ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\""]
+def fruits_list =   ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\"","\"hongqi\""]
 def vegetables_list=["\"Select:selected\"","\"potato\"","\"tomato\"","\"broccoli\""]
 //vegetables_list=["\"Select:selected\""]
 def default_item = ["\"Not Applicable\""]

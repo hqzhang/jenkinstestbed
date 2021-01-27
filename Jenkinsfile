@@ -27,13 +27,11 @@ return """if(Categories.equals('Vegetables')){
 // Declarative Scripting
 properties([
        parameters([
-     string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
-     string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
-   ])    
+          string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
+          string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
+      ])    
  ])       
 
-
-])
 pipeline{
   agent any
 

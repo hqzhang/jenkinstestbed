@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
-def fruits_list = ["\"apple\"","\"banana\"","\"mango\""]
-def vegetables_list = ["\"potato\"","\"tomato\"","\"broccoli\""]
-def default_item = ["\"Not Applicable\""]
+List fruits_list = ["\"apple\"","\"banana\"","\"mango\""]
+List vegetables_list = ["\"potato\"","\"tomato\"","\"broccoli\""]
+List default_item = ["\"Not Applicable\""]
 String vegetables = buildScript(vegetables_list)
 String fruits = buildScript(fruits_list)
 String items = populateItems(default_item,vegetables_list,fruits_list)

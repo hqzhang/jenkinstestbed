@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 def fruits_list =   ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\""]
 def vegetables_list=["\"Select:selected\"","\"potato\"","\"tomato\"","\"broccoli\""]
+vegetables_list=["\"Select:selected\""]
 def default_item = ["\"Not Applicable\""]
 //String categories = buildScript(category_list)
 //String categories = catagory_list
@@ -28,7 +29,7 @@ return """if(Categories.equals('Vegetables')){
   def  tag="mytag"
 properties([
        parameters([
-          choice(name: 'Categories', choices: ['Vegetables','Fruits'], description: 'input cluster'),
+          choice(name: 'Categories', choices: ['Fruits','Vegetables'], description: 'input cluster'),
      
           [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items',
           referencedParameters: 'Categories',

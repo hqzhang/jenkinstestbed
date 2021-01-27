@@ -1,8 +1,7 @@
 #!/usr/bin/env groovy
-List category_list = ["\"Select:selected\"","\"Vegetables\"","\"Fruits\""]
-List fruits_list =   ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\""]
-List vegetables_list=["\"Select:selected\"","\"potato\"","\"tomato\"","\"broccoli\""]
-List default_item = ["\"Not Applicable\""]
+def fruits_list =   ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\""]
+def vegetables_list=["\"Select:selected\"","\"potato\"","\"tomato\"","\"broccoli\""]
+def default_item = ["\"Not Applicable\""]
 String categories = buildScript(category_list)
 //String categories = catagory_list
 String vegetables = buildScript(vegetables_list)

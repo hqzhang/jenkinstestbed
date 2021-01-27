@@ -59,10 +59,11 @@ pipeline{
    ])
  ])**/
  stages{
-     stage('init')[
+     stage('init'){
          steps{
-    script{
- echo "distribution: $distribution"
- echo "tag: $tag"
-}}}}
+           script{
+              echo "distribution: $distribution"
+              echo "tag: $tag"
+         }}}
+       } 
 }

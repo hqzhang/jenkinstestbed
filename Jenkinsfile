@@ -29,6 +29,11 @@ return """if(Categories.equals('Vegetables')){
   def  tag="mytag"
 properties([
        parameters([
+          [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', name: 'Categories',
+          script: [$class: 'GroovyScript',
+          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
+          script: [classpath: [], sandbox: false,script:  categories]]],
+
           string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
           string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
       ])    

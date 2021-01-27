@@ -2,7 +2,7 @@
 def fruits_list =   ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\""]
 def vegetables_list=["\"Select:selected\"","\"potato\"","\"tomato\"","\"broccoli\""]
 def default_item = ["\"Not Applicable\""]
-String categories = buildScript(category_list)
+//String categories = buildScript(category_list)
 //String categories = catagory_list
 String vegetables = buildScript(vegetables_list)
 String fruits = buildScript(fruits_list)

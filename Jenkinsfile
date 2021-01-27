@@ -23,6 +23,19 @@ return """if(Categories.equals('Vegetables')){
      }
      """
 }
+String populateItems(List default_item, List vegeList, List fruitsList){
+return """if(Categories.equals('qa1')){
+       return ["gpi_master"]
+     } else if(Categories.equals('qa2')){
+       return ["ssr_master"]
+     } else if(Categories.equals('qa3')){
+       return ["lynx_master"]
+     } 
+     else {
+       return ["Unknown state"]
+     }
+     """
+}   
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting
   def  distribution="mydist"

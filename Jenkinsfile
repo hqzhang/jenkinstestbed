@@ -29,10 +29,11 @@ return """if(Categories.equals('Vegetables')){
   def  tag="mytag"
 properties([
        parameters([
-          [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', name: 'Categories',
+          choice(name: 'Categories', choices: ['Vegetables','Fruits'], description: 'input cluster'),
+          /**[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', name: 'Categories',
           script: [$class: 'GroovyScript',
           fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
-          script: [classpath: [], sandbox: false,script:  categories]]],
+          script: [classpath: [], sandbox: false,script:  categories]]],**/
      
           [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items',
           referencedParameters: 'Categories',

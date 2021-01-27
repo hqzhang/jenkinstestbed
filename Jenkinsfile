@@ -1,7 +1,9 @@
-node {
+
   def distribution= "a" 
 
   def tag= "b"
+pipeline{
+  agent any
   properties([
     parameters([ 
      string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),

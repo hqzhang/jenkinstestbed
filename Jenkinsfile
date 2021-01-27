@@ -25,6 +25,12 @@ return """if(Categories.equals('Vegetables')){
 }
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting
+  def workspace=WORKSPACE
+  def props = readProperties file: "$workspace/jenkinsfile.pipeline.properties"
+  def distribution= props['distribution_property']
+  def tag= props['tag_property']
+      distribution="mydist"
+      tag="mytag"
 properties([
        parameters([
           string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
@@ -35,10 +41,6 @@ properties([
 pipeline{
   agent any
 
-  def workspace=WORKSPACE
-  def props = readProperties file: "$workspace/jenkinsfile.pipeline.properties"
-  def distribution= props['distribution_property'] 
-  def tag= props['tag_property']
   /**properties([
     parameters([ 
         [$class: 'ChoiceParameter', 

@@ -4,7 +4,7 @@
   def tag= "b"
 pipeline{
   agent any
-  properties([
+  options([
     parameters([ 
      string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
      string(name: 'tag', defaultValue: "$tag", description: 'just a tag')

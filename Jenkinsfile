@@ -23,7 +23,7 @@ return """if(Categories.equals('Vegetables')){
      }
      """
 }
-String populateItems(List default_item, List vegeList, List fruitsList){
+String genItems(List default_item, List vegeList, List fruitsList){
 return """if(Categories.equals('qa1')){
        return ["gpi_master"]
      } else if(Categories.equals('qa2')){

@@ -5,7 +5,7 @@ def vegetables_list=["\"Select:selected\"","\"potato\"","\"tomato\"","\"broccoli
 def default_item = ["\"Not Applicable\""]
 //String categories = buildScript(category_list)
 //String categories = catagory_list
-String vegetables = buildScript(vegetables_list)
+/**String vegetables = buildScript(vegetables_list)
 String fruits = buildScript(fruits_list)
 String items = populateItems(default_item,vegetables_list,fruits_list)
 // Methods to build groovy scripts to populate data
@@ -22,7 +22,7 @@ return """if(Categories.equals('Vegetables')){
      return $default_item
      }
      """
-}
+}**/
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting
   def  distribution="mydist"

@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+//YOU SHOULD OPEN CONFIG and DO SAVE 
 properties([ 
     parameters([
         /**[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', 
@@ -13,8 +14,8 @@ properties([
             script: [$class: 'GroovyScript', 
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
             script: [classpath: [], sandbox: false, 
-            script: '''if(choice1.equals("qa1")){ return ["qa1_master"]
-                   } else { return ["qa2_master"] } ''']]]
+            script: '''if(choice1.equals("qa1")){ return ["qa1_master","test1"]
+                   } else { return ["qa2_master","test2"] } ''']]]
     ])
 ])
 

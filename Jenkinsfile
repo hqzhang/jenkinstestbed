@@ -13,8 +13,8 @@ properties([
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
             script: [classpath: [], sandbox: false, 
             script: '''if(ENVIRONMENT.equals("qa1")){ return ["gpi_master"] }
-                   else if(ENVIRONMENT.equals("qa2")){ return ["ssr_master"]
-                   else if(ENVIRONMENT.equals("qa3")){ return ["lynx_master"]
+                   else if(ENVIRONMENT.equals("qa2")){ return ["ssr_master"] }
+                   else if(ENVIRONMENT.equals("qa3")){ return ["lynx_master"] }
                    else { return ["Unknown state"] } 
                    ''']]]
     ])

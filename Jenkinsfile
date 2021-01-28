@@ -1,34 +1,11 @@
 #!/usr/bin/env groovy
-
-properties([
-  parameters([
-    [
-      $class: 'ChoiceParameter', 
-      choiceType: 'PT_SINGLE_SELECT', 
-      name: 'DataCenter', 
-      script: [
-        $class: 'ScriptlerScript', 
-        scriptlerScriptId:'getdatacenters.groovy',
-        parameters: [
-          [name:'StatusId', value:'']
-        ]
-      ]
-    ],
-    [
-      $class: 'CascadeChoiceParameter',
-      choiceType: 'PT_SINGLE_SELECT',
-      name: 'EnvironmentType', 
-      script: [
-        $class: 'ScriptlerScript',
-        scriptlerScriptId:'getenvtypesbydatacenter.groovy',
-        referencedParameters: 'DataCenter',
-        parameters: [
-          [name:'DataCenter', value: '$DataCenter']
-        ]
-      ]
-    ]
-  ])
+properties([ 
+    parameters([
+        [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', description: 'Select a choice', filterLength: 1, filterable: true, name: 'choice1', randomName: 'choice-parameter-7601235200970', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], script: [classpath: [], sandbox: false, script: 'return[\'aaa\',\'bbb\']']]], 
+        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', description: 'Active Choices Reactive parameter', filterLength: 1, filterable: true, name: 'choice2', randomName: 'choice-parameter-7601237141171', referencedParameters: 'choice1', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["error"]'], script: [classpath: [], sandbox: false, script: 'if(choice1.equals("aaa")){return [\'a\', \'b\']} else {return [\'aaaaaa\',\'fffffff\']}']]]
+    ])
 ])
+
 pipeline{
   agent any
 

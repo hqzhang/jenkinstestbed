@@ -19,8 +19,8 @@ properties([
             script: [$class: 'GroovyScript', 
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["error"]'], 
             script: [classpath: [], sandbox: false, 
-            script: 'if(choice1.equals("aaa")){return [\'a\', \'b\']
-                   } else {return [\'aaaaaa\',\'fffffff\']}']]]
+            script: '''if(choice1.equals("aaa")){ return [\'a\', \'b\']
+                   } else { return [\'aaaaaa\',\'fffffff\'] } ''']]]
     ])
 ])
 

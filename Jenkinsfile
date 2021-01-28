@@ -1,5 +1,5 @@
-
-#!/usr/bin/env groovy
+@Library('my-shared-library') _
+//library("my-shared-library") _
 //YOU SHOULD OPEN CONFIG and DO SAVE 
 properties([ 
     parameters([

@@ -18,7 +18,7 @@ properties([
      return $vegetables_list
      }
      else if(Categories.equals('Fruits')){
-     return $fruits_list
+     return ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\""]
      }else{
      return $default_item
      }

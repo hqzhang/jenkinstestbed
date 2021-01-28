@@ -35,7 +35,18 @@ properties([
           referencedParameters: 'Categories',
           script: [$class: 'GroovyScript',
           fallbackScript: [classpath: [], sandbox: false,
-          script: 'return ["error"]'], script: [classpath: [], sandbox: false, script: items]]],
+          script: 'return ["error"]'], script: [classpath: [], sandbox: false, 
+          script: 
+      """if(Categories.equals('Vegetables')){
+     return $vegetables_list
+     }
+     else if(Categories.equals('Fruits')){
+     return $fruits_list
+     }else{
+     return $default_item
+     }
+     """
+          ]]],
 
           string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
           string(name: 'tag', defaultValue: "$tag", description: 'just a tag')

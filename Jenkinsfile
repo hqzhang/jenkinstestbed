@@ -7,8 +7,7 @@ properties([
          
            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
             description: 'Active Choices Reactive parameter', 
-            filterLength: 1, filterable: true, 
-            name: 'choice2', randomName: 'choice-parameter-7601237141171',
+            name: 'GIT_BRANCH2', randomName: 'choice-parameter-7601237141171',
             referencedParameters: 'ENVIRONMENT', 
             script: [$class: 'GroovyScript', 
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 

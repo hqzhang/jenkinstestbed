@@ -31,7 +31,7 @@ pipeline{
      stage('init'){
          steps{
            script{
-              echo "tag: $tag"
+              echo "tag:"
          }}}
        } 
 }

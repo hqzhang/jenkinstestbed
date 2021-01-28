@@ -1,3 +1,4 @@
+#!/usr/bin/env groovy
 properties([
     parameters([
         [$class: 'ChoiceParameter', 

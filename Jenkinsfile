@@ -13,15 +13,15 @@ properties([
           script: [$class: 'GroovyScript',
           fallbackScript: [classpath: [], sandbox: false,
           script: 'return ["error"]'], script: [classpath: [], sandbox: false, 
-          script: 
+          script:
       """if(Categories.equals('Vegetables')){
-     return $vegetables_list
-     }
-     else if(Categories.equals('Fruits')){
-     return ["Select:selected","apple","banana","mango"]
-     }else{
-     return $default_item
-     }
+            return ["Select:selected", "potato", "tomato", "broccoli"]
+         }
+         else if(Categories.equals('Fruits')){
+            return ["Select:selected", "apple", "banana", "mango"]
+         }else{
+            return ["Not Applicable"]
+        } 
      """
           ]]],
 

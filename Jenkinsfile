@@ -11,7 +11,7 @@ properties([
             name: 'choice2', randomName: 'choice-parameter-7601237141171',
             referencedParameters: 'choice1', 
             script: [$class: 'GroovyScript', 
-            fallbackScript: [classpath: [], sandbox: false, script: '''return ["RrroR"]'''], 
+            fallbackScript: [classpath: [], sandbox: false, script: 'return ["RrroR"]'], 
             script: [classpath: [], sandbox: false, 
             script: '''if(choice1.equals("aaa")){ return ["A"]
                    } else { return ["B"] } ''']]]

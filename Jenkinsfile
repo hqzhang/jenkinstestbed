@@ -5,8 +5,8 @@ properties([
     parameters([
            choice(name: 'ENVIRONMENT', choices: ['qa1','qa2','qa3'], description: 'input cluster'),         
          
-           [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
-            description: 'Active Choices Reactive parameter', 
+           [$class: 'CascadeChoiceParameter', choiceType: 'PT_RADIO',
+            description: 'Suggested branch', 
             name: 'GIT_BRANCH2', randomName: 'choice-parameter-7601237141171',
             referencedParameters: 'ENVIRONMENT', 
             script: [$class: 'GroovyScript', 

@@ -1,35 +1,34 @@
 #!/usr/bin/env groovy
-def fruits_list =   ["\"Select:selected\"","\"apple\"","\"banana\"","\"mango\""]
-def vegetables_list=["\"Select:selected\"","\"potato\"","\"tomato\"","\"broccoli\""]
-def default_item = ["\"Not Applicable\""]
-  def  distribution="mydist"
-  def  tag="mytag"
+
 properties([
-       parameters([
-          choice(name: 'Categories', choices: ['Fruits','Vegetables'], description: 'input cluster'),
-     
-          [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items',
-          referencedParameters: 'Categories',
-          script: [$class: 'GroovyScript',
-          fallbackScript: [classpath: [], sandbox: false,
-          script: 'return ["error"]'], script: [classpath: [], sandbox: false, 
-          script:
-      """if(Categories.equals('Vegetables')){
-            return ["Select:selected", "potato", "tomato", "broccoli"]
-         }
-         else if(Categories.equals('Fruits')){
-            return ["Select:selected", "apple", "banana", "mango"]
-         }else{
-            return ["Not Applicable"]
-        } 
-     """
-          ]]],
-
-          string(name: 'distribution', defaultValue: "$distribution", description: 'apt distribution'),
-          string(name: 'tag', defaultValue: "$tag", description: 'just a tag')
-      ])    
- ])       
-
+  parameters([
+    [
+      $class: 'ChoiceParameter', 
+      choiceType: 'PT_SINGLE_SELECT', 
+      name: 'DataCenter', 
+      script: [
+        $class: 'ScriptlerScript', 
+        scriptlerScriptId:'getdatacenters.groovy',
+        parameters: [
+          [name:'StatusId', value:'']
+        ]
+      ]
+    ],
+    [
+      $class: 'CascadeChoiceParameter',
+      choiceType: 'PT_SINGLE_SELECT',
+      name: 'EnvironmentType', 
+      script: [
+        $class: 'ScriptlerScript',
+        scriptlerScriptId:'getenvtypesbydatacenter.groovy',
+        referencedParameters: 'DataCenter',
+        parameters: [
+          [name:'DataCenter', value: '$DataCenter']
+        ]
+      ]
+    ]
+  ])
+])
 pipeline{
   agent any
 

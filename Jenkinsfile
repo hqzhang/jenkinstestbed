@@ -3,7 +3,7 @@ properties([
     parameters([
         /**[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', 
          **/
-           choice(name: 'choice1', choices: ['aaa','bbb'], description: 'input cluster'),         
+           choice(name: 'choice1', choices: ['qa1','qa2'], description: 'input cluster'),         
          
            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
             description: 'Active Choices Reactive parameter', 
@@ -13,8 +13,8 @@ properties([
             script: [$class: 'GroovyScript', 
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
             script: [classpath: [], sandbox: false, 
-            script: '''if(choice1.equals("aaa")){ return ["A"]
-                   } else { return ["B"] } ''']]]
+            script: '''if(choice1.equals("qa1")){ return ["qa1_master"]
+                   } else { return ["qa2_master"] } ''']]]
     ])
 ])
 

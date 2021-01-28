@@ -14,13 +14,13 @@ properties([
                     classpath: [], 
                     sandbox: false, 
                     script: 
-                        'return[\'Could not get Env\']'
+                        'return [\'Could not get Env\']'
                 ], 
                 script: [
                     classpath: [], 
                     sandbox: false, 
                     script: 
-                        'return["Dev","QA","Stage","Prod"]'
+                        'return ["Dev","QA","Stage","Prod"]'
                 ]
             ]
         ], 
@@ -38,23 +38,23 @@ properties([
                     classpath: [], 
                     sandbox: false, 
                     script: 
-                        'return[\'Could not get Environment from Env Param\']'
+                        'return [\'Could not get Environment from Env Param\']'
                 ], 
                 script: [
                     classpath: [], 
                     sandbox: false, 
                     script: 
                         ''' if (Env.equals("Dev")){
-                                return["devaaa001","devaaa002","devbbb001","devbbb002","devccc001","devccc002"]
+                                return ["devaaa001","devaaa002","devbbb001","devbbb002","devccc001","devccc002"]
                             }
                             else if(Env.equals("QA")){
-                                return["qaaaa001","qabbb002","qaccc003"]
+                                return ["qaaaa001","qabbb002","qaccc003"]
                             }
                             else if(Env.equals("Stage")){
-                                return["staaa001","stbbb002","stccc003"]
+                                return ["staaa001","stbbb002","stccc003"]
                             }
                             else if(Env.equals("Prod")){
-                                return["praaa001","prbbb002","prccc003"]
+                                return ["praaa001","prbbb002","prccc003"]
                             }
                         '''
                 ]

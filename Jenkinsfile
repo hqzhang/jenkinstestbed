@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
-import groovy.yaml.YamlSlurper
-import groovy.xml.StreamingMarkupBuilder
+//import groovy.yaml.YamlSlurper
+//import groovy.xml.StreamingMarkupBuilder
 //import groovy.xml.XmlUtil
 def addNode( mynode) {
     println("Enter addNode() type: "+mynode.getClass() )

@@ -40,8 +40,8 @@ def readXMLSwitch(fileManifest,workspace) {
     println "for loop......"
     def i=0;
     rootNode.children().each {
-      stage(it.name){
-        println it.name
+      stage(it.toString()){
+        
       /*switch(it.name() ) {
       case 'patches':
           println "case DB PATHES"

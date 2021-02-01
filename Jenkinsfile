@@ -33,14 +33,14 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
-@NonCPS
+
 def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
     def rootNode = new XmlSlurper().parse(fileManifest)
     println "for loop......"
     def i=0;
     println rootNode.getClass()
-    println rootNode.name
+    println rootNode.name()
 /*    rootNode.children().each {
       stage(it.toString()){
         

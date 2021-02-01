@@ -42,6 +42,7 @@ def readXMLSwitch(fileManifest,workspace) {
     println rootNode.getClass()
     println rootNode.name()
     println rootNode.children()[0].name()
+    println rootNode.children()[1].name()
 /*    rootNode.children().each {
       stage(it.toString()){
         

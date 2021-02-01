@@ -84,6 +84,7 @@ def dynamicStages( result ,workspace){
  println "enter dynamicStages()"
  result.each { mykey, myval->
    println("sect=${myval.sect}")
+   stage(myval.sect) {
    switch(myval.sect) { 
       case 'DB PATHES': 
           println "case DB PATHES" 
@@ -117,6 +118,7 @@ def dynamicStages( result ,workspace){
       default:
           println "case Default" 
           break
+      }
     }  
  }
 }

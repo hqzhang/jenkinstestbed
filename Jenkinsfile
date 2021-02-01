@@ -258,7 +258,7 @@ pipeline {
            script {
            workspace=WORKSPACE
            def result=readHabsRecipes("${workspace}/habs_recipes")
-           readXMLSwitch("manifest_Lync.xml",workspace)
+           readXMLSwitch("manifest_Lynx.xm",workspace)
 }}}
 }}
 

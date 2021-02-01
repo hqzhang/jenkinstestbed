@@ -77,7 +77,7 @@ def readXMLSwitch(fileManifest,workspace) {
       case 'config':
           println "case CONFIG UPDATE"
           println "CALLaddnode"
-          addNode(it)
+          //addNode(it)
           println "AFTERaddnode"
           break
       case 'HABS':

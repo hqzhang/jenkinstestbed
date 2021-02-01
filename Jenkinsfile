@@ -13,7 +13,7 @@ def addNode( mynode) {
     println "**********113******"
     def categoryName = mynode.category.'@name'
     def node = mynode.category.property
-    println "**********114******"
+    println "**********114******fileName=${fileName}"
     def xml = new XmlSlurper().parse(fileName)
     println "**********115******"
     xml.category.each {

@@ -36,13 +36,16 @@ def addNode( mynode) {
 
 def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
-    def rootNode = new XmlSlurper().parse(fileManifest)
+    def recipes = new XmlSlurper().parse(fileManifest)
     println "for loop......"
     def i=0;
-    println rootNode.getClass()
-    println rootNode.name()
-    println rootNode.children()[0].name()
-    println rootNode.children()[1].name()
+    println recipes.getClass()
+    println recipes.name()
+    println recipes.children()[0].name()
+    println recipes.children()[1].name()
+    recipes.children().each{
+       println it.name()
+    }
 /*    rootNode.children().each {
       stage(it.toString()){
         

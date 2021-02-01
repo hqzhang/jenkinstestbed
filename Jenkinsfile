@@ -100,7 +100,7 @@ def dynamicStages( result ,workspace){
           println dirName
           println propName
           println propValue
-          addProperty("${workspace}/${fileName}",dirName,propName,propValue)     
+          //addProperty("${workspace}/${fileName}",dirName,propName,propValue)     
           break
       case 'HABS': 
           println "case HABS"

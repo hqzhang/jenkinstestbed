@@ -43,7 +43,7 @@ def readXMLSwitch(fileManifest,workspace) {
       stage(it.name()){
         println "enter $i ${it.name()}" 
       switch(it.name() ) {
-      case 'DB PATHES':
+      case 'patches':
           println "case DB PATHES"
           break
       case 'config':

@@ -34,41 +34,13 @@ def addNode( mynode) {
     println "**********333******"
 }
 
-def readManifest(fileManifest) {
-    println("enter addProperties() file:$fileManifest")
-    def text = '''<list><technology>
-                            <name>Groovy</name>
-                      </technology></list>'''
-    def list = new XmlSlurper().parseText(text) 
-    println list.name()
-    println list.technology.name
-    println list.getClass()
-    println "////////"
-    list = new XmlParser().parseText(text) 
-    println list.getClass()
-    assert list instanceof groovy.util.Node 
-    assert list.technology.name.text() 
-    /////////     
-
-    def rootNode = new XmlSlurper().parse(fileManifest)
-
-    println rootNode.name()
-    println rootNode.config.filename
-    println rootNode.config.category.'@name'
-    println rootNode.config.category.property.'@name'
-    println "give you an example"
-    assert rootNode.name() == 'recipes'
-    assert rootNode.config.filename == 'habs_base_config.xml'
-    assert rootNode.config.category.'@name' == 'general'
-}
-
 def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
     def rootNode = new XmlSlurper().parse(fileManifest)
     println "for loop......"
     def i=0;
     rootNode.children().each {
-        i++
+      stage(it.name()){
         println "enter $i ${it.name()}" 
       switch(it.name() ) {
       case 'DB PATHES':
@@ -99,7 +71,7 @@ def readXMLSwitch(fileManifest,workspace) {
      println "exit $i ${it.name()}"
   }
 }
-
+}
 
 
 def workspace

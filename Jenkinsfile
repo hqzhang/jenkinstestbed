@@ -66,15 +66,19 @@ def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
     rootNode = new XmlSlurper().parse(fileManifest)
     println "for loop......"
+    def i=0;
     rootNode.children().each {
-        println it.name() 
+        i++
+        println "enter $i ${it.name()}" 
       switch(it.name() ) {
       case 'DB PATHES':
           println "case DB PATHES"
           break
       case 'config':
           println "case CONFIG UPDATE"
+          println "CALLaddnode"
           addNode(it)
+          println "AFTERaddnode"
           break
       case 'HABS':
           println "case HABS"
@@ -90,8 +94,9 @@ def readXMLSwitch(fileManifest,workspace) {
           break
       default:
           println "case Default"
-    
+      
     }
+     println "exit $i ${it.name()}"
   }
 }
 

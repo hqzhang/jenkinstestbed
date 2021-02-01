@@ -25,7 +25,9 @@ def addNode( mynode) {
     }
     println "**********222******"
     println groovy.xml.XmlUtil.serialize(xml)
+    println "**********223******"
     def writer = new FileWriter(fileName)
+    println "**********224******"
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }

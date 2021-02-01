@@ -14,7 +14,7 @@ def addNode( mynode) {
     def categoryName = mynode.category.'@name'
     def node = mynode.category.property
     println "**********114******fileName=${fileName}"
-    def xml = new XmlSlurper().parse(fileName)
+    def xml = new XmlSlurper().parse("${workspace}/${fileName}")
     println "**********115******"
     xml.category.each {
         if (it.@name==categoryName ) {

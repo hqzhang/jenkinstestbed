@@ -48,7 +48,11 @@ def readXMLSwitch(fileManifest,workspace) {
        stag.add(it.name() )
     }
     
-    stag.each { println it}
+    stag.each { 
+    stage(i) {
+       println it
+    }
+}
 /*    rootNode.children().each {
       stage(it.toString()){
         

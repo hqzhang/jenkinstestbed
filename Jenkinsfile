@@ -54,7 +54,7 @@ def readManifest(fileManifest) {
     assert rootNode.config.category.'@name' == 'general'
 }
 
-def readXMLSwitch(fileManifest) {
+def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
     rootNode = new XmlSlurper().parse(fileManifest)
     println "for loop......"

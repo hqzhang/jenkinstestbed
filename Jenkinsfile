@@ -1,4 +1,4 @@
-#!/usr/bin/env groovy
+/!/usr/bin/env groovy
 //import groovy.yaml.YamlSlurper
 //import groovy.xml.StreamingMarkupBuilder
 //import groovy.xml.XmlUtil
@@ -88,46 +88,6 @@ def readXMLSwitch(fileManifest) {
   }
 }
 
-def readHabsRecipes(recipeFile){
-    File fh = new File(recipeFile)
-    def lines = fh.readLines()
-    def result = new LinkedHashMap([:])
-    def prekey=''
-    def key=''
-    def val=''
-    def flag=1
-    def i=1
-    lines.each{ line->
-    if ( line.contains("[") && line.contains("]") ) {
-        key=line.replace('[','').replace(']','')
-        if( prekey != '' ) {
-            def tmp=[:]
-            tmp.sect=prekey
-            tmp.cont=val
-            result.put(i,tmp)
-            prekey=key
-            val=''
-            i++
-        }
-    } else if ( line != '' ){ 
-         val = val+line+"\n"
-    }
-    if (flag) {
-         prekey=key 
-         flag = 1
-    }
- }
- if ( prekey != '' ) {
-    def tmp=[:]
-    tmp.sect=prekey 
-    tmp.cont=val
-    prekey=key
-    result.put(i,tmp)
-    val=''
-    i++
- }
- return result
-}
 
 def dynamicStages( result ){
  result.each { mykey, myval->

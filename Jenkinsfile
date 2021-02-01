@@ -40,6 +40,7 @@ def readXMLSwitch(fileManifest,workspace) {
     println "for loop......"
     def i=0;
     println rootNode.getClass()
+    println rootNode.name
 /*    rootNode.children().each {
       stage(it.toString()){
         

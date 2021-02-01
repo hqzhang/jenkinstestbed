@@ -40,9 +40,9 @@ def readXMLSwitch(fileManifest,workspace) {
     println "for loop......"
     def i=0;
     rootNode.children().each {
-      stage(it.name()){
-        println "enter $i ${it.name()}" 
-      switch(it.name() ) {
+      stage(it.name){
+        println it.name
+      /*switch(it.name() ) {
       case 'patches':
           println "case DB PATHES"
           break
@@ -67,8 +67,8 @@ def readXMLSwitch(fileManifest,workspace) {
       default:
           println "case Default"
       
-    }
-     println "exit $i ${it.name()}"
+    }*/
+     println "exit $i"
   }
 }
 }

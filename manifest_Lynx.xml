@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><recipes extends="habs_base">
+  <patches name="general">
+    <property name="config.folder" value="habs"/>
+    <property name="a" value="b"/>
+  </patches>
+  <config name="reporting">
+      <filename>habs_base_config.xml</filename>
+      <category name="general">
+        <property name="afafamya" value="afafamyb" />      
+      </category>
+  </config>
+</recipes>

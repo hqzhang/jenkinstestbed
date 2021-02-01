@@ -64,7 +64,7 @@ def readManifest(fileManifest) {
 
 def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
-    rootNode = new XmlSlurper().parse(fileManifest)
+    def rootNode = new XmlSlurper().parse(fileManifest)
     println "for loop......"
     def i=0;
     rootNode.children().each {

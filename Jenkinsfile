@@ -39,7 +39,8 @@ def readXMLSwitch(fileManifest,workspace) {
     def rootNode = new XmlSlurper().parse(fileManifest)
     println "for loop......"
     def i=0;
-    rootNode.children().each {
+    println rootNode.getClass()
+/*    rootNode.children().each {
       stage(it.toString()){
         
       /*switch(it.name() ) {
@@ -67,10 +68,10 @@ def readXMLSwitch(fileManifest,workspace) {
       default:
           println "case Default"
       
-    }*/
+    }
      println "exit $i"
   }
-}
+}*/
 }
 
 

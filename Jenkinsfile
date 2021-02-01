@@ -44,7 +44,8 @@ def readXMLSwitch(fileManifest,workspace) {
     println recipes.children()[0].name()
     println recipes.children()[1].name()
     recipes.children().each{
-       println it.name()
+       stage(it.name()) {
+       println it.name()}
     }
 /*    rootNode.children().each {
       stage(it.toString()){

@@ -1,7 +1,7 @@
 //import groovy.yaml.YamlSlurper
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
-def mylist=[]
+def mylist = []
 //def rootNode
 @NonCPS
 def addNode( mynode) {

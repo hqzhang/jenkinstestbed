@@ -41,10 +41,6 @@ def readXMLSwitch1(fileManifest){
                       echo "Element: $it"
                  }
    }
-}
-
-
-def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)
     println "for loop......"

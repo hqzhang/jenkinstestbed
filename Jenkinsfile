@@ -38,8 +38,8 @@ def readXMLSwitch1(fileManifest){
     def rootNode = new XmlSlurper().parse(fileManifest)    
     rootNode.children().each { 
         def tmp=[:]
-            tmp.sect=prekey
-            tmp.cont=val
+            tmp.sect=it.name()
+            tmp.cont="myval"
             result.put(i,tmp)
     }
     result.each { mykey, myval->

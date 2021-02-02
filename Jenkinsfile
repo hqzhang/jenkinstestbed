@@ -1,7 +1,6 @@
 //import groovy.yaml.YamlSlurper
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
-def rootNode
 @NonCPS
 def addNode( mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
@@ -33,32 +32,33 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
-def mylist=[]
+//def result = [:]
 @NonCPS
 def readXMLSwitch1(fileManifest){
-    println "**********111******"
-    println "Enter readXMLSwitch() file:$fileManifest"
     def result = [:]
+    def mylist = []
+    def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
-    println "**********222******"
-    rootNode = new XmlSlurper().parse(fileManifest)
-    println "**********333******"
     rootNode.children().each {
-      def st = it.name()
-      mylist.add( st )
+        def st = it.name() 
+        mylist.add(st )
     }
-   println "**********4444******"
-   println "mylist=$mylist"
-}
-def dynamicStages() {
-    mylist.each {
-       
-      println it
-      stage(st) {  
-        println "Element: $st"
-      }
-   }
-/**   
+    mylist.each {   
+          stage(it) {
+                      echo "Element: $it"
+          }
+    }
+    println "Enter readXMLSwitch() file:$fileManifest"
+    def recipes = new XmlSlurper().parse(fileManifest)
+    println "for loop......"
+    //def i=0;
+    println recipes.getClass()
+    println recipes.name()
+    println recipes.children()[0].name()
+    println recipes.children()[1].name()
+
+/*    rootNode.children().each {
+      stage(it.toString()){
       switch(it.name() ) {
       case 'patches':
           println "case DB PATHES"
@@ -83,11 +83,10 @@ def dynamicStages() {
           break
       default:
           println "case Default"
-     } //switch
-   }  //stage
- }**/   //each
+    }
+  }
+}*/
 }
-
 def readXMLSwitch(fileManifest){
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)
@@ -148,7 +147,6 @@ pipeline {
                     println "workspace=$workspace"
                     // you may create your list here, lets say reading from a file after checkout
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-                    readXMLSwitch1("${workspace}/manifest_Lynx.xml")
                 }
             }
             /**post {
@@ -164,9 +162,9 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    //readXMLSwitch1("${workspace}/manifest_Lynx.xml")
-                    dynamicStages()
-                    
+                    readXMLSwitch1("${workspace}/manifest_Lynx.xml")
+                    /**
+                    **/
 
                 }
             }
@@ -178,3 +176,4 @@ pipeline {
         }
     }
 }
+

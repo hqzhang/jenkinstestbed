@@ -59,11 +59,6 @@ def readXMLSwitch1(fileManifest){
     println recipes.name()
     println recipes.children()[0].name()
     println recipes.children()[1].name()
-    /*for(int i=0; i < list.size(); i++) {
-                    //   stage(list[i]){
-                            echo "Element: $i"
-                     //   }
-    }*/
 
 /*    rootNode.children().each {
       stage(it.toString()){
@@ -92,7 +87,6 @@ def readXMLSwitch1(fileManifest){
       default:
           println "case Default"
     }
-     println "exit $i"
   }
 }*/
 }
@@ -138,7 +132,6 @@ def readXMLSwitch(fileManifest){
       default:
           println "case Default"
     }
-     println "exit $i"
   }
 }
 }

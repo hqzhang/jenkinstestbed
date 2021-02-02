@@ -46,7 +46,7 @@ def readXML(fileManifest){
     }
     return mylist
 }
-def stageEntry( mylist)
+def stageEntry( mylist){
     mylist.each {   
           stage(it) {
                       echo "Element: $it"
@@ -91,6 +91,7 @@ def stageEntry( mylist)
   }
 }*/
 }
+
 def readXMLSwitch(fileManifest){
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)

@@ -38,7 +38,7 @@ def addNode( mynode) {
 @NonCPS
 def readXMLSwitch1(fileManifest){
     def result = [:]
-    mylist = []
+    
     def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
     rootNode.children().each {

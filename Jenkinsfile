@@ -103,7 +103,10 @@ pipeline {
         stage('Dynamic Stages') {
             steps {
                 script {
+                    pritnln env.WORKSPAC
+                    println WORKSPACE
                     def workspace = pwd() 
+                    println workspace
                     readXMLSwitch("${workspace}/manifest_Lynx.xml",workspace)
                     /*for(int i=0; i < list.size(); i++) {
                         stage(list[i]){

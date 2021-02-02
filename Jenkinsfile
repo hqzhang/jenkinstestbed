@@ -2,35 +2,9 @@
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
 /**
-def addProperty(fileName, directoryName, propName, propValue) {
-    println("enter *****0****addProperties=$fileName")
-    def xmlStr = """<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
-                <category name="general">
-                       <property name="config.folder" value="habs"/>
-                </category>
-    </properties>""" 
-    def xml = new XmlSlurper().parse(fileName)
-    def node = new XmlSlurper().parseText('<property name="a" value="b"/>')
-    println("enter *****1***")
-    xml.category.each {
-        if (it['@name']==directoryName ) {
-          println it['@name']
-          it.children().findAll { it['@name'] == propName }.replaceNode {}
-        println("enter *****2***")  
-        it.appendNode(node)
-        }
-    }
-    println("enter *****2***=${xml}")
-    println groovy.xml.XmlUtil.serialize(xml)
-    println("enter *****3***")
-    def writer = new FileWriter(fileName)
-    println("enter *****4***")
-    XmlUtil.serialize(xml, writer)
-    return xml
-}
 **/
 @NonCPS
-def addNode( mynode) {
+def addNode(mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
     println "**********111******"
     def propName=mynode.category.property.'@name'
@@ -73,7 +47,6 @@ def configUpdate(fileManifest){
           addNode(it)
         }
     }
-    
 }
 
 @NonCPS
@@ -129,44 +102,8 @@ def readXMLSwitch(mylist,myfile){
     }//each
 }//def
 /**
-def readXMLSwitch1(mylist,myfile){
-    println "Enter ***************readXMLSwitch() "
-    println "for loop......"
-    //def i=0;
-    mylist.each {
-      stage(it){ 
-
-          println "STAGE $it" 
-          switch(it.name() ) {
-          case 'patches':
-              println "case DB PATHES"
-              break
-          case 'config':
-              println "case CONFIG UPDATE"
-              println "CALLaddnode"
-              configUpdate(myfile)
-              println "AFTERaddnode"
-              break
-          case 'HABS':
-              println "case HABS"
-              break
-          case 'SENS':
-              println "case CONFIGUPDATEB"
-              break
-          case 'REPORTs':
-              println "case CONFIGUPDATEB"
-              break
-          case 'SOA': 
-              println "case soa"
-              break
-          default:
-              println "case Default"
-          }
-      }
-   }
-}
 **/  
-
+def list
 pipeline {
     agent any
     stages {
@@ -180,6 +117,7 @@ pipeline {
                     println "workspace=$workspace"
                     // you may create your list here, lets say reading from a file after checkout
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+                    list = readXMLList("${workspace}/manifest_Lynx.xml")
                 }
             }
         }
@@ -194,8 +132,8 @@ pipeline {
                     //def rootNode=readXMLRoot("${workspace}/manifest_Lynx.xml")
                     //println "rootNode=$rootNode"
                     // mylist = ["patches", "config", "Test-3"]
-                    def mylist = readXMLList("${workspace}/manifest_Lynx.xml")
-                    readXMLSwitch(mylist,"${workspace}/manifest_Lynx.xml")
+                    //def mylist = readXMLList("${workspace}/manifest_Lynx.xml")
+                    readXMLSwitch(list,"${workspace}/manifest_Lynx.xml")
                     /**
                     **/
 

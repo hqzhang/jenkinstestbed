@@ -38,7 +38,7 @@ def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)
     println "for loop......"
-    def i=0;
+    //def i=0;
     println recipes.getClass()
     println recipes.name()
     println recipes.children()[0].name()

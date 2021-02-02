@@ -43,8 +43,11 @@ def readXMLSwitch1(fileManifest){
     rootNode.children().each {
       def st = it.name() 
       mylist.add(st )
-    stage(st) {  
-      println "Element: $st"   
+      stage(st) {  
+        println "Element: $st"
+      }
+   }
+/**   
       switch(it.name() ) {
       case 'patches':
           println "case DB PATHES"
@@ -71,7 +74,7 @@ def readXMLSwitch1(fileManifest){
           println "case Default"
      } //switch
    }  //stage
- }   //each
+ }**/   //each
 }
 
 def readXMLSwitch(fileManifest){

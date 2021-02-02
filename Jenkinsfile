@@ -32,7 +32,7 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
-//def result = [:]
+
 @NonCPS
 def readXMLSwitch1(fileManifest){
     def result = [:]
@@ -42,11 +42,13 @@ def readXMLSwitch1(fileManifest){
     rootNode.children().each {
         def st = it.name() 
         mylist.add(st )
+        stage(st) {  echo "Element: $st"   }
+
     }
     mylist.each {   
-          stage(it) {
+         // stage(it) {
                       echo "Element: $it"
-          }
+          //}
     }
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)

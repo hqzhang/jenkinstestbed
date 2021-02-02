@@ -81,7 +81,7 @@ def readXMLSwitch1(fileManifest){
   }
 }*/
 }
-def readXMLSwitch(rootNode){
+def readXMLSwitch(){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"
     //def i=0;
@@ -155,7 +155,7 @@ pipeline {
                     println workspace
                     def rootNode=readXMLSwitch1("${workspace}/manifest_Lynx.xml")
                     println "rootNode=$rootNode"
-                    readXMLSwitch(rootNode)
+                    readXMLSwitch()
                     /**
                     **/
 

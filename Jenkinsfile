@@ -58,7 +58,7 @@ def readXMLSwitch1(fileManifest){
     println recipes.name()
     println recipes.children()[0].name()
     println recipes.children()[1].name()
-
+    return rootNode
 /*    rootNode.children().each {
       stage(it.toString()){
       switch(it.name() ) {
@@ -164,7 +164,8 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    readXMLSwitch1("${workspace}/manifest_Lynx.xml")
+                    def rootNode=readXMLSwitch1("${workspace}/manifest_Lynx.xml")
+                    println rootNode
                     /**
                     **/
 

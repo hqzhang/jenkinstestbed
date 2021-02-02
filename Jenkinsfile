@@ -1,7 +1,6 @@
 def list
 pipeline {
-    agent none
-    options {buildDiscarder(logRotator(daysToKeepStr: '7', numToKeepStr: '1'))}
+    agent any
     stages {
         stage('Create List') {
             steps {

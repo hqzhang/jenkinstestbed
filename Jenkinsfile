@@ -100,7 +100,7 @@ def readXMLSwitch(mylist,myfile){
       stage(it){ 
        println "STAGE $it" 
    
-        switch (it=="config"){
+        switch (it){
           case 'config':
               println "case CONFIG UPDATE"
               configUpdate(myfile)

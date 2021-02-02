@@ -1,7 +1,34 @@
 //import groovy.yaml.YamlSlurper
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
-//def rootNode
+
+def addProperty(fileName, directoryName, propName, propValue) {
+    println("enter *****0****addProperties=$fileName")
+    def xmlStr = """<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
+                <category name="general">
+                       <property name="config.folder" value="habs"/>
+                </category>
+    </properties>""" 
+    def xml = new XmlSlurper().parse(fileName)
+    def node = new XmlSlurper().parseText('<property name="a" value="b"/>')
+    println("enter *****1***")
+    xml.category.each {
+        if (it['@name']==directoryName ) {
+          println it['@name']
+          it.children().findAll { it['@name'] == propName }.replaceNode {}
+        println("enter *****2***")  
+        it.appendNode(node)
+        }
+    }
+    println("enter *****2***=${xml}")
+    println groovy.xml.XmlUtil.serialize(xml)
+    println("enter *****3***")
+    def writer = new FileWriter(fileName)
+    println("enter *****4***")
+    XmlUtil.serialize(xml, writer)
+
+    println("enter *****6***")
+}
 @NonCPS
 def addNode( mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
@@ -141,6 +168,7 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
+                    addProperty("${workspace}/manifest_Lynx.xml","general","A","B")
                     //def rootNode=readXMLRoot("${workspace}/manifest_Lynx.xml")
                     //println "rootNode=$rootNode"
                     // mylist = ["patches", "config", "Test-3"]

@@ -53,11 +53,11 @@ def readXMLSwitch(fileManifest,workspace) {
     println recipes.name()
     println recipes.children()[0].name()
     println recipes.children()[1].name()
-    for(int i=0; i < list.size(); i++) {
+    /*for(int i=0; i < list.size(); i++) {
                      //   stage(list[i]){
                             echo "Element: $i"
                      //   }
-    }
+    }*/`
 
 /*    rootNode.children().each {
       stage(it.toString()){
@@ -91,7 +91,7 @@ def readXMLSwitch(fileManifest,workspace) {
 }*/
 }
 
-def list
+//def list
 pipeline {
     agent any
     stages {
@@ -104,7 +104,7 @@ pipeline {
                     println "pwd="+pwd()
                     println "workspace=$workspace"
                     // you may create your list here, lets say reading from a file after checkout
-                    list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+                    //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                 }
             }
             /**post {
@@ -122,12 +122,6 @@ pipeline {
                     println workspace
                     readXMLSwitch("${workspace}/manifest_Lynx.xml",workspace)
                     /**
-                     list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-                     list.each {
-                        stage(it){
-                            echo "Element: $it"
-                        }
-                    }
                     **/
 
                 }

@@ -32,14 +32,22 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
+def result = [:]
 def readXMLSwitch1(fileManifest){
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
     def rootNode = new XmlSlurper().parse(fileManifest)    
-    rootNode.children().each { mylist.add( it.name() ) }
-    println mylist
-    mylist.each {
-                 stage(it){
-                      echo "Element: $it"
+    rootNode.children().each { 
+        def tmp=[:]
+            tmp.sect=prekey
+            tmp.cont=val
+            result.put(i,tmp)
+    }
+    result.each { mykey, myval->
+        
+        println("sect=${myval.sect}")
+        stage(myval.sect) {  
+                 
+                      echo "Element: ${myval.sect}"
                  }
     }
     println "Enter readXMLSwitch() file:$fileManifest"
@@ -51,7 +59,7 @@ def readXMLSwitch1(fileManifest){
     println recipes.children()[0].name()
     println recipes.children()[1].name()
     /*for(int i=0; i < list.size(); i++) {
-                     //   stage(list[i]){
+                    //   stage(list[i]){
                             echo "Element: $i"
                      //   }
     }*/

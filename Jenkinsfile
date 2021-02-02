@@ -98,10 +98,15 @@ def readXMLSwitch(mylist,myfile){
     //def i=0;
     mylist.each {
       stage(it){ 
-
        println "STAGE $it" 
-        if(it=="config"){
-          configUpdate(myfile)
+   
+        switch (it=="config"){
+          case 'config':
+              println "case CONFIG UPDATE"
+              configUpdate(myfile)
+              break
+           default:
+              println "case Default"
         } //switch
       }//stage
     }//each
@@ -142,7 +147,7 @@ def readXMLSwitch1(mylist,myfile){
       }
    }
 }
-
+  
 //def list
 pipeline {
     agent any

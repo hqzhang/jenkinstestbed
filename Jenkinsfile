@@ -114,9 +114,9 @@ pipeline {
                     //readXMLSwitch("${workspace}/manifest_Lynx.xml",workspace)
                     
                      list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-                     for(int i=0; i < list.size(); i++) {
-                        stage(list[i]){
-                            echo "Element: $i"
+                     list.each {
+                        stage(it){
+                            echo "Element: $it"
                         }
                     }
 

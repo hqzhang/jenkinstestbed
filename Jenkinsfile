@@ -37,7 +37,8 @@ def addNode( mynode) {
 def readXMLSwitch1(fileManifest){
     def result = [:]
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-    def rootNode = new XmlSlurper().parse(fileManifest)    
+    def rootNode = new XmlSlurper().parse(fileManifest) 
+    rootNode.children() {  mylist.add(it.name() )   }   
     def  i=0
     rootNode.children().each { 
         def tmp=[:]
@@ -49,9 +50,14 @@ def readXMLSwitch1(fileManifest){
     result.each { mykey, myval->
         
         println("sect=${myval.sect}")
-        stage(myval.sect) {  
+        //stage(myval.sect) {  
                       echo "Element: ${myval.sect}"
-            }
+           // }
+    }
+    mylist.each {   
+          stage(myval.sect) {
+                      echo "Element: ${myval.sect}"
+          }
     }
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)

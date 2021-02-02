@@ -69,36 +69,6 @@ def readXMLList(fileManifest){
     return mylist
 }
 
-/*    rootNode.children().each {
-      stage(it.toString()){
-      switch(it.name() ) {
-      case 'patches':
-          println "case DB PATHES"
-          break
-      case 'config':
-          println "case CONFIG UPDATE"
-          println "CALLaddnode"
-          //addNode(it)
-          println "AFTERaddnode"
-          break
-      case 'HABS':
-          println "case HABS"
-          break
-      case 'SENS':
-          println "case CONFIGUPDATEB"
-          break
-      case 'REPORTs':
-          println "case CONFIGUPDATEB"
-          break
-      case 'SOA': 
-          println "case soa"
-          break
-      default:
-          println "case Default"
-    }
-  }
-}*/
-}
 def readXMLSwitch(mylist){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"

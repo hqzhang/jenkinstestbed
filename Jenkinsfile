@@ -90,7 +90,7 @@ pipeline {
             steps {
                 script {
                     workspace=WORKSPACE
-                    pritnln "WS=${env.WORKSPACE}"
+                    println "WS=${env.WORKSPACE}"
                     println "WS=${WORKSPACE}"
                     println "pwd="+pwd()
                     println "workspace=$workspace"
@@ -107,7 +107,7 @@ pipeline {
         stage('Dynamic Stages') {
             steps {
                 script {
-                    pritnln env.WORKSPAC
+                    println env.WORKSPAC
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace

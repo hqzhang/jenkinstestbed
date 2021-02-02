@@ -35,8 +35,8 @@ def addNode( mynode) {
     println "**********333******"
 }
 def readXMLSwitch1(fileManifest){
-   list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-       list.each {
+    def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+       mylist.each {
                  stage(it){
                       echo "Element: $it"
                  }

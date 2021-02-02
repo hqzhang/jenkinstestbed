@@ -120,7 +120,7 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    readXMLSwitch1("${workspace}/manifest_Lynx.xml",workspace)
+                    readXMLSwitch1("${workspace}/manifest_Lynx.xml")
                     /**
                     **/
 

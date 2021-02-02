@@ -2,7 +2,7 @@
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
 def mylist=[]
-def rootNode
+//def rootNode
 @NonCPS
 def addNode( mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
@@ -39,7 +39,7 @@ def addNode( mynode) {
 def readXMLSwitch1(fileManifest){
     def result = [:]
     mylist = []
-    rootNode = new XmlSlurper().parse(fileManifest) 
+    def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
     rootNode.children().each {
         def st = it.name() 

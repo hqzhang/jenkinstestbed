@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><recipes extends="habs_base">
+  <release>"Habs Lynx"</release>
   <patches name="general">
     <property name="config.folder" value="habs"/>
     <property name="a" value="b"/>

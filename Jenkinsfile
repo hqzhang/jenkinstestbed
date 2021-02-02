@@ -53,7 +53,7 @@ def readXMLList(fileManifest){
     rootNode.children().each {
         def st = it.name()
         println st
-        if( st == "Release" ) { println "***********${it.text() }" }
+        if( st == "release" ) { println "***********${it.text() }" }
         mylist.add(st )
     }
     println "mylist=$mylist"

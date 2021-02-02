@@ -37,11 +37,13 @@ def readXMLSwitch1(fileManifest){
     def result = [:]
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
     def rootNode = new XmlSlurper().parse(fileManifest)    
+    def  i=0
     rootNode.children().each { 
         def tmp=[:]
             tmp.sect=it.name()
             tmp.cont="myval"
             result.put(i,tmp)
+            i++
     }
     result.each { mykey, myval->
         

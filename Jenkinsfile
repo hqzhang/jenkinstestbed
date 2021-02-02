@@ -1,6 +1,7 @@
 //import groovy.yaml.YamlSlurper
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
+def rootNode
 @NonCPS
 def addNode( mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
@@ -32,17 +33,22 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
-
+def mylist=[]
 @NonCPS
 def readXMLSwitch1(fileManifest){
     println "Enter readXMLSwitch() file:$fileManifest"
     def result = [:]
-    def mylist = []
-    def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
+    rootNode = new XmlSlurper().parse(fileManifest)
     rootNode.children().each {
-      def st = it.name() 
-      mylist.add(st )
+      def st = it.name()
+      mylist.add( st )
+    }
+}
+def dynamicStages() {
+    mylist.each {
+       
+      println it
       stage(st) {  
         println "Element: $st"
       }
@@ -137,6 +143,7 @@ pipeline {
                     println "workspace=$workspace"
                     // you may create your list here, lets say reading from a file after checkout
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+                    readXMLSwitch1("${workspace}/manifest_Lynx.xml")
                 }
             }
             /**post {
@@ -152,9 +159,9 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    readXMLSwitch1("${workspace}/manifest_Lynx.xml")
-                    /**
-                    **/
+                    //readXMLSwitch1("${workspace}/manifest_Lynx.xml")
+                    dynamicStages()
+                    
 
                 }
             }

@@ -36,14 +36,15 @@ def addNode( mynode) {
 }
 def readXMLSwitch1(fileManifest){
     def recipes = new XmlSlurper().parse(fileManifest)
-    def var
-    //def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-        recipes.children().each {
-                 var=it.name()
-                 stage(it){
-                      echo "Element: $it"
-                 }
-   }
+    def myls=[]
+    def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+    println mylist
+    recipes.children().each { myls.add(it.name) }
+    println myls             
+                 //stage(it){
+                   //   echo "Element: $it"
+                 //}
+   
 
 }
 def readXMLSwitch(fileManifest){

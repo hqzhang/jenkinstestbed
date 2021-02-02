@@ -1,7 +1,7 @@
 //import groovy.yaml.YamlSlurper
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
-
+/**
 def addProperty(fileName, directoryName, propName, propValue) {
     println("enter *****0****addProperties=$fileName")
     def xmlStr = """<?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
@@ -28,6 +28,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
     XmlUtil.serialize(xml, writer)
     return xml
 }
+**/
 @NonCPS
 def addNode( mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
@@ -59,7 +60,7 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
-//def result = [:]
+
 @NonCPS
 def configUpdate(fileManifest){
     def result = [:]
@@ -74,6 +75,7 @@ def configUpdate(fileManifest){
     }
     
 }
+
 @NonCPS
 def readXMLList(fileManifest){
     def result = [:]
@@ -126,7 +128,7 @@ def readXMLSwitch(mylist,myfile){
       }//stage
     }//each
 }//def
-
+/**
 def readXMLSwitch1(mylist,myfile){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"
@@ -163,8 +165,8 @@ def readXMLSwitch1(mylist,myfile){
       }
    }
 }
-  
-//def list
+**/  
+
 pipeline {
     agent any
     stages {

@@ -26,8 +26,7 @@ def addProperty(fileName, directoryName, propName, propValue) {
     def writer = new FileWriter(fileName)
     println("enter *****4***")
     XmlUtil.serialize(xml, writer)
-
-    println("enter *****6***")
+    return xml
 }
 @NonCPS
 def addNode( mynode) {
@@ -168,7 +167,7 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    addProperty("${workspace}/manifest_Lynx.xml","general","A","B")
+                    def xmlroot=addProperty("${workspace}/manifest_Lynx.xml","general","A","B")
                     //def rootNode=readXMLRoot("${workspace}/manifest_Lynx.xml")
                     //println "rootNode=$rootNode"
                     // mylist = ["patches", "config", "Test-3"]

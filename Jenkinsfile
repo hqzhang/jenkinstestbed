@@ -32,17 +32,21 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
-//def result = [:]
+def rootNode = [:]
 @NonCPS
-def readXMLSwitch1(fileManifest){
+def readXML(fileManifest){
+    println "Enter readXML"
     def result = [:]
     def mylist = []
-    def rootNode = new XmlSlurper().parse(fileManifest) 
+    rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
     rootNode.children().each {
         def st = it.name() 
         mylist.add(st )
     }
+    return mylist
+}
+def stageEntry( mylist)
     mylist.each {   
           stage(it) {
                       echo "Element: $it"
@@ -162,7 +166,9 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    readXMLSwitch1("${workspace}/manifest_Lynx.xml")
+                    def mylist=readXML("${workspace}/manifest_Lynx.xml")
+                    println mylist
+                    //stageEntry(mylist)
                     /**
                     **/
 

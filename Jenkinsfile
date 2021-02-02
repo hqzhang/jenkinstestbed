@@ -55,8 +55,8 @@ def readXMLSwitch1(fileManifest){
            // }
     }
     mylist.each {   
-          stage(myval.sect) {
-                      echo "Element: ${myval.sect}"
+          stage(it) {
+                      echo "Element: $it"
           }
     }
     println "Enter readXMLSwitch() file:$fileManifest"

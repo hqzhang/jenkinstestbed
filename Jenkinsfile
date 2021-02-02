@@ -34,6 +34,15 @@ def addNode( mynode) {
     XmlUtil.serialize(xml, writer)
     println "**********333******"
 }
+def readXMLSwitch1(fileManifest){
+   list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+       list.each {
+                 stage(it){
+                      echo "Element: $it"
+                 }
+   }
+}
+
 
 def readXMLSwitch(fileManifest,workspace) {
     println "Enter readXMLSwitch() file:$fileManifest"
@@ -111,14 +120,15 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    //readXMLSwitch("${workspace}/manifest_Lynx.xml",workspace)
-                    
+                    readXMLSwitch("${workspace}/manifest_Lynx.xml",workspace)
+                    /**
                      list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                      list.each {
                         stage(it){
                             echo "Element: $it"
                         }
                     }
+                    **/
 
                 }
             }

@@ -6,19 +6,16 @@ import groovy.xml.XmlUtil
 @NonCPS
 def addNode(mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
-    println "**********111******"
+
     def propName=mynode.category.property.'@name'
     def fileName = mynode.filename.text()
     def workspace = pwd()
     fileName = "${workspace}/${fileName}"
-    println "**********112******"
-    println mynode.filename.getClass()
-    println "**********113******"
+   
     def categoryName = mynode.category.'@name'
     def node = mynode.category.property
-    println "**********114******fileName=${fileName}"
     def xml = new XmlSlurper().parse(fileName)
-    println "**********115******"
+
     xml.category.each {
         if (it.@name==categoryName ) {
           println it.@name
@@ -26,13 +23,10 @@ def addNode(mynode) {
           it.appendNode(node)
         }
     }
-    println "**********222******"
+
     println groovy.xml.XmlUtil.serialize(xml)
-    println "**********223******"
     def writer = new FileWriter(fileName)
-    println "**********224******"
     XmlUtil.serialize(xml, writer)
-    println "**********333******"
 }
 
 @NonCPS
@@ -51,6 +45,7 @@ def configUpdate(fileManifest){
 
 @NonCPS
 def readXMLList(fileManifest){
+    println "Enter readXMLList"
     def result = [:]
     def mylist =[]
     def rootNode = new XmlSlurper().parse(fileManifest)
@@ -59,23 +54,17 @@ def readXMLList(fileManifest){
         def st = it.name()
         mylist.add(st )
     }
-    mylist.each { 
-          //stage(it) {
-                      echo "Element: $it"
-         // }
-    }
+    println "mylist=$mylist"
     return mylist
 }
 
 def readXMLSwitch(mylist,myfile){
-    println "Enter ***************readXMLSwitch() "
-    println "for loop......"
-    //def i=0;
+    println "Enter readXMLSwitch() "
+    
     mylist.each {
-      stage(it){ 
-       println "STAGE $it" 
-   
-        switch (it){
+       stage(it){ 
+          println "STAGE $it" 
+          switch (it){
           case 'patches':
               println "case DB PATHES"
               break
@@ -101,8 +90,8 @@ def readXMLSwitch(mylist,myfile){
       }//stage
     }//each
 }//def
-/**
-**/  
+
+  
 def list
 pipeline {
     agent any

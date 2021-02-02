@@ -106,7 +106,7 @@ def readXMLSwitch(mylist,myfile){
       }//stage
     }//each
 }//def
-def readXMLSwitch(mylist,myfile){
+def readXMLSwitch1(mylist,myfile){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"
     //def i=0;

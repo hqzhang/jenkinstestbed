@@ -101,9 +101,24 @@ def readXMLSwitch(mylist,myfile){
        println "STAGE $it" 
    
         switch (it){
+          case 'patches':
+              println "case DB PATHES"
+              break
           case 'config':
               println "case CONFIG UPDATE"
               configUpdate(myfile)
+              break
+          case 'HABS':
+              println "case HABS"
+              break
+          case 'SENS':
+              println "case CONFIGUPDATEB"
+              break
+          case 'REPORTs':
+              println "case CONFIGUPDATEB"
+              break
+          case 'SOA':
+              println "case soa"
               break
            default:
               println "case Default"
@@ -111,6 +126,7 @@ def readXMLSwitch(mylist,myfile){
       }//stage
     }//each
 }//def
+
 def readXMLSwitch1(mylist,myfile){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"

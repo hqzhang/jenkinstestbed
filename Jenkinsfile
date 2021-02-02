@@ -99,42 +99,35 @@ def readXMLSwitch(mylist,myfile){
     mylist.each {
       stage(it){ 
 
-       println "STAGE $it" 
-        if(it=="config"){
-          configUpdate(myfile)
-        }
+          println "STAGE $it" 
+          switch(it.name() ) {
+          case 'patches':
+              println "case DB PATHES"
+              break
+          case 'config':
+              println "case CONFIG UPDATE"
+              println "CALLaddnode"
+              configUpdate(myfile)
+              println "AFTERaddnode"
+              break
+          case 'HABS':
+              println "case HABS"
+              break
+          case 'SENS':
+              println "case CONFIGUPDATEB"
+              break
+          case 'REPORTs':
+              println "case CONFIGUPDATEB"
+              break
+          case 'SOA': 
+              println "case soa"
+              break
+          default:
+              println "case Default"
+          }
       }
-    }
+   }
 }
- /**
-      switch(it.name() ) {
-      case 'patches':
-          println "case DB PATHES"
-          break
-      case 'config':
-          println "case CONFIG UPDATE"
-          println "CALLaddnode"
-          //addNode(it)
-          println "AFTERaddnode"
-          break
-      case 'HABS':
-          println "case HABS"
-          break
-      case 'SENS':
-          println "case CONFIGUPDATEB"
-          break
-      case 'REPORTs':
-          println "case CONFIGUPDATEB"
-          break
-      case 'SOA': 
-          println "case soa"
-          break
-      default:
-          println "case Default"
-    }
-  }
-}**/
-
 
 //def list
 pipeline {

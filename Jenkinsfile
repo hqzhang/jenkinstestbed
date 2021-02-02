@@ -33,6 +33,7 @@ def addNode( mynode) {
     println "**********333******"
 }
 //def result = [:]
+@NonCPS
 def readXMLSwitch1(fileManifest){
     def result = [:]
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]

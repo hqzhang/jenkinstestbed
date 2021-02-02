@@ -165,7 +165,7 @@ pipeline {
                     def workspace = pwd() 
                     println workspace
                     def rootNode=readXMLSwitch1("${workspace}/manifest_Lynx.xml")
-                    println rootNode
+                    println "rootNode=$rootNode"
                     /**
                     **/
 

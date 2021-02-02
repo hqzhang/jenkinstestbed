@@ -61,21 +61,18 @@ def addNode( mynode) {
 }
 //def result = [:]
 @NonCPS
-def readXMLRoot(fileManifest){
+def configUpdate(fileManifest){
     def result = [:]
     def mylist =[] 
     def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
     rootNode.children().each {
         def st = it.name() 
-        mylist.add(st )
+        if (st == "config" {
+          addNode(it)
+        }
     }
-    mylist.each {   
-          //stage(it) {
-                      echo "Element: $it"
-         // }
-    }
-    return rootNode
+    
 }
 @NonCPS
 def readXMLList(fileManifest){
@@ -95,7 +92,7 @@ def readXMLList(fileManifest){
     return mylist
 }
 
-def readXMLSwitch(mylist){
+def readXMLSwitch(mylist,myfile){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"
     //def i=0;
@@ -106,7 +103,12 @@ def readXMLSwitch(mylist){
     println rootNode.children()[1].name()
 **/
     mylist.each {
-      stage(it){ println "STAGE $it" }
+      stage(it){ 
+
+       println "STAGE $it" 
+       if(it=="config"){
+          configUpdate(myfile)
+      }
     }
  /**
       switch(it.name() ) {
@@ -172,7 +174,7 @@ pipeline {
                     //println "rootNode=$rootNode"
                     // mylist = ["patches", "config", "Test-3"]
                     def mylist = readXMLList("${workspace}/manifest_Lynx.xml")
-                    readXMLSwitch(mylist)
+                    readXMLSwitch(mylist,"${workspace}/manifest_Lynx.xml")
                     /**
                     **/
 

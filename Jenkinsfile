@@ -89,8 +89,8 @@ def readXMLSwitch1(fileManifest){
   }
 }*/
 }
-def readXMLSwitch(fileManifest){
-    println "Enter readXMLSwitch() file:$fileManifest"
+def readXMLSwitch(rootNode){
+    println "Enter ***************readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)
     println "for loop......"
     //def i=0;
@@ -98,14 +98,11 @@ def readXMLSwitch(fileManifest){
     println recipes.name()
     println recipes.children()[0].name()
     println recipes.children()[1].name()
-    /*for(int i=0; i < list.size(); i++) {
-                     //   stage(list[i]){
-                            echo "Element: $i"
-                     //   }
-    }*/
 
-    rootNode.children().each {
-      stage(it.toString()){
+    mylist.each {
+      stage(it){ println "STAGE $it" }
+    }
+ /**
       switch(it.name() ) {
       case 'patches':
           println "case DB PATHES"
@@ -132,7 +129,7 @@ def readXMLSwitch(fileManifest){
           println "case Default"
     }
   }
-}
+}**/
 }
 
 //def list
@@ -166,6 +163,7 @@ pipeline {
                     println workspace
                     def rootNode=readXMLSwitch1("${workspace}/manifest_Lynx.xml")
                     println "rootNode=$rootNode"
+                    readXMLSwitch(rootNode)
                     /**
                     **/
 

@@ -50,14 +50,6 @@ def readXMLSwitch1(fileManifest){
                       echo "Element: $it"
          // }
     }
-    println "Enter readXMLSwitch() file:$fileManifest"
-    def recipes = new XmlSlurper().parse(fileManifest)
-    println "for loop......"
-    //def i=0;
-    println recipes.getClass()
-    println recipes.name()
-    println recipes.children()[0].name()
-    println recipes.children()[1].name()
     return rootNode
 /*    rootNode.children().each {
       stage(it.toString()){
@@ -90,8 +82,7 @@ def readXMLSwitch1(fileManifest){
 }*/
 }
 def readXMLSwitch(rootNode){
-    println "Enter ***************readXMLSwitch() file:$fileManifest"
-    def recipes = new XmlSlurper().parse(fileManifest)
+    println "Enter ***************readXMLSwitch() "
     println "for loop......"
     //def i=0;
     println recipes.getClass()

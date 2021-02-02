@@ -35,18 +35,56 @@ def addNode( mynode) {
     println "**********333******"
 }
 def readXMLSwitch1(fileManifest){
-    def recipes = new XmlSlurper().parse(fileManifest)
-    def myls=[]
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-    println mylist
-    recipes.children().each { myls.add(it.name()   ) }
-    println myls  
-    mylist.each {
+       mylist.each {
                  stage(it){
                       echo "Element: $it"
                  }
-   } 
+   }
+    println "Enter readXMLSwitch() file:$fileManifest"
+    def recipes = new XmlSlurper().parse(fileManifest)
+    println "for loop......"
+    //def i=0;
+    println recipes.getClass()
+    println recipes.name()
+    println recipes.children()[0].name()
+    println recipes.children()[1].name()
+    /*for(int i=0; i < list.size(); i++) {
+                     //   stage(list[i]){
+                            echo "Element: $i"
+                     //   }
+    }*/
 
+/*    rootNode.children().each {
+      stage(it.toString()){
+      switch(it.name() ) {
+      case 'patches':
+          println "case DB PATHES"
+          break
+      case 'config':
+          println "case CONFIG UPDATE"
+          println "CALLaddnode"
+          //addNode(it)
+          println "AFTERaddnode"
+          break
+      case 'HABS':
+          println "case HABS"
+          break
+      case 'SENS':
+          println "case CONFIGUPDATEB"
+          break
+      case 'REPORTs':
+          println "case CONFIGUPDATEB"
+          break
+      case 'SOA': 
+          println "case soa"
+          break
+      default:
+          println "case Default"
+    }
+     println "exit $i"
+  }
+}*/
 }
 def readXMLSwitch(fileManifest){
     println "Enter readXMLSwitch() file:$fileManifest"

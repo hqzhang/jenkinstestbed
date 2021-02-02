@@ -5,9 +5,7 @@ import groovy.xml.XmlUtil
 def addNode( mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
     println "**********111******"
-
     def propName=mynode.category.property.'@name'
-
     def fileName = mynode.filename.text()
     def workspace = pwd()
     fileName = "${workspace}/${fileName}"
@@ -36,11 +34,13 @@ def addNode( mynode) {
 }
 def readXMLSwitch1(fileManifest){
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-       mylist.each {
+    
+    rootNode.children().each { mylist.add( it.name() ) }
+    mylist.each {
                  stage(it){
                       echo "Element: $it"
                  }
-   }
+    }
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)
     println "for loop......"

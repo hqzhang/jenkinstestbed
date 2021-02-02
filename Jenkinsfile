@@ -44,6 +44,7 @@ def readXMLSwitch1(fileManifest){
       def st = it.name()
       mylist.add( st )
     }
+   println "mylist=$mylist"
 }
 def dynamicStages() {
     mylist.each {

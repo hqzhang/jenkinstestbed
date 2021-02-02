@@ -68,7 +68,7 @@ def configUpdate(fileManifest){
     def  i=0
     rootNode.children().each {
         def st = it.name() 
-        if (st == "config" {
+        if (st == "config") {
           addNode(it)
         }
     }

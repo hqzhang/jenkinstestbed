@@ -36,14 +36,18 @@ def addNode( mynode) {
 def mylist=[]
 @NonCPS
 def readXMLSwitch1(fileManifest){
+    println "**********111******"
     println "Enter readXMLSwitch() file:$fileManifest"
     def result = [:]
     def  i=0
+    println "**********222******"
     rootNode = new XmlSlurper().parse(fileManifest)
+    println "**********333******"
     rootNode.children().each {
       def st = it.name()
       mylist.add( st )
     }
+   println "**********4444******"
    println "mylist=$mylist"
 }
 def dynamicStages() {

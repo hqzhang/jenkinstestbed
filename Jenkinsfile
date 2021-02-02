@@ -72,7 +72,7 @@ def readXMLSwitch(fileManifest,workspace) {
     }
      println "exit $i"
   }
-}*
+}*/
 }
 def workspace
 def list

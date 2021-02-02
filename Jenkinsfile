@@ -167,7 +167,7 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
-                    def xmlroot=addProperty("${workspace}/manifest_Lynx.xml","general","A","B")
+                    addProperty("${workspace}/manifest_Lynx.xml","general","A","B")
                     //def rootNode=readXMLRoot("${workspace}/manifest_Lynx.xml")
                     //println "rootNode=$rootNode"
                     // mylist = ["patches", "config", "Test-3"]

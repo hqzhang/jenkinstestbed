@@ -9,6 +9,7 @@ def addNode( mynode) {
     def propName=mynode.category.property.'@name'
 
     def fileName = mynode.filename.text()
+    def workspace = pwd()
     fileName = "${workspace}/${fileName}"
     println "**********112******"
     println mynode.filename.getClass()
@@ -80,7 +81,7 @@ def readXMLSwitch(fileManifest,workspace) {
   }
 }*/
 }
-def workspace
+
 def list
 pipeline {
     agent any
@@ -102,7 +103,7 @@ pipeline {
         stage('Dynamic Stages') {
             steps {
                 script {
-                
+                    def workspace = pwd() 
                     readXMLSwitch("${workspace}/manifest_Lynx.xml",workspace)
                     /*for(int i=0; i < list.size(); i++) {
                         stage(list[i]){

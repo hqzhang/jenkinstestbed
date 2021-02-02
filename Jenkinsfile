@@ -99,6 +99,20 @@ def readXMLSwitch(mylist,myfile){
     mylist.each {
       stage(it){ 
 
+       println "STAGE $it" 
+        if(it=="config"){
+          configUpdate(myfile)
+        } //switch
+      }//stage
+    }//each
+}//def
+def readXMLSwitch(mylist,myfile){
+    println "Enter ***************readXMLSwitch() "
+    println "for loop......"
+    //def i=0;
+    mylist.each {
+      stage(it){ 
+
           println "STAGE $it" 
           switch(it.name() ) {
           case 'patches':

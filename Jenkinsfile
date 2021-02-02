@@ -40,12 +40,13 @@ def readXMLSwitch1(fileManifest){
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
     println mylist
     recipes.children().each { myls.add(it.name()   ) }
-    println myls   
-    mylist.each {          
+    println myls  
+    def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+    mylist.each {
                  stage(it){
                       echo "Element: $it"
                  }
-   }
+   } 
 
 }
 def readXMLSwitch(fileManifest){

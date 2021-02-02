@@ -43,6 +43,12 @@ def readXMLSwitch(fileManifest,workspace) {
     println recipes.name()
     println recipes.children()[0].name()
     println recipes.children()[1].name()
+    for(int i=0; i < list.size(); i++) {
+                        stage(list[i]){
+                            echo "Element: $i"
+                        }
+    }
+
 /*    rootNode.children().each {
       stage(it.toString()){
       switch(it.name() ) {
@@ -82,6 +88,7 @@ pipeline {
         stage('Create List') {
             steps {
                 script {
+                    workspace=WORKSPACE
                     // you may create your list here, lets say reading from a file after checkout
                     list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                 }
@@ -95,11 +102,13 @@ pipeline {
         stage('Dynamic Stages') {
             steps {
                 script {
-                    for(int i=0; i < list.size(); i++) {
+                
+                    readXMLSwitch("${workspace}/manifest_Lynx.xml",workspace)
+                    /*for(int i=0; i < list.size(); i++) {
                         stage(list[i]){
                             echo "Element: $i"
                         }
-                    }
+                    }*/
                 }
             }
             post {

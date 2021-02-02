@@ -35,18 +35,21 @@ def addNode( mynode) {
 def rootNode = [:]
 @NonCPS
 def readXML(fileManifest){
-    println "Enter readXML"
+    println "Enter readXML()"
     def result = [:]
     def mylist = []
     rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
+    println "Mid readXML()"
     rootNode.children().each {
         def st = it.name() 
         mylist.add(st )
     }
+    print "Exit readXML():$mylist"
     return mylist
 }
 def stageEntry( mylist){
+    println "Enter stageEntry():$mylist"
     mylist.each {   
           stage(it) {
                       echo "Element: $it"

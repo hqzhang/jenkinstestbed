@@ -41,7 +41,6 @@ def readXMLSwitch1(fileManifest){
     println mylist
     recipes.children().each { myls.add(it.name()   ) }
     println myls  
-    def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
     mylist.each {
                  stage(it){
                       echo "Element: $it"

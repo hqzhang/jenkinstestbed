@@ -57,7 +57,7 @@ def readXMLSwitch(fileManifest,workspace) {
                      //   stage(list[i]){
                             echo "Element: $i"
                      //   }
-    }*/`
+    }*/
 
 /*    rootNode.children().each {
       stage(it.toString()){

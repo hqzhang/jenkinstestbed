@@ -39,8 +39,9 @@ def readXMLSwitch1(fileManifest){
     def mylist = []
     def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
-    rootNode.children().each { 
-        mylist.add(it.name() )
+    rootNode.children().each {
+        def st = it.name() 
+        mylist.add(st )
     }
     mylist.each {   
           stage(it) {

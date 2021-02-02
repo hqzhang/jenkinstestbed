@@ -85,11 +85,12 @@ def readXMLSwitch(rootNode){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"
     //def i=0;
-    println recipes.getClass()
-    println recipes.name()
-    println recipes.children()[0].name()
-    println recipes.children()[1].name()
-
+/**
+    println rootNode.getClass()
+    println rootNode.name()
+    println rootNode.children()[0].name()
+    println rootNode.children()[1].name()
+**/
     mylist.each {
       stage(it){ println "STAGE $it" }
     }

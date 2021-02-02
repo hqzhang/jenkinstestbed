@@ -96,20 +96,16 @@ def readXMLSwitch(mylist,myfile){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"
     //def i=0;
-/**
-    println rootNode.getClass()
-    println rootNode.name()
-    println rootNode.children()[0].name()
-    println rootNode.children()[1].name()
-**/
     mylist.each {
       stage(it){ 
 
        println "STAGE $it" 
-       if(it=="config"){
+        if(it=="config"){
           configUpdate(myfile)
+        }
       }
     }
+}
  /**
       switch(it.name() ) {
       case 'patches':
@@ -138,7 +134,7 @@ def readXMLSwitch(mylist,myfile){
     }
   }
 }**/
-}
+
 
 //def list
 pipeline {
@@ -156,11 +152,6 @@ pipeline {
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                 }
             }
-            /**post {
-                cleanup {
-                    cleanWs()
-                }
-            }**/
         }
         stage('Dynamic Stages') {
             steps {
@@ -180,11 +171,6 @@ pipeline {
 
                 }
             }
-            /**post {
-                cleanup {
-                    cleanWs()
-                }
-            }**/
         }
     }
 }

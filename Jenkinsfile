@@ -35,7 +35,7 @@ def addNode( mynode) {
 }
 //def result = [:]
 @NonCPS
-def readXMLROOT(fileManifest){
+def readXMLRoot(fileManifest){
     def result = [:]
     def mylist =[] 
     def rootNode = new XmlSlurper().parse(fileManifest) 
@@ -144,6 +144,7 @@ pipeline {
                     //def rootNode=readXMLSwitch1("${workspace}/manifest_Lynx.xml")
                     //println "rootNode=$rootNode"
                     mylist = ["patches", "config", "Test-3"]
+                    mylist = readXMLList("${workspace}/manifest_Lynx.xml")
                     readXMLSwitch(mylist)
                     /**
                     **/

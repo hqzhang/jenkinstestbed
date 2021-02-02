@@ -48,10 +48,9 @@ def readXMLSwitch1(fileManifest){
     result.each { mykey, myval->
         
         println("sect=${myval.sect}")
-        //stage(myval.sect) {  
-                 
+        stage(myval.sect) {  
                       echo "Element: ${myval.sect}"
-          //       }
+            }
     }
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)

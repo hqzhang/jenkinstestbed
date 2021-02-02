@@ -35,32 +35,16 @@ def addNode( mynode) {
 
 @NonCPS
 def readXMLSwitch1(fileManifest){
+    println "Enter readXMLSwitch() file:$fileManifest"
     def result = [:]
     def mylist = []
     def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
     rootNode.children().each {
-        def st = it.name() 
-        mylist.add(st )
-        stage(st) {  echo "Element: $st"   }
-
-    }
-    mylist.each {   
-         // stage(it) {
-                      echo "Element: $it"
-          //}
-    }
-    println "Enter readXMLSwitch() file:$fileManifest"
-    def recipes = new XmlSlurper().parse(fileManifest)
-    println "for loop......"
-    //def i=0;
-    println recipes.getClass()
-    println recipes.name()
-    println recipes.children()[0].name()
-    println recipes.children()[1].name()
-
-/*    rootNode.children().each {
-      stage(it.toString()){
+      def st = it.name() 
+      mylist.add(st )
+    stage(st) {  
+      println "Element: $st"   
       switch(it.name() ) {
       case 'patches':
           println "case DB PATHES"
@@ -85,10 +69,11 @@ def readXMLSwitch1(fileManifest){
           break
       default:
           println "case Default"
-    }
-  }
-}*/
+     } //switch
+   }  //stage
+ }   //each
 }
+
 def readXMLSwitch(fileManifest){
     println "Enter readXMLSwitch() file:$fileManifest"
     def recipes = new XmlSlurper().parse(fileManifest)

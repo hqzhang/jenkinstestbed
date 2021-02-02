@@ -1,7 +1,6 @@
 //import groovy.yaml.YamlSlurper
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
-def mylist = []
 //def rootNode
 @NonCPS
 def addNode( mynode) {
@@ -36,9 +35,9 @@ def addNode( mynode) {
 }
 //def result = [:]
 @NonCPS
-def readXMLSwitch1(fileManifest){
+def readXMLROOT(fileManifest){
     def result = [:]
-    
+    def mylist =[] 
     def rootNode = new XmlSlurper().parse(fileManifest) 
     def  i=0
     rootNode.children().each {
@@ -51,6 +50,25 @@ def readXMLSwitch1(fileManifest){
          // }
     }
     return rootNode
+}
+@NonCPS
+def readXMLList(fileManifest){
+    def result = [:]
+    def mylist =[]
+    def rootNode = new XmlSlurper().parse(fileManifest)
+    def  i=0
+    rootNode.children().each {
+        def st = it.name()
+        mylist.add(st )
+    }
+    mylist.each { 
+          //stage(it) {
+                      echo "Element: $it"
+         // }
+    }
+    return mylist
+}
+
 /*    rootNode.children().each {
       stage(it.toString()){
       switch(it.name() ) {
@@ -81,7 +99,7 @@ def readXMLSwitch1(fileManifest){
   }
 }*/
 }
-def readXMLSwitch(){
+def readXMLSwitch(mylist){
     println "Enter ***************readXMLSwitch() "
     println "for loop......"
     //def i=0;
@@ -155,8 +173,8 @@ pipeline {
                     println workspace
                     //def rootNode=readXMLSwitch1("${workspace}/manifest_Lynx.xml")
                     //println "rootNode=$rootNode"
-                    mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-                    readXMLSwitch()
+                    mylist = ["patches", "config", "Test-3"]
+                    readXMLSwitch(mylist)
                     /**
                     **/
 

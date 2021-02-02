@@ -36,6 +36,7 @@ def readXMLSwitch1(fileManifest){
     def mylist = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
     def rootNode = new XmlSlurper().parse(fileManifest)    
     rootNode.children().each { mylist.add( it.name() ) }
+    println mylist
     mylist.each {
                  stage(it){
                       echo "Element: $it"

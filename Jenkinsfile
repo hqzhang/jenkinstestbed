@@ -2,7 +2,7 @@
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
 
-//////
+///1///
 @NonCPS
 def addNode(mynode) {
     println("Enter addNode() type: "+mynode.getClass() )

@@ -5,9 +5,18 @@
     <property name="a" value="b"/>
   </patches>
   <config name="reporting">
+     <Dev2>
       <filename>habs_base_config.xml</filename>
       <category name="general">
-        <property name="afafamya" value="afafamyb" />      
+        <property name="report.envid" value="afafamyb" />      
       </category>
+     </Dev2>
+     <nonprod>
+        <filename>habs_base_config.xml</filename>
+      <category name="general">
+        <property name="lynxRecipientBIC" value="afafamyb" />
+      </category>
+
+     </nonprod>
   </config>
 </recipes>

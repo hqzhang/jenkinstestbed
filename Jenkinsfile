@@ -97,6 +97,32 @@ def readXMLSwitch(mylist,myfile){
 
   
 def list
+properties([
+    parameters([
+           choice(name: 'choice1', choices: ['dev','qa','prod'], description: 'input cluster'),
+           [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
+            description: 'Active Choices Reactive parameter',
+            filterLength: 1, filterable: true,
+            name: 'choice2', randomName: 'choice-parameter-7601237141171',
+            referencedParameters: 'choice1',
+            script: [$class: 'GroovyScript',
+            fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
+            script: [classpath: [], sandbox: false,
+            script: '''if(choice1.equals("dev")){ return ["dev_master","test1"]
+                   } else if(choice1.equals("qa")){ return ["qa_master","test2"] } ''']]],
+
+            extendedChoice(
+              name: 'Branches',
+              description: '',
+              visibleItemCount: 50,
+              multiSelectDelimiter: ',',
+              type: 'PT_SINGLE_SELECT',
+              groovyScript: '''
+                 def mylist2 = ["R11.20.10","R1.0.0-something","R838833"]
+                 mylist2.findAll{ it =~ /^R\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}$/ }
+              ''', ),
+])
+])
 pipeline {
     agent any
     stages {

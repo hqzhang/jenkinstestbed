@@ -118,8 +118,8 @@ properties([
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
               groovyScript: '''
-                 def mylist2 = ["R11.20.10","R1.0.0-something","R838833"]
-                 mylist2.findAll{ it =~ /^R\\d{1,2}\\.\\d{1,2}\\.\\d{1,2}$/ }
+                 def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+                 mf.readLines().collect{ it.split()[0].minus('.xml')}
               ''', ),
 ])
 ])

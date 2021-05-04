@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 @NonCPS
 def parseXML(xmlFile){
+    echo "Enter parseXML()..."
     def PRETTY_PRINT_INDENT_FACTOR = 4;
     def mystr = ""
     new File(xmlFile).eachLine { mystr += it }
@@ -163,9 +164,11 @@ pipeline {
                     // you may create your list here, lets say reading from a file after checkout
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                     list = readXMLList("${workspace}/manifest_Lynx.xml")
+                    echo "***************"
                     map = parseXML("manifest_Lynx.xml")
                     println map.recipes.release
                     println map.recipes.HABS.action
+                    echo "#################"
                 }
             }
         }

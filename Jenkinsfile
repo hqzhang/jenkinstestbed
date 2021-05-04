@@ -24,7 +24,10 @@ def parseXML(xmlFile){
     System.getProperty("java.class.path", ".").tokenize(File.pathSeparator).each {
         println it
     }
-    println result.getClass()
+    if(result instanceof groovy.json.internal.LazyMap) {
+       return new HashMap<>(result)
+    }
+  
     return result
 }
 

@@ -165,7 +165,7 @@ pipeline {
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                     list = readXMLList("${workspace}/manifest_Lynx.xml")
                     echo "***************"
-                    map = parseXML("${workspace}/anifest_Lynx.xml")
+                    map = parseXML("${workspace}/manifest_Lynx.xml")
                     println map.recipes.release
                     println map.recipes.HABS.action
                     echo "#################"

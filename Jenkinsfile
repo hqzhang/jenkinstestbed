@@ -17,18 +17,8 @@ def parseXML(xmlFile){
 
     String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
     println(jsonPrettyPrintString);
-    def slurper = new groovy.json.JsonSlurper()
-    def result = slurper.parseText(jsonPrettyPrintString)
-    println result.recipes.release
-    println result.recipes.HABS.BuildNumber
-    System.getProperty("java.class.path", ".").tokenize(File.pathSeparator).each {
-        println it
-    }
-    if(result instanceof groovy.json.internal.LazyMap) {
-       return new HashMap<>(result)
-    }
   
-    return result
+    return jsonPrettyPrintString
 }
 
 @NonCPS
@@ -168,7 +158,8 @@ pipeline {
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                     list = readXMLList("${workspace}/manifest_Lynx.xml")
                     echo "***************"
-                    map = parseXML("${workspace}/manifest_Lynx.xml")
+                    def jsonText = parseXML("${workspace}/manifest_Lynx.xml")
+                    map = readJSON text: jsonText
                     println map.recipes.release
                     println map.recipes.HABS.action
                     echo "#################"

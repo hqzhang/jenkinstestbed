@@ -1,8 +1,32 @@
 //import groovy.yaml.YamlSlurper
 import groovy.xml.StreamingMarkupBuilder
 import groovy.xml.XmlUtil
+import groovy.json.JsonSlurper
+import org.json.JSONObject;
+import org.json.XML;
+import org.json.JSONException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+@NonCPS
+def parseXML(xmlFile){
+    def PRETTY_PRINT_INDENT_FACTOR = 4;
+    def mystr = ""
+    new File(xmlFile).eachLine { mystr += it }
+    JSONObject xmlJSONObj = XML.toJSONObject(mystr);
 
-///1///
+    String jsonPrettyPrintString = xmlJSONObj.toString(PRETTY_PRINT_INDENT_FACTOR);
+    println(jsonPrettyPrintString);
+    def slurper = new groovy.json.JsonSlurper()
+    def result = slurper.parseText(jsonPrettyPrintString)
+    println result.recipes.release
+    println result.recipes.HABS.BuildNumber
+    System.getProperty("java.class.path", ".").tokenize(File.pathSeparator).each {
+        println it
+    }
+    println result.getClass()
+    return result
+}
+
 @NonCPS
 def addNode(mynode) {
     println("Enter addNode() type: "+mynode.getClass() )
@@ -96,7 +120,7 @@ def readXMLSwitch(mylist,myfile){
 }//def
 
   
-def list
+
 properties([
     parameters([
            choice(name: 'choice1', choices: ['dev','qa','prod'], description: 'input cluster'),
@@ -123,6 +147,8 @@ properties([
               ''', ),
 ])
 ])
+def map
+def list
 pipeline {
     agent any
     stages {
@@ -137,6 +163,9 @@ pipeline {
                     // you may create your list here, lets say reading from a file after checkout
                     //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
                     list = readXMLList("${workspace}/manifest_Lynx.xml")
+                    map = parseXML("manifest_Lynx.xml")
+                    println map.recipes.release
+                    println map.recipes.HABS.action
                 }
             }
         }
@@ -147,6 +176,9 @@ pipeline {
                     println WORKSPACE
                     def workspace = pwd() 
                     println workspace
+                    println map.recipes.release
+                    println map.recipes.HABS.action
+
                     //addProperty("${workspace}/manifest_Lynx.xml","general","A","B")
                     //def rootNode=readXMLRoot("${workspace}/manifest_Lynx.xml")
                     //println "rootNode=$rootNode"

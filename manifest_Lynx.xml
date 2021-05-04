@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?><recipes extends="habs_base">
   <release>"Habs Lynx"</release>
+  <HABS> 
+     <action>deploy</action>
+     <BuildName>HabsMaster</BuildName>
+     <BuildNumber>lastOne</BuildNumber>
+
+  </HABS>
   <patches name="general">
     <property name="config.folder" value="habs"/>
     <property name="a" value="b"/>
   </patches>
-  <config name="reporting">
-     <Dev2>
+  <Config_Update>
+     <DEV2>
       <filename>habs_base_config.xml</filename>
       <category name="general">
-        <property name="report.envid" value="afafamyb" />      
+        <property name="report.envid" value="afafDEV2" />      
       </category>
-     </Dev2>
-     <nonprod>
+     </DEV2>
+     <QA2>
+      <filename>habs_base_config.xml</filename>
+      <category name="general">
+        <property name="report.envid" value="afafamyQA2" />
+      </category>
+     </QA2>
+     <Nonprod>
         <filename>habs_base_config.xml</filename>
       <category name="general">
-        <property name="lynxRecipientBIC" value="afafamyb" />
+        <property name="lynxRecipientBIC" value="afafNP" />
       </category>
 
-     </nonprod>
-  </config>
+     </Nonprod>
+     <Prod>
+        <filename>habs_base_config.xml</filename>
+      <category name="general">
+        <property name="lynxRecipientBIC" value="afafPRod" />
+      </category>
+
+     </Prod>
+
+  </Config_Update>
 </recipes>

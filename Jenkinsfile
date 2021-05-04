@@ -1,12 +1,11 @@
-//import groovy.yaml.YamlSlurper
-import groovy.xml.StreamingMarkupBuilder
-import groovy.xml.XmlUtil
-import groovy.json.JsonSlurper
-import org.json.JSONObject;
-import org.json.XML;
-import org.json.JSONException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+//import groovy.xml.StreamingMarkupBuilder
+//import groovy.xml.XmlUtil
+//import groovy.json.JsonSlurper
+//import org.json.JSONObject;
+//import org.json.XML;
+//import org.json.JSONException;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
 @NonCPS
 def parseXML(xmlFile){
     echo "Enter parseXML()..."

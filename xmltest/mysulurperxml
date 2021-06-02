@@ -1,0 +1,33 @@
+#!/usr/bin/env groovy
+import groovy.xml.XmlSlurper
+import groovy.xml.QName
+import groovy.xml.MarkupBuilder
+ def books = '''<response version-api="2.0">
+        
+            <books>
+                <book available="20" id="1">
+                    <title>Don Quixote</title>
+                    <author id="1">Miguel de Cervantes</author>
+                </book>
+               <book available="5" id="4">
+                   <title>Don Quixote</title>
+                   <author id="4">Miguel de Cervantes</author>
+               </book>
+           </books>
+      
+    </response>
+'''
+def xmlFile = getClass().getResourceAsStream("articles.xml")
+def articles = new XmlParser().parse(xmlFile)
+
+    def response = new XmlSlurper().parseText(books)
+    def authorResult = response.books.book[0].author
+    println groovy.xml.XmlUtil.serialize(response)
+def parser = new XmlParser()
+def resp = parser.parseText(books)
+def numberOfResults = parser.createNode(
+        response,
+        new QName("numberOfResults"),
+        [:]
+)
+     println groovy.xml.XmlUtil.serialize(resp)

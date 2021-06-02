@@ -1,0 +1,12 @@
+    def xml = """
+              <colors>
+                  <color primary="true">Red</color>
+                  <color primary="true">Yellow</color>
+                  <color primary="true">Blue</color>
+                  <color primary="false">Purple</color>
+              </colors>                    
+              """
+
+    def colors = new XmlSlurper().parseText(xml)
+    println "First Color: ${colors.color[0]}" //works fine
+    println "First Color: ${colors.color[0]} Primary? ${colors.color[0].@primary}"

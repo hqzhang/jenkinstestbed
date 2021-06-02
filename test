@@ -4,6 +4,107 @@
     import groovy.yaml.YamlSlurper
     import mylib
     import sayHello
+    //mapping
+def mycontains(str, sub){
+    def flag=str.contains(sub)
+    println flag
+
+   }
+mycontains("hongqi","gq")
+mycontains("honqi", "zhang")
+def mycall(){
+    def ws = System.getProperty("user.dir")
+    println ws 
+    
+   println "rm ProcessList.txt".execute().text
+    File file = new File("${ws}/ProcessList.txt")
+    def listmy=['A','B']
+    file.write  ""
+    def composite =[:]
+    composite.name ='hong'
+    composite.age=50
+    println composite
+    listmy.each { 
+       composite.name=it
+       def ret=''
+       composite.each{ key,val->
+          ret += ','+val 
+       }
+       ret=ret.substring(1)
+       file << ret+"\n"
+    } 
+    println file.text
+    println  "end mycall()"
+println "ls -al ProcessList.txt".execute().text
+}
+mycall()
+    println "cat file"
+  
+    println "cat ProcessList.txt".execute().text
+    System.exit(1);
+    //variable key
+    //String keyVar = "DC1_SERVER"
+    def lt = ["A","B", "C", "D", "E","Fe"]
+    def ll = lt[3..lt.size-1]
+    println ll
+    def mf ="svn ls https://github.com/hqzhang/Mytest.git/branches/master/ranchtest".execute().text
+     mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+    println mf
+    def mf1 = mf.readLines().collect{ it.split()[0].minus('.xml')}
+    println "result======"
+    println      mf1
+
+    def myss="my.xml"
+    println myss.minus('.xml')
+    
+    
+    //println mf.readLines().collect{ it.split()[-1] }
+    //def tags=("git ls-remote git://github.com/hqzhang/Mytest.git").execute().text
+   // println tags.readLines().collect{ if ( it !='.' && it != '..' || it !='total'     ) { it.split()[1] }}
+
+    System.exit(1)   
+    def mylist3 = ["9","R1.0.1", "R0.0.0groovier", "R1.0.0better", "2-when I use","2-Groovy there"]
+    //mylist3 = ["0.0.0-20201118143800-f483e22-develop","develop"];
+    println mylist3
+    mylist3.each { var->
+      if ( var =~ /^R\d.\d.\d$/ ) {
+        println "match= $var"
+      }
+    }
+    println "--------------------------"
+    System.exit(1)
+    def mylist2 = ["R1.20.10","R1.0.0-something","R838833"]
+    println mylist2
+    //\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}
+    println mylist2.findAll { it =~ /^R\d{1,2}\.\d{1,2}\.\d{1,2}$/ } 
+    println "use single quote"
+    println mylist2.findAll { it =~ '^\\d(-R[^0].\\d.\\d\\w*\\b)' }
+
+    def list1= ["README.md", "test1.txt","/desktop/openmpi.txt"]
+    println list1.findAll{ it =~ /(?i)\.(?:md|txt)$/ }   
+    
+    String keyVar = "mykey"
+    List brs=['1.1R','R1.1','1.0','R1.0']
+    println brs.findAll{ it=~ '^R.*' }
+   // println brs.findAll{ it.matches("^R\d.\d") }    
+    def map1 = [(keyVar) : 12]
+    println map1
+    println map1[keyVar]
+    println map1."$keyVar"
+    assert map1.mykey == 12
+    assert map1[keyVar] == 12
+    System.exit(1)
+    //def map0 = [DC1_SERVER : "this varial key",]
+
+    
+    println map0.DC1_SERVER
+    println map0[keyVar]
+    println map0."${keyVar}"
+    //assert !map0.mykey
+
+   // assert !map1.keyVar 
+    System.exit(1)
+    println str.split(',')
     //example
     def xmlString = """<properties extends="habs_base">
       <category name="general">

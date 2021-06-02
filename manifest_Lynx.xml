@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><recipes extends="habs_base">
   <release>"Habs Lynx"</release>
-  <HABS> 
+  <Deploy_HABS> 
      <action>deploy</action>
      <BuildName>HabsMaster</BuildName>
      <BuildNumber>lastOne</BuildNumber>
 
-  </HABS>
-  <patches name="general">
+  </Deploy_HABS>
+  <Apply_Patches name="general">
     <property name="config.folder" value="habs"/>
     <property name="a" value="b"/>
-  </patches>
+  </Apply_Patches>
   <Config_Update>
      <DEV2>
       <filename>habs_base_config.xml</filename>
@@ -39,4 +39,10 @@
      </Prod>
 
   </Config_Update>
+  <BPEL_Processes>
+        <deploy><HABS_TO_LYNX>3.0.0</HABS_TO_LYNX>
+        <HABS_FRM_LYNX>3.0.0</HABS_FRM_LYNX>
+        </deploy>
+ </BPEL_Processes>
+
 </recipes>

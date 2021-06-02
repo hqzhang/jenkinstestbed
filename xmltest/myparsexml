@@ -1,0 +1,17 @@
+#!/usr/bin/env groovy
+import groovy.yaml.YamlSlurper
+def xmlFile = getClass().getResourceAsStream("articles.xml")
+def articles = new XmlParser().parse(xmlFile)
+   def propName = 'my'
+   def propValue= '7'
+   //get node and insert 
+  
+   def articleNode = new NodeBuilder().property(name: propName,value: propValue) { }
+   articles.category.each { var->
+          
+          if (var.'@name' == 'general') {
+            //var.children().findAll { var.@name == propName }.replaceNode {}
+            var.append(articleNode) 
+          }
+   }
+    println groovy.xml.XmlUtil.serialize(articles)

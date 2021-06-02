@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><properties extends="habs_base">
   <category name="general">
     <property name="config.folder" value="habs"/>
-    <property name="report.envid" value="afafDEV2"/>
-    <property name="lynxRecipientBIC" value="afafNP"/>
   </category>
   <category name="reporting">
     <property name="reporting.server" value="rptsvr_uapphabdv"/>

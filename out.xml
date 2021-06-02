@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><meals>
+    <!--Comment 1-->
+    <category time="7am" type="breakfast">
+        <item>Eggs</item>
+        <item>Coffee</item>
+    </category>
+    <category time="1pm" type="lunch">
+        <!--Comment 2-->
+        <item>Rice</item>
+        <item>Beans</item>
+    </category>
+    <category time="8pm" type="dinner">
+        <item>Bread</item>
+        <item>Chicken</item>
+    </category>
+    <!--Comment 3-->
+</meals>

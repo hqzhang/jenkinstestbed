@@ -138,7 +138,7 @@ properties([
                  def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
                  mf.readLines().collect{ it.split()[0].minus('.xml')}
               ''', ),
-             string(name: 'StringSet', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?'),
+             string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?'),
 ])
 ])
 def map

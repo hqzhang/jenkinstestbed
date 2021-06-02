@@ -1,5 +1,3 @@
-//import groovy.xml.StreamingMarkupBuilder
-//import groovy.xml.XmlUtil
 //import groovy.json.JsonSlurper
 import org.json.JSONObject;
 import org.json.XML;
@@ -161,7 +159,7 @@ pipeline {
                     def jsonText = parseXML("${workspace}/manifest_Lynx.xml")
                     map = readJSON text: jsonText
                     println map.recipes.release
-                    println map.recipes.HABS.action
+                    //println map.recipes.HABS.action
                     echo "#################"
                 }
             }

@@ -4,7 +4,7 @@
     import groovy.yaml.YamlSlurper
     import mylib
     import sayHello
-    //mapping
+    //mapping////
 def mycontains(str, sub){
     def flag=str.contains(sub)
     println flag

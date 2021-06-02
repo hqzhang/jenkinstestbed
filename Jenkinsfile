@@ -147,6 +147,8 @@ pipeline {
         stage('Create List') {
             steps {
                 script {
+                    echo "STAGE: create List..."
+                    echo "payload=$payload"
                     workspace=WORKSPACE
                     println "WS=${env.WORKSPACE}"
                     println "WS=${WORKSPACE}"

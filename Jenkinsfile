@@ -162,21 +162,7 @@ pipeline {
                 }
             }
         }
-   /**     stage('Dynamic Stages') {
-            steps {
-                script {
-                    def workspace = pwd() 
-                    println workspace
-                      echo "***************"
-                    println map.recipes.release
-                    println map.recipes.HABS.action
-                    echo "#################"
-                    readXMLSwitch(list,"${workspace}/manifest_Lynx.xml")
-
-                }
-            }
-        }*//
-    }
+   }
 }
 
 

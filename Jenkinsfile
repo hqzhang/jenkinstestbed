@@ -113,6 +113,7 @@ def readXMLSwitch(mylist,myfile){
   
 
 properties([
+    pipelineTriggers([githubPush()]),
     parameters([
            choice(name: 'choice1', choices: ['dev','qa','prod'], description: 'input cluster'),
            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',

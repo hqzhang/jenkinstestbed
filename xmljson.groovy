@@ -27,10 +27,10 @@ def parseXML(xmlFile){
 }
 def map = parseXML("manifest_Lynx.xml")
  println "#####################"
- map.recipes.BPEL_Processes.deploy.each {k,v->
+ map.each {k,v->
        println k  
        println v }
- println "******111111*********"
+ println "******######******"
 /*             
   println "rm ProcessList.txt".execute().text
   File file = new File("ProcessList.txt")

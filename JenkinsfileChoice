@@ -15,10 +15,10 @@ String items = populateItems(default_item,cons.servers)
 //}
 String populateItems(List defaultList, Map serversList){
 
-List fruitsList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
-List defaultList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
+List vegetablesList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
+List fruitsList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
 return """if(Categories.equals('DEV')){
-     return $vegetablesList
+     return $vegetablesList1
      }
      else if(Categories.equals('QA')){
      return $fruitsList1

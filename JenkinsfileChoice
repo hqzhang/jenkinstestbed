@@ -6,14 +6,14 @@ library("my-shared-library@master") _
 List fruits_list = cons.servers['DEV']['APP'].collect{ '"' + it + '"'}
 List vegetables_list = cons.servers['QA']['APP'].collect{ '"' + it + '"'}
 List default_item = ["\"Not Applicable\""]
-
+println cons.servers.getClass() 
 //String categories = buildScript(category_list)
-String items = populateItems(vegetables_list,vegetables_list,fruits_list)
+String items = populateItems(cons.servers,vegetables_list,fruits_list)
 // Methods to build groovy scripts to populate data
 //String buildScript(List values){
 //  return "return $values"
 //}
-String populateItems(List default_item, List vegetablesList, List fruitsList){
+String populateItems(Map default_item, List vegetablesList, List fruitsList){
 def my=''
 def your=''
 return """if(Categories.equals('DEV')){

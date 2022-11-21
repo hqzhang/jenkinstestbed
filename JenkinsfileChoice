@@ -22,7 +22,7 @@ return """if(Categories.equals('DEV')){
      else if(Categories.equals('QA')){
      return $fruitsList
      }else{
-     return ["default_item"]
+     return $default_item
      }
      """
 }

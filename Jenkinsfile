@@ -162,6 +162,15 @@ pipeline {
                     def jsonText = parseXML("${workspace}/manifest_Lynx.xml")
                     map = readJSON text: jsonText
                     echo "#################"
+                     def remote = [:]
+                    remote.name = 'test'
+                    remote.host = 'test.domain.com'
+                    remote.user = 'root'
+                    remote.password = 'password'
+                    remote.allowAnyHosts = true
+    
+                    sshCommand remote: remote, command: "ls -lrt"
+    
                 }
             }
         }

@@ -2,9 +2,6 @@
 library("my-shared-library@master") _
 // Define variables
 
-//List category_list = cons.envir.collect{ '"' + it + '"'}
-List fruits_list = cons.servers['DEV']['APP'].collect{ '"' + it + '"'}
-List vegetables_list = cons.servers['QA']['APP'].collect{ '"' + it + '"'}
 List default_item = ["\"Not Applicable\""]
 println cons.servers.getClass() 
 //String categories = buildScript(category_list)
@@ -14,18 +11,17 @@ String items = populateItems(default_item,cons.servers)
 //  return "return $values"
 //}
 String populateItems(List defaultList, Map serversList){
-
-List vegetablesList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
-List fruitsList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
-return """if(Categories.equals('DEV')){
-     return $vegetablesList1
-     }
-     else if(Categories.equals('QA')){
-     return $fruitsList1
-     }else{
-     return $defaultList
-     }
-     """
+    List vegetablesList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
+    List fruitsList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
+    return """if(Categories.equals('DEV')){
+        return $vegetablesList1
+        }
+        else if(Categories.equals('QA')){
+        return $fruitsList1
+        }else{
+        return ["Not Applicable"]
+        }
+        """
 }
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting

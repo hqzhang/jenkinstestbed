@@ -6,7 +6,7 @@ import org.json.JSONException;
 //import java.nio.file.Path;
 library("my-shared-library@master") _
 println cons.envir
-println cons.servers
+println cons.servers['DEV']['APP']
 @NonCPS
 def parseXML(xmlFile){
     echo "Enter parseXML()..."

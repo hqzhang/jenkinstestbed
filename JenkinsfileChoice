@@ -8,15 +8,15 @@ List vegetables_list = cons.servers['QA']['APP'].collect{ '"' + it + '"'}
 List default_item = ["\"Not Applicable\""]
 println cons.servers.getClass() 
 //String categories = buildScript(category_list)
-String items = populateItems(default_item,vegetables_list,fruits_list,cons.servers)
+String items = populateItems(default_item,cons.servers)
 // Methods to build groovy scripts to populate data
 //String buildScript(List values){
 //  return "return $values"
 //}
-String populateItems(List defaultList, List vegetablesList, List fruitsList, Map serversList){
+String populateItems(List defaultList, Map serversList){
 
 List fruitsList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
-List vegetables_list1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
+List defaultList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
 return """if(Categories.equals('DEV')){
      return $vegetablesList
      }

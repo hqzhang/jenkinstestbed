@@ -1,16 +1,8 @@
 #!/usr/bin/env groovy
 library("my-shared-library@master") _
-// Define variables
 
-List default_item = ["\"Not Applicable\""]
-println cons.servers.getClass() 
-//String categories = buildScript(category_list)
-String items = populateItems(default_item,cons.servers)
-// Methods to build groovy scripts to populate data
-//String buildScript(List values){
-//  return "return $values"
-//}
-String populateItems(List defaultList, Map serversList){
+String items = populateItems(cons.servers)
+String populateItems(Map serversList){
     List vegetablesList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
     List fruitsList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
     return """if(Categories.equals('DEV')){
@@ -28,9 +20,6 @@ String populateItems(List defaultList, Map serversList){
 properties([
     parameters([
         choice(name: 'Categories', choices: cons.envir, description: 'input cluster'),
-        //[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',   name: 'Categories', 
-        //script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], script: [classpath: [], sandbox: false,
-        //script:  categories]]],
        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items', referencedParameters: 'Categories', 
           script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["error"]'], 
               script: [classpath: [], sandbox: false, script: items]]]

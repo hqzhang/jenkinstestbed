@@ -2,17 +2,17 @@
 library("my-shared-library@master") _
 // Define variables
 
-List category_list = cons.envir.collect{ '"' + it + '"'}
+//List category_list = cons.envir.collect{ '"' + it + '"'}
 List fruits_list = cons.servers['DEV']['APP'].collect{ '"' + it + '"'}
 List vegetables_list = cons.servers['QA']['APP'].collect{ '"' + it + '"'}
 List default_item = ["\"Not Applicable\""]
 
-String categories = buildScript(category_list)
+//String categories = buildScript(category_list)
 String items = populateItems(default_item,vegetables_list,fruits_list)
 // Methods to build groovy scripts to populate data
-String buildScript(List values){
-  return "return $values"
-}
+//String buildScript(List values){
+//  return "return $values"
+//}
 String populateItems(List default_item, List vegetablesList, List fruitsList){
 return """if(Categories.equals('DEV')){
      return $vegetablesList

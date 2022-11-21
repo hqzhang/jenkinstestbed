@@ -127,7 +127,7 @@ properties([
             script: [$class: 'GroovyScript',
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
             script: [classpath: [], sandbox: false,
-            script: ''' return ["dev_master","test1"]
+            script: ''' ["dev_master","test1"]
                      ''']]],
 
             extendedChoice(

@@ -164,7 +164,7 @@ pipeline {
                     echo "#################"
                      def remote = [:]
                     remote.name = 'test'
-                    remote.host = 'test.domain.com'
+                    remote.host = '192.168.2.27'
                     remote.user = 'root'
                     remote.password = 'password'
                     remote.allowAnyHosts = true

@@ -127,8 +127,8 @@ properties([
             script: [$class: 'GroovyScript',
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
             script: [classpath: [], sandbox: false,
-            script: '''if(choice1.equals("dev")){ return ["dev_master","test1"]
-                   } else if(choice1.equals("qa")){ return ["qa_master","test2"] } ''']]],
+            script: ''' return ["dev_master","test1"]
+                     ''']]],
 
             extendedChoice(
               name: 'Branches',

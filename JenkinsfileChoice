@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 library("my-shared-library@master") _
 
-String items = populateItems(cons.servers)
+//String items = populateItems(cons.servers)
 String populateItems(Map serversList){
     List vegetablesList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
     List fruitsList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
@@ -22,7 +22,7 @@ properties([
         choice(name: 'Categories', choices: cons.envir, description: 'input cluster'),
        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items', referencedParameters: 'Categories', 
           script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["error"]'], 
-              script: [classpath: [], sandbox: false, script: items]]]
+              script: [classpath: [], sandbox: false, script: populateItems(cons.servers)]]]
     ])
 ])
 pipeline {

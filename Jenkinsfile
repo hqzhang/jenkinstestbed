@@ -4,7 +4,7 @@ import org.json.XML;
 import org.json.JSONException;
 ////import java.nio.file.Files;
 //import java.nio.file.Path;
-library("my-shared-library@argocd") _
+library("my-shared-library@master") _
 println cons.envir
 println cons.servers
 @NonCPS

@@ -9,25 +9,25 @@ String populateItems(Map serversList){
     List PRODList= serversList['PROD']['APP'].collect{ '"' + it + '"'}
     List DRList = serversList['DR']['APP'].collect{ '"' + it + '"'}
     List QAList = serversList['QA']['APP'].collect{ '"' + it + '"'}
-    return """if(Categories.equals('DEV')){
-        return $DEVList
+      return """if(Categories.equals('DEV')){
+                return $DEVList
         }
         else if(Categories.equals('BAT')){
-        return $BATList
-        }else{
+                return $BATList
+        }
         else if(Categories.equals('PAT')){
-        return $PATList
-        }else{
+                return $PATList
+        }
         else if(Categories.equals('PROD')){
-        return $PRODList
-        }else{
+                return $PRODList
+        }
         else if(Categories.equals('DR')){
-        return $DRList
-        }else{
+                return $DRList
+        }
         else if(Categories.equals('QA')){
-        return $QAList
+                return $QAList
         }else{
-        return ["Not Applicable"]
+                return ["Not Applicable"]
         }
         """
 }

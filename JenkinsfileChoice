@@ -12,7 +12,18 @@ properties([
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
-                    script: cons.selectServers('Environment')]]]
+                    script: cons.selectServers('Environment')]]],
+        extendedChoice(
+              name: 'Branches',
+              description: '',
+              visibleItemCount: 50,
+              multiSelectDelimiter: ',',
+              type: 'PT_SINGLE_SELECT',
+              groovyScript: '''
+                 def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+                 mf.readLines().collect{ it.split()[0].minus('.xml')}
+              ''', ),
+             string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),
     ])
 ])
 pipeline {

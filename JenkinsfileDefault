@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 // Define variables
 
-List category_list = ["Select:selected","Vegetables","Fruits"].collect{'"'+it+'"'}
+List category_list = ["Select","Vegetables:selected","Fruits"].collect{'"'+it+'"'}
 List fruits_list = ["Select:selected","apple","banana","mango"].collect{'"'+it+'"'} 
 List vegetables_list = ["Select:selected","potato","tomato","broccoli"].collect{'"'+it+'"'} 
 List default_item = ["Not Applicable"]

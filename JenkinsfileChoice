@@ -33,12 +33,19 @@ properties([
                           """,
             groovyScript: cons.getTags(), ),
         extendedChoice(
-            name: 'myBranches',
+            name: 'myBranch',
             description: 'branch name',
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_SINGLE_SELECT',
             groovyScript: cons.getBranches(), ),
+        extendedChoice(
+            name: 'myFile',
+            description: 'file name',
+            visibleItemCount: 50,
+            multiSelectDelimiter: ',',
+            type: 'PT_SINGLE_SELECT',
+            groovyScript: cons.getFiles(), ),
                  
               
     ])

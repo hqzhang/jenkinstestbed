@@ -15,6 +15,7 @@ String populateItems(Map serversList){
         }
         """
 }
+println( cons.selectServers(cons.servers))
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting
 properties([

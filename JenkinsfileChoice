@@ -7,8 +7,8 @@ library("my-shared-library@master") _
 properties([
     parameters([
         choice(name: 'Environment', choices: cons.envir, description: 'input cluster'),
-       [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
-         name: 'targtServer', referencedParameters: 'Environment', 
+        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
+          name: 'targtServer', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
@@ -16,9 +16,9 @@ properties([
                     script: cons.selectServers('Environment')]]],
 
         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
-         name: 'MyEnvir', 
-         script: [$class: 'GroovyScript', 
-         fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
+          name: 'MyEnvir', 
+          script: [$class: 'GroovyScript', 
+          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
                           script: [classpath: [], sandbox: false,
                           script:  cons.buildScript()]]],
         
@@ -33,13 +33,13 @@ properties([
             groovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git  ").execute()
                return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }
                           """,),
-            extendedChoice(
-              name: 'myBranches',
-              description: '',
-              visibleItemCount: 50,
-              multiSelectDelimiter: ',',
-              type: 'PT_SINGLE_SELECT',
-              groovyScript: def gettags = ("git ls-remote --heads  git@github.com:hqzhang/octest.git  ").execute()
+        extendedChoice(
+            name: 'myBranches',
+            description: 'branch name',
+            visibleItemCount: 50,
+            multiSelectDelimiter: ',',
+            type: 'PT_SINGLE_SELECT',
+            groovyScript: """def gettags = ("git ls-remote --heads  git@github.com:hqzhang/octest.git  ").execute()
                return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }'''
                   """,),
                  

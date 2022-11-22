@@ -49,8 +49,8 @@ properties([
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
               groovyScript: '''
-                 def mf ="a.xml b.xml c.xml"
-                 return mf.readLines().collect{ it.split()[0].minus('.xml')}
+                 def mf =["a.xml", "b.xml", "c.xml"]
+                 return mf
               ''', ),
     ])
 ])

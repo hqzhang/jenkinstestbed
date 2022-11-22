@@ -41,7 +41,7 @@ properties([
             multiSelectDelimiter: ',',
             type: 'PT_SINGLE_SELECT',
             groovyScript: """def gettags = ("git ls-remote --heads  git@github.com:hqzhang/octest.git  ").execute().text
-               return gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }'''
+               return gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
                   """,),
                  
               

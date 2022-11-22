@@ -21,7 +21,7 @@ properties([
           script: [$class: 'GroovyScript', 
           fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
                           script: [classpath: [], sandbox: false,
-                          script:  cons.buildScript()]]],
+                          script:  cons.getEnvironment()]]],
         
         extendedChoice( 
             name: 'TagName', 

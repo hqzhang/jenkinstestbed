@@ -29,9 +29,7 @@ properties([
             //defaultValue: 'test2', 
             description: 'tag name', 
             type: 'PT_SINGLE_SELECT',
-            defaultGroovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git").execute().text
-               return gettags.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }[2]
-                          """,
+            defaultGroovyScript: cons.getDefaultTag(),
             groovyScript: cons.getTags(), ),
         extendedChoice(
             name: 'myBranch',

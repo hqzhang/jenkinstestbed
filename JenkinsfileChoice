@@ -3,13 +3,29 @@ library("my-shared-library@master") _
 
 //String items = populateItems(cons.servers)
 String populateItems(Map serversList){
-    List vegetablesList1 = serversList['DEV']['APP'].collect{ '"' + it + '"'}
-    List fruitsList1 = serversList['QA']['APP'].collect{ '"' + it + '"'}
+    List DEVList = serversList['DEV']['APP'].collect{ '"' + it + '"'}
+    List BATList = serversList['BAT']['APP'].collect{ '"' + it + '"'}
+    List PATList = serversList['PAT']['APP'].collect{ '"' + it + '"'}
+    List PRODList= serversList['PROD']['APP'].collect{ '"' + it + '"'}
+    List DRList = serversList['DR']['APP'].collect{ '"' + it + '"'}
+    List QAList = serversList['QA']['APP'].collect{ '"' + it + '"'}
     return """if(Categories.equals('DEV')){
-        return $vegetablesList1
+        return $DEVList
         }
+        else if(Categories.equals('BAT')){
+        return $BATList
+        }else{
+        else if(Categories.equals('PAT')){
+        return $PATList
+        }else{
+        else if(Categories.equals('PROD')){
+        return $PRODList
+        }else{
+        else if(Categories.equals('DR')){
+        return $DRList
+        }else{
         else if(Categories.equals('QA')){
-        return $fruitsList1
+        return $QAList
         }else{
         return ["Not Applicable"]
         }

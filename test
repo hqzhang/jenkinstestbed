@@ -4,7 +4,10 @@
     import groovy.yaml.YamlSlurper
     import mylib
     import sayHello
-    //mapping////
+def mf ="a.xml b.xml c.xml"
+println mf.readLines().collect{ it.split()[0].minus('.xml')
+System.exit(1)
+//mapping////
 
    String myver='6.0'
    println myver.getClass()

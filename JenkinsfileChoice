@@ -17,13 +17,13 @@ properties([
           fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
                           script: [classpath: [], sandbox: false,
                           script:  cons.getEnvironment()]]],
-        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
+        /*[$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
           name: 'targtServer', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
-                    script: cons.getServers('Environment')]]],
+                    script: cons.getServers('Environment')]]],*/
 
         extendedChoice( 
             name: 'TagName', 

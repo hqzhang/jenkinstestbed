@@ -5,9 +5,10 @@ library("my-shared-library@master") _
 
 
 String buildScript(List values){
+  List val=values.collect{ '"' + it + '"'}
   return "return $values"
 }
-List category_list = ["\"Select:selected\"","\"Vegetables\"","\"Fruits\""]
+List category_list = ["Select:selected","Vegetables","Fruits"]
 String categories = buildScript(category_list)
 
 properties([
@@ -20,9 +21,13 @@ properties([
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
                     script: cons.selectServers('Environment')]]],
+
         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
-         name: 'Categories', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], script: [classpath: [], sandbox: false,
-        script:  categories]]],
+         name: 'Categories', 
+         script: [$class: 'GroovyScript', 
+         fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
+                          script: [classpath: [], sandbox: false,
+                          script:  categories]]],
         extendedChoice(
               name: 'Branches',
               description: '',

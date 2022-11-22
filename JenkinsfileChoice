@@ -8,7 +8,13 @@ println cons.selectServers1('Environment')
 println cons.getDefaultTag()
 properties([
     parameters([
-        choice(name: 'Environment', choices: cons.envir, description: 'input cluster'),
+        //choice(name: 'Environment', choices: cons.envList, description: 'input cluster'),
+        [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
+          name: 'Environment', 
+          script: [$class: 'GroovyScript', 
+          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
+                          script: [classpath: [], sandbox: false,
+                          script:  cons.getEnvironment()]]],
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
           name: 'targtServer', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
@@ -17,13 +23,6 @@ properties([
           script: [classpath: [], sandbox: false, 
                     script: cons.selectServers1('Environment')]]],
 
-        [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
-          name: 'MyEnvir', 
-          script: [$class: 'GroovyScript', 
-          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
-                          script: [classpath: [], sandbox: false,
-                          script:  cons.getEnvironment()]]],
-        
         extendedChoice( 
             name: 'TagName', 
             //defaultValue: 'test2', 

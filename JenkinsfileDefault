@@ -2,9 +2,9 @@
 // Define variables
 
 List category_list = ["Select","Vegetables:selected","Fruits"].collect{'"'+it+'"'}
-List fruits_list = ["Select:selected","apple","banana","mango"].collect{'"'+it+'"'} 
-List vegetables_list = ["Select:selected","potato","tomato","broccoli"].collect{'"'+it+'"'} 
-List default_item = ["Not Applicable"]
+List fruits_list = ["Select","apple","banana","mango:selected"].collect{'"'+it+'"'} 
+List vegetables_list = ["Select","potato","tomato","broccoli:selected"].collect{'"'+it+'"'} 
+List default_item = ["Not Applicable"].collect{'"'+it+'"'}
 String categories = buildScript(category_list)
 String vegetables = buildScript(vegetables_list)
 String fruits = buildScript(fruits_list)

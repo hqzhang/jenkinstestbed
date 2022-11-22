@@ -49,7 +49,7 @@ properties([
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
               groovyScript: '''
-                 def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+                 def mf ="a.xml b.xml c.xml"
                  mf.readLines().collect{ it.split()[0].minus('.xml')}
               ''', ),
     ])

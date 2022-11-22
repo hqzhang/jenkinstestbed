@@ -41,7 +41,17 @@ properties([
                           """,
             groovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git  ").execute()
                return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }
-                          """,)
+                          """,),
+            extendedChoice(
+              name: 'myBranches',
+              description: '',
+              visibleItemCount: 50,
+              multiSelectDelimiter: ',',
+              type: 'PT_SINGLE_SELECT',
+              groovyScript: '''
+                 def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+                 mf.readLines().collect{ it.split()[0].minus('.xml')}
+              ''', ),
     ])
 ])
 pipeline {

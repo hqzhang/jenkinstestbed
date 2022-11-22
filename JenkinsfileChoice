@@ -6,7 +6,7 @@ library("my-shared-library@master") _
 
 String buildScript(List values){
   List val=values.collect{ '"' + it + '"'}
-  return "return $values"
+  return "return $val"
 }
 List category_list = ["Vegetables","Fruits"]
 String categories = buildScript(category_list)

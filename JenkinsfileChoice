@@ -28,11 +28,11 @@ properties([
             //defaultValue: 'test2', 
             description: 'tag name', 
             type: 'PT_SINGLE_SELECT',
-            defaultGroovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git").execute()
-               return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }[2]
+            defaultGroovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git").execute().text
+               return gettags.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }[2]
                           """,
-            groovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git  ").execute()
-               return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }
+            groovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git  ").execute().text
+               return gettags.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }
                           """,),
         extendedChoice(
             name: 'myBranches',
@@ -40,8 +40,8 @@ properties([
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_SINGLE_SELECT',
-            groovyScript: """def gettags = ("git ls-remote --heads  git@github.com:hqzhang/octest.git  ").execute()
-               return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }'''
+            groovyScript: """def gettags = ("git ls-remote --heads  git@github.com:hqzhang/octest.git  ").execute().text
+               return gettags.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }'''
                   """,),
                  
               

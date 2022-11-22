@@ -4,13 +4,6 @@ library("my-shared-library@master") _
 // Properties step to set the Active choice parameters via 
 
 
-String buildScript(List values){
-  List val=values.collect{ '"' + it + '"'}
-  return "return $val"
-}
-List category_list = ["Vegetables","Fruits"]
-String categories = buildScript(category_list)
-
 properties([
     parameters([
         choice(name: 'Environment', choices: cons.envir, description: 'input cluster'),
@@ -23,11 +16,11 @@ properties([
                     script: cons.selectServers('Environment')]]],
 
         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
-         name: 'Categories', 
+         name: 'MyEnvir', 
          script: [$class: 'GroovyScript', 
          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
                           script: [classpath: [], sandbox: false,
-                          script:  categories]]],
+                          script:  cons.buildScript()]]],
         extendedChoice(
               name: 'Branches',
               description: '',

@@ -5,14 +5,14 @@ library("my-shared-library@master") _
 // Declarative Scripting
 properties([
     parameters([
-        choice(name: 'Categories', choices: cons.envir, description: 'input cluster'),
+        choice(name: 'Environment', choices: cons.envir, description: 'input cluster'),
        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
-         name: 'Items', referencedParameters: 'Categories', 
+         name: 'Items', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
-                    script: cons.selectServers('Categories')]]]
+                    script: cons.selectServers('Environment')]]]
     ])
 ])
 pipeline {

@@ -8,7 +8,7 @@ String buildScript(List values){
   List val=values.collect{ '"' + it + '"'}
   return "return $values"
 }
-List category_list = ["Select:selected","Vegetables","Fruits"]
+List category_list = ["Vegetables","Fruits"]
 String categories = buildScript(category_list)
 
 properties([

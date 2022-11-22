@@ -15,7 +15,7 @@ properties([
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
-                    script: cons.selectServers('Environment')]]],
+                    script: cons.selectServers1('Environment')]]],
 
         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
           name: 'MyEnvir', 

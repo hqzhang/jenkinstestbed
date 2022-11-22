@@ -31,16 +31,17 @@ properties([
                  def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
                  mf.readLines().collect{ it.split()[0].minus('.xml')}
               ''', ),
-        extendedChoice(
-              name: 'ManifestFile',
-              description: '',
-              visibleItemCount: 50,
-              multiSelectDelimiter: ',',
-              type: 'PT_SINGLE_SELECT',
-              groovyScript: '''
-                  def mf ="svn ls https://github.com/hqzhang/Mytest.git/branches/master/ranchtest".execute().text
-                  mf.readLines().collect{ it.split()[0]}                   
-              ''', ),
+        extendedChoice( 
+            name: 'TagName', 
+            //defaultValue: 'test2', 
+            description: 'tag name', 
+            type: 'PT_SINGLE_SELECT',
+            defaultGroovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git").execute()
+               return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }[2]
+                          """,
+            groovyScript: """def gettags = ("git ls-remote --refs --tags  git@github.com:hqzhang/octest.git  ").execute()
+               return gettags.text.readLines().collect { it.split()[1].replaceAll('refs/tags/', '') }
+                          """,)
     ])
 ])
 pipeline {

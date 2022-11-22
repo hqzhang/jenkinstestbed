@@ -1,37 +1,6 @@
 #!/usr/bin/env groovy
 library("my-shared-library@master") _
 
-//String items = populateItems(cons.serversList)
-String populateItems(Map serversList){
-    List DEVList = serversList['DEV']['APP'].collect{ '"' + it + '"'}
-    List BATList = serversList['BAT']['APP'].collect{ '"' + it + '"'}
-    List PATList = serversList['PAT']['APP'].collect{ '"' + it + '"'}
-    List PRODList= serversList['PROD']['APP'].collect{ '"' + it + '"'}
-    List DRList = serversList['DR']['APP'].collect{ '"' + it + '"'}
-    List QAList = serversList['QA']['APP'].collect{ '"' + it + '"'}
-      return """if(Categories.equals('DEV')){
-                return $DEVList
-        }
-        else if(Categories.equals('BAT')){
-                return $BATList
-        }
-        else if(Categories.equals('PAT')){
-                return $PATList
-        }
-        else if(Categories.equals('PROD')){
-                return $PRODList
-        }
-        else if(Categories.equals('DR')){
-                return $DRList
-        }
-        else if(Categories.equals('QA')){
-                return $QAList
-        }else{
-                return ["Not Applicable"]
-        }
-        """
-}
-println( cons.selectServers())
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting
 properties([

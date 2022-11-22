@@ -39,7 +39,7 @@ properties([
         choice(name: 'Categories', choices: cons.envir, description: 'input cluster'),
        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',name: 'Items', referencedParameters: 'Categories', 
           script: [$class: 'GroovyScript', fallbackScript: [classpath: [], sandbox: false, script: 'return ["error"]'], 
-              script: [classpath: [], sandbox: false, script: populateItems(cons.serversList)]]]
+              script: [classpath: [], sandbox: false, script: cons.selectServers()]]]
     ])
 ])
 pipeline {

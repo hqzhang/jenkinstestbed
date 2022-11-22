@@ -4,7 +4,7 @@ library("my-shared-library@master") _
 // Properties step to set the Active choice parameters via 
 println(cons.getTags() )
 println(cons.getBranches() )
-
+println cons.selectServers('Environment')
 properties([
     parameters([
         choice(name: 'Environment', choices: cons.envir, description: 'input cluster'),

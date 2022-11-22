@@ -1,6 +1,15 @@
 #!/usr/bin/env groovy
 // Define variables
-
+String setDefault(List values,String key){
+  println values
+  values.eachWithIndex{it,index->
+    if ( it == key ) {
+       value[index] = it+":selected"
+    }
+  }
+  println values
+  return "$values"
+}
 List category_list = ["Select","Vegetables:selected","Fruits"].collect{'"'+it+'"'}
 List fruits_list = ["Select","apple","banana","mango:selected"].collect{'"'+it+'"'} 
 List vegetables_list = ["Select","potato","tomato","broccoli:selected"].collect{'"'+it+'"'} 

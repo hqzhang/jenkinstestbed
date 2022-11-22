@@ -6,6 +6,8 @@ println(cons.getTags() )
 println(cons.getBranches() )
 println cons.getServers('Environment')
 println cons.getDefaultTag()
+println cons.getEnvironment()
+
 properties([
     parameters([
         //choice(name: 'Environment', choices: cons.envList, description: 'input cluster'),

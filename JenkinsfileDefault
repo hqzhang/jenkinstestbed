@@ -13,29 +13,32 @@ String buildScriptDefault(List values,String key){
     }
     buildScript(values)
 }
-List category_list = ["Select","Vegetables","Fruits"]
+List category_list = ["Vegetables","Fruits"]
 List fruits_list = ["Select","apple","banana","mango"]
 List vegetables_list = ["Select","potato","tomato","broccoli"]
 List default_item = ["Not Applicable"]
 
+List Fruits=[]
 String categories = buildScriptDefault(category_list,"Fruits")
-String vegetables = buildScriptDefault(vegetables_list,"banana")
-String fruits = buildScriptDefault(fruits_list,"tomato")
-String items = populateItems(default_item,vegetables_list,fruits_list)
-categories=buildScriptDefault( cons.envList, 'BAT')
+String Fruits[0] = buildScriptDefault(vegetables_list,"banana")
+String Fruits[1] = buildScriptDefault(fruits_list,"tomato")
+String items = populateItems(Fruits)
+//categories=buildScriptDefault( cons.envList, 'BAT')
+
 // Methods to build groovy scripts to populate data
 
-String populateItems(List default_item, List vegetablesList, List fruitsList){
-return """if(Categories.equals('Vegetables')){
-         return $vegetablesList
-     }
-     else if(Categories.equals('Fruits')){
-         return $fruitsList
-     }else{
-         return $default_item
-     }
-     """
+String populateItems(List Fruits){
+    def ret=''
+    cons.envList.eachWithIndex{ it, index -->
+            String myList = buildScript(Fruits[index])
+            String myStr ="if(${myenv}.equals('$it')){ $myList }"+"\n"
+            if ( !ret?.trim() ) {  ret += myStr }
+            else { ret += "else "+myStr }
+    }
+    ret += """else{  return ["Not QApplicable"] }"""
+    return "$ret"
 }
+
 // Properties step to set the Active choice parameters via 
 // Declarative Scripting
 properties([

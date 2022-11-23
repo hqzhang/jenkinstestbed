@@ -13,20 +13,7 @@ properties([
             description: 'file name',
             visibleItemCount: 50, multiSelectDelimiter: ',', type: 'PT_SINGLE_SELECT',
             groovyScript: cons.getEnvironment(), ),
-
-        [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
-          name: 'Environment1', 
-          script: [$class: 'GroovyScript', 
-          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
-                          script: [classpath: [], sandbox: false,
-                          script:  cons.getEnvironment('DEV')]]],
-        /*[$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
-          name: 'targtServer', referencedParameters: 'Environment', 
-          script: [$class: 'GroovyScript', 
-                   fallbackScript: [classpath: [], sandbox: false, 
-                                     script: 'return ["error"]'], 
-          script: [classpath: [], sandbox: false, 
-                    script: cons.getServers('Environment')]]],*/
+        
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
           name: 'targtServer', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
@@ -35,29 +22,33 @@ properties([
           script: [classpath: [], sandbox: false, 
                     script: cons.getServers('Environment')]]],
 
-
         extendedChoice( 
-            name: 'TagName', 
-            //defaultValue: 'test2', 
+            name: 'TagName', //defaultValue: 'test2', 
             description: 'tag name', 
             type: 'PT_SINGLE_SELECT',
             defaultGroovyScript: cons.getDefaultTag(),
             groovyScript: cons.getTags(), ),
         extendedChoice(
-            name: 'myBranch',
+            name: 'myBranch', //defaultValue: 'test2', 
             description: 'branch name',
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_SINGLE_SELECT',
             groovyScript: cons.getBranches(), ),
         extendedChoice(
-            name: 'myFile',
+            name: 'myFile',//defaultValue: 'test2', 
             defaultValue: 'BAT',
             description: 'file name',
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_SINGLE_SELECT',
             groovyScript: 'return ["A","B"]', ),
+         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
+          name: 'Environment1', 
+          script: [$class: 'GroovyScript', 
+          fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
+                          script: [classpath: [], sandbox: false,
+                          script:  cons.getEnvironment('DEV')]]],
                  
               
     ])

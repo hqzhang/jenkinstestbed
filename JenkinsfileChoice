@@ -8,7 +8,7 @@ println(cons.getBranches() )
 println "getserver------"
 println cons.getServers('Environment')
 println "selectserver------"
-println cons.selectServers('Environment')
+//println cons.selectServers('Environment')
 println "end------"
 println cons.getDefaultTag()
 //println cons.getEnvironment()

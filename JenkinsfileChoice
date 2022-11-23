@@ -19,11 +19,11 @@ println cons.getEnvironment('DEV')
 properties([
     parameters([
         extendedChoice(
-            name: 'myFile', defaultValue: 'BAT',
+            name: 'Environment', defaultValue: 'BAT',
             description: 'file name',
             visibleItemCount: 50, multiSelectDelimiter: ',', type: 'PT_SINGLE_SELECT',
             groovyScript: cons.getEnvironment(), ),
-            
+
         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
           name: 'Environment', 
           script: [$class: 'GroovyScript', 

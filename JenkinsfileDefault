@@ -1,6 +1,10 @@
 #!/usr/bin/env groovy
 library("my-shared-library@master") _
 println( cons.envList )
+String buildScript(List values){
+  def ret=values.collect { '"'+it+'"' }
+  return "return ${ret}"
+}
 String buildScriptDefault(List values,String key){
     values.eachWithIndex{ it,index->
         if ( it == key ) {
@@ -9,10 +13,10 @@ String buildScriptDefault(List values,String key){
     }
     buildScript(values)
 }
-List category_list = ["Select","Vegetables","Fruits"].collect{'"'+it+'"'}
-List fruits_list = ["Select","apple","banana","mango"].collect{'"'+it+'"'} 
-List vegetables_list = ["Select","potato","tomato","broccoli"].collect{'"'+it+'"'} 
-List default_item = ["Not Applicable"].collect{'"'+it+'"'}
+List category_list = ["Select","Vegetables","Fruits"]
+List fruits_list = ["Select","apple","banana","mango"]
+List vegetables_list = ["Select","potato","tomato","broccoli"]
+List default_item = ["Not Applicable"]
 
 String categories = buildScriptDefault(category_list,"Fruits")
 String vegetables = buildScriptDefault(vegetables_list,"banana")
@@ -20,9 +24,7 @@ String fruits = buildScriptDefault(fruits_list,"tomato")
 String items = populateItems(default_item,vegetables_list,fruits_list)
 categories=buildScriptDefault( cons.envList, 'BAT')
 // Methods to build groovy scripts to populate data
-String buildScript(List values){
-  return "return $values"
-}
+
 String populateItems(List default_item, List vegetablesList, List fruitsList){
 return """if(Categories.equals('Vegetables')){
          return $vegetablesList

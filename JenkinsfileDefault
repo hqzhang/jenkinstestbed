@@ -1,22 +1,21 @@
 #!/usr/bin/env groovy
 // Define variables
-String setDefault(List values,String key){
-  println values
-  values.eachWithIndex{it,index->
-    if ( it == key ) {
-       value[index] = it+":selected"
+String buildScriptDefault(List values,String key){
+    values.eachWithIndex{ it,index->
+        if ( it == key ) {
+            values[index] = it+":selected"
+        }
     }
-  }
-  println values
-  return "$values"
+    buildScript(values)
 }
-List category_list = ["Select","Vegetables:selected","Fruits"].collect{'"'+it+'"'}
-List fruits_list = ["Select","apple","banana","mango:selected"].collect{'"'+it+'"'} 
-List vegetables_list = ["Select","potato","tomato","broccoli:selected"].collect{'"'+it+'"'} 
+List category_list = ["Select","Vegetables","Fruits"].collect{'"'+it+'"'}
+List fruits_list = ["Select","apple","banana","mango"].collect{'"'+it+'"'} 
+List vegetables_list = ["Select","potato","tomato","broccoli"].collect{'"'+it+'"'} 
 List default_item = ["Not Applicable"].collect{'"'+it+'"'}
-String categories = buildScript(category_list)
-String vegetables = buildScript(vegetables_list)
-String fruits = buildScript(fruits_list)
+
+String categories = buildScriptDefault(category_list,"Fruits")
+String vegetables = buildScriptDefault(vegetables_list,"banana")
+String fruits = buildScriptDefault(fruits_list,"tomato")
 String items = populateItems(default_item,vegetables_list,fruits_list)
 // Methods to build groovy scripts to populate data
 String buildScript(List values){
@@ -24,12 +23,12 @@ String buildScript(List values){
 }
 String populateItems(List default_item, List vegetablesList, List fruitsList){
 return """if(Categories.equals('Vegetables')){
-     return $vegetablesList
+         return $vegetablesList
      }
      else if(Categories.equals('Fruits')){
-     return $fruitsList
+         return $fruitsList
      }else{
-     return $default_item
+         return $default_item
      }
      """
 }

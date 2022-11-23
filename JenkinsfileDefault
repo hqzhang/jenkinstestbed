@@ -1,6 +1,6 @@
 
 library("my-shared-library@master") _
-println( cons.envList )
+
 String buildScript(List values){
   def ret=values.collect { '"'+it+'"' }
   return "return ${ret}"

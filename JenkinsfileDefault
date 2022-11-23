@@ -29,7 +29,7 @@ String items = populateItems(Fruits)
 
 String populateItems(List Fruits){
     def ret=''
-    cons.envList.eachWithIndex{ it, index -->
+    cons.envList.eachWithIndex{ it,index->
             String myList = buildScript(Fruits[index])
             String myStr ="if(${myenv}.equals('$it')){ $myList }"+"\n"
             if ( !ret?.trim() ) {  ret += myStr }

@@ -25,7 +25,7 @@ properties([
             groovyScript: cons.getEnvironment(), ),
 
         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
-          name: 'Environment', 
+          name: 'Environment1', 
           script: [$class: 'GroovyScript', 
           fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
                           script: [classpath: [], sandbox: false,

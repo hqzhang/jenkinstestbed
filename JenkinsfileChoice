@@ -59,7 +59,7 @@ properties([
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_SINGLE_SELECT',
-            groovyScript: """"return ['A','B']""", ),
+            groovyScript: "return ["A","B"]", ),
                  
               
     ])

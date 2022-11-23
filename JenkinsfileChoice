@@ -49,7 +49,7 @@ properties([
             groovyScript: cons.getBranches(), ),
         extendedChoice(
             name: 'myFile',
-            defaultValue: 'BAT'
+            defaultValue: 'BAT',
             description: 'file name',
             visibleItemCount: 50,
             multiSelectDelimiter: ',',

@@ -12,6 +12,7 @@ println "selectserver------"
 println "end------"
 println cons.getDefaultTag()
 println cons.getEnvironment('DEV')
+println cons.getEnvironment('DEV')
 
 properties([
     parameters([

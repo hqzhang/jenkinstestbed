@@ -30,7 +30,7 @@ properties([
           script: [classpath: [], sandbox: false, 
                     script: cons.selectServers1('Environment')]]],*/
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
-          name: 'targtServer1', referencedParameters: 'Environment', 
+          name: 'targtServer', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 

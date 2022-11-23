@@ -2,19 +2,11 @@
 library("my-shared-library@master") _
 
 // Properties step to set the Active choice parameters via 
-println(cons.getTags() )
-println(cons.getBranches() )
-
 println "getserver------"
 println cons.getServers('Environment')
 println "selectserver------"
-//println cons.selectServers('Environment')
+println cons.selectServers1('Environment')
 println "end------"
-println cons.getDefaultTag()
-println "caall firstend------"
-println cons.getEnvironment('DEV')
-println "call second-----"
-println cons.getEnvironment('DEV')
 
 properties([
     parameters([

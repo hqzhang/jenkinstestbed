@@ -20,6 +20,7 @@ String categories = buildScriptDefault(category_list,"Fruits")
 String vegetables = buildScriptDefault(vegetables_list,"banana")
 String fruits = buildScriptDefault(fruits_list,"tomato")
 String items = populateItems(default_item,vegetables_list,fruits_list)
+categories=buildScriptDefault( cons.envList, 'BAT')
 // Methods to build groovy scripts to populate data
 String buildScript(List values){
   return "return $values"

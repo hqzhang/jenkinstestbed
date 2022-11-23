@@ -1,6 +1,4 @@
 #!/usr/bin/env groovy
-// Define variables'
-#!/usr/bin/env groovy
 library("my-shared-library@master") _
 println( cons.envList )
 String buildScriptDefault(List values,String key){

@@ -1,4 +1,4 @@
-#!/usr/bin/env groovy
+
 library("my-shared-library@master") _
 println( cons.envList )
 String buildScript(List values){

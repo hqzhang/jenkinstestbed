@@ -21,14 +21,14 @@ properties([
           script: [$class: 'GroovyScript', 
           fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'], 
                           script: [classpath: [], sandbox: false,
-                          script:  cons.getEnvironment()]]],
+                          script:  cons.getEnvironment('DEV')]]],
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
           name: 'targtServer', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
-                    script: cons.selectServers('Environment')]]],
+                    script: cons.selectServers('Environment','s22')]]],
 
         extendedChoice( 
             name: 'TagName', 

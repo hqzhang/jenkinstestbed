@@ -22,7 +22,7 @@ properties([
             name: 'Environment', defaultValue: 'BAT',
             description: 'file name',
             visibleItemCount: 50, multiSelectDelimiter: ',', type: 'PT_SINGLE_SELECT',
-            groovyScript: cons.getEnvironment(), ),
+            groovyScript: cons.getEnv(), ),
 
         [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',  
           name: 'Environment1', 

@@ -4,8 +4,6 @@ library("my-shared-library@master") _
 // Properties step to set the Active choice parameters via 
 println "getserver------"
 println cons.getServers('Environment')
-println "selectserver------"
-println cons.selectServers('Environment')
 println "end------"
 
 properties([
@@ -28,7 +26,7 @@ properties([
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
-                    script: cons.selectServers1('Environment')]]],*/
+                    script: cons.getServers('Environment')]]],*/
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
           name: 'targtServer', referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 

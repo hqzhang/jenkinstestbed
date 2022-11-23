@@ -28,7 +28,7 @@ properties([
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
-                    script: cons.selectServers('Environment','s22')]]],
+                    script: cons.selectServers1('Environment')]]],
 
         extendedChoice( 
             name: 'TagName', 

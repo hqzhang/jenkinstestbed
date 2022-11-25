@@ -151,7 +151,7 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    echo "targtServer=params.servers"
+                    def targtServer=params.servers
                     echo "params=$params"
                     if ( targtServer.equals('ERROR') ) 
                     {

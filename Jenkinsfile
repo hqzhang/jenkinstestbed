@@ -118,17 +118,16 @@ def readXMLSwitch(mylist,myfile){
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-           choice(name: 'choice1', choices: cons.envList, description: 'input cluster'),
+           choice(name: 'Envir', choices: cons.envList, description: 'input cluster'),
            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
             description: 'Active Choices Reactive parameter',
             filterLength: 1, filterable: true,
-            name: 'choice2', randomName: 'choice-parameter-7601237141171',
-            referencedParameters: 'choice1',
+            name: 'servers', randomName: 'choice-parameter-7601237141171',
+            referencedParameters: 'Envir',
             script: [$class: 'GroovyScript',
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
             script: [classpath: [], sandbox: false,
-            script: ''' return ["dev_master","test1"]
-                     ''']]],
+            script:  cons.getServers('Environment') ]]],
 
             extendedChoice(
               name: 'Branches',
@@ -153,6 +152,8 @@ pipeline {
                 script {
                     echo "STAGE: create List..."
                     //echo "payload=$payload"
+                    echo "params=$params"
+                    echo "targtServer=params.targtServer"
                     workspace=WORKSPACE
                     println "WS=${env.WORKSPACE}"
                     println "WS=${WORKSPACE}"

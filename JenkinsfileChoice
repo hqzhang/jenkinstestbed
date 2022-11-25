@@ -8,6 +8,7 @@ println "end------"
 
 properties([
     parameters([
+         pipelineTriggers([githubPush()]),
         extendedChoice(
             name: 'Environment', defaultValue: 'BAT',
             description: 'This is for environment name',

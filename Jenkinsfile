@@ -125,7 +125,7 @@ properties([
             name: 'servers', randomName: 'choice-parameter-7601237141171',
             referencedParameters: 'Envir',
             script: [$class: 'GroovyScript',
-            fallbackScript: [classpath: [], sandbox: false, script: 'return ["xxx"]'],
+            fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
             script: [classpath: [], sandbox: false,
             script:  cons.getServers('Envir') ]]],
 //
@@ -153,7 +153,12 @@ pipeline {
                     echo "STAGE: create List..."
                     //echo "payload=$payload"
                     echo "params=$params"
-                    echo "targtServer=params.targtServer"
+                    if ( params.servers.equals('ERROR') ) 
+                    {
+                        params.servers='s23'
+                    }
+                     echo "params=$params"
+                    echo "targtServer=params.servers"
                     workspace=WORKSPACE
                     println "WS=${env.WORKSPACE}"
                     println "WS=${WORKSPACE}"

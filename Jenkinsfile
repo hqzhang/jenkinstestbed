@@ -151,14 +151,14 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    //echo "payload=$payload"
-                    echo "params=$params"
-                    if ( params.servers.equals('ERROR') ) 
-                    {
-                        params[servers]='s23'
-                    }
-                     echo "params=$params"
                     echo "targtServer=params.servers"
+                    echo "params=$params"
+                    if ( targtServer.equals('ERROR') ) 
+                    {
+                        targtServer='s23'
+                    }
+                    
+                    echo "targtServer=$targtServer"
                     workspace=WORKSPACE
                     println "WS=${env.WORKSPACE}"
                     println "WS=${WORKSPACE}"

@@ -127,7 +127,7 @@ properties([
             script: [$class: 'GroovyScript',
             fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
             script: [classpath: [], sandbox: false,
-            script:  cons.getServers('Environment') ]]],
+            script:  cons.getServers('Envir') ]]],
 
             extendedChoice(
               name: 'Branches',

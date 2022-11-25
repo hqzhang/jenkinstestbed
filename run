@@ -1,1 +1,1 @@
-git push ; sleep 5; post-push
+echo -ne '\n' | git status

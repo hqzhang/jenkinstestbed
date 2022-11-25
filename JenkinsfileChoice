@@ -60,6 +60,8 @@ stages {
    stage('Build'){
     steps {
        echo 'Building..'
+       echo "params=$params"
+       echo "targtServer=params.targtServer"
       }
     }
    }

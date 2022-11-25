@@ -10,12 +10,13 @@ properties([
     parameters([
         extendedChoice(
             name: 'Environment', defaultValue: 'BAT',
-            description: 'file name',
+            description: 'This is for environment name',
             visibleItemCount: 50, multiSelectDelimiter: ',', type: 'PT_SINGLE_SELECT',
             groovyScript: cons.getEnvironment(), ),
         
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
-          name: 'targtServer', referencedParameters: 'Environment', 
+          name: 'targtServer', description: 'This is for target server name',
+          referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
                    fallbackScript: [classpath: [], sandbox: false, 
                                      script: 'return ["error"]'], 

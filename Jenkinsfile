@@ -20,7 +20,7 @@ def parseXML(xmlFile){
   
     return jsonPrettyPrintString
 }
-
+//
 @NonCPS
 def addNode(mynode) {
     println("Enter addNode() type: "+mynode.getClass() )

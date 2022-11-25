@@ -155,7 +155,7 @@ pipeline {
                     echo "params=$params"
                     if ( params.servers.equals('ERROR') ) 
                     {
-                        params.servers='s23'
+                        params[servers]='s23'
                     }
                      echo "params=$params"
                     echo "targtServer=params.servers"

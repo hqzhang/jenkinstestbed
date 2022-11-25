@@ -125,7 +125,7 @@ properties([
             name: 'servers', randomName: 'choice-parameter-7601237141171',
             referencedParameters: 'Envir',
             script: [$class: 'GroovyScript',
-            fallbackScript: [classpath: [], sandbox: false, script: 'return ["s22"]'],
+            fallbackScript: [classpath: [], sandbox: false, script: 'return ["error"]'],
             script: [classpath: [], sandbox: false,
             script:  cons.getServers('Envir') ]]],
 

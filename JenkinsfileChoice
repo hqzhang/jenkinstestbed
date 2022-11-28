@@ -60,13 +60,15 @@ pipeline {
 stages {
    stage('Build'){
     steps {
-       echo 'Building..'
-       echo "params=$params"
-       echo "targtServer=params.targtServer"
-       echo "targetServer=$targetServer"
-       def target=getTarget(params.targtServer)
-       //
-       echo "target=$target"
+        script {
+            echo 'Building..'
+            echo "params=$params"
+            echo "targtServer=params.targtServer"
+            echo "targetServer=$targetServer"
+            def target=getTarget(params.targtServer)
+            //
+            echo "target=$target"
+        }
       }
     }
    }

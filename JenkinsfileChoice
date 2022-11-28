@@ -65,7 +65,7 @@ stages {
        echo "targtServer=params.targtServer"
        echo "targetServer=$targetServer"
        def target=getTarget(params.targtServer)
-
+       //
        echo "target=$target"
       }
     }

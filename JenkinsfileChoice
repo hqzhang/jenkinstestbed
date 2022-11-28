@@ -20,7 +20,7 @@ properties([
           referencedParameters: 'Environment', 
           script: [$class: 'GroovyScript', 
                    fallbackScript: [classpath: [], sandbox: false, 
-                                     script: 'return ["error"]'], 
+                                     script: 'return ["ERROR"]'], 
           script: [classpath: [], sandbox: false, 
                     script: cons.getServers('Environment')]]],
 
@@ -63,6 +63,10 @@ stages {
        echo 'Building..'
        echo "params=$params"
        echo "targtServer=params.targtServer"
+       echo "targetServer=$targetServer"
+       def target=getTarget(params.targtServer)
+
+       echo "target=$target"
       }
     }
    }

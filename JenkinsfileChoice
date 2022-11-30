@@ -6,7 +6,7 @@ println "getserver------"
 println cons.getServers('Environment')
 println "end------"
 
-properties([å
+properties([
     parameters([
         extendedChoice(
             name: 'Environment', defaultValue: 'BAT',

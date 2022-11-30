@@ -24,7 +24,7 @@ properties([
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
                     script: cons.getServers('Environment')]]],
-         choice(name: 'CompType', choices: ['dev','qa','prod'], description: 'input cluster type'),
+         choice(name: 'CompType', choices: cons.componentTypes, description: 'input cluster type'),
          [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
           name: 'targtServer', description: 'This is for target server name',
           referencedParameters: 'Environment', 

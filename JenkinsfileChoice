@@ -5,6 +5,7 @@ library("my-shared-library@master") _
 println "getserver------"
 println cons.getServers('Environment')
 println cons.getServers1('CompType')
+println cons.getComponents('Comptype')
 println "end------"
 
 properties([

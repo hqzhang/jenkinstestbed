@@ -4,17 +4,27 @@ library("my-shared-library@master") _
 // Properties step to set the Active choice parameters via 
 println "getserver------"
 println cons.getServers('Environment')
+println cons.getComponents('CompType')
 println "end------"
 ///
 properties([
     parameters([
         pipelineTriggers([githubPush()]),
-        extendedChoice(
+       /* extendedChoice(
             name: 'Environment', defaultValue: 'BAT',
             description: 'This is for environment name',
             visibleItemCount: 50, multiSelectDelimiter: ',', type: 'PT_SINGLE_SELECT',
             groovyScript: cons.getEnvironment(), ),
         
+        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
+          name: 'targtServer', description: 'This is for target server name',
+          referencedParameters: 'Environment', 
+          script: [$class: 'GroovyScript', 
+                   fallbackScript: [classpath: [], sandbox: false, 
+                                     script: 'return ["ERROR"]'], 
+          script: [classpath: [], sandbox: false, 
+                    script: cons.getServers('Environment')]]],*/
+        choice(name: 'CompType', choices: cons.componentTypes, description: 'input comp types'),
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
           name: 'targtServer', description: 'This is for target server name',
           referencedParameters: 'Environment', 

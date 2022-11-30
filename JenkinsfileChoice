@@ -4,6 +4,7 @@ library("my-shared-library@master") _
 // Properties step to set the Active choice parameters via 
 println "getserver------"
 println cons.getServers('Environment')
+println cons.getComponents('CompType')
 println "end------"
 
 properties([
@@ -22,7 +23,15 @@ properties([
                                      script: 'return ["error"]'], 
           script: [classpath: [], sandbox: false, 
                     script: cons.getServers('Environment')]]],
-
+         choice(name: 'CompType', choices: ['dev','qa','prod'], description: 'input cluster type'),
+         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
+          name: 'targtServer', description: 'This is for target server name',
+          referencedParameters: 'Environment', 
+          script: [$class: 'GroovyScript', 
+                   fallbackScript: [classpath: [], sandbox: false, 
+                                     script: 'return ["error"]'], 
+          script: [classpath: [], sandbox: false, 
+                    script: cons.getComponents('CompType')]]],
         extendedChoice( 
             name: 'TagName', //defaultValue: 'test2', 
             description: 'tag name', 

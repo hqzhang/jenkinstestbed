@@ -6,6 +6,7 @@ println "getserver------"
 println cons.getServers('Environment')
 
 println cons.getComponents('Comptype')
+println cons.getCompTypes()
 println "end------"
 //
 properties([

@@ -4,9 +4,9 @@ library("my-shared-library@master") _
 // Properties step to set the Active choice parameters via 
 println "getserver------"
 println cons.getServers('Environment')
-
-println cons.getComponents('Comptype')
 println cons.getCompTypes()
+println cons.getComponents('Comptype')
+
 println "end------"
 //
 properties([

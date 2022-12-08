@@ -6,7 +6,7 @@ println "getserver------"
 println cons.getServers('Environment')
 println cons.getCompTypes()
 println cons.getComponents('Comptype')
-def date=con.getDate()
+def date=cons.getDate()
 println "abc-$date-xyz"
 println "end------"
 //

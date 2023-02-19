@@ -1,7 +1,8 @@
 import groovy.json.JsonOutput;
 import groovy.yaml.YamlSlurper
-//import com.fasterxml.jackson.databind.ObjectMapper
-//import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+
 def map =[ [ name:zhang     ] [name: hongqi   ]]
 println("enter main")	
 String fileConts = new File('myyaml').text

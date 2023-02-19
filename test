@@ -4,8 +4,38 @@
     import groovy.yaml.YamlSlurper
     import mylib
     import sayHello
-def mf ="a.xml b.xml c.xml"
-println mf.readLines().collect{ it.split()[0].minus('.xml')
+// <?xml version="1.0" encoding="UTF-8"?>
+import java.util.*
+import groovy.util.XmlParser
+ls1='abc'
+List ls2=[ ls1 ]
+String tmp1=""
+ls2.each{
+  println it
+
+}
+System.exit(1)
+def pom = new File('pom.xml').getText('utf-8')
+def doc = new XmlParser().parseText(pom)
+def version1 = doc.version.text()
+def text = '''
+   <?xml version="1.0" encoding="UTF-8"?>
+    <project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.baeldung</groupId>
+    <artifactId>parent-modules</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>parent-modules</name>
+    <packaging>pom</packaging>
+
+</project>
+'''
+
+def project = new XmlParser().parseText(text)
+println project.artifactId.text()
+//println mf.readLines().collect{ it.split()[0].minus('.xml')
 System.exit(1)
 //mapping////
 
@@ -60,10 +90,10 @@ mycall()
     def lt = ["A","B", "C", "D", "E","Fe"]
     def ll = lt[3..lt.size-1]
     println ll
-    def mf ="svn ls https://github.com/hqzhang/Mytest.git/branches/master/ranchtest".execute().text
-     mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
-    println mf
-    def mf1 = mf.readLines().collect{ it.split()[0].minus('.xml')}
+    def mf2 ="svn ls https://github.com/hqzhang/Mytest.git/branches/master/ranchtest".execute().text
+     mf2 ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+    println mf2
+    def mf1 = mf2.readLines().collect{ it.split()[0].minus('.xml')}
     println "result======"
     println      mf1
 
@@ -285,8 +315,8 @@ mycall()
     println pret
     println("*********************************")    
     cmd="git ls-remote --tags https://github.com/hqzhang/octest|cut -c52-"
-    def list=cmd.execute().text
-    println( list)
+    def list9=cmd.execute().text
+    println( list9)
     println("*********************************")
     System.exit(1)
 

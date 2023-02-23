@@ -10,10 +10,9 @@ import groovy.util.XmlParser
 ls1='abc'
 List ls2=[ ls1 ]
 String tmp1=""
-ls2.each{
-  println it
-
-}
+def cmd=new CommandShell()
+println cmd.execute("cd /d c:\\")
+println cmd.execute("dir") // Will be the dir of c:\
 System.exit(1)
 def pom = new File('pom.xml').getText('utf-8')
 def doc = new XmlParser().parseText(pom)

@@ -54,11 +54,33 @@ def exeCmd(String cmd, String directory){
     println( "-----------------")
     return output
 }
+def exeCmd1(String command, String directory){
+    //def command = cmd.split()
+    def procBuilder = new ProcessBuilder(command)
+    procBuilder.directory(new File(directory))
+    procBuilder.redirectErrorStream(true);
+    def proc = procBuilder.start()
+    proc.waitFor()
+    
+    def err=proc.exitValue()
+    def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()))
+   
+    def line = null
+    def output=''
+    while ((line = reader.readLine()) != null) {
+        output = output +line+ "\n"
+    }
+    
+    println( "-----------------")
+    println("exitValue: " + err)
+    println( "-----------------")
+    return output
+}
 
 def gitCmd(String directory){
     println directory
-    cmd="""bash -c 'git add -u . && git commit -m update & git push -f' """
-    def out=exeCmd(cmd,directory)
+    cmd="bash", "-c", "ls ; pwd"
+    def out=exeCmd1(cmd,directory)
     println out
     return out
 }

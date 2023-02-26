@@ -55,8 +55,9 @@ def exeCmd(String cmd, String directory){
     return output
 }
 
-def gitCmd(String cmd, String directory){
+def gitCmd(String directory){
     println directory
+    cmd="""bash -c 'git add -u . && git commit -m update & git push -f' """
     def out=exeCmd(cmd,directory)
     println out
     return out
@@ -151,5 +152,6 @@ def gitUpdate(String src, String workbr, String mergebr, String dir){
     def mergebr='master'
     def dir='/Users/hongqizhang/workspace/test1'
     def src='/tmp/CI.yml'
-gitUpdate(src, workbr, mergebr, dir)
-//execusteCmdErr()
+//gitUpdate(src, workbr, mergebr, dir)
+//execusteCmdErr()()
+gitCmd(dir)

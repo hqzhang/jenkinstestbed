@@ -54,9 +54,11 @@ def exeCmd(String cmd, String directory){
     println( "-----------------")
     return output
 }
-def exeCmd1(String command, String directory){
+def exeCmd1( String directory){
+    println "enter exeCmd1()"
     //def command = cmd.split()
-    def procBuilder = new ProcessBuilder(command)
+    ProcessBuilder procBuilder = new ProcessBuilder("bash", "-c", "git status; git add -u .; git push");
+
     procBuilder.directory(new File(directory))
     procBuilder.redirectErrorStream(true);
     def proc = procBuilder.start()
@@ -74,16 +76,17 @@ def exeCmd1(String command, String directory){
     println( "-----------------")
     println("exitValue: " + err)
     println( "-----------------")
+    println output
     return output
 }
-
+/*
 def gitCmd(String directory){
     println directory
     cmd="bash", "-c", "ls ; pwd"
     def out=exeCmd1(cmd,directory)
     println out
     return out
-}
+}*/
 //@NonCPS
 def gitStatus(String directory){
     def cmd="git status";
@@ -176,4 +179,4 @@ def gitUpdate(String src, String workbr, String mergebr, String dir){
     def src='/tmp/CI.yml'
 //gitUpdate(src, workbr, mergebr, dir)
 //execusteCmdErr()()
-gitCmd(dir)
+exeCmd1(dir)

@@ -35,27 +35,14 @@ def executeCmd(String cmd, String directory){
     println output
     return output
 }
-def exeCmd(String cmd, String directory){
-    def command = cmd.split()
-    def procBuilder = new ProcessBuilder(command)
-    procBuilder.directory(new File(directory))
-    procBuilder.redirectErrorStream(true);
-    def proc = procBuilder.start()
+def exeCmd(String cmd){
+    
+    def proc=cmd.execute()
     proc.waitFor()
-    
+    def out=proc.text
     def err=proc.exitValue()
-    def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()))
-   
-    def line = null
-    def output=''
-    while ((line = reader.readLine()) != null) {
-        output = output +line+ "\n"
-    }
-    
-    println( "-----------------")
-    println("exitValue: " + err)
-    println( "-----------------")
-    return output
+    println out
+    return err
 }
 def gitPrep(String workbr, String mergebr, String directory){
     
@@ -97,23 +84,24 @@ def gitFinal(String src, String workbr, String mergebr, String directory){
 //@NonCPS
 def getPrid(String repoPR){
     def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}?state=OPEN "
-    def output=executeCmd(cmd)
-    def json=new JsonSlurper()
-    def obj=json.parseText(output)
-    println obj.values[0].id
+    def output=exeCmd(cmd)
+    println output
+    //def json=new JsonSlurper()
+    //def obj=json.parseText(output)
+    println output
 }
 //@NonCPS
 def getVersion(String repoPR){
-    def cmd="curl -u $USERNAME:$PASSWOR -X GET ${repoPR}?state=OPEN "
-    def output=executeCmd(cmd)
+    def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}?state=OPEN "
+    def output=exeCmd(cmd)
     def json=new JsonSlurper()
     def obj=json.parseText(output)
-    return obj.values[0].version
+    return output
 }
 //@NonCPS
 def getMergestatus(String repoPR, int prid){
-    def cmd="curl -u $USERNAME:$PASSWOR -X GET ${repoPR}/$prid/merge"
-    def output=executeCmd(cmd)
+    def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}/$prid/merge"
+    def output=exeCmd(cmd)
     def json=new JsonSlurper()
     def obj=json.parseText(output)
     return obj.canMerge
@@ -142,21 +130,21 @@ def createPR(String workbr, String mergebr,String project, String repo){
         reviewers: [] ]
         def body=JsonOutput.toJson(JsonOutput.toJson(data))
         def cmd="""curl -u $USERNAME:$PASSWORD -X POST -H "Content-Type: applicatin/json" $repoPR --data $body"""
-        def output=executeCmd(cmd)
+        def output=exeCmd(cmd)
         def json=new JsonSlurper()
         def obj=json.parseText(output)
         return obj.id
 }
 
 
-def mergePR(String repoPR, int prid, int version){
-    //def prid=getPrid(repPR)
-    println prid
-    //def version=getVersion()
-    println version
-    def cmd="""curl -u $USERNAME:$PASSWOR -X POST -H "Content-Type: applicatin/json" $repoPR/$prid/merge?version=$version"""
+def mergePR(String repoPR){
+    def prid=getPrid(repoPR)
+    println("prid=$prid")
+    def version=getVersion(repoPR)
+    println ("version=$version")
+    def cmd="""curl -u $USERNAME:$PASSWORD -X POST -H "Content-Type: applicatin/json" $repoPR/$prid/merge?version=$version"""
    
-    def output=executeCmd(cmd)
+    def output=exeCmd(cmd)
     println output
 }
     def workbr='workbr'
@@ -169,6 +157,6 @@ def mergePR(String repoPR, int prid, int version){
 
 //gitUpdate(src, workbr, mergebr, dir)
 //execusteCmdErr()()
-gitFinal(src,workbr, mergebr,dir)
-createPR(workbr, mergebr, project, repo)
-//mergePR(repoPR,  prid, version){
+//gitFinal(src,workbr, mergebr,dir)
+//createPR(workbr, mergebr, project, repo)
+mergePR(repoPR)

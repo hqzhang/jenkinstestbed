@@ -10,7 +10,7 @@ def copyFile(String srcFile, String destFile){
     def destinationPath = Paths.get(destFile)
     Files.copy(sourcePath, destinationPath,StandardCopyOption.REPLACE_EXISTING)
 }
-USERNAME='fredzhang'
+USERNAME='fredzhang123'
 PASSWORD='ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3'
 
 def executeCmd(String cmd, String directory){
@@ -38,11 +38,16 @@ def executeCmd(String cmd, String directory){
 def exeCmd(String cmd){
     
     def proc=cmd.execute()
+    //def b = new StringBuffer()
+    //proc.consumeProcessErrorStream(b)
     proc.waitFor()
-    def out=proc.text
-    def err=proc.exitValue()
-    println out
-    return err
+    def out=proc.in.text
+    def err=proc.err.text
+    def code=proc.exitValue()
+    println ("out:$out")
+    println("err:$err")
+    println ("code=$code")
+    return code
 }
 def gitPrep(String workbr, String mergebr, String directory){
     
@@ -51,12 +56,17 @@ def gitPrep(String workbr, String mergebr, String directory){
     
     return output
 }
-/****
- sh """rm -rf $repo; git clone https://${USERNAME}:${PASSWORD}@bitbucket.org/hqzhang/myrepo.git -b $workbr
-                                               
-        git remote set-url origin https://${USERNAME}:${PASSWORD}@bitbucket.org/hqzhang/myrepo.git 
-                            """
-***/
+def uploadFile(String fileName,String workbr){
+    println "enter getPrid1()"
+    def cmd = "curl -u ${USERNAME}:${PASSWORD} \
+              -X POST https://api.bitbucket.org/2.0/repositories/wave-cloud/upload-test/src\
+              -F ${fileName}=@${fileName}  \
+              -F message=updatecurl -F branch=${workbr}"
+    println cmd
+    def output=exeCmd(cmd)
+    println output
+}
+
 def gitFinal(String src, String workbr, String mergebr, String directory){
     println "enter gitFinal()"
     def dest="$directory/CI.yml"
@@ -69,16 +79,15 @@ def gitFinal(String src, String workbr, String mergebr, String directory){
     def out = executeCmd(cmd, directory)
 
     println "git preparation"
-    cmd = "git branch -r ;git checkout $workbr; git pull origin $mergebr"
-    out = executeCmd(cmd, directory)
-     
-    println "git copy update.."
-    copyFile(src, dest)
+    //cmd = "git branch -r ;git checkout $workbr; git pull origin $mergebr"
+    //out = executeCmd(cmd, directory)
+    //println "git copy update.."
+    //copyFile(src, dest)
 
-    println "git push ..."
-    cmd = "git status; git add . ; git commit -m up; git push"
-    out = executeCmd(cmd, directory)
-   
+    //println "git push ..."
+    //cmd = "git status; git add . ; git commit -m up; git push"
+    //out = executeCmd(cmd, directory)
+    uploadFile( fileName, workbr)
     return out
 }
 //@NonCPS
@@ -147,16 +156,61 @@ def mergePR(String repoPR){
     def output=exeCmd(cmd)
     println output
 }
-    def workbr='workbr'
+def gitClone(String workspace, String repo, String workbr, String directory){
+    println "enter gitClone()"
+    //def dest="$directory/CI.yml"
+    def cmd="""rm -rf upload-test/*; git clone https://${USERNAME}:$PASSWORD@bitbucket.org/$workspace/${repo}.git -b ${workbr} ."""
+    println cmd
+    return  executeCmd(cmd, directory)
+}
+//@NonCPS
+def getConfig(String workspace, String repo, String workbr, String directory){
+    println "enter getConfig()"
+    def cmd="""git remote set-url origin https://${USERNAME}:$PASSWORD@bitbucket.org/$workspace/${repo}.git """
+    println cmd
+    return  executeCmd(cmd, directory)
+}
+def updateAll(String src, String workspace, String repo, String workbr, String mergebr, String directory){
+    println "enter gitFinal()"
+    def dest="$directory/CI.yml"
+    def repoPR="https://api.bitbucket.org/2.0/repositories/$workspace/$repo/pullrequests"
+    
+    println("1.  git clone..")
+    def out=gitClone(workspace, repo, workbr, directory)
+    println out
+
+    println("2.   git config..")
+    out=getConfig(workspace, repo, workbr, directory)
+    println out
+
+    println "3.   git push ..."
+    out=uploadFile(src, workbr)
+    println out
+
+    println "4.   git createPR ..."
+    //out=createPR(workbr, mergebr, workspace, repo)
+    println out//createPR(String workbr, String mergebr,String workspace, String repo){
+
+     println "5.   git mergePR ..."
+    out=mergePR(repoPR)
+    println out
+
+    return out
+}
+
+   def workbr='workbr'
     def mergebr='master'
-    def dir='/tmp/upload-test'
+    def directory='/tmp/upload-test'
     def src='/tmp/CI.yml'
     def project="GRP"
+    def workspace='wave-cloud'
     def repo="upload-test"
-    def repoPR="https://bitbucket.org/rest/api/1.0/project/$project/repos/$repo/pull-requests"
+    def repoPR="https://api.bitbucket.org/2.0/repositories/$workspace/$repo/pullrequests"
+    def fileName='CI.yml'
 
-//gitUpdate(src, workbr, mergebr, dir)
-//execusteCmdErr()()
-//gitFinal(src,workbr, mergebr,dir)
-//createPR(workbr, mergebr, project, repo)
-mergePR(repoPR)
+println updateAll(src, workspace, repo, workbr, mergebr, directory)//println uploadFile('README.md', workbr)
+/*def proc = "ls -al".execute()
+proc.waitFor()
+println proc.in.text
+println  proc.err.text 
+println proc.exitValue()*/

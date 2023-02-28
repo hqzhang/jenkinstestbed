@@ -234,7 +234,7 @@ println proc.exitValue()*/
 def mycheck() {
     def mylist="aa bb"
    
-    def flag="ttt"
+    def flag="tt"
     def timeout=25*1000
     def len=timeout/5000
     
@@ -254,7 +254,7 @@ def mycheck() {
                 pass *=0
             }
        }
-       if ( pass == 2){
+       if ( pass == 1){
            println "Check  SUCCESS"
            return
        }

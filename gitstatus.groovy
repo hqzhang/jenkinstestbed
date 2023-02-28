@@ -234,7 +234,7 @@ println proc.exitValue()*/
 def mycheck() {
     def mylist="aa bb"
    
-    def flag="tttt"
+    def flag="tt"
     def timeout=25*1000
     def len=timeout/5000
     

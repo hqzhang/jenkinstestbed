@@ -242,16 +242,16 @@ def mycheck() {
       int ii=i*5
       println("wait time:"+ii.toString())
       Thread.sleep(5000)
-      int pass=0
+      int pass=1
       for( var in mylist.split()) {
             println "var =$var"
             if ( flag == 'tt' ){
                 println "check $var success"
-                pass+=1
+                pass *=1
                 continue;
             }else {
                 println "wait to check $var again" 
-                pass+=0
+                pass *=0
             }
        }
        if ( pass == 2){

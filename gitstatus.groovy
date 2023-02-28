@@ -232,11 +232,12 @@ println proc.in.text
 println  proc.err.text 
 println proc.exitValue()*/ 
 def mycheck() {
-    def mylist=[ 'aa','bb']
+    def mylist="aa bb"
+    def list=mylist.split()
     def flag="tttt"
     def timeout=25*1000
     def len=timeout/5000
-    list=['a','b']
+    
     for( int i; i<len; i++ ){
       int ii=i*5
       println("wait time:"+ii.toString())

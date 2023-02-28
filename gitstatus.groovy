@@ -234,7 +234,7 @@ println proc.exitValue()*/
 def mycheck() {
     def mylist="aa bb"
    
-    def flag="tt"
+    def flag="ttt"
     def timeout=25*1000
     def len=timeout/5000
     
@@ -242,16 +242,23 @@ def mycheck() {
       int ii=i*5
       println("wait time:"+ii.toString())
       Thread.sleep(5000)
+      int pass=0
       for( var in mylist.split()) {
+            println "var =$var"
             if ( flag == 'tt' ){
                 println "check $var success"
-                break;
+                pass+=1
+                continue;
             }else {
                 println "wait to check $var again" 
+                pass+=0
             }
-
-        }
+       }
+       if ( pass == 2){
+           println "Check  SUCCESS"
+           return
+       }
     }
-    println "check is failure"
+    println "Check FAILURE"
 }
 mycheck()

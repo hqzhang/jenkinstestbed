@@ -44,10 +44,10 @@ def exeCmd(String cmd){
     def out=proc.in.text
     def err=proc.err.text
     def code=proc.exitValue()
-    println ("out:$out")
+    //println ("out:$out")
     println("err:$err")
     println ("code=$code")
-    return code
+    return out
 }
 def gitPrep(String workbr, String mergebr, String directory){
     
@@ -93,19 +93,23 @@ def gitFinal(String src, String workbr, String mergebr, String directory){
 //@NonCPS
 def getPrid(String repoPR){
     def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}?state=OPEN "
-    def output=exeCmd(cmd)
-    println output
-    //def json=new JsonSlurper()
-    //def obj=json.parseText(output)
-    println output
+    def out=exeCmd(cmd)
+    //println out
+    def json=new JsonSlurper()
+    def obj=json.parseText(out)
+    def ret=obj.values[0].id
+    println("prid=$ret")
+    return ret
 }
 //@NonCPS
 def getVersion(String repoPR){
     def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}?state=OPEN "
-    def output=exeCmd(cmd)
+    def out=exeCmd(cmd)
     def json=new JsonSlurper()
-    def obj=json.parseText(output)
-    return output
+    def obj=json.parseText(out)
+    def ret= obj.values[0]
+    println("version=$ret")
+    return ret
 }
 //@NonCPS
 def getMergestatus(String repoPR, int prid){
@@ -149,9 +153,22 @@ def createPR(String workbr, String mergebr,String project, String repo){
 def mergePR(String repoPR){
     def prid=getPrid(repoPR)
     println("prid=$prid")
-    def version=getVersion(repoPR)
-    println ("version=$version")
-    def cmd="""curl -u $USERNAME:$PASSWORD -X POST -H "Content-Type: applicatin/json" $repoPR/$prid/merge?version=$version"""
+    //System.exit(1)
+    //def version=getVersion(repoPR)
+    //println ("version=$version")
+    def data=[ 
+        type: "hqsettype",
+        message: "good work",
+        close_source_branch: true,
+        merge_strategy: "merge_commit"
+    ]
+    def body=JsonOutput.toJson(JsonOutput.toJson(data))
+    def cmd="""curl -u $USERNAME:$PASSWORD --request POST \
+        --url ${repoPR}/${prid}/merge' \
+        --header 'Accept: application/json' \
+        --header 'Content-Type: application/json' \
+        --data $body"""
+    //def cmd="""curl -u $USERNAME:$PASSWORD -X POST -H "Content-Type: applicatin/json" $repoPR/$prid/merge?version=$version"""
    
     def output=exeCmd(cmd)
     println output
@@ -208,9 +225,32 @@ def updateAll(String src, String workspace, String repo, String workbr, String m
     def repoPR="https://api.bitbucket.org/2.0/repositories/$workspace/$repo/pullrequests"
     def fileName='CI.yml'
 
-println updateAll(src, workspace, repo, workbr, mergebr, directory)//println uploadFile('README.md', workbr)
+//println updateAll(src, workspace, repo, workbr, mergebr, directory)//println uploadFile('README.md', workbr)
 /*def proc = "ls -al".execute()
 proc.waitFor()
 println proc.in.text
 println  proc.err.text 
-println proc.exitValue()*/
+println proc.exitValue()*/ 
+def mycheck() {
+    def mylist=[ 'aa','bb']
+    def flag="tttt"
+    def timeout=25*1000
+    def len=timeout/5000
+    list=['a','b']
+    for( int i; i<len; i++ ){
+      int ii=i*5
+      println("wait time:"+ii.toString())
+      Thread.sleep(5000)
+      for( var in list ) {
+            if ( flag == 'tt' ){
+                println "check $var success"
+                break;
+            }else {
+                println "wait to check $var again" 
+            }
+
+        }
+    }
+    println "check is failure"
+}
+mycheck()

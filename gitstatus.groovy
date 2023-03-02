@@ -10,6 +10,7 @@ def copyFile(String srcFile, String destFile){
     def destinationPath = Paths.get(destFile)
     Files.copy(sourcePath, destinationPath,StandardCopyOption.REPLACE_EXISTING)
 }
+
 USERNAME='fredzhang123'
 PASSWORD='ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3'
 
@@ -56,16 +57,17 @@ def gitPrep(String workbr, String mergebr, String directory){
     
     return output
 }
-def uploadFile(String fileName,String workbr){
-    println "enter getPrid1()"
-    def cmd = "curl -u ${USERNAME}:${PASSWORD} \
-              -X POST https://api.bitbucket.org/2.0/repositories/wave-cloud/upload-test/src\
+def uploadFile(String fileName,String workbr, String workspace, String repo){
+    println "enter uploadFile()"
+    def cmd = " curl -v -u ${USERNAME}:${PASSWORD} \
+              -X POST https://api.bitbucket.org/2.0/repositories/${workspace}/${repo}/src\
               -F ${fileName}=@${fileName}  \
               -F message=updatecurl -F branch=${workbr}"
     println cmd
     def output=exeCmd(cmd)
-    println output
+    return output
 }
+
 
 def gitFinal(String src, String workbr, String mergebr, String directory){
     println "enter gitFinal()"
@@ -261,4 +263,21 @@ def mycheck() {
     }
     println "Check FAILURE"
 }
-mycheck()
+fileName="test.xml"
+def uploadFile1(String fileName, String workbr, String workspace, String repo){
+    println "enter uploadFile1()............"
+    def cmd="""curl -v -X PUT -u  ${USERNAME}:${PASSWORD}  \
+                     -F content=@README.md  \
+                     -F 'message=Updated using file-edit REST API' \
+                     -F branch=test-pr -F  sourceCommitId=5636641a50b \
+                     http://bitbucket.org/rest/api/1.0/projects/GRP/repos/repo_1/browse/README.md"""
+    //def output=exeCmd(cmd)
+    println cmd
+    //def output = sh ( script: cmd, returnStdout: true ).trim()
+    def output = exeCmd(cmd)
+    println output
+   
+    return output
+}
+uploadFile(fileName, workbr, workspace, repo)
+

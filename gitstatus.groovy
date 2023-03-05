@@ -5,6 +5,7 @@ import java.nio.file.StandardCopyOption
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 import groovy.transform.Field
+import java.text.SimpleDateFormat
 def copyFile(String srcFile, String destFile){
     def sourcePath = Paths.get(srcFile)
     def destinationPath = Paths.get(destFile)
@@ -94,26 +95,20 @@ def gitFinal(String src, String workbr, String mergebr, String directory){
 }
 //@NonCPS
 def getPrid(String repoPR){
+    def ret=null
     def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}?state=OPEN "
     def out=exeCmd(cmd)
-    //println out
-    def json=new JsonSlurper()
-    def obj=json.parseText(out)
-    def ret=obj.values[0].id
+    println "out=$out"
+    
+        def json=new JsonSlurper()
+        def obj=json.parseText(out)
+    if (obj.size != 0){
+        ret=obj.values[0].id
+    }
     println("prid=$ret")
     return ret
 }
-//@NonCPS
-def getVersion(String repoPR){
-    def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}?state=OPEN "
-    def out=exeCmd(cmd)
-    def json=new JsonSlurper()
-    def obj=json.parseText(out)
-    def ret= obj.values[0]
-    println("version=$ret")
-    return ret
-}
-//@NonCPS
+
 def getMergestatus(String repoPR, int prid){
     def cmd="curl -u $USERNAME:$PASSWORD -X GET ${repoPR}/$prid/merge"
     def output=exeCmd(cmd)
@@ -122,35 +117,35 @@ def getMergestatus(String repoPR, int prid){
     return obj.canMerge
 }
 
-
-def createPR(String workbr, String mergebr,String project, String repo){
-    def repoPR="https://bitbucket.org/rest/api/1.0/project/$project/repos/$repo/pull-requests"
-    def data=[ 
-       title: 'PR-testing',
-       description: null,
-       state:  'OPEN', open: true,
-       closed: false,
-       fromRef: [ id:  "refs/heads/$workbr",
-                  repository: [ slug: "$repo", name: null,
-                                  project: [ key: "$project" ]
-                                ]
-                ],
-        toRef: [ id: "refs/heads/$mergebr",
-                 repository: [ slug: "$repo",
-                               name: null,
-                               project: [key: "$project"]
-                   ]
-                ],
-        locked: false,
-        reviewers: [] ]
-        def body=JsonOutput.toJson(JsonOutput.toJson(data))
-        def cmd="""curl -u $USERNAME:$PASSWORD -X POST -H "Content-Type: applicatin/json" $repoPR --data $body"""
-        def output=exeCmd(cmd)
-        def json=new JsonSlurper()
-        def obj=json.parseText(output)
-        return obj.id
+import java.text.SimpleDateFormat
+def getDate(){
+    def sdf = new SimpleDateFormat("yyyy-mm-dd")
+    return sdf.format(new Date())
 }
 
+def createPR(String workbr, String mergebr,String workspace, String repo){
+    def repoPR="https://bitbucket.org/api/2.0/repositories/$workspace/$repo/pullrequests"
+    def date=getDate()
+    def data=[ title: "Dependency Updates $date",
+        description: "Automated Dependency Updates for $date",
+        source: [ branch:  [ name: "$workbr" ],
+                  repository: [ full_name: "$workspace/$repo" ] ],
+        destination: [ branch:  [ name: "$mergebr" ] ],
+        close_source_branch: true ]
+    
+    def body=JsonOutput.toJson(data)
+    println body
+    body=JsonOutput.toJson(body)
+    println body
+    def cmd=""" curl -u $USERNAME:$PASSWORD -X POST ${repoPR} --data $body """
+    println cmd
+    def output=exeCmd(cmd)
+    println output
+    def json=new JsonSlurper()
+    def obj=json.parseText(output)
+
+    return obj.id
+}
 
 def mergePR(String repoPR){
     def prid=getPrid(repoPR)
@@ -165,13 +160,15 @@ def mergePR(String repoPR){
         merge_strategy: "merge_commit"
     ]
     def body=JsonOutput.toJson(JsonOutput.toJson(data))
-    def cmd="""curl -u $USERNAME:$PASSWORD --request POST \
-        --url ${repoPR}/${prid}/merge' \
-        --header 'Accept: application/json' \
-        --header 'Content-Type: application/json' \
-        --data $body"""
+    def cmd="""curl -u $USERNAME:$PASSWORD -X POST --header 'Content-Type: application/json' \
+        '${repoPR}/$prid/merge' \
+        --data '{ "type": "anytype", 
+         "message": "good work", 
+         "close_source_branch": true,
+          "merge_strategy": "merge_commit" 
+          }'"""
     //def cmd="""curl -u $USERNAME:$PASSWORD -X POST -H "Content-Type: applicatin/json" $repoPR/$prid/merge?version=$version"""
-   
+   println cmd
     def output=exeCmd(cmd)
     println output
 }
@@ -217,16 +214,16 @@ def updateAll(String src, String workspace, String repo, String workbr, String m
     return out
 }
 
-   def workbr='workbr'
-    def mergebr='master'
+   def workbr='feature-test'
+    def mergebr='main'
     def directory='/tmp/upload-test'
     def src='/tmp/CI.yml'
-    def project="GRP"
+   // def project="GRP"
     def workspace='wave-cloud'
     def repo="upload-test"
     def repoPR="https://api.bitbucket.org/2.0/repositories/$workspace/$repo/pullrequests"
     def fileName='CI.yml'
-
+createPR(workbr, mergebr,workspace, repo)
 //println updateAll(src, workspace, repo, workbr, mergebr, directory)//println uploadFile('README.md', workbr)
 /*def proc = "ls -al".execute()
 proc.waitFor()
@@ -264,20 +261,11 @@ def mycheck() {
     println "Check FAILURE"
 }
 fileName="test.xml"
-def uploadFile1(String fileName, String workbr, String workspace, String repo){
-    println "enter uploadFile1()............"
-    def cmd="""curl -v -X PUT -u  ${USERNAME}:${PASSWORD}  \
-                     -F content=@README.md  \
-                     -F 'message=Updated using file-edit REST API' \
-                     -F branch=test-pr -F  sourceCommitId=5636641a50b \
-                     http://bitbucket.org/rest/api/1.0/projects/GRP/repos/repo_1/browse/README.md"""
-    //def output=exeCmd(cmd)
-    println cmd
-    //def output = sh ( script: cmd, returnStdout: true ).trim()
-    def output = exeCmd(cmd)
-    println output
-   
-    return output
-}
-uploadFile(fileName, workbr, workspace, repo)
 
+
+sdf = new SimpleDateFormat("yyyy-MM-dd")
+println sdf.format(new Date())
+
+
+//println getPrid(repoPR)
+//println createPR(repoPR)//

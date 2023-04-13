@@ -3,9 +3,9 @@ import groovy.yaml.YamlSlurper
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 
-def map =[ [ name:zhang     ] [name: hongqi   ]]
+
 println("enter main")	
-String fileConts = new File('myyaml').text
+String fileConts = new File('config').text
 println fileConts
 def yamlSlurper = new YamlSlurper().parseText(fileConts)
 println  yamlSlurper

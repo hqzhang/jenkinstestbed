@@ -151,7 +151,8 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    def targtServer=params.servers
+                    echo "params=$params"
+                    /*def targtServer=params.servers
                     echo "params=$params"
                     if ( targtServer.equals('ERROR') ) 
                     {
@@ -178,7 +179,7 @@ pipeline {
                     remote.password = 'password'
                     remote.allowAnyHosts = true
     
-                    sshCommand remote: remote, command: "ls -lrt"
+                    sshCommand remote: remote, command: "ls -lrt"*/
     
                 }
             }

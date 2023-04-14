@@ -4,7 +4,7 @@ import org.json.XML;
 import org.json.JSONException;
 ////import java.nio.file.Files;
 //import java.nio.file.Path;
-library("my-shared-library@master") _
+library("my-shared-lib@master") _
 println cons.envList
 println cons.getServers('Environment')
 @NonCPS

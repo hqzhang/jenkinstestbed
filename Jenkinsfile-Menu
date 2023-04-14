@@ -28,9 +28,9 @@ return """
     <input name=\"value\" alt=\"${service.service_name}\" json=\"${service.service_name}\" type=\"checkbox\" class=\" \">
     <label title=\"${service.service_name}\" class=\" \">${service.service_name}</label>
     </td>
-   <td class="setting-main">
-	       <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>
-           </td>
+   <td>
+    <input type=\"text\" class=\" \" name=\"value\" value=\"${my_tag}\"> </br>
+    </td>
     </tr>
 </tr></table>
 """

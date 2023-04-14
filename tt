@@ -1,0 +1,9 @@
+def list=['a':'x','b':'y']
+myvar=list.c
+println(myvar)
+if ( myvar && myvar.equals('x') ){
+    println "good"
+}else {
+
+		  myvar.equals('x')
+}

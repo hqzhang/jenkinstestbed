@@ -1,0 +1,10 @@
+        def cmd="""cat > outfile.txt <<EOF
+<prop a1="uno"/>
+              <prop a1="ok"      />
+              </cat>
+</pros>"""
+       cmd="ls -al"
+       def res=cmd.execute()
+       println(res.text)
+       cmd="""echo "this is file" > output.txt"""
+       cmd.execute()

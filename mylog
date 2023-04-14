@@ -1,0 +1,92 @@
+enter uploadFile()
+ curl -v -u fredzhang123:ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3               -X POST https://api.bitbucket.org/2.0/repositories/wave-cloud/upload-test/src              -F test.xml=@test.xml                -F message=updatecurl -F branch=workbr
+err:Note: Unnecessary use of -X or --request, POST is already inferred.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 2406:da00:ff00::3657:a859:443...
+* Connected to api.bitbucket.org (2406:da00:ff00::3657:a859) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* successfully set certificate verify locations:
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (OUT), TLS handshake, Client hello (1):
+} [322 bytes data]
+* (304) (IN), TLS handshake, Server hello (2):
+{ [88 bytes data]
+* (304) (OUT), TLS handshake, Client hello (1):
+} [355 bytes data]
+* (304) (IN), TLS handshake, Server hello (2):
+{ [155 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [15 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2767 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [80 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+* SSL connection using TLSv1.3 / AEAD-AES128-GCM-SHA256
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: C=US; ST=California; L=San Francisco; O=Atlassian, Inc.; CN=*.bitbucket.org
+*  start date: Jul  1 00:00:00 2022 GMT
+*  expire date: Jul 21 23:59:59 2023 GMT
+*  subjectAltName: host "api.bitbucket.org" matched cert's "*.bitbucket.org"
+*  issuer: C=US; O=DigiCert Inc; OU=www.digicert.com; CN=DigiCert SHA2 High Assurance Server CA
+*  SSL certificate verify ok.
+* Using HTTP2, server supports multiplexing
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* Server auth using Basic with user 'fredzhang123'
+* Using Stream ID: 1 (easy handle 0x7fca65011400)
+> POST /2.0/repositories/wave-cloud/upload-test/src HTTP/2
+> Host: api.bitbucket.org
+> authorization: Basic ZnJlZHpoYW5nMTIzOkFUQkJGU1ZQa1dkTGg5TGp0WnBjMndXWGVOcUFEQjY4OTFCMw==
+> user-agent: curl/7.79.1
+> accept: */*
+> content-length: 518
+> content-type: multipart/form-data; boundary=------------------------e351ab180f7f59b6
+> 
+} [518 bytes data]
+* We are completely uploaded and fine
+* Connection state changed (MAX_CONCURRENT_STREAMS == 32)!
+100   518    0     0  100   518      0    367  0:00:01  0:00:01 --:--:--   370< HTTP/2 201 
+< server: nginx
+< vary: Authorization, Origin
+< cache-control: max-age=0, no-cache, no-store, must-revalidate
+< content-type: text/html; charset=utf-8
+< x-oauth-scopes: runner:write, pipeline:variable, webhook, snippet:write, wiki, issue:write, pullrequest:write, repository:delete, repository:admin, project:admin, team:write, account:write
+< x-b3-traceid: 83604daecff8ca84
+< x-usage-output-ops: 24
+< x-used-mesh: False
+< x-dc-location: Micros-3
+< strict-transport-security: max-age=31536000; includeSubDomains; preload
+< date: Thu, 02 Mar 2023 18:54:30 GMT
+< x-request-id: 83604daecff8ca84
+< x-usage-user-time: 1.166321
+< x-usage-system-time: 0.222638
+< location: https://api.bitbucket.org/2.0/repositories/wave-cloud/upload-test/commit/b3843675246eee02bd009eee936ff5330d8f5c9d
+< x-served-by: 44a20d6655d4
+< expires: Thu, 02 Mar 2023 18:54:30 GMT
+< x-xss-protection: 1; mode=block
+< x-view-name: bitbucket.apps.repo2.api.v20.src.CommitBuilderHandler
+< x-static-version: 9e7070a758da
+< x-content-type-options: nosniff
+< x-accepted-oauth-scopes: repository:write
+< x-credential-type: apppassword
+< x-render-time: 1.8261399269104004
+< x-trace-id: 83604daecff8ca84
+< x-usage-input-ops: 80
+< x-frame-options: SAMEORIGIN
+< x-version: 9e7070a758da
+< x-request-count: 1891
+< content-length: 0
+< 
+{ [0 bytes data]
+100   518    0     0  100   518      0    229  0:00:02  0:00:02 --:--:--   230100   518    0     0  100   518      0    229  0:00:02  0:00:02 --:--:--   230
+* Connection #0 to host api.bitbucket.org left intact
+
+code=0

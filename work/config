@@ -1,0 +1,14 @@
+components:
+  - name: component1
+    argv: xyz
+    myint: 32
+    settings:
+        username: hongqi9999
+        password: a568
+       
+  - name: component2
+    argv: xyz3
+    myint: 18
+    settings:
+        username: hongqi3333
+        password: pass333333

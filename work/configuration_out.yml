@@ -1,0 +1,6 @@
+components:
+- name: component1
+  argv: xyz
+  settings:
+    username: hongqi9999
+    password: a568

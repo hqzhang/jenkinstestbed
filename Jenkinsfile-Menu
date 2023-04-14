@@ -34,7 +34,7 @@ properties([
              script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
              script: [classpath: [], oldScript: '', sandbox: false, script: '''
                myfile='config.xml'
-               my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${myfile}".execute().text
+               my_tag=\"curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${myfile}\".execute().text
                return """<textarea name=\\"testml\\" value=\\"first\\nsecond\\nthird\\" class=\\"setting-input  \\" type=\\"text\\">${my_tag}</textarea>"""''']]],
 ])
 ])

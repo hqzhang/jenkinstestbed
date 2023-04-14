@@ -25,7 +25,7 @@ properties([
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
               groovyScript: '''
-                 def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+                 def mf ="ls /Users/hongqizhang/workspace/groovytest/releases  ".execute().text
                  mf.readLines().collect{ it.split()[0].minus('.xml')}
               ''', ),
              string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),

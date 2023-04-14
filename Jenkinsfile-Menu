@@ -19,7 +19,7 @@ properties([
             script:  cons.getServers('Envir') ]]],
 
             extendedChoice(
-              name: 'Solution-Detail',
+              name: 'SolutionDetail',
               description: '',
               visibleItemCount: 50,
               multiSelectDelimiter: ',',
@@ -30,11 +30,11 @@ properties([
               ''', ),
              string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),
              [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', 
-             omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'Solution-Detail', 
+             omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'SolutionDetail', 
              script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
              script: [classpath: [], oldScript: '', sandbox: false, script: '''
                my_tag="first line\\n second line"
-               //my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/${Solution-Detail}".execute().text
+               my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${SolutionDetail}".execute().text 
                return """<textarea name=\\"testml\\" value=\\"first\\nsecond\\nthird\\" class=\\"setting-input  \\" type=\\"text\\">${my_tag}</textarea>"""''']]],
 ])
 ])

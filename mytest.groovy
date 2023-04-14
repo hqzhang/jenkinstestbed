@@ -11,8 +11,10 @@
     println( "${compList[0]} is running")
     cmd="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/solution.yaml"
     def resp = cmd.execute().text
-    
+    def SolutionDetail="solution.xml"
+    my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${SolutionDetail}".execute().text 
     println resp
+    println my_tag
 
     System.exit(1)
     List myvar = ['abc','efd','xyz']

@@ -29,9 +29,9 @@ my_tag=map[tier]
 return """
     <table><tr>
     <tr>
-    <td>
-    <input type=\"text\" class=\" \" name=\"value\" value=\"${my_tag}\"> </br>
-    </td>
+    <td class="setting-main">
+	       <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>
+           </td>
     </tr>
 </tr></table>
 """

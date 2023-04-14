@@ -33,7 +33,6 @@ properties([
              omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'SolutionDetail', 
              script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
              script: [classpath: [], oldScript: '', sandbox: false, script: '''
-               myfile='config.xml'
                my_tag=\"curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${SolutionDetail}\".execute().text
                return """<textarea name=\\"testml\\" value=\\"first\\nsecond\\nthird\\" class=\\"setting-input  \\" type=\\"text\\">${my_tag}</textarea>"""''']]],
 ])

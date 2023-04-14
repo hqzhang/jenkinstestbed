@@ -1,0 +1,79 @@
+//////
+
+library("my-shared-lib@master") _
+
+
+
+properties([
+    pipelineTriggers([githubPush()]),
+    parameters([
+           choice(name: 'Envir', choices: cons.envList, description: 'input cluster'),
+           [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
+            description: 'Active Choices Reactive parameter',
+            filterLength: 1, filterable: true,
+            name: 'servers', randomName: 'choice-parameter-7601237141171',
+            referencedParameters: 'Envir',
+            script: [$class: 'GroovyScript',
+            fallbackScript: [classpath: [], sandbox: false, script: 'return ["ERROR"]'],
+            script: [classpath: [], sandbox: false,
+            script:  cons.getServers('Envir') ]]],
+
+            extendedChoice(
+              name: 'Branches',
+              description: '',
+              visibleItemCount: 50,
+              multiSelectDelimiter: ',',
+              type: 'PT_SINGLE_SELECT',
+              groovyScript: '''
+                 def mf ="ls /Users/hongqizhang/workspace/groovytest/mydir  ".execute().text
+                 mf.readLines().collect{ it.split()[0].minus('.xml')}
+              ''', ),
+             string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),
+])
+])
+def map
+def list
+pipeline {
+    agent any
+    stages {
+        stage('Create List') {
+            steps {
+                script {
+                    echo "STAGE: create List..."
+                    echo "params=$params"
+                    /*def targtServer=params.servers
+                    echo "params=$params"
+                    if ( targtServer.equals('ERROR') ) 
+                    {
+                        targtServer='s23'
+                    }
+                    
+                    echo "targtServer=$targtServer"
+                    workspace=WORKSPACE
+                    println "WS=${env.WORKSPACE}"
+                    println "WS=${WORKSPACE}"
+                    println "pwd="+pwd()
+                    println "workspace=$workspace"
+                    // you may create your list here, lets say reading from a file after checkout
+                    //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
+                    list = readXMLList("${workspace}/manifest_Lynx.xml")
+                    echo "***************"
+                    def jsonText = parseXML("${workspace}/manifest_Lynx.xml")
+                    map = readJSON text: jsonText
+                    echo "#################"
+                     def remote = [:]
+                    remote.name = 'test'
+                    remote.host = '192.168.2.27'
+                    remote.user = 'root'
+                    remote.password = 'password'
+                    remote.allowAnyHosts = true
+    
+                    sshCommand remote: remote, command: "ls -lrt"*/
+    
+                }
+            }
+        }
+   }
+}
+
+

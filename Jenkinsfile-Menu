@@ -24,13 +24,13 @@ myls.each { file->
 }
 my_tag=map[tier]
 return """
-    <table><tr>
+    <!--table><tr>
     <tr>
-    <td class="setting-main">
+    <td class="setting-main"-->
 	       <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>
-           </td>
+           <!--/td>
     </tr>
-</tr></table>
+</tr></table-->
 """
 ''']]],
 

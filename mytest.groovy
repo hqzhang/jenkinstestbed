@@ -5,16 +5,19 @@
     import mylib
     import sayHello
     @groovy.transform.Field
-    def comps="ABC,XYZ"
-    def compList=comps.split(',')
-    println(compList[0]+" is running")
-    println( "${compList[0]} is running")
-    cmd="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/solution.yaml"
-    def resp = cmd.execute().text
-    def SolutionDetail="solution.xml"
-    my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${SolutionDetail}".execute().text 
-    println resp
-    println my_tag
+    def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+    def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+    def map=[:]
+    myls.each { file->
+        my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${file}.xml".execute().text 
+        map[ file]= my_tag
+    }
+    myls.each { file->
+       
+        println map[file]
+    }
+    
+    
 
     System.exit(1)
     List myvar = ['abc','efd','xyz']

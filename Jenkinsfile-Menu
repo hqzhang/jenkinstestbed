@@ -7,7 +7,7 @@ library("groovytest-shared-lib@master") _
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-           parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'tier', randomName: 'choice-parameter-138673168016776', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return [ \'web\',\'database\']']]], [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'tier', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: '''service_tier_map = [
+           [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'tier', randomName: 'choice-parameter-138673168016776', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return [ \'web\',\'database\']']]], [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'tier', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: '''service_tier_map = [
   "web": [
     ["service_name": "user_frontend", "release_tag": "1.0.0" ],
     ["service_name": "admin_frontend", "release_tag": "1.0.2" ],
@@ -23,7 +23,6 @@ properties([
     ["service_name": "postgresql", "release_tag": "1.2.3"],
   ],
 ]
-
 html_to_be_rendered = "<table><tr>"
 service_list = service_tier_map[tier]
 service_list.each { service ->
@@ -40,12 +39,9 @@ service_list.each { service ->
     </tr>
 """
 }
-
-
 html_to_be_rendered = "${html_to_be_rendered}</tr></table>"
-
 return html_to_be_rendered
-''']]]]),
+''']]],
 
             extendedChoice(
               name: 'SolutionDetail',

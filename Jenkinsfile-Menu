@@ -1,6 +1,6 @@
 //////
 
-library("my-shared-lib@master") _
+library("groovytest-shared-lib@master") _
 
 
 

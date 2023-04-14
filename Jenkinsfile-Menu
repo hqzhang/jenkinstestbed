@@ -2,10 +2,12 @@
 
 library("groovytest-shared-lib@master") _
 
+
+
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-           [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'tier', randomName: 'choice-parameter-138673168016776', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return [ \'web\',\'database\']']]], [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'tier', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: '''service_tier_map = [
+           parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'tier', randomName: 'choice-parameter-138673168016776', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: 'return [ \'web\',\'database\']']]], [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'tier', script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, script: '''service_tier_map = [
   "web": [
     ["service_name": "user_frontend", "release_tag": "1.0.0" ],
     ["service_name": "admin_frontend", "release_tag": "1.0.2" ],
@@ -15,6 +17,11 @@ properties([
     ["service_name": "finance_service", "release_tag": "2.2.0" ],
     ["service_name": "payment_service", "release_tag": "3.2.0" ],
   ],
+  "database": [
+    ["service_name": "dynamo_db", "release_tag": "5.4.1"],
+    ["service_name": "mysql", "release_tag": "3.2.1"],
+    ["service_name": "postgresql", "release_tag": "1.2.3"],
+  ],
 ]
 
 html_to_be_rendered = "<table><tr>"
@@ -23,7 +30,10 @@ service_list.each { service ->
   html_to_be_rendered = """
     ${html_to_be_rendered}
     <tr>
-   
+    <td>
+    <input name=\\"value\\" alt=\\"${service.service_name}\\" json=\\"${service.service_name}\\" type=\\"checkbox\\" class=\\" \\">
+    <label title=\\"${service.service_name}\\" class=\\" \\">${service.service_name}</label>
+    </td>
     <td>
     <input type=\\"text\\" class=\\" \\" name=\\"value\\" value=\\"${service.release_tag}\\"> </br>
     </td>
@@ -35,7 +45,7 @@ service_list.each { service ->
 html_to_be_rendered = "${html_to_be_rendered}</tr></table>"
 
 return html_to_be_rendered
-''']]],
+''']]]]),
 
             extendedChoice(
               name: 'SolutionDetail',

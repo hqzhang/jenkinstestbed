@@ -11,7 +11,7 @@ properties([
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
            script: [classpath: [], oldScript: '', sandbox: false, script: 'return [ \'config\',\'solution\']']]], 
            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
-           randomName: 'choice-parameter-138673186839723', referencedParameters: 'tier', 
+           randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
            script: '''
 
@@ -22,7 +22,7 @@ myls.each { file->
         my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${file}.xml".execute().text 
         map[ file]= my_tag
 }
-my_tag=map[tier]
+my_tag=map[SolutionDetail]
 return """
     <!--table><tr>
     <tr>

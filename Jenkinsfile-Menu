@@ -13,11 +13,8 @@ properties([
            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'tier', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
-           script: '''service_tier_map = [ "solution": [ ["service_name": "user_frontend", "release_tag": "1.0.0" ], ],
-  "config": [ ["service_name": "admin_service", "release_tag": "2.1.0" ], ], ]
-service_list = service_tier_map[tier]
-service= service_list[0]
-my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${tier}.xml".execute().text
+           script: '''
+
 def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
 def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
 def map=[:]

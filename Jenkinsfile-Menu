@@ -24,8 +24,7 @@ properties([
             def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
             def map=[:]
             myls.each { map[it]="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${it}.xml".execute().text }
-            con=map[SolutionDetail]
-            return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${con}</textarea> """
+            return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${map[SolutionDetail]}</textarea> """
             ''']]],
 
            

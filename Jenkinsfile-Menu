@@ -7,9 +7,16 @@ library("groovytest-shared-lib@master") _
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-           [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, name: 'tier', randomName: 'choice-parameter-138673168016776', 
-           script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
-           script: [classpath: [], oldScript: '', sandbox: false, script: 'return [ \'config\',\'solution\']']]], 
+           extendedChoice(
+              name: 'SolutionDetail',
+              description: '',
+              visibleItemCount: 50,
+              multiSelectDelimiter: ',',
+              type: 'PT_SINGLE_SELECT',
+              groovyScript: '''
+                 def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+                 mf.readLines().collect{ it.split()[0].minus('xml')}
+              ''', ),
            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
@@ -34,16 +41,7 @@ return """
 """
 ''']]],
 
-            extendedChoice(
-              name: 'SolutionDetail',
-              description: '',
-              visibleItemCount: 50,
-              multiSelectDelimiter: ',',
-              type: 'PT_SINGLE_SELECT',
-              groovyScript: '''
-                 def mf ="ls /Users/hongqizhang/workspace/groovytest/releases  ".execute().text
-                 mf.readLines().collect{ it.split()[0]}
-              ''', ),
+           
              string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),
              [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', 
              omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'SolutionDetail', 

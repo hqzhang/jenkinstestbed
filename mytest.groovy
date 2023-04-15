@@ -48,8 +48,11 @@ def getFileList(){
     def out=mf.readLines().collect{ it.split()[0].minus('.xml')}
     mybuildScript(out)
 }
-
-println getFileContent('config')
+def test=''
+    def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+    println mf
+    def out=mf.splitEachLine("\\.")
+println out
 
 //println """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"""
 

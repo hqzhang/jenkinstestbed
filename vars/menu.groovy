@@ -1,7 +1,7 @@
 
 String buildScript(List values){
     def ret=values.collect { '"'+it+'"' }
-    return "return ${ret}"
+    return ret
 }
 
 String convertScript( String str){

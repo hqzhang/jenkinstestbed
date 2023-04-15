@@ -15,7 +15,7 @@ properties([
               type: 'PT_SINGLE_SELECT',
               groovyScript: '''
                  def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
-                 mf.readLines().collect{ it.split()[0].minus('xml')}
+                 mf.readLines().collect{ it.split()[0].minus('.xml')}
               ''', ),
            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 

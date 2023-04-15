@@ -1,4 +1,4 @@
-def getFileContent(){
+def getFileContent(String SolutionDetail ){
     def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
     def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
     def map=[:]

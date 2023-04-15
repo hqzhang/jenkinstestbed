@@ -7,15 +7,7 @@ def getFileContent(String SolutionDetail ){
             map[ file]= my_tag
     }
     my_tag=map[SolutionDetail]
-    return """
-        <!--table><tr>
-        <tr>
-        <td class="setting-main"-->
-            <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>
-            <!--/td>
-        </tr>
-    </tr></table-->
-    """
+    return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"""
 }
 
 def getFileList(){

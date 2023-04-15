@@ -12,9 +12,23 @@
 
     String convertScript( String str){
       def ret='"""'+str.replaceAll('"', '\\\\"')+'"""'
-      return  "return $ret"
+      return  """
+      map=menu.getFileMap()
+      con=map[SolutionDetail]
+      return $ret
+      """
     }
 
+def getFileMap(){
+    def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+    def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+    def map=[:]
+    myls.each { file->
+            my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${file}.xml".execute().text 
+            map[ file]= my_tag
+    }
+    return map
+}
 def getFileContent(String SolutionDetail ){
     def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
     def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
@@ -36,6 +50,7 @@ def getFileList(){
 }
 
 println getFileContent('config')
+
 //println """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"""
 
     System.exit(1)

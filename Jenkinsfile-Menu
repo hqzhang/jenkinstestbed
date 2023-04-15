@@ -24,7 +24,7 @@ properties([
             def map=[:]
             myls.each { map[it]="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${it}.xml".execute().text }
             my_tag=map[SolutionDetail]
-            return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea> """
+            return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${map[SolutionDetail]}</textarea> """
             ''']]],
 
            

@@ -14,10 +14,7 @@ properties([
               visibleItemCount: 50,
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
-              groovyScript: '''
-                 def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
-                 return mf.readLines().collect{ it.split()[0].minus('.xml')}
-              ''', ),
+              groovyScript: menu.getFileList(), ),
            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 

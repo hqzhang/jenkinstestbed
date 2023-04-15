@@ -2,7 +2,8 @@
 
 library("groovytest-shared-lib@master") _
 
-
+println menu.getFileList()
+println menu.getFileContent()
 
 properties([
     pipelineTriggers([githubPush()]),
@@ -13,11 +14,15 @@ properties([
               visibleItemCount: 50,
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
-              groovyScript: menu.getFileList(), ),
+              groovyScript: '''
+                 def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+                 mf.readLines().collect{ it.split()[0].minus('.xml')}
+              ''', ),
            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
            script: '''
+
 def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
 def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
 def map=[:]
@@ -36,14 +41,15 @@ return """
 </tr></table-->
 """
 ''']]],
+
            
-             /*string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),
+             string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),
              [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', 
              omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'SolutionDetail', 
              script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
              script: [classpath: [], oldScript: '', sandbox: false, script: '''
                my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${SolutionDetail}".execute().text
-               return """<textarea name=\\"testml\\" value=\\"first\\nsecond\\nthird\\" class=\\"setting-input  \\" type=\\"text\\">${my_tag}</textarea>"""''']]],*/
+               return """<textarea name=\\"testml\\" value=\\"first\\nsecond\\nthird\\" class=\\"setting-input  \\" type=\\"text\\">${my_tag}</textarea>"""''']]],
 ])
 ])
 def map

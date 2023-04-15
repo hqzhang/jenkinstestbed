@@ -19,6 +19,7 @@ def getFileContent(){
 }
 
 def getFileList(){
+    def test=''
     def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
     return mf.readLines().collect{ it.split()[0].minus('.xml')}
 }

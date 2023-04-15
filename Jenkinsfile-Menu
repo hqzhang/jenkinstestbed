@@ -19,15 +19,17 @@ properties([
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
            script: '''
-              mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
-              myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
-              def map=[:]
-              myls.each { my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${it}.xml".execute().text 
-                          map[ file]= my_tag
-              }
-              my_tag=map[SolutionDetail]
-             return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea> """
-             ''']]],
+
+def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+def map=[:]
+myls.each { file->
+        my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${file}.xml".execute().text 
+        map[ file]= my_tag
+}
+my_tag=map[SolutionDetail]
+return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea> """
+''']]],
 
            
              string(name: 'payload', defaultValue: 'Mr Jenkins', description: 'A payload from github webhook'),

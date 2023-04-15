@@ -1,7 +1,7 @@
 
 String buildScript(List values){
     def ret=values.collect { '"'+it+'"' }
-    return ret
+    return "return ${ret}"
 }
 
 String convertScript( String str){
@@ -26,5 +26,5 @@ def getFileList(){
     def test=''
     def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
     def out=mf.readLines().collect{ it.split()[0].minus('.xml')}
-    buildScript(out)
+    return out
 }

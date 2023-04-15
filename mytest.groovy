@@ -10,6 +10,11 @@
     return "return ${ret}"
     }
 
+    String convertScript( String str){
+      def ret='"""'+str.replaceAll('"', '\\\\"')+'"""'
+      return  "return $ret"
+    }
+
 def getFileContent(String SolutionDetail ){
     def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
     def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
@@ -19,7 +24,8 @@ def getFileContent(String SolutionDetail ){
             map[ file]= my_tag
     }
     my_tag=map[SolutionDetail]
-    return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"""
+    def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
+    convertScript(ret)
 }
 
 def getFileList(){
@@ -28,10 +34,9 @@ def getFileList(){
     def out=mf.readLines().collect{ it.split()[0].minus('.xml')}
     mybuildScript(out)
 }
-println getFileList()
 
 println getFileContent('config')
-println """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"""
+//println """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"""
 
     System.exit(1)
     List myvar = ['abc','efd','xyz']

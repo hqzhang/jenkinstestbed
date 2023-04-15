@@ -1,7 +1,12 @@
 
 String buildScript(List values){
-   def ret=values.collect { '"'+it+'"' }
-   return "return ${ret}"
+    def ret=values.collect { '"'+it+'"' }
+    return "return ${ret}"
+}
+
+String convertScript( String str){
+    def ret='"""'+str.replaceAll('"', '\\\\"')+'"""'
+    return  "return $ret"
 }
 
 def getFileContent(String SolutionDetail ){
@@ -13,7 +18,8 @@ def getFileContent(String SolutionDetail ){
             map[ file]= my_tag
     }
     my_tag=map[SolutionDetail]
-    return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"""
+    def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
+    convertScript(ret)
 }
 
 def getFileList(){

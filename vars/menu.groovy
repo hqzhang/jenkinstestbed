@@ -23,8 +23,8 @@ def getFileContent(String SolutionDetail ){
 }
 def getContent(String SolutionDetail ){
    return '''
-      def wksp="/Users/hongqizhang/workspace/ansibletest"
-      def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
+      def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+      def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
       def mf ="ls ${wksp}/releases  ".execute().text
       def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
       def map=[:]

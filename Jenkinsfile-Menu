@@ -19,17 +19,8 @@ properties([
            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
-           script: '''
-            def wksp="/Users/hongqizhang/workspace/ansibletest"
-            def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
-            def mf ="ls ${wksp}/releases  ".execute().text
-            def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
-            def map=[:]
-            myls.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text }
-            return """<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${map[SolutionDetail]}</textarea> """
-            ''']]],
+           script: menu.getContent('SolutionDetail' )]]],
 
-           
              string(name: 'filebackup', defaultValue: 'solution-backup.xml', description: 'A payload from github webhook'),
              [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', 
              omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'SolutionDetail', 

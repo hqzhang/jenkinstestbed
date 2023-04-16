@@ -21,7 +21,16 @@ def getFileContent(String SolutionDetail ){
     def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
     convertScript(ret)
 }
-
+def getContent(String SolutionDetail ){
+   return """def wksp="/Users/hongqizhang/workspace/ansibletest"
+      |def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
+      |def mf ="ls \${wksp}/releases  ".execute().text
+      |def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+      |def map=[:]
+      |myls.each { map[it]="curl -k \${url}/releases/\${it}.xml".execute().text }  
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">\${map[SolutionDetail]}</textarea> \"\"\"
+      | """.stripMargin()
+}
 def getFileList(){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text

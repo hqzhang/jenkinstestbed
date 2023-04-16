@@ -68,7 +68,7 @@ def getContent1(String SolutionDetail ){
       return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
       '''
 }
-def getContent1(String SolutionDetail ){
+def getContent11(String SolutionDetail ){
    return """
       def wksp="/Users/hongqizhang/workspace/ansibletest"
       |def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
@@ -82,17 +82,38 @@ def getContent1(String SolutionDetail ){
 println "============"
 println getContent1('SolutionDetail')
 println "============="
-def SolutionDetail='config'
- def wksp="/Users/hongqizhang/workspace/ansibletest"
-      def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
-      def mf ="ls ${wksp}/releases  ".execute().text
-      def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+String buildQuote(List values){
+      List mytmp = []
+      values.each { mytmp.add('"'+it+'"') }
+      return mytmp
+    }
+def getServer(String env){
       def map=[:]
-      myls.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text }  
-      println """ <textarea name="value"  value  class="setting-input  " type="text">${map[SolutionDetail]}</textarea> """
+      def lis=[]
+      def refvar='bat'
+      def myList=['dev','bat']
+      lis[0]=[ 'A','B']
+      lis[1]=[ 'C','D']
+      myList.eachWithIndex { var,index->
+            map[var]=buildQuote(lis[index])
+      }
+      println map
+      println "${map[env]}"
+      def str=map.toString()
+      return """
+      |def map=$str
+      |def env='bat'
+      |return "\${map[env]}"
+      | """.stripMargin()
 
-println "end--------------"
+}
 
+println getServer('bat')
+def map=[:]
+def env='bat'
+map['dev']= ["A", "B"]
+map['bat']= ["C", "D"]
+println buildQuote(map[env])
 
   /*String buildScriptDefault(List values,String key){
         List tmp = []

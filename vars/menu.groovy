@@ -23,7 +23,7 @@ def getFileContent(String SolutionDetail ){
 }
 
 def getFileList(){
-    def wksp=/Users/hongqizhang/.jenkins/workspace/agroovytest
+    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\.")[0] }
     return out

@@ -58,19 +58,19 @@ def getFileContent(String refvar ){
         return ret
 }
 def getContent1(String SolutionDetail ){
-    
-        def wksp="/Users/hongqizhang/workspace/ansibletest"
-        def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
-        mf ="ls ${wksp}/releases  ".execute().text
-        myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
-        map=[:]
-        myls.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text }       
-        ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${map[SolutionDetail]}</textarea>"
-        return  '"""'+ret.replaceAll('"', '\\\\"')+'"""'
-      
+   return '''
+      def wksp="/Users/hongqizhang/workspace/ansibletest"
+      def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
+      def mf ="ls ${wksp}/releases  ".execute().text
+      def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+      def map=[:]
+      myls.each { map[it]="curl -k ${url}/releases/\${it}.xml".execute().text }  
+      return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
+      '''
 }
-def getContent(String SolutionDetail ){
-   return """def wksp="/Users/hongqizhang/workspace/ansibletest"
+def getContent1(String SolutionDetail ){
+   return """
+      def wksp="/Users/hongqizhang/workspace/ansibletest"
       |def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
       |def mf ="ls \${wksp}/releases  ".execute().text
       |def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
@@ -80,16 +80,16 @@ def getContent(String SolutionDetail ){
       | """.stripMargin()
 }
 println "============"
-println getContent('SolutionDetail')
+println getContent1('SolutionDetail')
 println "============="
-def refvar='config'
-def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
-def mf ="ls ${wksp}/releases  ".execute().text
-def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
-def map=[:]
-myls.each { map[it]="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${it}.xml".execute().text }
-println """ "<textarea name="value"  value  class="setting-input  " type="text">${map[refvar]}</textarea>" """
+def SolutionDetail='config'
+ def wksp="/Users/hongqizhang/workspace/ansibletest"
+      def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
+      def mf ="ls ${wksp}/releases  ".execute().text
+      def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+      def map=[:]
+      myls.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text }  
+      println """ <textarea name="value"  value  class="setting-input  " type="text">${map[SolutionDetail]}</textarea> """
 
 println "end--------------"
 

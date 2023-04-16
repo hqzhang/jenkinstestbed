@@ -25,9 +25,7 @@ properties([
              [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', 
              omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'SolutionDetail', 
              script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
-             script: [classpath: [], oldScript: '', sandbox: false, script: '''
-               my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${SolutionDetail}".execute().text
-               return """<textarea name=\\"testml\\" value=\\"first\\nsecond\\nthird\\" class=\\"setting-input  \\" type=\\"text\\">${my_tag}</textarea>"""''']]],
+             script: [classpath: [], oldScript: '', sandbox: false, script: menu.getContent('SolutionDetail' ) ]]],
 ])
 ])
 def map

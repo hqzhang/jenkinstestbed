@@ -16,7 +16,7 @@ properties([
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
               groovyScript: menu.getFileList(), ),*/
-            choice( name: 'SolutionDetail', description: '', choices: menu.getFileList() ),
+            choice( name: 'SolutionDetail', description: '', choices: menu.getFileList('solution') ),
 
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', omitValueField: false, 
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 

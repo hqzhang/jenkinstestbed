@@ -45,12 +45,11 @@ pipeline {
                     println "CONFIG=$test"
                     def multiLineStr = test.replaceAll(/\\n/,"\n").replaceAll(',','')
                     println "multiLineStr=$multiLineStr"
-                    writeFile file: 'testtext', text: multiLineStr
-                    sh 'hexdump -C testtext'
-                    sh 'cat releases/solution.yaml; hexdump -C releases/solution.yaml'
+                    writeFile file: 'releases/backup.yaml', text: multiLineStr
+                    sh "cat releases/backup.yaml"
                     def read = readYaml text: multiLineStr
                     println read['component']
-                    menu.writeYamlFile("releases/backup.yaml",read)
+                    
                     sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers
                     echo "params=$params"

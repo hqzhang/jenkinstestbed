@@ -41,7 +41,7 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                    
+                    echo "test=hello\nworld\n"
                     def str = params.CONFIG.replaceAll(~/\n/, "#")
                     def multiLineStr = """${str}"""
                     println "multiLineStr=$multiLineStr"

@@ -1,4 +1,6 @@
-
+import groovy.yaml.YamlSlurper
+import org.yaml.snakeyaml.Yaml
+import org.yaml.snakeyaml.DumperOptions
 String buildScript(List values){
     def ret=values.collect { '"'+it+'"' }
     return "return ${ret}"

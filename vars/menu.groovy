@@ -23,7 +23,7 @@ def getFileContent(String SolutionDetail ){
 }
 
 def getContent(String SolutionDetail ){
-  return '''    /Users/hongqizhang/.jenkins/workspace/agroovytest"
+  return '''    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\\\.")[0]}

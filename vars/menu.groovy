@@ -52,8 +52,8 @@ def getContent1(String SolutionDetail ){
       '''
 }
 def getFileDefault(String dft ){
-    def test=''
-    def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+    def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split()[0].minus('.xml') }
     def ret=[]
     println out

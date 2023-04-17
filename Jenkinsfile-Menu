@@ -42,7 +42,7 @@ pipeline {
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
                     
-                    def str = params.CONFIG 
+                    def str = params.CONFIG.replace('\n','<br>')
                     def multiLineStr = """${str}"""
                     println "multiLineStr=$multiLineStr"
                     

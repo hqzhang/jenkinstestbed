@@ -173,7 +173,9 @@ def data="components:\n  - name: Solution\n    type: AA,"
 //def list=params.replaceAll(/\n/,"\n").replaceAll(',')
 
 def result = data.replaceAll(/\n/, "\n").replaceAll(',','')
-println result // prints "a \n b \n c\n"
+def myFile = new File('mySuperFile.txt')
+myFile.write(result)
+
 
 
    

@@ -51,7 +51,7 @@ def getContent1(String SolutionDetail ){
       return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
       '''
 }
-def getFileList(String dft ){
+def getFileDefault(String dft ){
     def test=''
     def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
     def out=mf.readLines().collect{ it.split()[0].minus('.xml') }
@@ -63,8 +63,7 @@ def getFileList(String dft ){
             out.add(it+':selected') 
         }
     }
-      
-    return out
+    buildScript(out)
 }
 
 def readYamlString(String str){

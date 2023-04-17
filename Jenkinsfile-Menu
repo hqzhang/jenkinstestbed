@@ -16,16 +16,14 @@ properties([
               type: 'PT_SINGLE_SELECT',
               groovyScript: menu.getFileList(), ),*/
             choice( name: 'SolutionDetail', description: '', choices: menu.getFileList() ),
-           [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', omitValueField: false, 
-           randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
-           script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
-           script: menu.getContent('SolutionDetail' )]]],
 
-             string(name: 'filebackup', defaultValue: 'backup.xml', description: 'A payload from github webhook'),
-             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', 
-             omitValueField: false, randomName: 'choice-parameter-136152004828250', referencedParameters: 'SolutionDetail', 
-             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
-             script: [classpath: [], oldScript: '', sandbox: false, script: menu.getContent('SolutionDetail' ) ]]],
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', omitValueField: false, 
+            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
+            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
+            script: menu.getContent('SolutionDetail' )]]],
+            
+            string(name: 'filebackup', defaultValue: 'backup.xml', description: 'A payload from github webhook'),
+             
 ])
 ])
 def map

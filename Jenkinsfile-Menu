@@ -41,9 +41,11 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                    writeFile file: 'testtext', text: env.CONFIG
-                     sh 'hexdump -C testtext'
-                    sh 'hexdump -C releases/solution.yaml'
+                    def var=text: env.CONFIG.replaceAll('\\n',"\n")
+                    writeFile file: 'testtext', text: var
+                    sh 'hexdump -C testtext'
+                    sh 'cat releases/solution.yaml; hexdump -C releases/solution.yaml'
+
                     
                     //def str = env.CONFIG.replaceAll(/\n/, "\\n ").replaceAll(',','')
                     //println "str=$str"

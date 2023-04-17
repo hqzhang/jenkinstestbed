@@ -43,7 +43,7 @@ pipeline {
                     echo "parsing yaml"
                     def test=params.CONFIG
                     println "CONFIG=$test"
-                    def multiLineStr = test.replaceAll(/\\n/,"\n").replaceAll('')
+                    def multiLineStr = test.replaceAll(/\\n/,"\n")
                     println "multiLineStr=$multiLineStr"
                     writeFile file: 'testtext', text: multiLineStr
                     sh 'hexdump -C testtext'

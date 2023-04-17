@@ -41,6 +41,7 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
+                    sh 'hexdump -C release/helloword'
                     def str = env.CONFIG.replaceAll(/\n/, "\\n ").replaceAll(',','')
                     println "str=$str"
                     def read = readYaml text: str

@@ -97,7 +97,7 @@ def getContent1(String SolutionDetail ){
       '''
 }
 def getContent11(String SolutionDetail ){
-  return '''    def wksp="/Users/hongqizhang/workspace/groovytest"
+  return '''    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\\\.")[0]}
@@ -107,29 +107,34 @@ def getContent11(String SolutionDetail ){
     return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
     '''
 }
+def getContent(String SolutionDetail ){
+   def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+   def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+   def urlext=""
+   return """def wksp=\"${wksp}\"
+      |def url=\"${url}\"
+      |def urlext=\"${urlext}\"
+      |def mf ="ls ${wksp}/releases  ".execute().text
+      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+      |def map=[:]
+      |out.each { map[it]="curl -k \${url}/releases/\${it}.yaml\${urlext}".execute().text
+      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/releases/\${it}.yaml".execute().text } }
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">\${map[SolutionDetail]}</textarea> \"\"\"
+      | """.stripMargin()
+}
 println "============"
-println getContent1('SolutionDetail')
-println getContent11('SolutionDetail')
+println getContent('SolutionDetail')
 println "============="
 SolutionDetail='backup'
 def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
-    def mf ="ls ${wksp}/releases  ".execute().text
-    def out=mf.readLines().collect{ it.split("\\.")[0]}
-    println out
-    def map=[:]
-    out.each { map[it]="curl -k ${url}/releases/${it}.yaml".execute().text
-        println "curl -k ${url}/releases/${it}.yaml"
-        if ( map[it].contains('404: Not Found')){ println "EEEEE"
-          map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } 
-          println map[it]
-          
-          }
-    println map
-    println """ <textarea name="value"  value  class="setting-input  " type="text">${map[SolutionDetail]}</textarea> """
-    
-
-
+def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+def urlext=""
+def mf ="ls /Users/hongqizhang/.jenkins/workspace/agroovytest/releases  ".execute().text
+def out=mf.readLines().collect{ it.split("\\.")[0]}
+def map=[:]
+out.each { map[it]="curl -k ${url}/releases/${it}.yaml${urlext}".execute().text
+if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } }
+println """ <textarea name="value"  value  class="setting-input  " type="text">${map[SolutionDetail]}</textarea> """
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

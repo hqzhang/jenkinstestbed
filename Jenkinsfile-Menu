@@ -41,8 +41,9 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                    //def read = readYaml text: env.CONFIG
-                    //println read
+                    def str = env.CONFIG.replaceAll(/\n/, "\n ").replaceAll(',','')
+                    def read = readYaml text: str
+                    println read
                     //writeYamlFile(read, "releases/backup.yaml")
                     //sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers

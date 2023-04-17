@@ -41,10 +41,12 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                
-                    def result = params.CONFIG.replaceAll(',','').split( "\n")
-                    println result
-                    writeFile file: 'testtext', text: result
+                    
+                    def str = params.CONFIG 
+                    def multiLineStr = """${str}"""
+                    println multiLineStr
+                    
+                    writeFile file: 'testtext', text: multiLineStr
                     sh 'hexdump -C testtext'
                     sh 'cat releases/solution.yaml; hexdump -C releases/solution.yaml'
 

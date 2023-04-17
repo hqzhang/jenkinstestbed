@@ -170,12 +170,9 @@ def writeYamlFile(output,data){
 //params=parseConfig('config')
 //updateConfiguration('configuration.yml','configuration_out.yml')
 def data="components:\n  - name: Solution\n    type: AA,"
-//def list=params.replaceAll(/\n/,"\n").replaceAll(',')
-
-def result = data.replaceAll(/\n/, "\n").replaceAll(',','')
-println result
-def myFile = new File('mySuperFile.txt')
-myFile.write(result)
+def str = "hello\nworld\n"
+def multiLineStr = """${str}"""
+println multiLineStr
 
 
 

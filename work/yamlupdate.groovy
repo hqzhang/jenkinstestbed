@@ -170,9 +170,10 @@ def writeYamlFile(output,data){
 //params=parseConfig('config')
 //updateConfiguration('configuration.yml','configuration_out.yml')
 def data="components:\n  - name: Solution\n    type: AA,"
-def str = "hello\nworld\n"
-def multiLineStr = """${str}"""
-println multiLineStr
+def str = "hello\\nworld\\n"
+println "input=$str"
+def multiLineStr = str.replaceAll(/\\n/,"\n")
+println "output=$multiLineStr"
 
 
 

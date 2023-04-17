@@ -41,7 +41,7 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                    def str = env.CONFIG.replaceAll(/\n/, "\n ").replaceAll(',','')
+                    def str = env.CONFIG.replaceAll(/\n/, "\\n ").replaceAll(',','')
                     println "str=$str"
                     def read = readYaml text: str
                     println read

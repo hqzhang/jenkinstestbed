@@ -30,8 +30,6 @@ org.yaml.snakeyaml.DumperOptions
 
 def saveFile(output,data){
   println("INPUT:"+data)
-  
-  ////
   DumperOptions options = new DumperOptions()
   options.setPrettyFlow(true)
   options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK)
@@ -74,6 +72,17 @@ def dictUpdate(Map var,Map comp){
          println("instance update")
          v.each { kk, vv->
               var[k].each{ x, y->
+
+
+
+
+
+
+
+
+
+
+
                   if (kk.contains(x) ){
                       println("set "+kk+ " as "+vv)
                       var[k][x]=vv
@@ -95,11 +104,21 @@ def dictUpdate(Map var,Map comp){
     println("END:"+var)
     return var
 }
-
+import groovy.yaml.YamlBuilder
 def updateConfiguration(String fileName,String output){
     println("Enter updateConfiguration() "+fileName)
     String fileConts = new File(fileName).text
-    fileConts='''
+    def myFile = new File(output)
+    println ("-----------parsing-------")
+    def myyaml=new YamlSlurper()
+    data = myyaml.parseText(fileConts)
+    println("data=$data")
+    println ("-----------toYaml-------")
+    def yaml = new YamlBuilder()
+    yaml(data)
+    myFile.write(yaml.toString())
+    println yaml.toString()
+   /* fileConts='''
     components:
     - !component
       name: component1
@@ -111,8 +130,7 @@ def updateConfiguration(String fileName,String output){
     '''
     //println ('fileConts'+fileConts)
     //println  yamlSlurper['components']
-    Yaml yaml = new Yaml()
-    def Map  data = (Map) yaml.load(fileConts)
+    
     println('inputYaml:'+data)
     data['components'].each { var ->
         println('Loop:'+var)
@@ -126,16 +144,37 @@ def updateConfiguration(String fileName,String output){
             }
         }
     }
-    saveFile(output,data)
+    saveFile(output,data)*/
 }
 
+def readYamlFileExt(String fileName){
+    String fileConts = new File(fileName).text
+    println ("-----------parsing-------")
+    def myyaml=new YamlSlurper()
+    return  myyaml.parseText(fileConts)
+}
+def readYamlFile(String fileName){
+    Yaml yaml = new Yaml()
+    String fileConts = new File(fileName).text
+    return  (Map) yaml.load(fileConts)
+}
+def writeYamlFile(output,data){
+    println("INPUT:"+data)
+    DumperOptions options = new DumperOptions()
+    options.setPrettyFlow(true)
+    options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK)
+    yaml = new Yaml(options)
+    yaml.dump(data, new FileWriter(output)) 
+}
 
+//params=parseConfig('config')
+//updateConfiguration('configuration.yml','configuration_out.yml')
+ 
+println "read and output file "
+def base='/Users/hongqizhang/workspace/groovytest/work'
+def data= readYamlFileExt(base+'/configuration.yml')
+writeYamlFile('./configuration_out.yml',data )
 
-
-params=parseConfig('config')
-updateConfiguration('configuration.yml','configuration_out.yml')
-   
-   
    
    
 

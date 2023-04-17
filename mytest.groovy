@@ -4,7 +4,35 @@
     import groovy.yaml.YamlSlurper
     import mylib
     import sayHello
-  
+def exeCmd(String cmd){
+    def proc=cmd.execute()
+    proc.waitFor()
+    def out=proc.in.text
+    def err=proc.err.text
+    def code=proc.exitValue()
+    println("err:$err")
+    println ("code=$code")
+    return out
+}
+ def getFileContent1(String SolutionDetail){
+    def wksp="/Users/hongqizhang/workspace/groovytest"
+    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+    def mf ="ls ${wksp}/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split("\\.")[0]}
+    def map=[:]
+    out.each { 
+        map[it]="curl -k ${url}/releases/${it}.xml".execute().text
+        if ( map[it].contains('404: Not Found')){
+          map[it]="cat ${wksp}/releases/${it}.xml".execute().text 
+        }
+    }
+    def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${map[SolutionDetail]}</textarea>"
+    return ret
+}
+//println getFileContent1('config')
+//println getFileContent1('solution')
+//println getFileContent1('backup')
+
     String mybuildScript(List values){
        def ret=values.collect { '"'+it+'"' }
     return "return ${ret}"
@@ -69,71 +97,80 @@ def getContent1(String SolutionDetail ){
       '''
 }
 def getContent11(String SolutionDetail ){
-   return """
-      def wksp="/Users/hongqizhang/workspace/ansibletest"
-      |def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main"
-      |def mf ="ls \${wksp}/releases  ".execute().text
-      |def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
-      |def map=[:]
-      |myls.each { map[it]="curl -k \${url}/releases/\${it}.xml".execute().text }  
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">\${map[SolutionDetail]}</textarea> \"\"\"
-      | """.stripMargin()
+  return '''    def wksp="/Users/hongqizhang/workspace/groovytest"
+    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+    def mf ="ls ${wksp}/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+    def map=[:]
+    out.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text
+        if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.xml".execute().text } }
+    return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
+    '''
 }
 println "============"
 println getContent1('SolutionDetail')
+println getContent11('SolutionDetail')
 println "============="
+SolutionDetail='backup'
+def wksp="/Users/hongqizhang/workspace/groovytest"
+    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+    def mf ="ls ${wksp}/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split("\\.")[0]}
+    def map=[:]
+    out.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text
+        if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.xml".execute().text } }
+    println """ <textarea name="value"  value  class="setting-input  " type="text">${map[SolutionDetail]}</textarea> """
+    
+
+
+System.exit(1)
 String buildQuote(List values){
       List mytmp = []
-      values.each { mytmp.add('"'+it+'"') }
+      values.each { mytmp.add('"\\"'+it+'\\""') }
       return mytmp
     }
+@groovy.transform.Field
+def serversList=['DEV': ['APP': ['s1','s22'],
+                      'DB':['s3']],
+              'BAT': ['APP': ['s3','s55'],
+                      'DB':['s6']],  ]
+List getCompTypes(Map myList=serversList ){
+   List tmp = []
+   myList.each {
+      tmp.add(it.key)
+   }
+   return tmp
+}
+println getCompTypes()
+
 def getServer(String env){
       def map=[:]
       def lis=[]
-      def refvar='bat'
-      def myList=['dev','bat']
-      lis[0]=[ 'A','B']
-      lis[1]=[ 'C','D']
-      myList.eachWithIndex { var,index->
-            map[var]=buildQuote(lis[index])
+      def myList=getCompTypes()
+    
+      serversList.each { key,val->
+            map[key]= buildQuote(val['APP'])
       }
-      println map
+      println "map=$map"
       println "${map[env]}"
       def str=map.toString()
+      def item=map[env]
       return """
-      |def map=$str
-      |def env='bat'
-      |return "\${map[env]}"
+      |def map=${map}
+      |def ret=map[env]
+      |return "\${ret}"
       | """.stripMargin()
-
 }
 
-println getServer('bat')
-def map=[:]
-def env='bat'
-map['dev']= ["A", "B"]
-map['bat']= ["C", "D"]
-println buildQuote(map[env])
+println getServer('dev')
+def env='DEV'
+ map=[DEV:["\"s1\"", "\"s22\""], BAT:["\"s3\"", "\"s55\""]]
+println map
+def ret=map[env]
+println ret
+println "${ret}"
 
-  /*String buildScriptDefault(List values,String key){
-        List tmp = []
-        values.each{ 
-            if ( it.contains(key) ) {
-                tmp.add( it+":selected" )
-            } else { tmp.add( it)}
-        }
 
-        buildScript(tmp)
-    }s
-
-    Types.eachWithIndex{ it,index->
-            String myList = buildScriptDefault(srcMap[it], defaultList[index])
-            String myStr ="if(${myenv}.equals('$it')){ $myList }"+"\n"
-            if ( !ret?.trim() ) {  ret += myStr }
-            else { ret += "else "+myStr }
-    }
-    ret += """else{  return ["N/A"] }"""
-    println "$ret"*/
 
     System.exit(1)
     List myvar = ['abc','efd','xyz']

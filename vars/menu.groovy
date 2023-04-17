@@ -21,7 +21,19 @@ def getFileContent(String SolutionDetail ){
     def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
     convertScript(ret)
 }
+
 def getContent(String SolutionDetail ){
+  return '''    def wksp="/Users/hongqizhang/workspace/groovytest"
+    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+    def mf ="ls ${wksp}/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+    def map=[:]
+    out.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text
+        if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.xml".execute().text } }
+    return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
+    '''
+}
+def getContent1(String SolutionDetail ){
    return '''
       def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
       def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"

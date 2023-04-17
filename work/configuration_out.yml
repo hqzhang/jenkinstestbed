@@ -1,6 +1,11 @@
 components:
 - name: component1
-  argv: xyz
+  argv: first
   settings:
-    username: hongqi9999
-    password: a568
+    username: hongqi
+    password: nopass
+- name: component2
+  argv1: first2
+  settings:
+    username: hongqi2
+    password: nopass2

@@ -123,18 +123,10 @@ def getContent(String SolutionDetail ){
       | """.stripMargin()
 }
 println "============"
-println getContent('SolutionDetail')
+params="CONFIG:components:\n  - name: Backup\n    type: AA\n    version: 1122\n    path:  X/Y/Z\n    executable: JAVA\n  - name: XYZ\n    type: XX\n    version: 123\n    path: A/B/C\n"   
+
 println "============="
-SolutionDetail='backup'
-def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
-def urlext=""
-def mf ="ls /Users/hongqizhang/.jenkins/workspace/agroovytest/releases  ".execute().text
-def out=mf.readLines().collect{ it.split("\\.")[0]}
-def map=[:]
-out.each { map[it]="curl -k ${url}/releases/${it}.yaml${urlext}".execute().text
-if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } }
-println """ <textarea name="value"  value  class="setting-input  " type="text">${map[SolutionDetail]}</textarea> """
+
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

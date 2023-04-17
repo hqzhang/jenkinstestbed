@@ -36,10 +36,10 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    echo "params=$params"
+                    echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                    def read = readYaml text: env.CONFIG
-                    println read
+                    //def read = readYaml text: env.CONFIG
+                    //println read
                     //writeYamlFile(read, "releases/backup.yaml")
                     //sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers

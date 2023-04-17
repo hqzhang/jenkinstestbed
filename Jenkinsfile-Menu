@@ -41,11 +41,11 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                    def result = env.CONFIG.replaceAll(/\n/, "\n").replaceAll(',','')
-                    println result
-                    sh 'rm -rf mySuperFile.txt'
-                    def myFile = new File('mySuperFile.txt')
-                    myFile.write(result)
+                
+                    def result = data.replaceAll(/\n/, "\n").replaceAll(',','')
+                    writeFile file: 'testtext', text: var
+                    sh 'hexdump -C testtext'
+                    sh 'cat releases/solution.yaml; hexdump -C releases/solution.yaml'
 
                     
                     //def str = env.CONFIG.replaceAll(/\n/, "\\n ").replaceAll(',','')

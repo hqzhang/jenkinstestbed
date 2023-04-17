@@ -28,8 +28,8 @@ def getContent(String SolutionDetail ){
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\\\.")[0]}
     def map=[:]
-    out.each { map[it]="curl -k ${url}/releases/${it}.xml".execute().text
-        if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.xml".execute().text } }
+    out.each { map[it]="curl -k ${url}/releases/${it}.yaml".execute().text
+        if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } }
     return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
     '''
 }

@@ -167,21 +167,9 @@ def writeYamlFile(output,data){
     yaml.dump(data, new FileWriter(output)) 
 }
 
-//params=parseConfig('config')
-//updateConfiguration('configuration.yml','configuration_out.yml')
-def data="components:\n  - name: Solution\n    type: AA,"
-def str = "hello\\nworld\\n,"
-println "input=$str"
-def multiLineStr = str.replaceAll(/\\n/,"\n").replaceAll(',','')
-println "output=$multiLineStr"
-println("INPUT:"+data)
-    DumperOptions options = new DumperOptions()
-    options.setPrettyFlow(true)
-    options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK)
-    yaml = new Yaml(options)
-    yaml.dump(data, new FileWriter('configuration_out.yml')) 
-
-
+ def struct=readYamlFile('configuration.yml')
+ writeYamlFile('configuration_out.yml',struct)
+   
 
    
    

@@ -1,11 +1,4 @@
-components:
-- name: component1
-  argv: first
-  settings:
-    username: hongqi
-    password: nopass
-- name: component2
-  argv1: first2
-  settings:
-    username: hongqi2
-    password: nopass2
+|-
+  components:
+    - name: Solution
+      type: AA

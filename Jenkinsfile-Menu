@@ -50,8 +50,8 @@ pipeline {
                     sh 'cat releases/solution.yaml; hexdump -C releases/solution.yaml'
                     def read = readYaml text: multiLineStr
                     println read
-                    //writeYamlFile(read, "releases/backup.yaml")
-                    //sh "cat releases/backup.yaml"
+                    writeYamlFile(read, "releases/backup.yaml")
+                    sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers
                     echo "params=$params"
                     if ( targtServer.equals('ERROR') ) 

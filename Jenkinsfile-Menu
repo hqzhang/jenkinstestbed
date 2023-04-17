@@ -3,7 +3,7 @@
 library("groovytest-shared-lib@master") _
 
 
-println menu.getFileList()
+println menu.getFileList('solution')
 println menu.getFileContent('SolutionDetail')
 
 properties([

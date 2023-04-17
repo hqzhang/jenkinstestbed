@@ -21,7 +21,7 @@ properties([
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
             script: menu.getContent('SolutionDetail' )]]],
-            
+
             string(name: 'filebackup', defaultValue: 'backup.xml', description: 'A payload from github webhook'),
              
 ])
@@ -37,7 +37,7 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params"
                     echo "parsing yaml"
-                    def read = menu.readYamlString(env.CONFIG)
+                    def read = readYaml text: env.CONFIG
                     println read
                     writeYamlFile(read, "releases/backup.yaml")
                     sh "cat releases/backup.yaml"

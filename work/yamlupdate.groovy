@@ -169,11 +169,12 @@ def writeYamlFile(output,data){
 
 //params=parseConfig('config')
 //updateConfiguration('configuration.yml','configuration_out.yml')
-params="components:\n  - name: Solution\n    type: AA,"
-println "read and output file "
-def base='/Users/hongqizhang/workspace/groovytest/work'
-def data= readYamlFileExt(base+'/configuration.yml')
-writeYamlFile('./configuration_out.yml',data )
+def data="components:\n  - name: Solution\n    type: AA,"
+//def list=params.replaceAll(/\n/,"\n").replaceAll(',')
+
+def result = data.replaceAll(/\n,/, "\n ")
+println result // prints "a \n b \n c\n"
+
 
    
    

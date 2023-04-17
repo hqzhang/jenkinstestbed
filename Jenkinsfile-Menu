@@ -44,7 +44,7 @@ pipeline {
                     
                     def str = params.CONFIG 
                     def multiLineStr = """${str}"""
-                    println multiLineStr
+                    println "multiLineStr=$multiLineStr"
                     
                     writeFile file: 'testtext', text: multiLineStr
                     sh 'hexdump -C testtext'

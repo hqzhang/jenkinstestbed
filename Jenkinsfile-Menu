@@ -2,7 +2,7 @@
 
 library("groovytest-shared-lib@master") _
 
-sh 'ls -al'
+
 println menu.getFileList()
 println menu.getFileContent('SolutionDetail')
 

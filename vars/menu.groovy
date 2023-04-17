@@ -50,3 +50,21 @@ def getFileList(){
     def out=mf.readLines().collect{ it.split("\\.")[0] }
     return out
 }
+def readYamlString(String str){
+    Yaml yaml = new Yaml()
+    return  (Map) yaml.load(str)
+}
+def readYamlFile(String fileName){
+    Yaml yaml = new Yaml()
+    String fileConts = new File(fileName).text
+    return  (Map) yaml.load(fileConts)
+}
+
+def writeYamlFile(output,data){
+    println("INPUT:"+data)
+    DumperOptions options = new DumperOptions()
+    options.setPrettyFlow(true)
+    options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK)
+    yaml = new Yaml(options)
+    yaml.dump(data, new FileWriter(output)) 
+}

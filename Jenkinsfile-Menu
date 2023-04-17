@@ -16,7 +16,7 @@ properties([
               type: 'PT_SINGLE_SELECT',
               groovyScript: menu.getFileList(), ),*/
             choice( name: 'SolutionDetail', description: '', choices: menu.getFileList() ),
-           [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'services', omitValueField: false, 
+           [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', omitValueField: false, 
            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
            script: menu.getContent('SolutionDetail' )]]],
@@ -38,6 +38,11 @@ pipeline {
                 script {
                     echo "STAGE: create List..."
                     echo "params=$params"
+                    echo "parsing yaml"
+                    def read = menu.readYamlString(env.CONFIG)
+                    println read
+                    writeYamlFile(read, "releases/backup.yaml")
+                    sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers
                     echo "params=$params"
                     if ( targtServer.equals('ERROR') ) 

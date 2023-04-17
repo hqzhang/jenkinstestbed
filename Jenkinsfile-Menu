@@ -42,7 +42,7 @@ pipeline {
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
                     def test=params.CONFIG
-                    println test
+                    println "CONFIG=$test"
                     def multiLineStr = test.replaceAll(/\\n/,"\n").replaceAll('').replaceAll(',','')
                     println "multiLineStr=$multiLineStr"
                     writeFile file: 'testtext', text: multiLineStr

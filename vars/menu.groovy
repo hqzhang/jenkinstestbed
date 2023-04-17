@@ -54,7 +54,7 @@ def getContent1(String SolutionDetail ){
 def getFileDefault(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
-    def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+    def out=mf.readLines().collect{ it.split("\\\\.")[0].minus('.yaml') }
     def ret=[]
     println out
     out.each {  

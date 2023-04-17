@@ -43,6 +43,7 @@ pipeline {
                     echo "parsing yaml"
                     def result = env.CONFIG.replaceAll(/\n/, "\n").replaceAll(',','')
                     println result
+                    sh 'rm -rf mySuperFile.txt'
                     def myFile = new File('mySuperFile.txt')
                     myFile.write(result)
 

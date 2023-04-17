@@ -41,11 +41,14 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
-                    sh 'hexdump -C release/helloword'
-                    def str = env.CONFIG.replaceAll(/\n/, "\\n ").replaceAll(',','')
-                    println "str=$str"
-                    def read = readYaml text: str
-                    println read
+                    writeFile file: 'testtext', text: env.CONFIG
+                     sh 'hexdump -C testtext'
+                    sh 'hexdump -C release/soluton.xml'
+                    
+                    //def str = env.CONFIG.replaceAll(/\n/, "\\n ").replaceAll(',','')
+                    //println "str=$str"
+                    //def read = readYaml text: str
+                    //println read
                     //writeYamlFile(read, "releases/backup.yaml")
                     //sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers

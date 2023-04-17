@@ -51,12 +51,22 @@ def getContent1(String SolutionDetail ){
       return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
       '''
 }
-def getFileList(){
-    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-    def mf ="ls ${wksp}/releases  ".execute().text
-    def out=mf.readLines().collect{ it.split("\\.")[0] }
+def getFileList(String dft ){
+    def test=''
+    def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split()[0].minus('.xml') }
+    def ret=[]
+    println out
+    out.each {  
+        if ( it.contains(dft) ) { 
+            out.remove(it)
+            out.add(it+':selected') 
+        }
+    }
+      
     return out
 }
+
 def readYamlString(String str){
     Yaml yaml = new Yaml()
     return  (Map) yaml.load(str)

@@ -125,12 +125,16 @@ def getContent(String SolutionDetail ){
 def getFileList1(String dft ){
     def test=''
     def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
-    def out=mf.readLines().collect{ it.split()[0].minus('.xml')}
+    def out=mf.readLines().collect{ it.split()[0].minus('.xml') }
     def ret=[]
-    out.each { 
-        if ( it == dft ){  ret.add(it+':selected')
-        else { ret.add(it) }
+    println out
+    out.each {  
+        if ( it.contains(dft) ) { 
+            out.remove(it)
+            out.add(it+':selected') 
+        }
     }
+      
     return out
 }
 println "============"

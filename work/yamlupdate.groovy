@@ -169,7 +169,7 @@ def writeYamlFile(output,data){
 
 //params=parseConfig('config')
 //updateConfiguration('configuration.yml','configuration_out.yml')
- params=components:\n  - name: Backup\n    type: AA\n    version: 1122\n    path:  X/Y/Z\n    executable: JAVA\n  - name: XYZ\n    type: XX\n    version: 123\n    path: A/B/C\n    executable: JAVA,
+params="components:\n  - name: Solution\n    type: AA,"
 println "read and output file "
 def base='/Users/hongqizhang/workspace/groovytest/work'
 def data= readYamlFileExt(base+'/configuration.yml')

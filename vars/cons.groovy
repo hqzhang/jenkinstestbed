@@ -1,5 +1,4 @@
-@groovy.transform.Field
-def envList=['DEV','BAT','PAT','PROD','DR']
+ƒdef envList=['DEV','BAT','PAT','PROD','DR']
 //def envList=['DEV','BAT']
 //@groovy.transform.Field
 //def componentTypes=['ROUTER_M','CPS']

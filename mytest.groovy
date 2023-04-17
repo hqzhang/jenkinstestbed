@@ -122,9 +122,19 @@ def getContent(String SolutionDetail ){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">\${map[SolutionDetail]}</textarea> \"\"\"
       | """.stripMargin()
 }
+def getFileList1(String dft ){
+    def test=''
+    def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split()[0].minus('.xml')}
+    def ret=[]
+    out.each { 
+        if ( it == dft ){  ret.add(it+':selected')
+        else { ret.add(it) }
+    }
+    return out
+}
 println "============"
-params="CONFIG:components:\n  - name: Backup\n    type: AA\n    version: 1122\n    path:  X/Y/Z\n    executable: JAVA\n  - name: XYZ\n    type: XX\n    version: 123\n    path: A/B/C\n"   
-
+println getFileList1('solution')
 println "============="
 
 System.exit(1)

@@ -49,7 +49,7 @@ pipeline {
                     sh 'hexdump -C testtext'
                     sh 'cat releases/solution.yaml; hexdump -C releases/solution.yaml'
                     def read = readYaml text: multiLineStr
-                    println read
+                    println read['component']
                     menu.writeYamlFile("releases/backup.yaml",read)
                     sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers

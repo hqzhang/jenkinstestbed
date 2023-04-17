@@ -42,7 +42,8 @@ pipeline {
                     echo "params=$params.CONFIG"
                     echo "parsing yaml"
                 
-                    def result = params.CONFIG.replaceAll(/\n/, "\n").replaceAll(',','')
+                    def result = params.CONFIG.replaceAll(',','').split( "\n")
+                    println result
                     writeFile file: 'testtext', text: result
                     sh 'hexdump -C testtext'
                     sh 'cat releases/solution.yaml; hexdump -C releases/solution.yaml'

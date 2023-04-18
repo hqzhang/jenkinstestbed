@@ -1,7 +1,7 @@
 //////
 
 library("groovytest-shared-lib@master") _
-
+import hudson.FilePath
 println scm.branches
 println scm.getUserRemoteConfigs()
 println "printenv".execute().text

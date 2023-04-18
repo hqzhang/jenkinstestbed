@@ -2,7 +2,7 @@
 
 library("groovytest-shared-lib@master") _
 
-println env.GIT_BRANCH
+println scm
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 

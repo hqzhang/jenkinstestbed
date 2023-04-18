@@ -60,7 +60,6 @@ def getFileList(String dft ){
     out.eachWithIndex{ it, id-> 
         if ( it.contains(dft) ){ index=id }
     }
-    println index
     out.add(0, out.remove(index))
     return out 
 }

@@ -26,7 +26,7 @@ properties([
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 
             script: menu.getContent('SolutionDetail' )]]],
 
-            string(name: 'filebackup', defaultValue: 'backup.xml', description: 'A payload from github webhook'),
+            string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'A payload from github webhook'),
              
 ])
 ])

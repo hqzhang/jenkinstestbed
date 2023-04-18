@@ -133,25 +133,25 @@ def getFileList1(String dft ){
 def getFileDefault1(String dft ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
    return """def wksp=\"${wksp}\"
-      |def mf ="ls \{wksp}/releases  ".execute().text
+      |def mf ="ls \${wksp}/releases  ".execute().text
       |def out=mf.readLines().collect{ 
-      |    if(it.contains(\"$flt\") ){ '"'+it.split("\\\\.")[0]+':selected"' } 
+      |    if(it.contains(\"$dft\") ){ '"'+it.split("\\\\.")[0]+':selected"' } 
       |    else { '"'+it.split("\\\\.")[0]+'"' } }
       |return \"\"\"return \$out \"\"\"
       | """.stripMargin()
 }
-
+println "============"
+println getFileDefault1('solution')
 println "============"
 println getFileList1('solution')
 println "============="
-println 
+
 def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
-def urlext=""
-def mf ="ls /Users/hongqizhang/.jenkins/workspace/agroovytest/releases  ".execute().text
-def out=mf.readLines().collect{ if(it.contains("solution") ){ 
-'"'+it.split("\\.")[0]+':selected"' } else { '"'+it.split("\\.")[0]+'"' } }
-println """return $out"""
+def mf ="ls ${wksp}/releases  ".execute().text
+def out=mf.readLines().collect{ 
+    if(it.contains("solution") ){ '"'+it.split("\\.")[0]+':selected"' } 
+    else { '"'+it.split("\\.")[0]+'"' } }
+println """return $out """
 
 System.exit(1)
 String buildQuote(List values){

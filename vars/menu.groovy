@@ -52,33 +52,23 @@ def getContent1(String SolutionDetail ){
       '''
 }
 
-def getFileDefault1(String dflt ){
-   def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-   def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
-   def urlext=""
-   return """def wksp=\"${wksp}\"
-      |def url=\"${url}\"
-      |def urlext=\"${urlext}\"
-      |def mf ="ls ${wksp}/releases  ".execute().text
-      |def out=mf.readLines().collect{ if(it.contains(\"$dflt\") ){ 
-      |'"'+it.split("\\\\.")[0]+':selected"' } else { '"'+it.split("\\\\.")[0]+'"' } }
-      |return \"\"\"return \$out\"\"\"
-      | """.stripMargin()
-}
-
-def getFileDefault(String dft ){
+def getFileList(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
-    def out=mf.readLines().collect{ it.split("\\\\.")[0].minus('.yaml') }
-    def ret=[]
-    println out
-    out.each {  
-        if ( it.contains(dft) ) { 
-            out.remove(it)
-            out.add(it+':selected') 
-        }
-    }
-    buildScript(out)
+    def out=mf.readLines().collect{ 
+        if(it.contains(dft)){ '"'+it.split("\\.")[0]+':selected"' }
+        else { '"'+it.split("\\.")[0]+'"' } }
+    return """return $out """
+}
+def getFileDft(String dft ){
+   def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+   return """def wksp=\"${wksp}\"
+      |def mf ="ls \${wksp}/releases  ".execute().text
+      |def out=mf.readLines().collect{ 
+      |    if(it.contains(\"$dft\") ){ '"'+it.split("\\\\.")[0]+':selected"' } 
+      |    else { '"'+it.split("\\\\.")[0]+'"' } }
+      |return \"\"\"return \$out \"\"\"
+      | """.stripMargin()
 }
 
 def readYamlString(String str){

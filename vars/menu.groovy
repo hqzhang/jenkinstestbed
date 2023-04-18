@@ -52,7 +52,7 @@ def getContent1(String SolutionDetail ){
       '''
 }
 
-def getFileDefault(String default ){
+def getFileDefault1(String dflt ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
    def urlext=""
@@ -60,8 +60,9 @@ def getFileDefault(String default ){
       |def url=\"${url}\"
       |def urlext=\"${urlext}\"
       |def mf ="ls ${wksp}/releases  ".execute().text
-      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
-      |return \"\"\" \$out\"\"\"
+      |def out=mf.readLines().collect{ if(it.contains(dflt) ){ 
+      |'"'+it.split("\\\\.")[0]+':selected"' } else { '"'+it.split("\\\\.")[0]+'"' } }
+      |return \"\"\"return \$out\"\"\"
       | """.stripMargin()
 }
 

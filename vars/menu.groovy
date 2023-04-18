@@ -55,7 +55,7 @@ def getContent1(String SolutionDetail ){
 def getFileList(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
-    def out=mf.readLines().collect{  '"'+it.split("\\.")[0]+'"' } 
+    def out=mf.readLines().collect{  it.split("\\.")[0] } 
     def index=0
     out.eachWithIndex{ it, id-> 
         if ( it.contains(dft) ){ index=id }

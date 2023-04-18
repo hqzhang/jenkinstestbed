@@ -125,18 +125,16 @@ def getContent(String SolutionDetail ){
 def getFileList1(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
-    def out=mf.readLines().collect{ 
-        if(it.contains(dft)){ '"'+it.split("\\.")[0]+':selected"' }
-        else { '"'+it.split("\\.")[0]+'"' } }
-    return """return $out """
+    def out=mf.readLines().collect{  '"'+it.split("\\.")[0]+'"' } 
+    out.remove(dft)
+    out.insert(0, dft)
+    return """ $out """
 }
 def getFileDefault1(String dft ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
    return """def wksp=\"${wksp}\"
       |def mf ="ls \${wksp}/releases  ".execute().text
-      |def out=mf.readLines().collect{ 
-      |    if(it.contains(\"$dft\") ){ '"'+it.split("\\\\.")[0]+':selected"' } 
-      |    else { '"'+it.split("\\\\.")[0]+'"' } }
+      |def out=mf.readLines().collect{ '"'+it.split("\\\\.")[0]+'"'  }
       |return \"\"\"return \$out \"\"\"
       | """.stripMargin()
 }

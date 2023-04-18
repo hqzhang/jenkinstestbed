@@ -52,7 +52,7 @@ def getContent1(String SolutionDetail ){
       '''
 }
 
-def getFileDefault1(String dflt ){
+def getFileDefault(String dflt ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
    def urlext=""

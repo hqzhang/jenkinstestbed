@@ -5,8 +5,9 @@ library("groovytest-shared-lib@master") _
 println scm.branches
 println scm.getUserRemoteConfigs()
 println "printenv".execute().text
-   def jenkins = Jenkins.getInstance()
+def jenkins = Jenkins.getInstance()
 def workspacePath = jenkins.getWorkspaceFor(new FilePath(new File("."))).remote
+
 echo "Workspace path: ${workspacePath}"
 
 pipeline {

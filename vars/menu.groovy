@@ -60,7 +60,7 @@ def getFileDefault(String dflt ){
       |def url=\"${url}\"
       |def urlext=\"${urlext}\"
       |def mf ="ls ${wksp}/releases  ".execute().text
-      |def out=mf.readLines().collect{ if(it.contains(dflt) ){ 
+      |def out=mf.readLines().collect{ if(it.contains(\"$dflt\") ){ 
       |'"'+it.split("\\\\.")[0]+':selected"' } else { '"'+it.split("\\\\.")[0]+'"' } }
       |return \"\"\"return \$out\"\"\"
       | """.stripMargin()

@@ -52,7 +52,7 @@ def getContent1(String SolutionDetail ){
       '''
 }
 
-def getFileDefault(String dflt ){
+def getFileDefault1(String dflt ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
    def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
    def urlext=""
@@ -66,7 +66,7 @@ def getFileDefault(String dflt ){
       | """.stripMargin()
 }
 
-def getFileDefault1(String dft ){
+def getFileDefault(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\\\.")[0].minus('.yaml') }

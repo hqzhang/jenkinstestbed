@@ -52,7 +52,7 @@ def getContent1(String SolutionDetail ){
       '''
 }
 
-def getFileList(String dft ){
+def getFileList88(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
@@ -64,6 +64,12 @@ def getFileList(String dft ){
     out.add(0, out.remove(index))
     println "out=$out"
     return """ $out """
+}
+def getFileList(){
+    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+    def mf ="ls ${wksp}/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split("\\.")[0] }
+    return out
 }
 def getFileDft(String dft ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"

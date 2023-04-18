@@ -153,8 +153,12 @@ println "============="
 def list = ['a', 'b', 'c']
 list.add(0, list.remove(list.size() - 1))
 println(list) // Output: ['c', 'a', 'b']
+my="""[null => http://github.com/hqzhang/groovytest.git (null)]"""
+your="""[master/*]"""
+def str = """[master/*]"""
+def result = str.replaceAll(/\[|\*|\]/, '')
 
-
+println(result) // O
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []
@@ -199,7 +203,7 @@ def env='DEV'
  map=[DEV:["\"s1\"", "\"s22\""], BAT:["\"s3\"", "\"s55\""]]
 println map
 def ret=map[env]
-println ret
+println my.replaceAll(/\n*$/, "")
 println "${ret}"
 
 

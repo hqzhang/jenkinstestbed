@@ -5,6 +5,8 @@ library("groovytest-shared-lib@master") _
 println scm.branches
 println scm.getUserRemoteConfigs()
 println "printenv".execute().text
+def workspacePath = env.WORKSPACE
+echo "Workspace path: ${workspacePath}"
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 println "pwd".execute().text

@@ -4,7 +4,7 @@ library("groovytest-shared-lib@master") _
 
 println scm.branches
 println scm.getUserRemoteConfigs()
-println "pwd".execute().text
+println "printenv".execute().text
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 println "pwd".execute().text

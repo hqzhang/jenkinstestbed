@@ -65,7 +65,7 @@ def getFileList88(String dft ){
     println "out=$out"
     return """ $out """
 }
-def getFileList(){
+def getFileList(String dft){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\.")[0] }

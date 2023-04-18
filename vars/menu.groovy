@@ -58,7 +58,7 @@ def getFileList(String dft ){
     def out=mf.readLines().collect{ 
         if(it.contains(dft)){ '"'+it.split("\\.")[0]+':selected"' }
         else { '"'+it.split("\\.")[0]+'"' } }
-    return """return $out """
+    return """ $out """
 }
 def getFileDft(String dft ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"

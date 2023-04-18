@@ -154,7 +154,6 @@ def getFileDefault1(String dflt ){
 println "============"
 println getFileDefault1('solution')
 println "============="
-def dflt='solution'
 def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
 def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
 def urlext=""
@@ -162,7 +161,6 @@ def mf ="ls /Users/hongqizhang/.jenkins/workspace/agroovytest/releases  ".execut
 def out=mf.readLines().collect{ if(it.contains("solution") ){ 
 '"'+it.split("\\.")[0]+':selected"' } else { '"'+it.split("\\.")[0]+'"' } }
 println """return $out"""
-
 
 System.exit(1)
 String buildQuote(List values){

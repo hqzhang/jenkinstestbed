@@ -45,7 +45,8 @@ pipeline {
                     
                     writeFile file: "releases/${filebackup}", text: multiLineStr
                     sh "cat releases/${filebackup}"
-
+                    sh "rm releases/backup.xml"
+                    sh "rm releases/backup_ch.xml"
                     def read = readYaml text: multiLineStr
                     println read['component']
                     

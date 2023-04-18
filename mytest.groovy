@@ -156,9 +156,15 @@ println(list) // Output: ['c', 'a', 'b']
 my="""[null => http://github.com/hqzhang/groovytest.git (null)]"""
 your="""[master/*]"""
 def str = """[master/*]"""
-def result = str.replaceAll(/\[|\*|\]/, '')
-
+def result = str.replaceAll(/\[|\*|\]|\//, '')
+//def result = str.replaceAll(/^\*\//, '')
 println(result) // O
+def string = """[null => http://github.com/hqzhang/groovytest.git (null)]"""
+def matcher = string =~ /(https?:\/\/[^\s]+)/
+matcher.find()
+urlString = matcher.group(1)
+
+println urlString
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

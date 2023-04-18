@@ -4,6 +4,7 @@ library("groovytest-shared-lib@master") _
 
 println scm.branches
 println scm.getUserRemoteConfigs()
+println build.project.name
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 

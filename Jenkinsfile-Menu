@@ -4,10 +4,10 @@ library("groovytest-shared-lib@master") _
 
 println scm.branches
 println scm.getUserRemoteConfigs()
-println build.project.name
+println "pwd".execute().text
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
-
+println "pwd".execute().text
 properties([
     pipelineTriggers([githubPush()]),
     parameters([

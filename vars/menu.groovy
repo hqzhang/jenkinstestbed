@@ -51,7 +51,21 @@ def getContent1(String SolutionDetail ){
       return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
       '''
 }
-def getFileDefault(String dft ){
+
+def getFileDefault(String default ){
+   def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+   def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+   def urlext=""
+   return """def wksp=\"${wksp}\"
+      |def url=\"${url}\"
+      |def urlext=\"${urlext}\"
+      |def mf ="ls ${wksp}/releases  ".execute().text
+      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+      |return \"\"\" \$out\"\"\"
+      | """.stripMargin()
+}
+
+def getFileDefault1(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\\\.")[0].minus('.yaml') }
@@ -84,3 +98,6 @@ def writeYamlFile(output,data){
     yaml = new Yaml(options)
     yaml.dump(data, new FileWriter(output)) 
 }
+println "==========="
+println getFileDefault('solution')
+println "==========="

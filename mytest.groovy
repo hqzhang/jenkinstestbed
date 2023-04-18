@@ -137,10 +137,28 @@ def getFileList1(String dft ){
       
     return out
 }
-println "============"
-println getFileList1('solution')
-println "============="
+def getFileDefault1(String dflt ){
+   def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+   def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+   def urlext=""
+   return """def wksp=\"${wksp}\"
+      |def url=\"${url}\"
+      |def urlext=\"${urlext}\"
+      |def mf ="ls ${wksp}/releases  ".execute().text
+      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+      |return \"\"\" \$out\"\"\"
+      | """.stripMargin()
+}
 
+println "============"
+println getFileDefault1('solution')
+println "============="
+def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+def urlext=""
+def mf ="ls /Users/hongqizhang/.jenkins/workspace/agroovytest/releases  ".execute().text
+def out=mf.readLines().collect{ it.split("\\.")[0]}
+return """ $out"""
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

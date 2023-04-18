@@ -2,7 +2,7 @@
 
 library("groovytest-shared-lib@master") _
 
-
+println scm.branch[0].name
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 

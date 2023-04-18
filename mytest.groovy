@@ -126,8 +126,13 @@ def getFileList1(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{  '"'+it.split("\\.")[0]+'"' } 
-    out.remove(dft)
-    out.insert(0, dft)
+    def index=0
+    out.eachWithIndex{ it, id-> 
+        if ( it.contains(dft) ){ index=id }
+    }
+    println index
+    out.add(0, out.remove(index))
+    println "out=$out"
     return """ $out """
 }
 def getFileDefault1(String dft ){
@@ -144,8 +149,11 @@ println "============"
 println getFileList1('solution')
 println "============="
 
-out=["\"A\"","\"B\""] 
-println """return $out """
+
+def list = ['a', 'b', 'c']
+list.add(0, list.remove(list.size() - 1))
+println(list) // Output: ['c', 'a', 'b']
+
 
 System.exit(1)
 String buildQuote(List values){

@@ -159,9 +159,10 @@ def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
 def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
 def urlext=""
 def mf ="ls /Users/hongqizhang/.jenkins/workspace/agroovytest/releases  ".execute().text
-def out=mf.readLines().collect{ if(it.contains(dflt) ){ '"'+it.split("\\.")[0]+':selected"' }
-        else { '"'+it.split("\\.")[0]+'"' } }
+def out=mf.readLines().collect{ if(it.contains(dflt) ){ 
+'"'+it.split("\\.")[0]+':selected"' } else { '"'+it.split("\\.")[0]+'"' } }
 println """return $out"""
+
 
 System.exit(1)
 String buildQuote(List values){

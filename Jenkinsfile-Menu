@@ -20,7 +20,7 @@ properties([
             [$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, 
               filterable: false, name: 'SolutionDetail', randomName: 'choice-parameter-242872671984832',
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
-               script: [classpath: [], oldScript: '', sandbox: false, script: menu.getFileDft('solution') ]]],
+               script: [classpath: [], oldScript: '', sandbox: false, script: menu.getFileList('solution') ]]],
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', omitValueField: false, 
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], script: [classpath: [], oldScript: '', sandbox: false, 

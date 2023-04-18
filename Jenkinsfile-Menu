@@ -47,7 +47,7 @@ pipeline {
                     sh "cat releases/${filebackup}"
                    
                     def read = readYaml text: multiLineStr
-                    println read['component']
+                    println read
                     
                     /*def targtServer=params.servers
                     echo "params=$params"

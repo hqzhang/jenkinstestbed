@@ -39,18 +39,16 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    echo "params=$params.CONFIG"
+                    echo "params=$params"
                     echo "parsing yaml"
-                    def test=params.CONFIG
-                    println "CONFIG=$test"
-                    def multiLineStr = test.replaceAll(/\\n/,"\n").replaceAll(',','')
-                    println "multiLineStr=$multiLineStr"
-                    writeFile file: 'releases/backup.yaml', text: multiLineStr
-                    sh "cat releases/backup.yaml"
+                    def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
+                    
+                    writeFile file: "releases/${filebackup}", text: multiLineStr
+                    sh "cat releases/${filebackup}"
+
                     def read = readYaml text: multiLineStr
                     println read['component']
                     
-                    sh "cat releases/backup.yaml"
                     /*def targtServer=params.servers
                     echo "params=$params"
                     if ( targtServer.equals('ERROR') ) 

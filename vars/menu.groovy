@@ -48,7 +48,7 @@ def getContent1(String SolutionDetail ){
       def myls = mf.readLines().collect{ it.split("\\\\.")[0]}
       def map=[:]
       myls.each { map[it]="curl -k ${url}/releases/\${it}.yaml".execute().text }  
-      return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
+      return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="40>\${map[SolutionDetail]}</textarea> """
       '''
 }
 

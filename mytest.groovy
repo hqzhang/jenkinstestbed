@@ -146,11 +146,7 @@ println "============"
 println getFileList1('solution')
 println "============="
 
-def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-def mf ="ls ${wksp}/releases  ".execute().text
-def out=mf.readLines().collect{ 
-    if(it.contains("solution") ){ '"'+it.split("\\.")[0]+':selected"' } 
-    else { '"'+it.split("\\.")[0]+'"' } }
+out=["\"A\"","\"B\""] 
 println """return $out """
 
 System.exit(1)

@@ -6,7 +6,7 @@ println scm.branches
 println scm.getUserRemoteConfigs()
 println "printenv".execute().text
 def jenkins = Jenkins.getInstance()
-def workspacePath = jenkins.getWorkspaceFor(new FilePath(new File("."))).remote
+def workspacePath = jenkins.getAllJobs() 
 
 echo "Workspace path: ${workspacePath}"
 

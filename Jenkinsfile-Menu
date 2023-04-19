@@ -18,7 +18,7 @@ properties([
     pipelineTriggers([githubPush()]),
     parameters([
 def url=scm.getUserRemoteConfigs().toString()
-            choice( name: 'test', description: '', choices: [ branch1, url1, job1 ]  ),
+            //choice( name: 'test', description: '', choices: [ branch1, url1, job1 ]  ),
            /*extendedChoice(
               name: 'SolutionDetail',
               description: '',

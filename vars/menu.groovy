@@ -29,13 +29,13 @@ def getContent(String SolutionDetail ,String jobstr, String repo ,String brch){
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""
    return """def wksp=\"${wksp}\"
-      |def url=\"\${urlstr}/master\"
+      |def url=\"${url}\"
       |def urlext=\"${urlext}\"
-      |def mf ="ls ${wksp}/\${jobstr}/releases  ".execute().text
+      |def mf ="ls \${wksp}/\${jobstr}/releases  ".execute().text
       |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
       |def map=[:]
-      |out.each { map[it]="curl -k ${url}/\${repo}/releases/\${it}.yaml$urlext}".execute().text
-      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/releases/\${it}.yaml".execute().text } }
+      |out.each { map[it]="curl -k \${url}/\${repo}/releases/\${it}.yaml\$urlext".execute().text
+      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/\${jobstr}/releases/\${it}.yaml".execute().text } }
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[SolutionDetail]}</textarea> \"\"\"
       | """.stripMargin()
 }

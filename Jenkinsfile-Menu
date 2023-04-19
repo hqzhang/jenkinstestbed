@@ -52,7 +52,7 @@ pipeline {
                     echo "params=$params"
                     echo "parsing yaml"
                     println env.CONFIG 
-                    if ( env.CONFIG == null ){
+                    if ( env.CONFIG == '' ){
                         echo "CONFIG is not SET"
                         sh 'exit 1'
                     }

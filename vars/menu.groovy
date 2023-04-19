@@ -26,7 +26,7 @@ def getFileContent(String SolutionDetail ){
 
 def getContent(String SolutionDetail ,String jobstr, String repo ,String brch){
    def wksp="/Users/hongqizhang/.jenkins/workspace"
-   def url="https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases"
+   def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""
    return """def wksp=\"${wksp}\"
       |def url=\"\${urlstr}/master\"

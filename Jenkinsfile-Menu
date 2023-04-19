@@ -4,16 +4,16 @@ library("groovytest-shared-lib@master") _
 import hudson.FilePath
 def branch= scm.branches
 //def branch= scm.branches.split("\\/")[0].replaceAll("\\[",'')
-println "branch=$branch"
+println "------branch=$branch"
 url=scm.getUserRemoteConfigs()
 //url=scm.getUserRemoteConfigs().split("\\[")[3].split("\\/")[0]
-println "url=$url"
+println "------url=$url"
 def job = Thread.currentThread().toString()
 //def job = Thread.currentThread().toString().split("\\[")[3].split("\\/")[0]
-println "job=$job"
+println "------job=$job"
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
-println "pwd".execute().text
+
 properties([
     pipelineTriggers([githubPush()]),
     parameters([

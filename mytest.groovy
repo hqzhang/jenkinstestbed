@@ -170,12 +170,11 @@ matcher.find()
 def jobName = matcher.group(1)
 //jobName = jobName.substring(0, jobName.indexOf('/'))
 println jobName
-tmp=threadDescription.split("\\[")[3].split("\\/")[0]
+println str.split("\\/")[0].replaceAll("\\[",'')
+println threadDescription.split("\\[")[3].split("\\/")[0]
+println string.split()[2]
 
-def parts = threadDescription.split(/[\[\//]/)
-println parts
 
-println tmp
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

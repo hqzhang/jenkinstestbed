@@ -1,18 +1,15 @@
 //////
 
 library("groovytest-shared-lib@master") _
-import hudson.FilePath
-def branch= scm.branches.toString().substring(3,9)
-//def branch= scm.branches.split("\\/")[0].replaceAll("\\[",'')
-println "------branch=${branch}"
-url=scm.getUserRemoteConfigs().toString()
-println url.getClass()
-url=url.substring(9, url.length()-8)
-//url=scm.getUserRemoteConfigs().split("\\[")[3].split("\\/")[0]
 
+def branch= scm.branches.toString().substring(3,9)
+println "------branch=${branch}"
+def url=scm.getUserRemoteConfigs().toString()
+
+url=url.substring(9, url.length()-8)
 println "------urlString=$url"
+
 def job = Thread.currentThread().toString().substring(38,).split('/')[0]
-//def job = Thread.currentThread().toString().split("\\[")[3].split("\\/")[0]
 println "------job=$job"
 println menu.getFileList('solution')
 println menu.getFileDft('solution')

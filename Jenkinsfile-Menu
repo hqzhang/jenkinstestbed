@@ -2,21 +2,20 @@
 
 library("groovytest-shared-lib@master") _
 import hudson.FilePath
-def branch= scm.branches
+def branch= scm.branches.substring(1,7)
 //def branch= scm.branches.split("\\/")[0].replaceAll("\\[",'')
-println "------branch=${branch[1..5]}"
-url=scm.getUserRemoteConfigs()
+println "------branch=${branch}"
+url=scm.getUserRemoteConfigs().substring(9, my.length()-8)
 //url=scm.getUserRemoteConfigs().split("\\[")[3].split("\\/")[0]
-def matcher = string =~ /(https?:\/\/[^\s]+)/
-matcher.find()
-urlString = matcher.group(1)
-println "------urlString=$urlString"
-def job = Thread.currentThread().toString()
+
+println "------urlString=$url"
+def job = Thread.currentThread().toString().substring(38,).split('/')[0]
 //def job = Thread.currentThread().toString().split("\\[")[3].split("\\/")[0]
 println "------job=$job"
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 
+//////
 properties([
     pipelineTriggers([githubPush()]),
     parameters([

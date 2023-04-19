@@ -172,7 +172,7 @@ def jobName = matcher.group(1)
 println jobName
 println str.substring(1,7)
 println my.substring(9, my.length()-8)
-println th.substring(25,)
+println th.substring(38,).split('/')[0]
 
 
 

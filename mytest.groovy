@@ -171,7 +171,7 @@ def jobName = matcher.group(1)
 //jobName = jobName.substring(0, jobName.indexOf('/'))
 println jobName
 println str.substring(1,7)
-println my.substring(9, my.length()-8)
+println my.substring(9, my.length()-12)
 println th.substring(38,).split('/')[0]
 
 

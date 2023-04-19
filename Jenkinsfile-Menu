@@ -6,7 +6,8 @@ def branch= scm.branches.toString().substring(3,9)
 //def branch= scm.branches.split("\\/")[0].replaceAll("\\[",'')
 println "------branch=${branch}"
 url=scm.getUserRemoteConfigs()
-url=url.substring(9, url.length()-8)
+println url.getClass()
+//url=url.substring(9, url.length()-8)
 //url=scm.getUserRemoteConfigs().split("\\[")[3].split("\\/")[0]
 
 println "------urlString=$url"

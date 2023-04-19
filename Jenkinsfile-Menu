@@ -2,14 +2,15 @@
 
 library("groovytest-shared-lib@master") _
 
-def branch1= scm.branches.toString().substring(3,9)
-println "------branch1=${branch1}"
+def branch= scm.branches.toString().substring(3,9)
+println "------branch=${branch}"
+def url=scm.getUserRemoteConfigs().toString()
 
-def url1=scm.getUserRemoteConfigs().toString().substring(9, url1.length()-8)
-println "------url1=$url1"
+url=url.substring(9, url.length()-8)
+println "------urlString=$url"
 
-def job1 = Thread.currentThread().toString().substring(38,).split('/')[0]
-println "------job1=$job1"
+def job = Thread.currentThread().toString().substring(38,).split('/')[0]
+println "------job=$job"
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 
@@ -17,8 +18,7 @@ println menu.getFileDft('solution')
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-def url=scm.getUserRemoteConfigs().toString()
-            //choice( name: 'test', description: '', choices: [ branch1, url1, job1 ]  ),
+            
            /*extendedChoice(
               name: 'SolutionDetail',
               description: '',

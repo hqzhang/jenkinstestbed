@@ -2,7 +2,7 @@
 
 library("groovytest-shared-lib@master") _
 import hudson.FilePath
-def branch= scm.branches.split("\\/")[0]
+def branch= scm.branches.split("\\\\/")[0]
 //def branch= scm.branches.split("\\/")[0].replaceAll("\\[",'')
 println "------branch=$branch"
 url=scm.getUserRemoteConfigs()

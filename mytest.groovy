@@ -172,22 +172,27 @@ println jobName
 println str.substring(1,7)
 println my.substring(9, my.length()-12).split('\\/')[4]
 println th.substring(38,).split('/')[0]
+def getContent111(String SolutionDetail ,String jobstr, String repo ,String brch){
+   def wksp="/Users/hongqizhang/.jenkins/workspace"
+   def url="https://raw.githubusercontent.com/hqzhang"
+   def urlext=""
+   return """def wksp=\"${wksp}\"
+      |def url=\"${url}\"
+      |def urlext=\"${urlext}\"
+      |def mf ="ls \${wksp}/\${jobstr}/releases  ".execute().text
+      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+      |def map=[:]
+      |out.each { map[it]="curl -k \${url}/\${repo}/releases/\${it}.yaml\$urlext".execute().text
+      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/\${jobstr}/releases/\${it}.yaml".execute().text } }
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[SolutionDetail]}</textarea> \"\"\"
+      | """.stripMargin()
+}
 def repo='groovytest'
 def brch='master'
 def jobstr='agroovytest'
 def SolutionDetail='solution'
-
-def wksp="/Users/hongqizhang/.jenkins/workspace"
-def url="${urlstr}/master"
-def urlext=""
-def mf ="ls /Users/hongqizhang/.jenkins/workspace/${jobstr}/releases  ".execute().text
-def out=mf.readLines().collect{ it.split("\\.")[0]}
-def map=[:]
-out.each { map[it]="curl -k https://raw.githubusercontent.com/hqzhang/${repo}/releases/${it}.yaml}".execute().text
-if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } }
-println """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
-
-println "Hongqi"
+println "============"
+println getContent111(SolutionDetail  jobstr, repo, brch)
 
 System.exit(1)
 String buildQuote(List values){

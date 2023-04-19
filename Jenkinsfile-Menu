@@ -11,7 +11,7 @@ def regexp= ".+?/job/([^/]+)/.*"
 def match = build  =~ regexp
 def jobName = match[0][1]
 
-echo "jobName : ${jobName}"
+echo "jobName : ${build}"
 
 
 println menu.getFileList('solution')

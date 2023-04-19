@@ -182,7 +182,7 @@ def getContent111(String refvar ,String jobstr, String repo ,String brch){
       |def mf ="ls \${wksp}/\${jobstr}/releases  ".execute().text
       |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
       |def map=[:]
-      |out.each { map[it]="curl -k \${url}/\${repo}/releases/\${it}.yaml\$urlext".execute().text
+      |out.each { map[it]="curl -k \${url}/\${repo}/\${brch}/releases/\${it}.yaml\$urlext".execute().text
       |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/\${jobstr}/releases/\${it}.yaml".execute().text } }
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
@@ -192,15 +192,20 @@ def brch='master'
 def jobstr='agroovytest'
 def refvar='SolutionDetail'
 println "============"
-//println getContent111(refvar,  jobstr, repo, brch)
+println getContent111(refvar,  jobstr, repo, brch)
 def wksp="/Users/hongqizhang/.jenkins/workspace"
 def url="https://raw.githubusercontent.com/hqzhang"
 def urlext=""
 def mf ="ls ${wksp}/${jobstr}/releases  ".execute().text
 def out=mf.readLines().collect{ it.split("\\.")[0]}
 def map=[:]
-out.each { map[it]="curl -k ${url}/${repo}/releases/${it}.yaml$urlext".execute().text
-if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/${jobstr}/releases/${it}.yaml".execute().text } }
+out.each { 
+    println "curl -k ${url}/${repo}/${brch}/releases/${it}.yaml$urlext"
+    map[it]="curl -k ${url}/${repo}/${brch}/releases/${it}.yaml$urlext".execute().text
+if ( map[it].contains('404: Not Found')){ 
+    println "cat ${wksp}/${jobstr}/releases/${it}.yaml"
+    map[it]="cat ${wksp}/${jobstr}/releases/${it}.yaml".execute().text } }
+
 println """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
 System.exit(1)
 String buildQuote(List values){

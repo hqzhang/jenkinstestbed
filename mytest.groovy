@@ -163,8 +163,19 @@ def string = """[null => http://github.com/hqzhang/groovytest.git (null)]"""
 def matcher = string =~ /(https?:\/\/[^\s]+)/
 matcher.find()
 urlString = matcher.group(1)
+def threadDescription = """Thread[Running CpsFlowExecution[Owner[agroovytest/300:agroovytest #300]],5,main]"""
+def jobNamePattern = /Owner\[([^\]]+)\]/
+matcher = (threadDescription =~ jobNamePattern)
+matcher.find()
+def jobName = matcher.group(1)
+//jobName = jobName.substring(0, jobName.indexOf('/'))
+println jobName
+tmp=threadDescription.split("\\[")[3].split("\\/")[0]
 
-println urlString
+def parts = threadDescription.split(/[\[\//]/)
+println parts
+
+println tmp
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

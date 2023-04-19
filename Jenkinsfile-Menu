@@ -51,6 +51,11 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params"
                     echo "parsing yaml"
+                    println env.CONFIG 
+                    if ( env.CONFIG == null ){
+                        echo "CONFIG is not SET"
+                        sh 'exit 1'
+                    }
                     def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
                     
                     writeFile file: "releases/${filebackup}", text: multiLineStr

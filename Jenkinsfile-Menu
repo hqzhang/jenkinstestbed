@@ -13,7 +13,7 @@ println "------url=$urlstr"
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 println "------jobstr=$jobstr"
 println menu.getFileList('solution',"$jobstr") 
-println menu.getContent('SolutionDetail' ,"$jobstr","$urlstr","$brch" )
+println menu.getContent('SolutionDetail' ,"$jobstr","$repo","$brch" )
 
 //////
 properties([

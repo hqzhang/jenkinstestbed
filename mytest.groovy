@@ -163,16 +163,17 @@ def string = """[null => http://github.com/hqzhang/groovytest.git (null)]"""
 def matcher = string =~ /(https?:\/\/[^\s]+)/
 matcher.find()
 urlString = matcher.group(1)
-def threadDescription = """Thread[Running CpsFlowExecution[Owner[agroovytest/300:agroovytest #300]],5,main]"""
+def th = """Thread[Running CpsFlowExecution[Owner[agroovytest/300:agroovytest #300]],5,main]"""
 def jobNamePattern = /Owner\[([^\]]+)\]/
-matcher = (threadDescription =~ jobNamePattern)
+matcher = (th =~ jobNamePattern)
 matcher.find()
 def jobName = matcher.group(1)
 //jobName = jobName.substring(0, jobName.indexOf('/'))
 println jobName
-println str.split("\\/")[0].replaceAll("\\[",'')
-println threadDescription.split("\\[")[3].split("\\/")[0]
-println string.split()[2]
+println str.substring(1,7)
+println my.substring(9, my.length()-8)
+println th.substring(25,)
+
 
 
 System.exit(1)

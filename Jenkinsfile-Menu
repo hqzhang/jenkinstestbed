@@ -18,7 +18,7 @@ println menu.getFileDft('solution')
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-            choice( name: 'Soltail', description: '', choices: [ "$brch"] ),
+            choice( name: 'Soltail', description: '', choices: [ "$brch","$jobstr"] ),
            /*extendedChoice(
               name: 'SolutionDetail',
               description: '',

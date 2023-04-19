@@ -6,9 +6,12 @@ println scm.branches
 println scm.getUserRemoteConfigs()
 println "printenv".execute().text
 def jenkins = Jenkins.getInstance()
-def workspacePath = jenkins.getAllJobs() 
+def build = Thread.currentThread().toString()
+def regexp= ".+?/job/([^/]+)/.*"
+def match = build  =~ regexp
+def jobName = match[0][1]
 
-echo "Workspace path: ${workspacePath}"
+echo "jobName : ${jobName}"
 
 
 println menu.getFileList('solution')

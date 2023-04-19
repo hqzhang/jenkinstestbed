@@ -173,7 +173,18 @@ println jobName
 println str.substring(1,7)
 println my.substring(9, my.length()-12)
 println th.substring(38,).split('/')[0]
-
+def jobstr="groovytest"
+def brch='master'
+def urlstr='http://github.com/hqzhang/groovytest'
+def wksp="/Users/hongqizhang/.jenkins/workspace"
+def url="${urlstr}/master"
+def urlext=""
+def mf ="ls /Users/hongqizhang/.jenkins/workspace/${jobstr}/releases  ".execute().text
+def out=mf.readLines().collect{ it.split("\\.")[0]}
+def map=[:]
+out.each { map[it]="curl -k ${urlstr}/${brch}/releases/${it}.yaml}".execute().text
+if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } }
+println """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
 
 
 System.exit(1)

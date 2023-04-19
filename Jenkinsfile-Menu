@@ -5,10 +5,10 @@ import hudson.FilePath
 def branch= scm.branches.split("\\/")[0]
 //def branch= scm.branches.split("\\/")[0].replaceAll("\\[",'')
 println "------branch=$branch"
-url=scm.getUserRemoteConfigs().split("\\[")[3]
+url=scm.getUserRemoteConfigs()
 //url=scm.getUserRemoteConfigs().split("\\[")[3].split("\\/")[0]
 println "------url=$url"
-def job = Thread.currentThread().toString().split("\\[")[3]
+def job = Thread.currentThread().toString()
 //def job = Thread.currentThread().toString().split("\\[")[3].split("\\/")[0]
 println "------job=$job"
 println menu.getFileList('solution')

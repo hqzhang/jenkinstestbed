@@ -1,16 +1,16 @@
 //////
 
-library("groovytest-shared-lib@master") _
+def brch= scm.branches.toString().substring(3,9)
+library("groovytest-shared-lib@$brch") _
 
-def branch= scm.branches.toString().substring(3,9)
-println "------branch=${branch}"
-def url=scm.getUserRemoteConfigs().toString()
+println "------branch=${brch}"
+def urlstr=scm.getUserRemoteConfigs().toString()
 
-url=url.substring(9, url.length()-8)
-println "------urlString=$url"
+urlstr=urlstr.substring(9, urlstr.length()-8)
+println "------urlstr=$urlstr"
 
-def job = Thread.currentThread().toString().substring(38,).split('/')[0]
-println "------job=$job"
+def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
+println "------jobstr=$jobstr"
 println menu.getFileList('solution')
 println menu.getFileDft('solution')
 

@@ -187,14 +187,18 @@ def getContent111(String refvar ,String jobstr, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
+
+println getContent111('SolutionDetail' ,'agroovytest', 'groovytest','master')
 def wksp="/Users/hongqizhang/.jenkins/workspace"
 def url="https://raw.githubusercontent.com/hqzhang"
 def urlext=""
-def mf ="ls ${wksp}/\${jobstr}/releases  ".execute().text
+def mf ="ls ${wksp}/agroovytest/releases  ".execute().text
 def out=mf.readLines().collect{ it.split("\\.")[0]}
 def map=[:]
 out.each { map[it]="curl -k ${url}/groovytest/master/releases/${it}.yaml$urlext".execute().text
 if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/agroovytest/releases/${it}.yaml".execute().text } }
+//return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
+ 
 
 println """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
 System.exit(1)

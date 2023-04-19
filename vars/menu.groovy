@@ -24,7 +24,7 @@ def getFileContent(String SolutionDetail ){
     convertScript(ret)
 }
 
-def getContent111(String refvar ,String jobstr, String repo ,String brch){
+def getContent(String refvar ,String jobstr, String repo ,String brch){
    def wksp="/Users/hongqizhang/.jenkins/workspace"
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""

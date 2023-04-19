@@ -24,17 +24,17 @@ def getFileContent(String SolutionDetail ){
     convertScript(ret)
 }
 
-def getContent(String SolutionDetail ){
-   def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-   def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
+def getContent(String SolutionDetail ,String jobstr, String urlstr ,String brch){
+   def wksp="/Users/hongqizhang/.jenkins/workspace"
+   def url="$urlstr/master"
    def urlext=""
-   return """def wksp=\"${wksp}\"
-      |def url=\"${url}\"
+   return """def wksp=\"${wksp}/\$jobstr\"
+      |def url=\"\${urlstr}/master\"
       |def urlext=\"${urlext}\"
       |def mf ="ls ${wksp}/releases  ".execute().text
       |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
       |def map=[:]
-      |out.each { map[it]="curl -k \${url}/releases/\${it}.yaml\${urlext}".execute().text
+      |out.each { map[it]="curl -k \${url}/\${brch}/releases/\${it}.yaml$urlext}".execute().text
       |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/releases/\${it}.yaml".execute().text } }
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[SolutionDetail]}</textarea> \"\"\"
       | """.stripMargin()
@@ -52,8 +52,8 @@ def getContent1(String SolutionDetail ){
       '''
 }
 
-def getFileList(String dft ){
-    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+def getFileList(String dft, String jobstr ){
+    def wksp="/Users/hongqizhang/.jenkins/workspace/$jobstr"
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
     def index=0

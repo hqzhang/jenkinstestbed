@@ -4,10 +4,11 @@ def brch= scm.branches.toString().substring(3,9)
 library("groovytest-shared-lib@$brch") _
 
 println "------branch=${brch}"
-def urlstr=scm.getUserRemoteConfigs().toString()
+def repo=scm.getUserRemoteConfigs().toString()
 
-urlstr=urlstr.substring(9, urlstr.length()-12)
+repo=urlstr.substring(9, repo.length()-12).split('\\/')[4]
 println "------url=$urlstr"
+
 
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 println "------jobstr=$jobstr"
@@ -18,7 +19,7 @@ println menu.getContent('SolutionDetail' ,"$jobstr","$urlstr","$brch" )
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-            choice( name: 'Soltail', description: '', choices: [ "$brch","$jobstr","$urlstr"] ),
+            choice( name: 'Soltail', description: '', choices: [ "$brch","$jobstr","$repo"] ),
            /*extendedChoice(
               name: 'SolutionDetail',
               description: '',

@@ -53,7 +53,7 @@ def getContent1(String SolutionDetail ){
 
 def getFileList(String dft, String jobstr ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/$jobstr"
-    def mf ="ls ${wksp}/releases  ".execute().text
+    def mf ="ssh hongqizhang@localhost ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
     def index=0
     out.eachWithIndex{ it, id-> 

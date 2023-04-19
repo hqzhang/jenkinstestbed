@@ -124,7 +124,7 @@ def getContent(String SolutionDetail ){
 }
 def getFileList1(String dft ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-    def mf ="ls ${wksp}/releases  ".execute().text
+    def mf ="ssh hongqizhang@localhost ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{  '"'+it.split("\\.")[0]+'"' } 
     def index=0
     out.eachWithIndex{ it, id-> 
@@ -132,8 +132,7 @@ def getFileList1(String dft ){
     }
     println index
     out.add(0, out.remove(index))
-    println "out=$out"
-    return """ $out """
+    return out
 }
 def getFileDefault1(String dft ){
    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
@@ -171,28 +170,11 @@ def jobName = matcher.group(1)
 //jobName = jobName.substring(0, jobName.indexOf('/'))
 println jobName
 println str.substring(1,7)
-println my.substring(9, my.length()-12)
+println my.substring(9, my.length()-12).split('\\/')[4]
 println th.substring(38,).split('/')[0]
-def jobstr="agroovytest"
-def brch='master'
-def urlstr='http://github.com/hqzhang/groovytest'
-def wksp="/Users/hongqizhang/.jenkins/workspace"
-def SolutionDetail='solution'
-def url="${urlstr}/master"
-def urlext=""
-println "ls /Users/hongqizhang/.jenkins/workspace/${jobstr}/releases"
-def mf ="ls /Users/hongqizhang/.jenkins/workspace/${jobstr}/releases  ".execute().text
-def out=mf.readLines().collect{ it.split("\\.")[0]}
-def map=[:]
-out.each { 
-    println "curl -k ${urlstr}/${brch}/releases/${it}.yaml"
-    map[it]="curl -k ${urlstr}/${brch}/releases/${it}.yaml".execute().text
-if ( map[it].contains('404: Not Found')){ 
-    println "cat ${wksp}/releases/${it}.yaml"
-    map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } }
-println """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
 
 
+println "Hongqi"
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

@@ -18,6 +18,8 @@ println menu.getFileDft('solution')
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
+def url=scm.getUserRemoteConfigs().toString()
+            choice( name: 'test', description: '', choices: [ branch, url, job ]  ),
            /*extendedChoice(
               name: 'SolutionDetail',
               description: '',

@@ -175,21 +175,20 @@ println th.substring(38,).split('/')[0]
 def repo='groovytest'
 def brch='master'
 def jobstr='agroovytest'
+def SolutionDetail='solution'
+
 def wksp="/Users/hongqizhang/.jenkins/workspace"
-def url="https://raw.githubusercontent.com/hqzhang"
+def url="${urlstr}/master"
 def urlext=""
 def mf ="ls /Users/hongqizhang/.jenkins/workspace/${jobstr}/releases  ".execute().text
 def out=mf.readLines().collect{ it.split("\\.")[0]}
 def map=[:]
-out.each { 
-        println "curl -k https://raw.githubusercontent.com/hqzhang/${repo}/${brch}/releases/${it}.yaml"
-        map[it]="curl -k https://raw.githubusercontent.com/hqzhang/${repo}//${brch}/releases/${it}.yaml".execute().text
-if ( map[it].contains('404: Not Found')){ 
-    println "cat ${wksp}/releases/${it}.yaml"
-    map[it]="cat ${wksp}/${jobstr}/releases/${it}.yaml".execute().text } }
+out.each { map[it]="curl -k https://raw.githubusercontent.com/hqzhang/${repo}/releases/${it}.yaml}".execute().text
+if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } }
 println """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
 
 println "Hongqi"
+
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

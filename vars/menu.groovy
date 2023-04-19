@@ -36,7 +36,7 @@ def getContent(String refvar ,String jobstr, String repo ,String brch){
       |def map=[:]
       |out.each { map[it]="curl -k \${url}/\${repo}/\${brch}/releases/\${it}.yaml\$urlext".execute().text
       |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/\${jobstr}/releases/\${it}.yaml".execute().text } }
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${jobstr}]}</textarea> \"\"\"
       | """.stripMargin()
 }
 

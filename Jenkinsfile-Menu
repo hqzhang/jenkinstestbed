@@ -6,8 +6,8 @@ library("groovytest-shared-lib@$brch") _
 println "------branch=${brch}"
 def repo=scm.getUserRemoteConfigs().toString()
 
-repo=urlstr.substring(9, repo.length()-12).split('\\/')[4]
-println "------url=$urlstr"
+repo=repo.substring(9, repo.length()-12).split('\\/')[4]
+println "------repo=$repo"
 
 
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]

@@ -7,7 +7,7 @@ println "------branch=${brch}"
 def urlstr=scm.getUserRemoteConfigs().toString()
 
 urlstr=urlstr.substring(9, urlstr.length()-8)
-println "------urlstr=$urlstr"
+println "------url=$urlstr"
 
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 println "------jobstr=$jobstr"

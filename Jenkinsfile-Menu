@@ -5,7 +5,8 @@ import hudson.FilePath
 def branch= scm.branches.toString().substring(3,9)
 //def branch= scm.branches.split("\\/")[0].replaceAll("\\[",'')
 println "------branch=${branch}"
-url=scm.getUserRemoteConfigs().substring(9, my.length()-8)
+url=scm.getUserRemoteConfigs()
+url=url.substring(9, url.length()-8)
 //url=scm.getUserRemoteConfigs().split("\\[")[3].split("\\/")[0]
 
 println "------urlString=$url"

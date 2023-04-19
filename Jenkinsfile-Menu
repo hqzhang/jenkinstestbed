@@ -10,16 +10,6 @@ def workspacePath = jenkins.getWorkspaceFor(new FilePath(new File("."))).remote
 
 echo "Workspace path: ${workspacePath}"
 
-pipeline {
-    agent any
-    stages {
-        stage('Example') {
-            steps {
-                // Use the workspacePath variable as needed in your pipeline
-            }
-        }
-    }
-}
 
 println menu.getFileList('solution')
 println menu.getFileDft('solution')

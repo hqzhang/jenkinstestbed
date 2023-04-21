@@ -54,11 +54,12 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml${urlext}".execute().text
     |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } 
     |map[it]=(Map)yaml.load(map[it]) }
-    |mymap=map[file]['components']
+    |mymap=map[refvar]['components']
     |def rendered = "<table><tr>"
     |mymap.each { it.each { k,v->
-    |rendered = \"\"\"\${rendered}<tr><label title=\"\${k}\" class=\" \">\${k}</label>
-    |<input title=\"\${k}\" type=\"text\" class=\" \" name=\"value\" value=\"\${v}\"> </br> </td></tr>\"\"\"  } }
+    |rendered = \"\"\"\${rendered}<tr><td><input name=\"value\" alt=\"\${k}\" json=\"\${k}\" type=\"checkbox\" class=\" \">
+    |<label title=\"\${k}\" class=\" \">\${k}</label></td>
+    |<td><input type=\"text\" class=\" \" name=\"value\" value=\"\${v}\"> </br></td></tr>\"\"\"  } }
     |return "\${rendered}</tr></table>"
     |""".stripMargin()
 }

@@ -57,7 +57,7 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     |mymap=map[${refvar}]['components']
     |def rendered = "<table><tr>"
     |mymap.each { it.each { k,v->
-    |rendered = \"\"\"\${rendered}<tr><td><input name=\"value\" alt=\"\${k}\" json=\"\${k}\" type=\"checkbox\" class=\" \">
+    |rendered = \"\"\"\${rendered}<tr><td><input name=\"value\" alt=\"\${k}\" json=\"\${k}\" type=\"checkbox\" class=\" \" checked>
     |<label title=\"\${k}\" class=\" \">\${k}</label></td>
     |<td><input type=\"text\" class=\" \" name=\"value\" value=\"\${v}\"> </br></td></tr>\"\"\"  } }
     |return "\${rendered}</tr></table>"

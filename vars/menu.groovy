@@ -44,7 +44,7 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     def wksp="/Users/hongqizhang/.jenkins/workspace"
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""
-    return """  import groovy.yaml.YamlSlurper
+    return """
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"
     |def myyaml=new YamlSlurper()

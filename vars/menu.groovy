@@ -64,6 +64,28 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     |""".stripMargin()
 }
 
+def stringParse(String str){
+    def data=str.split(',')
+    def len= data.size()/2
+    def lss=[]
+    def map=[:]
+    for (int i = 0; i < len; i++) {
+        if ( data[2*i] != data[0] ){
+            map[ data[2*i]] = data[2*i+1]
+        }else{
+            if ( i != 0 ){ 
+               lss.add(map)
+               map=[:]  
+            }
+            map[ data[2*i]] = data[2*i+1]
+        }
+    }
+
+    lss.add(map)
+    return lss
+}
+
+
 def getFileList(String dft, String jobstr ){
     def wksp="/Users/hongqizhang/.jenkins/workspace/$jobstr"
     def mf ="ssh hongqizhang@localhost ls ${wksp}/releases  ".execute().text

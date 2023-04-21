@@ -237,25 +237,52 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     |return "\${rendered}</tr></table>"
     |""".stripMargin()
 }
-file='solution'
+SolutionDetail='solution'
 println "***********************"
-def wksp="/Users/hongqizhang/.jenkins/workspace"
+/*def wksp="/Users/hongqizhang/.jenkins/workspace"
 def url="https://raw.githubusercontent.com/hqzhang"
 def yaml = new Yaml()
 def mf ="ls ${wksp}/agroovytest/releases  ".execute().text
 def out=mf.readLines().collect{ it.split("\\.")[0]}
+println out
 def map=[:]
 out.each { map[it]="curl -k ${url}/groovytest/master/releases/${it}.yaml".execute().text
 if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/agroovytest/releases/${it}.yaml".execute().text } 
+println map
 map[it]=(Map)yaml.load(map[it]) }
-mymap=map[file]['components']
+mymap=map[SolutionDetail]['components']
+println mymap
 def rendered = "<table><tr>"
 mymap.each { it.each { k,v->
-rendered = """${rendered}<tr><td><input name=\"value\" alt=\"${k}\" json=\"${k}\" type=\"checkbox\" class=\" \">
-    <label title=\"${k}\" class=\" \">${k}</label></td>
-    <td><input type=\"text\" class=\" \" name=\"value\" value=\"${v}\"> </br></td></tr>"""  } }
-println "${rendered}</tr></table>"
+rendered = """${rendered}<tr><td><input name="value" alt="${k}" json="${k}" type="checkbox" class=" ">
+<label title="${k}" class=" ">${k}</label></td>
+<td><input type="text" class=" " name="value" value="${v}"> </br></td></tr>"""  } }
+//return "${rendered}</tr></table>"
+//println "${rendered}</tr></table>"*/
+def data = """name,solution,type,AA,version,1122,path,X/Y/Z,executable,JAVA,name,XYZ,type,XX,version,123,path,A/B/C,"""
 
+def stringParse(String str){
+    def data=str.split(',')
+    def len= data.size()/2
+    def lss=[]
+    def map=[:]
+    for (int i = 0; i < len; i++) {
+        if ( data[2*i] != data[0] ){
+            map[ data[2*i]] = data[2*i+1]
+        }else{
+            if ( i != 0 ){ 
+               lss.add(map)
+               map=[:]  
+            }
+            map[ data[2*i]] = data[2*i+1]
+        }
+    }
+
+    lss.add(map)
+    return lss
+}
+
+println stringParse(data)
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

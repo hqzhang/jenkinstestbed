@@ -58,13 +58,17 @@ pipeline {
                         echo "CONFIG is not SET"
                         sh 'exit 1'
                     }
-                    def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
-                    
-                    writeFile file: "releases/${filebackup}", text: multiLineStr
-                    sh "cat releases/${filebackup}"
-                   
-                    def read = readYaml text: multiLineStr
+                    ///println for yaml string
+                    //def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
+                    println "for comma string"
+                    def read = stringParse(env.CONFIG)
                     println read
+                    /*
+                    writeYaml file: "releases/${filebackup}", data: read
+                    //writeFile file: "releases/${filebackup}", text: multiLineStr
+                    sh "cat releases/${filebackup}"*/
+                   
+                    
                     
                     /*def targtServer=params.servers
                     echo "params=$params"

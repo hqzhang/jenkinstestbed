@@ -3,8 +3,6 @@
 def brch= scm.branches.toString().substring(3,9)
 library("groovytest-shared-lib@$brch") _
 
-@Grab('org.yaml:snakeyaml:1.28')
-
 import org.yaml.snakeyaml.Yaml
 
 def yaml = new Yaml()

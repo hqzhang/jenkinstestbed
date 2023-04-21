@@ -238,23 +238,20 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
 }
 file='solution'
 println "***********************"
-//println  getContent100('file','agroovytest', 'groovytest' ,'master')
 def wksp="/Users/hongqizhang/.jenkins/workspace"
 def url="https://raw.githubusercontent.com/hqzhang"
-def urlext=""
 def yaml = new Yaml()
 def mf ="ls ${wksp}/agroovytest/releases  ".execute().text
 def out=mf.readLines().collect{ it.split("\\.")[0]}
 def map=[:]
-out.each { map[it]="curl -k ${url}/groovytest/master/releases/${it}.yaml$urlext".execute().text
+out.each { map[it]="curl -k ${url}/groovytest/master/releases/${it}.yaml".execute().text
 if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/agroovytest/releases/${it}.yaml".execute().text } 
-map[it]=(Map) yaml.load(map[it]) }
+map[it]=(Map)yaml.load(map[it]) }
 mymap=map[file]['components']
 def rendered = "<table><tr>"
-mymap.each { 
-    it.each { k,v->
-   rendered = """${rendered}<tr><label title="${k}" class=" ">${k}</label>
-     <input title="${k}" type="text" class=" " name="value" value="${v}"> </br> </td></tr>"""  } }
+mymap.each { it.each { k,v->
+rendered = """${rendered}<tr><label title="${k}" class=" ">${k}</label>
+<input title="${k}" type="text" class=" " name="value" value="${v}"> </br> </td></tr>"""  } }
 println "${rendered}</tr></table>"
 
 System.exit(1)

@@ -1,11 +1,11 @@
 //////
-@Grab('org.yaml:snakeyaml:1.28')
+//@Grab('org.yaml:snakeyaml:1.28')
 def brch= scm.branches.toString().substring(3,9)
 library("groovytest-shared-lib@$brch") _
 
 //import org.yaml.snakeyaml.Yaml
 
-def yaml = new Yaml()
+//def yaml = new Yaml()
 println "------branch=${brch}"
 def repo=scm.getUserRemoteConfigs().toString()
 

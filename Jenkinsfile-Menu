@@ -17,7 +17,7 @@ println "------repo=$repo"
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 println "------jobstr=$jobstr"
 println menu.getFileList('solution',"$jobstr") 
-println menu.getContent('SolutionDetail' ,"$jobstr","$repo","$brch" )
+println menu.getContent100('SolutionDetail' ,"$jobstr","$repo","$brch" )
 
 //////
 properties([

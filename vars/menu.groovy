@@ -44,17 +44,17 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     def wksp="/Users/hongqizhang/.jenkins/workspace"
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""
-    return """
+    return """  import groovy.yaml.YamlSlurper
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"
-    |def myyaml=new YamlSlurper()
+    |def yaml = new Yaml()
     |def mf ="ls \${wksp}/${jobstr}/releases  ".execute().text
     |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
     |def map=[:]
     |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml${urlext}".execute().text
     |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } 
-    |map[it]=myyaml.parseText(map[it]) }
-    |mymap=map[refvar]['components']
+    |map[it]=(Map)yaml.load(map[it]) }
+    |mymap=map[file]['components']
     |def rendered = "<table><tr>"
     |mymap.each { it.each { k,v->
     |rendered = \"\"\"\${rendered}<tr><label title=\"\${k}\" class=\" \">\${k}</label>

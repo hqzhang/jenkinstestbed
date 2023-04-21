@@ -2,6 +2,7 @@
     import groovy.json.JsonSlurper
     import groovy.json.JsonOutput
     import groovy.yaml.YamlSlurper
+    import org.yaml.snakeyaml.Yaml
     import mylib
     import sayHello
 def exeCmd(String cmd){
@@ -220,13 +221,13 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     return """  import groovy.yaml.YamlSlurper
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"
-    |def myyaml=new YamlSlurper()
+    |def yaml = new Yaml()
     |def mf ="ls \${wksp}/${jobstr}/releases  ".execute().text
     |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
     |def map=[:]
     |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml${urlext}".execute().text
     |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } 
-    |map[it]=myyaml.parseText(map[it]) }
+    |map[it]=(Map)yaml.load(map[it]) }
     |mymap=map[file]['components']
     |def rendered = "<table><tr>"
     |mymap.each { it.each { k,v->
@@ -241,13 +242,13 @@ println "***********************"
 def wksp="/Users/hongqizhang/.jenkins/workspace"
 def url="https://raw.githubusercontent.com/hqzhang"
 def urlext=""
-def myyaml=new YamlSlurper()
+def yaml = new Yaml()
 def mf ="ls ${wksp}/agroovytest/releases  ".execute().text
 def out=mf.readLines().collect{ it.split("\\.")[0]}
 def map=[:]
 out.each { map[it]="curl -k ${url}/groovytest/master/releases/${it}.yaml$urlext".execute().text
 if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/agroovytest/releases/${it}.yaml".execute().text } 
-map[it]=myyaml.parseText(map[it]) }
+map[it]=(Map) yaml.load(map[it]) }
 mymap=map[file]['components']
 def rendered = "<table><tr>"
 mymap.each { 

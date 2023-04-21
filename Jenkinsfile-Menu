@@ -61,7 +61,7 @@ pipeline {
                     ///println for yaml string
                     //def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
                     println "for comma string"
-                    def read = stringParse(env.CONFIG)
+                    def read = menu.stringParse(env.CONFIG)
                     println read
                     /*
                     writeYaml file: "releases/${filebackup}", data: read

@@ -39,16 +39,28 @@ def getContent(String refvar ,String jobstr, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
-def getContent1(String SolutionDetail ){
-   return '''
-      def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
-      def url="https://raw.githubusercontent.com/hqzhang/groovytest/master"
-      def mf ="ls ${wksp}/releases  ".execute().text
-      def myls = mf.readLines().collect{ it.split("\\\\.")[0]}
-      def map=[:]
-      myls.each { map[it]="curl -k ${url}/releases/\${it}.yaml".execute().text }  
-      return """ <textarea name="value"  value  class="setting-input  " type="text">\${map[SolutionDetail]}</textarea> """
-      '''
+def getContent100(String refvar ,String jobstr, String repo ,String brch){
+    println "enter getContent99=================================="
+    def wksp="/Users/hongqizhang/.jenkins/workspace"
+    def url="https://raw.githubusercontent.com/hqzhang"
+    def urlext=""
+    return """  import groovy.yaml.YamlSlurper
+    |def wksp=\"${wksp}\"
+    |def url=\"${url}\"
+    |def myyaml=new YamlSlurper()
+    |def mf ="ls \${wksp}/${jobstr}/releases  ".execute().text
+    |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+    |def map=[:]
+    |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml${urlext}".execute().text
+    |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } 
+    |map[it]=myyaml.parseText(map[it]) }
+    |mymap=map[refvar]['components']
+    |def rendered = "<table><tr>"
+    |mymap.each { it.each { k,v->
+    |rendered = \"\"\"\${rendered}<tr><label title=\"\${k}\" class=\" \">\${k}</label>
+    |<input title=\"\${k}\" type=\"text\" class=\" \" name=\"value\" value=\"\${v}\"> </br> </td></tr>\"\"\"  } }
+    |return "\${rendered}</tr></table>"
+    |""".stripMargin()
 }
 
 def getFileList(String dft, String jobstr ){

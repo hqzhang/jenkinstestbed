@@ -36,7 +36,7 @@ properties([
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContent('SolutionDetail' ,"$jobstr","$repo","$brch" )]] ],
+                              script: menu.getContent100('SolutionDetail' ,"$jobstr","$repo","$brch" )]] ],
 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'A payload from github webhook'),
              

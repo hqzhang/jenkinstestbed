@@ -63,7 +63,7 @@ def getFileList(){
     def out=mf.readLines().collect{ it.split()[0].minus('.xml')}
     mybuildScript(out)
 }
-SolutionDetail='config'
+
 
 String buildReturn( String str ){
     def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${str}</textarea>"
@@ -142,36 +142,7 @@ def getFileDefault1(String dft ){
       |return \"\"\"return \$out \"\"\"
       | """.stripMargin()
 }
-println "============"
-println getFileDefault1('solution')
-println "============"
-println getFileList1('solution')
-println "============="
 
-
-def list = ['a', 'b', 'c']
-list.add(0, list.remove(list.size() - 1))
-println(list) // Output: ['c', 'a', 'b']
-my="""[null => http://github.com/hqzhang/groovytest.git (null)]"""
-your="""[master/*]"""
-def str = """[master/*]"""
-def result = str.replaceAll(/\[|\*|\]|\//, '')
-//def result = str.replaceAll(/^\*\//, '')
-println(result) // O
-def string = """[null => http://github.com/hqzhang/groovytest.git (null)]"""
-def matcher = string =~ /(https?:\/\/[^\s]+)/
-matcher.find()
-urlString = matcher.group(1)
-def th = """Thread[Running CpsFlowExecution[Owner[agroovytest/300:agroovytest #300]],5,main]"""
-def jobNamePattern = /Owner\[([^\]]+)\]/
-matcher = (th =~ jobNamePattern)
-matcher.find()
-def jobName = matcher.group(1)
-//jobName = jobName.substring(0, jobName.indexOf('/'))
-println jobName
-println str.substring(1,7)
-println my.substring(9, my.length()-12).split('\\/')[4]
-println th.substring(38,).split('/')[0]
 def getContent111(String refvar ,String jobstr, String repo ,String brch){
    def wksp="/Users/hongqizhang/.jenkins/workspace"
    def url="https://raw.githubusercontent.com/hqzhang"
@@ -188,19 +159,103 @@ def getContent111(String refvar ,String jobstr, String repo ,String brch){
       | """.stripMargin()
 }
 
-println getContent111('SolutionDetail' ,'agroovytest', 'groovytest','master')
+def readYamlFileExt(String fileName){
+    String fileConts = new File(fileName).text
+    println ("-----------parsing-------")
+    def myyaml=new YamlSlurper()
+    return  myyaml.parseText(fileConts)
+}
+def getContent88(String refvar ,String jobstr, String repo ,String brch){
+   def wksp="/Users/hongqizhang/.jenkins/workspace"
+   def url="https://raw.githubusercontent.com/hqzhang"
+   def urlext=""
+   return """def wksp=\"${wksp}\"
+      |def url=\"${url}\"
+      |def urlext=\"${urlext}\"
+      |def mf ="ls \${wksp}/${jobstr}/releases  ".execute().text
+      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+      |def map=[:]
+      |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml\$urlext".execute().text
+      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } }
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
+      | """.stripMargin()
+}
+def getContent99(String refvar ,String jobstr, String repo ,String brch){
+    println "enter getContent99=================================="
+    def wksp="/Users/hongqizhang/.jenkins/workspace"
+    def url="https://raw.githubusercontent.com/hqzhang"
+    def urlext=""
+    def mf ="ls ${wksp}/${jobstr}/releases  ".execute().text
+    def out=mf.readLines().collect{ it.split("\\.")[0]}
+    def myyaml=new YamlSlurper()
+    def file='solution'
+    def map=[:]
+    out.each { 
+        map[it]="curl -k ${url}/${repo}/${brch}/releases/${it}.yaml$urlext".execute().text
+        if ( map[it].contains('404: Not Found')){ 
+             map[it]="cat ${wksp}/${jobstr}/releases/${it}.yaml".execute().text }
+        map[it]=myyaml.parseText(map[it])
+    }
+    mymap=map[file]['components']
+    println mymap
+    rendered = "<table><tr>"
+    
+    mymap.each { value->
+        println "loop=$value"
+        value.each{ kk,vv->
+            rendered = """${rendered}<tr>
+            <label title=\"${kk}\" class=\" \">${kk}</label>
+            <input title=\"${kk}\" type=\"text\" class=\" \" name=\"value\" value=\"${vv}\"> </br>
+            </td></tr>"""    
+        } 
+    }
+
+    return "${rendered}</tr></table>"
+}
+def getContent100(String refvar ,String jobstr, String repo ,String brch){
+    println "enter getContent99=================================="
+    def wksp="/Users/hongqizhang/.jenkins/workspace"
+    def url="https://raw.githubusercontent.com/hqzhang"
+    def urlext=""
+    return """  import groovy.yaml.YamlSlurper
+    |def wksp=\"${wksp}\"
+    |def url=\"${url}\"
+    |def myyaml=new YamlSlurper()
+    |def mf ="ls \${wksp}/${jobstr}/releases  ".execute().text
+    |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+    |def map=[:]
+    |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml${urlext}".execute().text
+    |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } 
+    |map[it]=myyaml.parseText(map[it]) }
+    |mymap=map[file]['components']
+    |def rendered = "<table><tr>"
+    |mymap.each { it.each { k,v->
+    |rendered = \"\"\"\${rendered}<tr><label title=\"\${k}\" class=\" \">\${k}</label>
+    |<input title=\"\${k}\" type=\"text\" class=\" \" name=\"value\" value=\"\${v}\"> </br> </td></tr>\"\"\"  } }
+    |return "\${rendered}</tr></table>"
+    |""".stripMargin()
+}
+file='solution'
+println "***********************"
+//println  getContent100('file','agroovytest', 'groovytest' ,'master')
 def wksp="/Users/hongqizhang/.jenkins/workspace"
 def url="https://raw.githubusercontent.com/hqzhang"
 def urlext=""
+def myyaml=new YamlSlurper()
 def mf ="ls ${wksp}/agroovytest/releases  ".execute().text
 def out=mf.readLines().collect{ it.split("\\.")[0]}
 def map=[:]
 out.each { map[it]="curl -k ${url}/groovytest/master/releases/${it}.yaml$urlext".execute().text
-if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/agroovytest/releases/${it}.yaml".execute().text } }
-//return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
- 
+if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/agroovytest/releases/${it}.yaml".execute().text } 
+map[it]=myyaml.parseText(map[it]) }
+mymap=map[file]['components']
+def rendered = "<table><tr>"
+mymap.each { 
+    it.each { k,v->
+   rendered = """${rendered}<tr><label title="${k}" class=" ">${k}</label>
+     <input title="${k}" type="text" class=" " name="value" value="${v}"> </br> </td></tr>"""  } }
+println "${rendered}</tr></table>"
 
-println """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[SolutionDetail]}</textarea> """
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

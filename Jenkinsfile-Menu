@@ -3,6 +3,8 @@
 def brch= scm.branches.toString().substring(3,9)
 library("groovytest-shared-lib@$brch") _
 println "------branch=${brch}"
+menu.getEnvar()
+
 def wksp
 def jobstr
 def build_no

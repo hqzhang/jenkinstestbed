@@ -10,6 +10,28 @@ String convertScript( String str){
     def ret='"""'+str.replaceAll('"', '\\\\"')+'"""'
     return  "return $ret"
 }
+def getBranch(){
+    return scm.branches.toString().substring(3,9)
+}
+def getEnvar(){
+    def wksp
+    def jobstr
+    def build_no
+    def repo=scm.getUserRemoteConfigs().toString()
+    def brch= scm.branches.toString().substring(3,9)
+    println "repofull=$repo"
+    repo=repo.substring(9, repo.length()-12).split('\\/')[4]
+    node {
+        wksp = env.WORKSPACE
+        jobstr= env.JOB_NAME
+        build_no=env.BUILD_NUMBER
+    }
+    println "wksp=$wksp"
+    println "jobstr=$jobstr"
+    println "build_no=$build_no"
+    println "repo=$repo"
+    println "brch=$brch"
+}
 
 def getFileContent(String SolutionDetail,String wksp ){
     def url="https://raw.githubusercontent.com/hqzhang/ansibletest"

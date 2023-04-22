@@ -63,7 +63,7 @@ pipeline {
                     
                     writeYaml file: "releases/${filebackup}", data: read
                     //writeFile file: "releases/${filebackup}", text: multiLineStr
-                    memu.writeYamlFile("releases/${filebackup}",read)
+                    menu.writeYamlFile("releases/${filebackup}",read)
                     sh "cat releases/${filebackup}"
                    
                     

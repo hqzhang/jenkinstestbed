@@ -61,7 +61,7 @@ pipeline {
                     def read = menu.stringParse(env.CONFIG)
                     println read
                     
-                    writeYaml file: "releases/${filebackup}", data: read
+                    //writeYaml file: "releases/${filebackup}", data: read
                     //writeFile file: "releases/${filebackup}", text: multiLineStr
                     menu.writeYamlFile("releases/${filebackup}",read)
                     sh "cat releases/${filebackup}"

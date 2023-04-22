@@ -28,7 +28,7 @@ def getEnvar(){
     }
     env.WKSP=wksp
     env.JOBSTR=jobstr
-    env.BuildNo=build_no
+    env.BLDNo=build_no
     env.REPO=repo
     env.BRCH=brch
 }

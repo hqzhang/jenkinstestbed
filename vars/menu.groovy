@@ -94,8 +94,8 @@ def getFileList(String dft, String wksp ){
     println "enter getFileList"
     println "ls ${wksp}/releases  "
     def mf ="ls ${wksp}/releases  ".execute().text
-     println "mffiles=$out"
-    def out=mf.readLines().collect{  it.split("\\.")[0] } 
+    println "mffiles=$mf"
+    def myout=mf.readLines().collect{  it.split("\\.")[0] } 
     println "files=$out"
     def index=0
     out.eachWithIndex{ it, id-> 

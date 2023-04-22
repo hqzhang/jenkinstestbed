@@ -283,6 +283,10 @@ def stringParse(String str){
 }
 
 println stringParse(data)
+out=[ 'a','b','c']
+out.eachWithIndex{ it, id-> 
+    println id
+}
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

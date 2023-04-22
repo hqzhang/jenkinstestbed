@@ -12,9 +12,11 @@ println "------repo=$repo"
 
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 println "------jobstr=$jobstr"
+println "call getFileList"
 println menu.getFileList('solution',"$jobstr") 
+println "call getContent100"
 println menu.getContent100('SolutionDetail' ,"$jobstr","$repo","$brch" )
-
+println "begin properties"
 //////
 properties([
     pipelineTriggers([githubPush()]),
@@ -42,6 +44,7 @@ properties([
              
 ])
 ])
+println "begin pipeline"
 def map
 def list
 pipeline {

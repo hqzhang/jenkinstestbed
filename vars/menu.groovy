@@ -77,7 +77,7 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     |  if ( kk != "name") {  mark="&nbsp;&nbsp;" }
     |  rendered = \"\"\"\${rendered}<tr>
     |  <td><input name=\"value\" alt=\"\${kk}\" json=\"\${kk}\" type=\"checkbox\" style=\"opacity:0\" class=\" \" checked>
-    |  <span>\${mark}&nbsp;</span>
+    |  <span>\${mark}&nbsp;</span>ƒ
     |  <label name=\"value\" class=\" \" value=\"\${kk}\">\${kk}</label></td>
     |  <td><input  type=\"text\" class=\" \" name=\"value\" value=\"\${vv}\"> </br> </td></tr> \"\"\"    } }
     |return "\${rendered}</tr></table>"

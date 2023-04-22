@@ -24,7 +24,7 @@ println "begin properties"
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-            choice( name: 'Soltail', description: '', choices: [ brch,jobstr,$repo] ),
+            choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
           
             choice( name: 'SolutionDetail', description: '', choices: menu.getFileList('solution',wksp) ),
             

@@ -2,25 +2,29 @@
 
 def brch= scm.branches.toString().substring(3,9)
 library("groovytest-shared-lib@$brch") _
-def workspace
-node {
-    workspace = env.WORKSPACE
-    sh 'printenv'
-}
-println "workspace=$workspace"
 println "------branch=${brch}"
+def wksp
+def jobstr
+def build_no
+node {
+    wksp = env.WORKSPACE
+    jobstr= env.JOB_NAME
+    build_no=env.BUILD_NUMBER
+}
+println "wksp=$workspace"
+
 def repo=scm.getUserRemoteConfigs().toString()
 
 repo=repo.substring(9, repo.length()-12).split('\\/')[4]
 println "------repo=$repo"
 
 
-def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
-println "------jobstr=$jobstr"
+//def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
+//println "------jobstr=$jobstr"
 println "call getFileList"
-println menu.getFileList('solution',"$jobstr") 
+println menu.getFileList('solution',"$wksp") 
 println "call getContent100"
-println menu.getContent100('SolutionDetail' ,"$jobstr","$repo","$brch" )
+println menu.getContent100('SolutionDetail' ,"$wksp","$repo","$brch" )
 println "begin properties"
 //////
 properties([

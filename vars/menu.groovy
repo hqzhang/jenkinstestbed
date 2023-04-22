@@ -11,8 +11,9 @@ String convertScript( String str){
     return  "return $ret"
 }
 
-def getFileContent(String SolutionDetail ){
-    def mf ="ls /Users/hongqizhang/workspace/ansibletest/releases  ".execute().text
+def getFileContent(String SolutionDetail,String wksp ){
+    def url="https://raw.githubusercontent.com/hqzhang/ansibletest"
+    def mf ="ls ${wksp}/releases  ".execute().text
     def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
     def map=[:]
     myls.each { file->
@@ -24,51 +25,35 @@ def getFileContent(String SolutionDetail ){
     convertScript(ret)
 }
 
-def getContent(String refvar ,String jobstr, String repo ,String brch){
-   def wksp="/Users/hongqizhang/.jenkins/workspace"
+def getContent(String refvar ,String wksp, String repo ,String brch){
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""
    return """def wksp=\"${wksp}\"
       |def url=\"${url}\"
       |def urlext=\"${urlext}\"
-      |def mf ="ls \${wksp}/${jobstr}/releases  ".execute().text
+      |def mf ="ls \${wksp}/releases  ".execute().text
       |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
       |def map=[:]
       |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml\$urlext".execute().text
-      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } }
+      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/releases/\${it}.yaml".execute().text } }
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
 //////////////////////////
 
-map = [solution:[[name:"ABC", type:"abc",version: "1.0"], [name:"XYZ", type:"xyz",version:"2.0"]]]
-mymap=map[file]
-rendered = "<table><tr>"
-mymap.each { value->
-     mark="-"
-     value.each{ kk,vv->
-     if ( kk != "name") {  mark="&nbsp;&nbsp;" }
-    rendered = """${rendered}<tr>
-    <td><input name=\"value\" alt=\"${kk}\" json=\"${kk}\" type=\"checkbox\" style=\"opacity:0\" class=\" \" checked>
-    <span>${mark}&nbsp;</span>
-    <label name=\"value\" class=\" \" value=\"${kk}\">${kk}</label></td>
-    <td> <input  type=\"text\" class=\" \" name=\"value\" value=\"${vv}\"> </br> </td></tr> """    } }
-return "${rendered}</tr></table>"
-
-def getContent100(String refvar ,String jobstr, String repo ,String brch){
+def getContent100(String refvar, String wksp, String repo ,String brch){
     println "enter getContent99=================================="
-    def wksp="/Users/hongqizhang/.jenkins/workspace"
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""
     return """import org.yaml.snakeyaml.Yaml
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"
     |def yaml = new Yaml()
-    |def mf ="ls \${wksp}/${jobstr}/releases  ".execute().text
+    |def mf ="ls \${wksp}/releases  ".execute().text
     |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
     |def map=[:]
     |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml${urlext}".execute().text
-    |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/${jobstr}/releases/\${it}.yaml".execute().text } 
+    |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/releases/\${it}.yaml".execute().text } 
     |map[it]=(Map)yaml.load(map[it]) }
     |mymap=map[${refvar}]['components']
     |def rendered = "<table><tr>"
@@ -106,8 +91,7 @@ def stringParse(String str){
 }
 
 
-def getFileList(String dft, String jobstr ){
-    def wksp="/Users/hongqizhang/.jenkins/workspace/$jobstr"
+def getFileList(String dft, String wksp ){
     def mf ="ssh hongqizhang@localhost ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
     def index=0
@@ -117,15 +101,13 @@ def getFileList(String dft, String jobstr ){
     out.add(0, out.remove(index))
     return out 
 }
-def getFileList88(String dft){
-    def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+def getFileList88(String dft,String wksp){
     def mf ="ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{ it.split("\\.")[0] }
 
     return out
 }
-def getFileDft(String dft ){
-   def wksp="/Users/hongqizhang/.jenkins/workspace/agroovytest"
+def getFileDft(String dft, String wksp){
    return """def wksp=\"${wksp}\"
       |def mf ="ls \${wksp}/releases  ".execute().text
       |def out=mf.readLines().collect{ 

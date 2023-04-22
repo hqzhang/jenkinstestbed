@@ -282,11 +282,22 @@ def stringParse(String str){
     return lss
 }
 
-println stringParse(data)
-out=[ 'a','b','c']
-out.eachWithIndex{ it, id-> 
-    println id
+def getFileList88(String dft, String wksp ){
+    println "enter getFileList"
+    println "ls ${wksp}/releases  "
+    def mf ="ls ${wksp}/releases  ".execute().text
+     println "mffiles=$out"
+    def out=mf.readLines().collect{  it.split("\\.")[0] } 
+    println "files=$out"
+    def index=0
+    out.eachWithIndex{ it, id-> 
+        if ( it.contains(dft) ){ index=id }
+    }
+    out.add(0, out.remove(index))
+    return out 
 }
+def wksp="/var/root/.jenkins/workspace/groovytest"
+println getFileList88('solution',wksp)
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

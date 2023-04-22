@@ -38,7 +38,7 @@ properties([
               multiSelectDelimiter: ',',
               type: 'PT_SINGLE_SELECT',
               groovyScript: menu.getFileDefault('solution') ),*/
-            choice( name: 'SolutionDetail', description: '', choices: menu.getFileList('solution',"$jobstr") ),
+            choice( name: 'SolutionDetail', description: '', choices: menu.getFileList('solution',"$wksp") ),
             /*[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, 
               filterable: false, name: 'SolutionDetail', randomName: 'choice-parameter-242872671984832',
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
@@ -47,7 +47,7 @@ properties([
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContent100('SolutionDetail' ,"$jobstr","$repo","$brch" )]] ],
+                              script: menu.getContent100('SolutionDetail' ,"$wksp","$repo","$brch" )]] ],
 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'A payload from github webhook'),
              

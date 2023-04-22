@@ -111,7 +111,7 @@ def stringParse(String str){
     println "map=$map"
     lss.add(map)
     println "lss=$lss"
-    println [ components: lss ]
+    
     return [ components: lss ]
 }
 

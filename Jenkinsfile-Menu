@@ -13,7 +13,7 @@ println "------wksp=${wksp}"
 println "------jobstr=${jobstr}"
 println "------build_no=${build_no}"
 println "------repo=${repo}"
-rintln "------brch=${brch}"
+println "------brch=${brch}"
 
 println "call getFileList"
 println menu.getFileList('solution',wksp) 

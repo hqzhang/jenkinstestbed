@@ -11,16 +11,11 @@ node {
     jobstr= env.JOB_NAME
     build_no=env.BUILD_NUMBER
 }
-println "wksp=$workspace"
-
+println "wksp=$wksp"
 def repo=scm.getUserRemoteConfigs().toString()
-
 repo=repo.substring(9, repo.length()-12).split('\\/')[4]
 println "------repo=$repo"
 
-
-//def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
-//println "------jobstr=$jobstr"
 println "call getFileList"
 println menu.getFileList('solution',"$wksp") 
 println "call getContent100"

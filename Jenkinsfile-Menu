@@ -2,10 +2,11 @@
 
 def brch= scm.branches.toString().substring(3,9)
 library("groovytest-shared-lib@$brch") _
-script {
-    def workspace = pwd()
-    println "Workspace path: ${workspace}"
+def workspace
+node {
+    workspace = env.WORKSPACE
 }
+println "workspace=$workspace"
 println "------branch=${brch}"
 def repo=scm.getUserRemoteConfigs().toString()
 

@@ -60,10 +60,10 @@ pipeline {
                     println "for comma string"
                     def read = menu.stringParse(env.CONFIG)
                     println read
-                    /*
+                    
                     writeYaml file: "releases/${filebackup}", data: read
                     //writeFile file: "releases/${filebackup}", text: multiLineStr
-                    sh "cat releases/${filebackup}"*/
+                    sh "cat releases/${filebackup}"
                    
                     
                     

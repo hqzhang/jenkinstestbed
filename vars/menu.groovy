@@ -19,7 +19,7 @@ def getEnvar(){
     def build_no
     def repo=scm.getUserRemoteConfigs().toString()
     def brch= scm.branches.toString().substring(3,9)
-    println "repofull=$repo"
+    println "repofull---------=$repo"
     repo=repo.substring(9, repo.length()-12).split('\\/')[4]
     node {
         wksp = env.WORKSPACE

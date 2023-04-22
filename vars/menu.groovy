@@ -90,7 +90,7 @@ def stringParse(String str){
     return lss
 }
 
-def getFileList88(String dft, String wksp ){
+def getFileList(String dft, String wksp ){
     println "enter getFileList"
     println "ls ${wksp}/releases  "
     def mf ="ls ${wksp}/releases  ".execute().text

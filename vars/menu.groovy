@@ -14,11 +14,11 @@ def getBranch(){
     return scm.branches.toString().substring(3,9)
 }
 def getEnvar(){
-    def wksp
-    def jobstr
-    def build_no
-    def repo=scm.getUserRemoteConfigs().toString()
-    def brch= scm.branches.toString().substring(3,9)
+    def WKSP
+    def JOBSTR
+    def BuildNo
+    def REPO=scm.getUserRemoteConfigs().toString()
+    def BRCH= scm.branches.toString().substring(3,9)
     println "repofull---------=$repo"
     repo=repo.substring(9, repo.length()-12).split('\\/')[4]
     node {
@@ -26,11 +26,11 @@ def getEnvar(){
         jobstr= env.JOB_NAME
         build_no=env.BUILD_NUMBER
     }
-    println "wksp=$wksp"
-    println "jobstr=$jobstr"
-    println "build_no=$build_no"
-    println "repo=$repo"
-    println "brch=$brch"
+    env.WKSP=wksp
+    env.JOBSTR=jobstr
+    env.BuildNo=build_no
+    env.REPO=repo
+    env.BRCH=brch
 }
 
 def getFileContent(String SolutionDetail,String wksp ){

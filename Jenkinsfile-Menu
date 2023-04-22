@@ -5,6 +5,8 @@ library("groovytest-shared-lib@$brch") _
 println "------branch=${brch}"
 menu.getEnvar()
 
+println env.WKSP
+println "----------"
 def wksp
 def jobstr
 def build_no

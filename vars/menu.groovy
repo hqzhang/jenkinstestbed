@@ -95,7 +95,7 @@ def getFileList(String dft, String wksp ){
     
     def mf ="ls ${wksp}/releases  ".execute().text
     
-    def myout=mf.readLines().collect{  it.split("\\.")[0] } 
+    def out=mf.readLines().collect{  it.split("\\.")[0] } 
 
     def index=0
     out.eachWithIndex{ it, id-> 

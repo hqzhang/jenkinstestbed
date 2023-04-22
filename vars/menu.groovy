@@ -108,9 +108,11 @@ def stringParse(String str){
             map[ data[2*i]] = data[2*i+1]
         }
     }
-    
+    println "map=$map"
     lss.add(map)
-    return [ components: [ lss ] ]
+    println "lss=$lss"
+    println [ components: lss ]
+    return [ components: lss ]
 }
 
 def getFileList(String dft, String wksp ){

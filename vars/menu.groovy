@@ -14,11 +14,11 @@ def getBranch(){
     return scm.branches.toString().substring(3,9)
 }
 def getEnvar(){
-    def WKSP
-    def JOBSTR
-    def BuildNo
-    def REPO=scm.getUserRemoteConfigs().toString()
-    def BRCH= scm.branches.toString().substring(3,9)
+    def wksp
+    def jobstr
+    def build_no
+    def repo=scm.getUserRemoteConfigs().toString()
+    def brch= scm.branches.toString().substring(3,9)
     println "repofull---------=$repo"
     repo=repo.substring(9, repo.length()-12).split('\\/')[4]
     node {

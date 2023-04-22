@@ -94,6 +94,7 @@ def getContent100(String refvar, String wksp, String repo ,String brch){
 def stringParse(String str){
     def data=str.split(',')
     def len= data.size()/2
+    def ret=[:]
     def lss=[]
     def map=[:]
     for (int i = 0; i < len; i++) {
@@ -107,9 +108,9 @@ def stringParse(String str){
             map[ data[2*i]] = data[2*i+1]
         }
     }
-
     lss.add(map)
-    return lss
+    
+    return [ components:map ]
 }
 
 def getFileList(String dft, String wksp ){

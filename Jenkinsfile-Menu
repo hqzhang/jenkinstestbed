@@ -55,17 +55,21 @@ pipeline {
                         echo "CONFIG is not SET"
                         sh 'exit 1'
                     }
+                    def file = new File("releases/${filebackup}")
+                    if (file.exists()) {
+                        file.delete()
+                    }
                     ///println for yaml string
                     //def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
                     println "for comma string"
                     def read = menu.stringParse(env.CONFIG)
                     println read
                     
-                    //writeYaml file: "releases/${filebackup}", data: read
+                    writeYaml file: "releases/${filebackup}", data: read
                     //writeFile file: "releases/${filebackup}", text: multiLineStr
-                    def st=new File("/path-to-file").exists()
-                    
-                    menu.writeYamlFile("releases/${filebackup}",read)
+                    //def st=new File("/path-to-file").exists()
+
+                    //menu.writeYamlFile("releases/${filebackup}",read)
                     sh "cat releases/${filebackup}"
                    
                     

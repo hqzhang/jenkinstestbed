@@ -39,6 +39,22 @@ def getContent(String refvar ,String jobstr, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
+//////////////////////////
+
+map = [solution:[[name:"ABC", type:"abc",version: "1.0"], [name:"XYZ", type:"xyz",version:"2.0"]]]
+mymap=map[file]
+rendered = "<table><tr>"
+mymap.each { value->
+     mark="-"
+     value.each{ kk,vv->
+     if ( kk != "name") {  mark="&nbsp;&nbsp;" }
+    rendered = """${rendered}<tr>
+    <td><input name=\"value\" alt=\"${kk}\" json=\"${kk}\" type=\"checkbox\" style=\"opacity:0\" class=\" \" checked>
+    <span>${mark}&nbsp;</span>
+    <label name=\"value\" class=\" \" value=\"${kk}\">${kk}</label></td>
+    <td> <input  type=\"text\" class=\" \" name=\"value\" value=\"${vv}\"> </br> </td></tr> """    } }
+return "${rendered}</tr></table>"
+
 def getContent100(String refvar ,String jobstr, String repo ,String brch){
     println "enter getContent99=================================="
     def wksp="/Users/hongqizhang/.jenkins/workspace"
@@ -56,10 +72,14 @@ def getContent100(String refvar ,String jobstr, String repo ,String brch){
     |map[it]=(Map)yaml.load(map[it]) }
     |mymap=map[${refvar}]['components']
     |def rendered = "<table><tr>"
-    |mymap.each { it.each { k,v->
-    |rendered = \"\"\"\${rendered}<tr><td><input name=\"value\" alt=\"\${k}\" json=\"\${k}\" type=\"checkbox\" class=\" \">
-    |<label title=\"\${k}\" class=\" \">\${k}</label></td>
-    |<td><input type=\"text\" class=\" \" name=\"value\" value=\"\${v}\"> </br></td></tr>\"\"\"  } }
+    |mymap.each { mark="-"; 
+    | it.each { kk,vv->
+    |  if ( kk != "name") {  mark="&nbsp;&nbsp;" }
+    |  rendered = \"\"\"\${rendered}<tr>
+    |  <td><input name=\"value\" alt=\"\${kk}\" json=\"\${kk}\" type=\"checkbox\" style=\"opacity:0\" class=\" \" checked>
+    |  <span>\${mark}&nbsp;</span>
+    |  <label name=\"value\" class=\" \" value=\"\${kk}\">\${kk}</label></td>
+    |  <td><input  type=\"text\" class=\" \" name=\"value\" value=\"\${vv}\"> </br> </td></tr> \"\"\"    } }
     |return "\${rendered}</tr></table>"
     |""".stripMargin()
 }

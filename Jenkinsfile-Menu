@@ -63,6 +63,8 @@ pipeline {
                     
                     //writeYaml file: "releases/${filebackup}", data: read
                     //writeFile file: "releases/${filebackup}", text: multiLineStr
+                    def st=new File("/path-to-file").exists()
+                    
                     menu.writeYamlFile("releases/${filebackup}",read)
                     sh "cat releases/${filebackup}"
                    

@@ -155,7 +155,7 @@ def readYamlFile(String fileName){
 
 def writeYamlFile(output,data){
     println("INPUT:"+data)
-    //Files.deleteIfExists(output.toPath()); 
+    Files.deleteIfExists(output.toPath()); 
     DumperOptions options = new DumperOptions()
     options.setPrettyFlow(true)
     options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK)

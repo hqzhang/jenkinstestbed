@@ -92,8 +92,10 @@ def stringParse(String str){
 
 
 def getFileList(String dft, String wksp ){
+    println "enter getFileList"
     def mf ="ssh hongqizhang@localhost ls ${wksp}/releases  ".execute().text
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
+    println "files=$out"
     def index=0
     out.eachWithIndex{ it, id-> 
         if ( it.contains(dft) ){ index=id }

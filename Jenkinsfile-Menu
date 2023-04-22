@@ -17,9 +17,9 @@ repo=repo.substring(9, repo.length()-12).split('\\/')[4]
 println "------repo=$repo"
 
 println "call getFileList"
-//println menu.getFileList('solution',"$wksp") 
+println menu.getFileList('solution',"$wksp") 
 println "call getContent100"
-//println menu.getContent100('SolutionDetail' ,"$wksp","$repo","$brch" )
+println menu.getContent100('SolutionDetail' ,"$wksp","$repo","$brch" )
 println "begin properties"
 //////
 properties([

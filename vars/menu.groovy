@@ -109,8 +109,7 @@ def stringParse(String str){
         }
     }
     lss.add(map)
-    
-    return [ components:map ]
+    return [ components: [ map ] ]
 }
 
 def getFileList(String dft, String wksp ){

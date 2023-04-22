@@ -59,10 +59,10 @@ def getContent100(String refvar, String wksp, String repo ,String brch){
     |def rendered = "<table><tr>"
     |mymap.each { mark="-"; 
     | it.each { kk,vv->
-    |  if ( kk != "name") {  mark="&nbsp; &nbsp;" }
+    |  if ( kk != "name") {  mark="&nbsp;&nbsp;" }
     |  rendered = \"\"\"\${rendered}<tr>
     |  <td><input name=\"value\" alt=\"\${kk}\" json=\"\${kk}\" type=\"checkbox\" style=\"opacity:0\" class=\" \" checked>
-    |  <span>\${mark} &nbsp;</span>ƒ
+    |  <span>\${mark}&nbsp;</span>
     |  <label name=\"value\" class=\" \" value=\"\${kk}\">\${kk}</label></td>
     |  <td><input  type=\"text\" class=\" \" name=\"value\" value=\"\${vv}\"> </br> </td></tr> \"\"\"    } }
     |return "\${rendered}</tr></table>"

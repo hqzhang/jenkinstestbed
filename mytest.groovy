@@ -281,23 +281,27 @@ def stringParse(String str){
     lss.add(map)
     return lss
 }
-
-def getFileList88(String dft, String wksp ){
-    println "enter getFileList"
-    println "ls ${wksp}/releases  "
-    def mf ="ls ${wksp}/releases  ".execute().text
-     println "mffiles=$mf"
-    def out=mf.readLines().collect{  it.split("\\.")[0] } 
-    println "files=$out"
-    def index=0
-    out.eachWithIndex{ it, id-> 
-        if ( it.contains(dft) ){ index=id }
-    }
-    out.add(0, out.remove(index))
-    return out 
-}
+def SolutionDetail='solution'
 def wksp="/var/root/.jenkins/workspace/groovytest"
-println getFileList88('solution',wksp)
+def url="https://raw.githubusercontent.com/hqzhang"
+def yaml = new Yaml()
+def mf ="ls ${wksp}/releases  ".execute().text
+def out=mf.readLines().collect{ it.split("\\.")[0]}
+def map=[:]
+out.each { map[it]="curl -k ${url}/groovytest/master/releases/${it}.yaml".execute().text
+if ( map[it].contains('404: Not Found')){ map[it]="cat ${wksp}/releases/${it}.yaml".execute().text } 
+map[it]=(Map)yaml.load(map[it]) }
+mymap=map[SolutionDetail]['components']
+def rendered = "<table><tr>"
+mymap.each { mark="-"; 
+ it.each { kk,vv->
+  if ( kk != "name") {  mark="&nbsp;&nbsp;" }
+  rendered = """${rendered}<tr>
+  <td><input name="value" alt="${kk}" json="${kk}" type="checkbox" style="opacity:0" class=" " checked>
+  <span>${mark}&nbsp;</span>ƒ
+  <label name="value" class=" " value="${kk}">${kk}</label></td>
+  <td><input  type="text" class=" " name="value" value="${vv}"> </br> </td></tr> """    } }
+println "${rendered}</tr></table>"
 System.exit(1)
 String buildQuote(List values){
       List mytmp = []

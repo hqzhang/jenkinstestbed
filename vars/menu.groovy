@@ -92,11 +92,11 @@ def stringParse(String str){
 
 def getFileList(String dft, String wksp ){
     println "enter getFileList"
-    println "ls ${wksp}/releases  "
+    
     def mf ="ls ${wksp}/releases  ".execute().text
-    println "mffiles=$mf"
+    
     def myout=mf.readLines().collect{  it.split("\\.")[0] } 
-    println "files=$out"
+
     def index=0
     out.eachWithIndex{ it, id-> 
         if ( it.contains(dft) ){ index=id }

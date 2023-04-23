@@ -51,6 +51,9 @@ pipeline {
                 script {
                     echo "STAGE: create List..."
                     echo "params=$params"
+                    if ( env.initMenu ){
+                        return
+                    }
                     echo "parsing yaml"
                     println env.Components 
                     if ( env.Components == '' ){

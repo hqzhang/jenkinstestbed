@@ -28,7 +28,7 @@ properties([
 		    
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
             booleanParam(name: 'initMenu', defaultValue: true, description: 'set for init menu'),
-            string(name: test, ,description: '',defaultValue: "mytest")
+            string(name: test, ,description: '',defaultValue: "mytest"),
             choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),
             
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', omitValueField: false, 

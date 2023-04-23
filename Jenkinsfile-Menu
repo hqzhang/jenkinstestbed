@@ -24,7 +24,12 @@ println "begin properties"
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
-            separator(name: "building"),
+        separator(name: "building"),
+		choice(name: "java_vendor", choices: "Corretto"),
+		choice(name: "java_version", choices: "11"),
+		separator(name: "testing"),
+		choice(name: "browser", choices: "chrome"),
+		separator(name: "end"),
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
           
             choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),

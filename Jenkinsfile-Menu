@@ -55,7 +55,7 @@ pipeline {
                         echo "CONFIG is not SET"
                         sh 'exit 1'
                     }
-                    def file = new File("releases/${filebackup}")
+                    def file = new File("${wksp}/releases/${filebackup}")
                     echo  "file Exist: ${file.exists()}"
                     if (file.exists()) {
                         file.delete()

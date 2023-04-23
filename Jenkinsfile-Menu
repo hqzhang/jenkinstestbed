@@ -24,6 +24,7 @@ println "begin properties"
 properties([
     pipelineTriggers([githubPush()]),
     parameters([
+            separator(name: "building"),
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
           
             choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),
@@ -68,7 +69,7 @@ pipeline {
                     def read = menu.stringParse(env.Components)
                     println read
                     
-                    writeYaml file: "releases/${filebackup}", data: read
+                    writeYaml file: "${wksp}/releases/${filebackup}", data: read
                     //writeFile file: "releases/${filebackup}", text: multiLineStr
                     //def st=new File("/path-to-file").exists()
 

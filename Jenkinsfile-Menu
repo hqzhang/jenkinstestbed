@@ -58,8 +58,10 @@ pipeline {
                     def file = new File("${wksp}/releases/${filebackup}")
                     echo  "file Exist: ${file.exists()}"
                     if (file.exists()) {
+                        echo "delete file"
                         file.delete()
                     }
+                    echo  "file Exist: ${file.exists()}"
                     ///println for yaml string
                     //def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
                     println "for comma string"

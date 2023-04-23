@@ -18,7 +18,7 @@ println "------brch=${brch}"
 println "call getFileList"
 println menu.getFileList('solution',wksp) 
 println "call getContent100"
-println menu.getContent100('SolutionDetail' ,wksp,repo,brch )
+println menu.getContent100('Config' ,wksp,repo,brch )
 println "begin properties"
 //////
 properties([
@@ -26,13 +26,13 @@ properties([
     parameters([
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
           
-            choice( name: 'SolutionDetail', description: '', choices: menu.getFileList('solution',wksp) ),
+            choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),
             
-            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CONFIG', omitValueField: false, 
-            randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionDetail', 
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', omitValueField: false, 
+            randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContent100('SolutionDetail' ,wksp,repo,brch )]] ],
+                              script: menu.getContent100('Config' ,wksp,repo,brch )]] ],
 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
              
@@ -50,9 +50,9 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params"
                     echo "parsing yaml"
-                    println env.CONFIG 
-                    if ( env.CONFIG == '' ){
-                        echo "CONFIG is not SET"
+                    println env.Components 
+                    if ( env.Components == '' ){
+                        echo "Components is not SET"
                         sh 'exit 1'
                     }
                     def file = new File("${wksp}/releases/${filebackup}")
@@ -63,9 +63,9 @@ pipeline {
                     }
                     echo  "file Exist: ${file.exists()}"
                     ///println for yaml string
-                    //def multiLineStr = params.CONFIG.replaceAll(/\\n/,"\n").replaceAll(',','')
+                    //def multiLineStr = params.Components.replaceAll(/\\n/,"\n").replaceAll(',','')
                     println "for comma string"
-                    def read = menu.stringParse(env.CONFIG)
+                    def read = menu.stringParse(env.Components)
                     println read
                     
                     writeYaml file: "releases/${filebackup}", data: read

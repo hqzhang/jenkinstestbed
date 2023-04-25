@@ -35,11 +35,11 @@ def getEnvar(){
 
 def getFileContent(String SolutionDetail,String wksp ){
     def url="https://raw.githubusercontent.com/hqzhang/ansibletest"
-    def mf ="ls ${wksp}/releases  ".execute().text
+    def mf ="ls ${wksp}/release  ".execute().text
     def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
     def map=[:]
     myls.each { file->
-            my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/releases/${file}.xml".execute().text 
+            my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/release/${file}.xml".execute().text 
             map[ file]= my_tag
     }
     my_tag=map[SolutionDetail]
@@ -53,11 +53,11 @@ def getContent(String refvar ,String wksp, String repo ,String brch){
    return """def wksp=\"${wksp}\"
       |def url=\"${url}\"
       |def urlext=\"${urlext}\"
-      |def mf ="ls \${wksp}/releases  ".execute().text
+      |def mf ="ls \${wksp}/release  ".execute().text
       |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
       |def map=[:]
-      |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml\$urlext".execute().text
-      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/releases/\${it}.yaml".execute().text } }
+      |out.each { map[it]="curl -k \${url}/${repo}/${brch}/release/\${it}.yaml\$urlext".execute().text
+      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/release/\${it}.yaml".execute().text } }
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
@@ -71,11 +71,11 @@ def getContent100(String refvar, String wksp, String repo ,String brch){
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"
     |def yaml = new Yaml()
-    |def mf ="ls \${wksp}/releases  ".execute().text
+    |def mf ="ls \${wksp}/release  ".execute().text
     |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
     |def map=[:]
-    |out.each { map[it]="curl -k \${url}/${repo}/${brch}/releases/\${it}.yaml${urlext}".execute().text
-    |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/releases/\${it}.yaml".execute().text } 
+    |out.each { map[it]="curl -k \${url}/${repo}/${brch}/release/\${it}.yaml${urlext}".execute().text
+    |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/release/\${it}.yaml".execute().text } 
     |map[it]=(Map)yaml.load(map[it]) }
     |mymap=map[${refvar}]['components']
     |def rendered = "<table><tr>"
@@ -118,7 +118,7 @@ def stringParse(String str){
 def getFileList(String dft, String wksp ){
     println "enter getFileList"
     
-    def mf ="ls ${wksp}/releases  ".execute().text
+    def mf ="ls ${wksp}/release  ".execute().text
     
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
 
@@ -130,14 +130,14 @@ def getFileList(String dft, String wksp ){
     return out 
 }
 def getFileList88(String dft,String wksp){
-    def mf ="ls ${wksp}/releases  ".execute().text
+    def mf ="ls ${wksp}/release  ".execute().text
     def out=mf.readLines().collect{ it.split("\\.")[0] }
 
     return out
 }
 def getFileDft(String dft, String wksp){
    return """def wksp=\"${wksp}\"
-      |def mf ="ls \${wksp}/releases  ".execute().text
+      |def mf ="ls \${wksp}/release  ".execute().text
       |def out=mf.readLines().collect{ 
       |    if(it.contains(\"$dft\") ){ '"'+it.split("\\\\.")[0]+':selected"' } 
       |    else { '"'+it.split("\\\\.")[0]+'"' } }

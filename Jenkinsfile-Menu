@@ -20,6 +20,7 @@ println menu.getFileList('solution',wksp)
 println "call getContent100"
 println menu.getContent100('Config' ,wksp,repo,brch )
 println "begin properties"
+println menu.getContent('Config' ,wksp,repo,brch )
 //////
 properties([
     pipelineTriggers([githubPush()]),
@@ -35,7 +36,11 @@ properties([
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
                               script: menu.getContent100('Config' ,wksp,repo,brch )]] ],
-
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component', omitValueField: false, 
+            randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
+            script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
+                     script: [classpath: [], oldScript: '', sandbox: false, 
+                              script: menu.getContent('Config' ,wksp,repo,brch )]] ],
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
              
 ])

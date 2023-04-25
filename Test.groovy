@@ -4,6 +4,13 @@ import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 import org.yaml.snakeyaml.Yaml
 //create map:
+def var="false"
+ if ( var.toBoolean() ){
+                        println "Menu is initialized Successfully!"
+                        return
+                    } else { println "NO menu init"
+                        return
+                    }
 List mylist=['str1', 'str2']
 mylist.each {
     println it

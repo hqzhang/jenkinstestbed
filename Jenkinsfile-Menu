@@ -57,7 +57,7 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params"
                     echo "init=$env.initMenu"
-                    if ( "${env.initMenu}" == true ){
+                    if ( "${env.initMenu}" == "true" ){
                         echo "Menu is initialized Successfully!"
                         return
                     }

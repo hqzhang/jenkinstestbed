@@ -61,7 +61,8 @@ pipeline {
                         return
                     }
                     echo "parsing yaml"
-                    println env.Components 
+                    println ("Components={env.Components}") 
+                    println ("Component={env.Component}")
                     if ( env.Components == '' ){
                         echo "Components is not SET"
                         sh 'exit 1'

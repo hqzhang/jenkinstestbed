@@ -28,7 +28,7 @@ properties([
         separator(name: "building"),
 		    
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
-            booleanParam(name: 'initMenu', defaultValue: true, description: 'set for init menu'),
+            booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),
             string(name: 'DEPLOY', defaultValue: 'staging', description: ''),
             choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', omitValueField: false, 
@@ -56,6 +56,7 @@ pipeline {
                 script {
                     echo "STAGE: create List..."
                     echo "params=$params"
+                    echo "init=$env.initMenu"
                     if ( env.initMenu ){
                         echo "Menu is initialized Successfully!"
                         return

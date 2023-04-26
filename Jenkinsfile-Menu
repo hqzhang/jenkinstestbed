@@ -2,7 +2,7 @@
 
 def brch= scm.branches[0].toString()
 brch=brch.substring(2,)
-library("bitbucket-shared-lib") _
+library("bitbucket-groovytest-lib@{$brch}") _
 println "------branch=${brch}"
 menu.getEnvar()
 wksp=env.WKSP

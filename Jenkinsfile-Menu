@@ -76,8 +76,7 @@ pipeline {
                         file.delete()
                     }
                     echo  "file Exist: ${file.exists()}"
-                    ///println for yaml string
-                    //def multiLineStr = params.Components.replaceAll(/\\n/,"\n").replaceAll(',','')
+                   
                     println "for comma string"
                     def read = menu.stringParse(env.Components)
                     println read
@@ -88,6 +87,10 @@ pipeline {
 
                     //menu.writeYamlFile("releases/${filebackup}",read)
                     sh "cat releases/${filebackup}"
+
+                     ///println for yaml string
+                    def multiLineStr = params.Component.replaceAll(/\\n/,"\n").replaceAll(',','')
+                    println "multiLineStr=$multiLineStr"
                    
                     
                     

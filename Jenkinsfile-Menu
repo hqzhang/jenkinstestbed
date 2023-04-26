@@ -45,7 +45,7 @@ properties([
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
              
 ])
-])
+])//
 println "begin pipeline"
 def map
 def list

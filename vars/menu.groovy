@@ -121,7 +121,7 @@ def getFileList(String dft, String wksp ){
     println "mf=$mf"
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
     println "out=$out"
-    def index=0
+    def index=0ƒ
     out.eachWithIndex{ it, id-> 
         if ( it.contains(dft) ){ index=id }
     }

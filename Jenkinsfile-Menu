@@ -69,61 +69,21 @@ pipeline {
                         echo "Components is not SET"
                         sh 'exit 1'
                     }
-                    /*def file = new File("${wksp}/releases/${filebackup}")
+                    def file = new File("${wksp}/releases/${filebackup}")
                     echo  "file Exist: ${file.exists()}"
                     if (file.exists()) {
                         echo "delete file"
                         file.delete()
                     }
                     echo  "file Exist: ${file.exists()}"
-                    ///println for yaml string
                     //def multiLineStr = params.Components.replaceAll(/\\n/,"\n").replaceAll(',','')
-                    println "for comma string"
                     def read = menu.stringParse(env.Components)
-                    println read
-                    
                     writeYaml file: "${wksp}/releases/${filebackup}", data: read
-                    //writeFile file: "releases/${filebackup}", text: multiLineStr
-                    //def st=new File("/path-to-file").exists()
-
-                    //menu.writeYamlFile("releases/${filebackup}",read)
-                    sh "cat releases/${filebackup}"*/
+                    sh "cat releases/${filebackup}"
                    
-                    
-                    
-                    /*def targtServer=params.servers
-                    echo "params=$params"
-                    if ( targtServer.equals('ERROR') ) 
-                    {
-                        targtServer='s23'
-                    }
-                    
-                    echo "targtServer=$targtServer"
-                    workspace=WORKSPACE
-                    println "WS=${env.WORKSPACE}"
-                    println "WS=${WORKSPACE}"
-                    println "pwd="+pwd()
-                    println "workspace=$workspace"
-                    // you may create your list here, lets say reading from a file after checkout
-                    //list = ["Test-1", "Test-2", "Test-3", "Test-4", "Test-5"]
-                    list = readXMLList("${workspace}/manifest_Lynx.xml")
-                    echo "***************"
-                    def jsonText = parseXML("${workspace}/manifest_Lynx.xml")
-                    map = readJSON text: jsonText
-                    echo "#################"
-                     def remote = [:]
-                    remote.name = 'test'
-                    remote.host = '192.168.2.27'
-                    remote.user = 'root'
-                    remote.password = 'password'
-                    remote.allowAnyHosts = true
-    
-                    sshCommand remote: remote, command: "ls -lrt"*/
     
                 }
             }
         }
    }
 }
-
-

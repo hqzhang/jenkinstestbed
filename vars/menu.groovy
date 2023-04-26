@@ -116,7 +116,7 @@ def stringParse(String str){
 }
 
 def getFileList(String dft, String wksp ){
-    println "enter getFileList"
+    println "enter getFileList:ls ${wksp}/release "
     def mf ="ls ${wksp}/release  ".execute().text
     println "mf=$mf"
     def out=mf.readLines().collect{  it.split("\\.")[0] } 

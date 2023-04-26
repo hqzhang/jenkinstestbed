@@ -58,7 +58,7 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params=$params"
                     echo "init=$env.initMenu"
-                    if ( env.initMenu.toBoolean() == true ){
+                    /*if ( env.initMenu.toBoolean() == true ){
                         echo "Menu is initialized Successfully!"
                         return
                     }
@@ -79,7 +79,7 @@ pipeline {
                     //def multiLineStr = params.Components.replaceAll(/\\n/,"\n").replaceAll(',','')
                     def read = menu.stringParse(env.Components)
                     writeYaml file: "${wksp}/releases/${filebackup}", data: read
-                    sh "cat releases/${filebackup}"
+                    sh "cat releases/${filebackup}"*/
                    
     
                 }

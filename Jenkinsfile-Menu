@@ -1,6 +1,7 @@
 //////
 
 def brch= scm.branches.toString()
+brch=brch.substring(2,brch.length()-1)
 //library("groovytest-shared-lib@${brch}") _
 println "------branch=${brch}"
 menu.getEnvar()

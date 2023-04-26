@@ -69,7 +69,7 @@ pipeline {
                         echo "Components is not SET"
                         sh 'exit 1'
                     }
-                    def file = new File("${wksp}/releases/${filebackup}")
+                    /*def file = new File("${wksp}/releases/${filebackup}")
                     echo  "file Exist: ${file.exists()}"
                     if (file.exists()) {
                         echo "delete file"
@@ -87,7 +87,7 @@ pipeline {
                     //def st=new File("/path-to-file").exists()
 
                     //menu.writeYamlFile("releases/${filebackup}",read)
-                    sh "cat releases/${filebackup}"
+                    sh "cat releases/${filebackup}"*/
                    
                     
                     

@@ -22,7 +22,7 @@ println "call getContent100"
 println menu.getContent100('Config' ,wksp,repo,brch )
 println "begin properties"
 println menu.getContent('Config' ,wksp,repo,brch )
-//////
+/////////
 properties([
     pipelineTriggers([githubPush()]),
     parameters([

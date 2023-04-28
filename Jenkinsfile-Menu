@@ -4,7 +4,9 @@ def brch= scm.branches[0].toString()
 brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
-urlstr=urlstr.substring(9, urlstr.length()-12)
+
+def repo=scm.getUserRemoteConfigs().toString()
+urlstr=repo.substring(9, repo.length()-12)
 println "------url=$urlstr"
 
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]

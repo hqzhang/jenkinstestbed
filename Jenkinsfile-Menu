@@ -6,7 +6,7 @@ library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 
 def repo=scm.getUserRemoteConfigs().toString()
-repo=repo.substring(9, repo.length()-12)
+repo=repo.substring(17, repo.length()-12)
 println "------repo=$repo"
 
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]

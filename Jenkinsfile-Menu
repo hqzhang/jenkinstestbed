@@ -5,7 +5,7 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 
-def repo=menu.getRepo
+def repo=menu.getRepo()
 println "------repo=$repo"
 
 def jobstr = menu.getJob()

@@ -3,8 +3,8 @@
  var="jenkins_home"
  cmd="cd $var && pwd && ls -al "
  command='hongqizhang@localhost'
- cmd=$command $cmd
- echo "cmd=cmd"
+ cmd="$command $cmd"
+ echo "cmd=$cmd"
  # ssh hongqizhang@localhost '\'\''cd' jenkins_home '&&' pwd '&&' ls -al '.\'\'''
  #ssh hongqizhang@localhost '"cd' jenkins_home '&&' pwd '&&' ls -al '."'
  #ssh hongqizhang@localhost 'pwd && ls -al jenkins_home'

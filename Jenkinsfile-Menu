@@ -60,8 +60,7 @@ pipeline {
                     echo "init=$env.initMenu"
 
                     sh """
-                      cmd="ssh hongqizhang@localhost ls -al "
-                      "${cmd}"
+                     ./scritps/run.sh
                     """
 
                     if ( env.initMenu.toBoolean() == true ){

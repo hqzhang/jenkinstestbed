@@ -2,7 +2,7 @@
  set -x
  var="jenkins_home"
  cmd='cd $var && pwd && ls -al '
- command
+ command='hongqizhang@localhost'
  cmd=$command $cmd
  echo "cmd=cmd"
  # ssh hongqizhang@localhost '\'\''cd' jenkins_home '&&' pwd '&&' ls -al '.\'\'''

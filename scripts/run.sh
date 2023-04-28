@@ -1,7 +1,7 @@
  
  set -x
  var="jenkins_home"
- cmd=" pwd && ls -al "
+ cmd=" pwd && ls -al  "
  command='ls -a'
  cmd="$command $cmd "
  echo "cmd=$cmd"
@@ -11,6 +11,6 @@
 
  #log=`$cmd`
  #echo "log=$log"
- log=` pwd && ls -al ~/.ssh && cat ~/.ssh/id_rsa`
+ log=` cd ~ && pwd && ls -al ~/.ssh && cat ~/.ssh/id_rsa`
  echo "log=$log"
                       

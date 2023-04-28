@@ -61,7 +61,7 @@ pipeline {
 
                     sh """
                       cmd="ssh hongqizhang@localhost ls -al "
-                      $cmd
+                      "${cmd}"
                     """
 
                     if ( env.initMenu.toBoolean() == true ){

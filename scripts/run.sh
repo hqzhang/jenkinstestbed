@@ -1,7 +1,7 @@
  
  set -x
  var="jenkins_home"
- cmd='cd $var && pwd && ls -al '
+ cmd="cd $var && pwd && ls -al "
  command='hongqizhang@localhost'
  cmd=$command $cmd
  echo "cmd=cmd"

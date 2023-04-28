@@ -4,17 +4,16 @@ def brch= scm.branches[0].toString()
 brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
-menu.getEnvar()
-wksp=env.WKSP
-build_no =env.BLDNo
-repo=env.REPO
-brch=env.BRCH
-jobstr=env.JOBSTR
+urlstr=urlstr.substring(9, urlstr.length()-12)
+println "------url=$urlstr"
+
+def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
+println "------jobstr=$jobstr"
+
+
+wksp='/var/root/.jenkins/workspace/agroovytest'
 println "------wksp=${wksp}"
-println "------jobstr=${jobstr}"
-println "------build_no=${build_no}"
-println "------repo=${repo}"
-println "------brch=${brch}"
+
 
 println "call getFileList"
 println menu.getFileList('solution',wksp) 

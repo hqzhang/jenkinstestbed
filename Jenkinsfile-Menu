@@ -60,6 +60,8 @@ pipeline {
                     echo "init=$env.initMenu"
 
                     sh """
+                     chmod a+x scripts/run.sh
+                     
                      ./scritps/run.sh
                     """
 

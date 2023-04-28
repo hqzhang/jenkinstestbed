@@ -1,4 +1,5 @@
  
  
- ssh hongqizhang@localhost ls -al 
+ var="jenkins_home"
+ ssh hongqizhang@localhost pwd && ls -al $var
                       

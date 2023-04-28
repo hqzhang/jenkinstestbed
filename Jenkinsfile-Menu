@@ -13,7 +13,7 @@ def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 println "------jobstr=$jobstr"
 
 
-wksp='/var/root/.jenkins/workspace/${jobstr}'
+wksp="/var/root/.jenkins/workspace/${jobstr}"
 println "------wksp=${wksp}"
 
 

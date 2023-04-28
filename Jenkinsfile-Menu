@@ -5,14 +5,14 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 
-def repo=getRepo
+def repo=menu.getRepo
 println "------repo=$repo"
 
-def jobstr = getJob()
+def jobstr = menu.getJob()
 println "------jobstr=$jobstr"
 
 
-def wksp=getWksp()
+def wksp=menu.getWksp()
 println "------wksp=${wksp}"
 
 

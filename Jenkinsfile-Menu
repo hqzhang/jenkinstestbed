@@ -60,8 +60,8 @@ pipeline {
                     echo "init=$env.initMenu"
 
                     sh """
-                     ls -al scripts
-                     chmod a+x scripts/run.sh
+                     ls -al ./scripts/run.sh
+                     chmod a+x ./scripts/run.sh
                      
                      ./scritps/run.sh
                     """

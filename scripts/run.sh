@@ -1,5 +1,7 @@
  
  set -x
  var="jenkins_home"
- ssh hongqizhang@localhost "cd $var && pwd && ls -al ."
+ cmd="ssh hongqizhang@localhost \"cd $var && pwd && ls -al .\""
+ log=`$cmd`
+ echo "log=$log"
                       

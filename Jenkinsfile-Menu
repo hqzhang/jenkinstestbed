@@ -59,7 +59,10 @@ pipeline {
                     echo "params======$params"
                     echo "init=$env.initMenu"
 
-                    sh "ssh hongqizhang@localhost ls -al "
+                    sh """
+                      cmd="ssh hongqizhang@localhost ls -al "
+                      `$cmd`
+                    """
 
                     if ( env.initMenu.toBoolean() == true ){
                         echo "Menu is initialized Successfully!"

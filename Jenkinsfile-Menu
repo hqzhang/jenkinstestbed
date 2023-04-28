@@ -5,15 +5,14 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 
-def repo=scm.getUserRemoteConfigs().toString()
-repo=repo.substring(17, repo.length()-12).split('/')[2]
+def repo=getRepo
 println "------repo=$repo"
 
-def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
+def jobstr = getJob()
 println "------jobstr=$jobstr"
 
 
-wksp="/var/root/.jenkins/workspace/${jobstr}"
+def wksp=getWksp()
 println "------wksp=${wksp}"
 
 

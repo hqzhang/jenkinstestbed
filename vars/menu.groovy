@@ -90,7 +90,20 @@ def getContent100(String refvar, String wksp, String repo ,String brch){
     |return "\${rendered}</tr></table>"
     |""".stripMargin()
 }
-
+def getRepo(){
+    def repo=scm.getUserRemoteConfigs().toString()
+    repo=repo.substring(17, repo.length()-12).split('/')[2]
+    return  repo
+}
+def getJob(){
+    def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
+    return jobstr
+}
+def getWksp(){
+    def jobstr=getJob()
+    def wksp="/var/root/.jenkins/workspace/${jobstr}"
+    return wksp
+}
 def stringParse(String str){
     def data=str.split(',')
     def len= data.size()/2

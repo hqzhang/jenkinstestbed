@@ -135,6 +135,9 @@ def getFileList(String dft, String wksp ){
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
     println "out=$out"
     def index=0
+    if (out.isEmpty()){
+        return [ 'solution' ]
+    }
     out.eachWithIndex{ it, id-> 
         if ( it.contains(dft) ){ index=id }
     }

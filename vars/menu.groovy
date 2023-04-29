@@ -136,7 +136,7 @@ def getFileList(String dft, String wksp ){
     println "out=$out"
     def index=0
     if (out.isEmpty()){
-        return [ 'solution' ]
+        return [ dft ]
     }
     out.eachWithIndex{ it, id-> 
         if ( it.contains(dft) ){ index=id }

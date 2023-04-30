@@ -1,6 +1,34 @@
 
 import org.yaml.snakeyaml.Yaml
 import org.yaml.snakeyaml.DumperOptions
+import jenkins.model.Jenkins
+import hudson.*
+import hudson.model.*
+import jenkins.*
+
+// Remove everything which is currently queued
+def checkBuildRunning(){
+    //Jenkins.instance.queue.clear()
+    def buildingJobs = Jenkins.instance.getAllItems(Job.class).findAll {
+        it.isBuilding()
+    }
+    buildingJobs.each {
+        def jobName = it.toString()
+        def val = jobName.split("\\[|\\]")
+
+        // 'Abort jobs' is the name of the job I have created, and I do not want it to abort itself.
+
+        if((val[1].trim())!='Abort jobs') {
+            def job = Jenkins.instance.getItemByFullName(val[1].trim())
+            for (build in job.builds) {
+                if (build.isBuilding()) {
+                    println(build)
+                    //build.doStop();
+                }
+            }
+        }
+    }
+}
 String buildScript(List values){
     def ret=values.collect { '"'+it+'"' }
     return "return ${ret}"

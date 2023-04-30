@@ -6,7 +6,7 @@ import hudson.*
 import hudson.model.*
 import jenkins.*
 
-// Remove everything which is currently queued
+//// Remove everything which is currently queued
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()
     def buildingJobs = Jenkins.instance.getAllItems(Job.class).findAll {

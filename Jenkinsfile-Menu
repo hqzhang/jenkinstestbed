@@ -63,7 +63,7 @@ def remote = [:]
 remote.name = "root"
 remote.host = "192.168.0.16"
 remote.allowAnyHosts = true
-println menu.getCompList()
+println menu.getCompList('package')
 pipeline {
     agent any
     stages {
@@ -74,7 +74,7 @@ pipeline {
                     echo "params======$params"
                     echo "init=$env.initMenu"
                     println "get use function"
-                    println menu.getCompList()
+                    println menu.getCompList('package')
                    
                     
                     withCredentials([sshUserPrivateKey(credentialsId: 'b2c30d83-4635-4fe4-870c-91b9fafef3c9',

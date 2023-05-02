@@ -7,10 +7,11 @@ import hudson.model.*
 import jenkins.*
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued
-def getCompList(){
+def getCompList(String fileName){
     println "enter getCompList()================="
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
-    return out
+
+    return out.readLines()
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()

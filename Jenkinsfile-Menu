@@ -74,7 +74,7 @@ pipeline {
                     echo "params======$params"
                     echo "init=$env.initMenu"
                     println "get use function"
-                    println menu.getCompList
+                    println menu.getCompList()
                    
                     
                     withCredentials([sshUserPrivateKey(credentialsId: 'b2c30d83-4635-4fe4-870c-91b9fafef3c9',

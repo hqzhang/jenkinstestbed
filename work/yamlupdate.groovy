@@ -167,9 +167,43 @@ def writeYamlFile(output,data){
     yaml.dump(data, new FileWriter(output)) 
 }
 
- def struct=readYamlFile('configuration.yml')
- writeYamlFile('configuration_out.yml',struct)
-   
+ //def struct=readYamlFile('configuration.yml')
+ //writeYamlFile('configuration_out.yml',struct)
+ def parseConfig1(String fileName){
+    println("Enter getComponentList() ")
+    String fileConts = new File(fileName).text
+    println ("-----------parsing-------")
+    def myyaml=new YamlSlurper()
+    def map=myyaml.parseText(fileConts)['components']
+    def names=[]
+    def types=[]
+    def vers=[]
+    map.each { comp ->
+       println (comp)
+       comp.each{ k, v-> 
+          if (v instanceof Map){
+            v.each{ kk,vv->
+               if(k=='configurations' && kk=='Path'){ 
+                  def tmp=vv.split("/")
+                  types.add(tmp[1])
+                  vers.add(tmp[2])
+                }
+               
+            }
+          } else {
+             if (k=='name'){ names.add(v)}
+          }
+       }
+      
+    }
+    map=[:]
+    map['names']=names
+    map['types']=types
+    map['vers']=vers
+    println ("-----------parsing-------")
+    return map
+}
+println parseConfig1('configuration.yml')
 
    
    

@@ -1,14 +1,12 @@
 components:
   - !component
     name: component1
-    argv: first
-    settings:
-      username: hongqi
-      password: nopass
+    type: firsttype
+    configurations:
+      Path: $MKVBINDDIR/firsttype/261
   - !component
     name: component2
-    argv1: first2
-    settings:
-      username: hongqi2
-      password: nopass2
+    type: secondtype
+    configurations:
+      Path: $MKVBINDDIR/firsttype/261
   

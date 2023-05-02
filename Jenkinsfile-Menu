@@ -35,9 +35,7 @@ properties([
                name: 'compoents', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: '''if ( mypack == "configuration") { return ["component1:selected", "component2:selected", "component3"]} 
-                        else if ( mypack == "solution") { return ["comp1", "comp2:selected", "comp3"]} 
-                        else if ( mypack == "environment") { return ["cmp1", "cmp2", "cmp3:selected"] }''' ]]],
+               script: menu.getCompList('mypack') ]]],
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
 
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),

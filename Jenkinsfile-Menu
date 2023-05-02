@@ -77,7 +77,7 @@ pipeline {
                      pwd
                      cp /tmp/id_rsa ~/.ssh
                      ls -alt ~/.ssh
-                     ssh root@192.168.0.16 ip a
+                     ssh root@192.168.0.16 "ip a; pwd"
                     """
                     withCredentials([sshUserPrivateKey(credentialsId: 'b2c30d83-4635-4fe4-870c-91b9fafef3c9',
                              keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {

@@ -28,10 +28,8 @@ def getCompList(String pack){
           if ( ! key.isEmpty()){
             map[key]=lss
             key=var.split("\\.")[0]
-            key=var
             lss=[]
-          } else { key=var.split("\\.")[0]
-                   key=var }
+          } else { key=var.split("\\.")[0] }
        } else { lss.add(var) }
     }
     map[key]=lss

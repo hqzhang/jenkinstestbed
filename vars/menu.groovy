@@ -23,14 +23,15 @@ def getCompList(String pack){
     def lss=[]
     def key=''
     out.each{ var->
-       if (var.contains(".tar.gz") ){
+       println var
+       /*if (var.contains(".tar.gz") ){
           if ( ! lss.isEmpty()){
             map[key]=lss
             lss=[]
           } else { key=var.split(".")[0] }
-       } else { lss.add(var) }
+       } else { lss.add(var) }8*/
     }
-    map[key]=lss
+    //map[key]=lss
     
     return map
 }

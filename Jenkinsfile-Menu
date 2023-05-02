@@ -68,7 +68,10 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params======$params"
                     echo "init=$env.initMenu"
-
+                    
+                    sh """
+                    ssh root@192.168.0.16 ls -al workspace/myscripts
+                    """
                     sh """
                         ls -al ./scripts/run.sh
                         chmod a+x ./scripts/run.sh

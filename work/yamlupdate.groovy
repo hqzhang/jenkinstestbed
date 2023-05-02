@@ -204,6 +204,7 @@ def writeYamlFile(output,data){
     return map
 }
 println parseConfig1('configuration.yml')
+println GroovySystem.version
 
    
    

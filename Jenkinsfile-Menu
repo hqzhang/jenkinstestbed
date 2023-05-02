@@ -4,6 +4,7 @@ def brch= scm.branches[0].toString()
 brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
+println GroovySystem.version
 menu.checkBuildRunning()
 def repo=menu.getRepo()
 println "------repo=$repo"

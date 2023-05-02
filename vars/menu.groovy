@@ -37,7 +37,7 @@ def getCompList(String pack){
         println "set lss"
         lss.add(var) }
     }
-    println "set map $key, $lss"
+    println "set map key:$key, lss:$lss"
     map[key]=lss
     println "map=$map"
     

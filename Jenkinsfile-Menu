@@ -22,6 +22,7 @@ println menu.getFileList('solution',wksp)
 println "call getContent100"
 println menu.getContent100('Config' ,wksp,repo,brch )
 println "begin properties"
+println menu.getPackList(''){
 println menu.getContent('Config' ,wksp,repo,brch )
 //////////
 properties([
@@ -29,7 +30,7 @@ properties([
     parameters([
         separator(name: "building"),
 		    
-            choice( name: 'mypack', description: '', choices: ['configuration', 'solution', 'environment']),
+            choice( name: 'mypack', description: '', choices: menu.getPackList('') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compoents', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

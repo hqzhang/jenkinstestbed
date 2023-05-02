@@ -33,6 +33,8 @@ def getCompList(String pack){
        } else { lss.add(var) }
     }
     map[key]=lss
+    println "map=$map"
+    println "$mykey=${map[mykey]}"
     return map[mykey]
 }
 def checkBuildRunning(){

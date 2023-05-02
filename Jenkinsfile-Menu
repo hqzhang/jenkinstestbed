@@ -72,6 +72,18 @@ pipeline {
                     sh """
                     ssh root@192.168.0.16 ls -al workspace/myscripts
                     """
+                    withCredentials([sshUserPrivateKey(credentialsId: 'b2c30d83-4635-4fe4-870c-91b9fafef3c9',
+                             keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
+                        remote.user = userName
+                        remote.identityFile = identity
+                  
+                        writeFile file: 'abc.sh', text: 'ls'
+                        sshCommand remote: remote, command: 'for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done'
+                        sshPut remote: remote, from: 'abc.sh', into: '.'
+                        sshGet remote: remote, from: 'abc.sh', into: 'bac.sh', override: true
+                        sshScript remote: remote, script: 'abc.sh'
+                        sshRemove remote: remote, path: 'abc.sh'
+                    }
                     sh """
                         ls -al ./scripts/run.sh
                         chmod a+x ./scripts/run.sh

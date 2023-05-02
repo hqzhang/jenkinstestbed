@@ -9,7 +9,7 @@ import jenkins.*
 //// Remove everything which is currently queued
 def getPackList(String fileName){
     println "enter getPackList()================="
-    def out="ssh root@192.168.0.16 /root/workspace/myscripts/*.tar.gz".execute().text
+    def out="ssh root@192.168.0.16 ls /root/workspace/myscripts/*.tar.gz".execute().text
     return out
 }
 def getCompList(String fileName){

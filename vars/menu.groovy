@@ -15,8 +15,21 @@ def getPackList(String fileName){
 
 def getCompList(String pack){
     println "enter getCompList()================="
-    def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
-    return out
+    def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readlines()
+    def map=[:]
+    def lss=[]
+    def key=''
+    out.each{ var->
+       if (var.contains(".tar.gz") ){
+          if ( ! lss.isEmpty()){
+            map[key]=lss
+            lss=[]
+          } else { key=var.split(".")[0] }
+       } else { lss.add(var) }
+    }
+    map[key]=lss
+    
+    return map
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()

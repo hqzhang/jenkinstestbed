@@ -28,7 +28,7 @@ properties([
     parameters([
         separator(name: "building"),
 		    
-            choice( name: 'states', description: '', choices: return ["Gujarat", "Maharashtra", "Punjab"]),
+            choice( name: 'states', description: '', choices: ['Gujarat', 'Maharashtra', 'Punjab']),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'cities', randomName: 'choice-parameter-16677189047472', referencedParameters: 'states', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

@@ -8,6 +8,7 @@ import jenkins.*
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued
 def getCompList(){
+    println "enter getCompList()================="
     def cmd="""ssh root@192.168.0.16 "cd /root/workspace/myscripts; ./run.sh" """
     def out=cmd.execute().text
     return out

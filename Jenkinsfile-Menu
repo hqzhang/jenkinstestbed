@@ -63,7 +63,7 @@ def remote = [:]
 remote.name = "root"
 remote.host = "192.168.0.16"
 remote.allowAnyHosts = true
-println menu.getCompenentList()
+println menu.getCompList()
 pipeline {
     agent any
     stages {

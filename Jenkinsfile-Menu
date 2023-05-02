@@ -34,9 +34,9 @@ properties([
                name: 'cities', randomName: 'choice-parameter-16677189047472', referencedParameters: 'states', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: '''if ( states == "Gujarat") { return ["Rajkot", "Ahmedabad", "Jamnagar"]} 
-                        else if ( states == "Maharashtra") { return ["Mumbai", "Pune", "Nagpur"]} 
-                        else if (states == "Punjab") { return ["Ludhiana", "Amritsar", "Jalandhar"] }''' ]]],
+               script: '''if ( states == 'Gujarat') { return ['Rajkot:checked', 'Ahmedabad:checked', 'Jamnagar']} 
+                        else if ( states == 'Maharashtra') { return ['Mumbai', 'Pune:checked', 'Nagpur']} 
+                        else if (states == 'Punjab') { return ['Ludhiana', 'Amritsar', 'Jalandhar:checked'] }''' ]]],
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
 
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),

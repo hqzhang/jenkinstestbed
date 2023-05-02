@@ -29,12 +29,12 @@ properties([
     parameters([
         separator(name: "building"),
 		    
-            choice( name: 'states', description: '', choices: ['Gujarat', 'Maharashtra', 'Punjab']),
+            choice( name: 'package', description: '', choices: ['configuration', 'solution', 'environment']),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
-               name: 'cities', randomName: 'choice-parameter-16677189047472', referencedParameters: 'states', 
+               name: 'cities', randomName: 'choice-parameter-16677189047472', referencedParameters: 'package', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: '''if ( states == "Gujarat") { return ["Rajkot:selected", "Ahmedabad:selected", "Jamnagar"]} 
+               script: '''if ( states == "Gujarat") { return ["component1:selected", "component2:selected", "component3"]} 
                         else if ( states == "Maharashtra") { return ["Mumbai", "Pune:selected", "Nagpur"]} 
                         else if (states == "Punjab") { return ["Ludhiana", "Amritsar", "Jalandhar:selected"] }''' ]]],
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),

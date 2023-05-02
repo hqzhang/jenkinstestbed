@@ -9,7 +9,7 @@ import jenkins.*
 //// Remove everything which is currently queued
 def getCompList(){
     def cmd="""ssh root@192.168.0.16 "cd /root/workspace/myscripts; ./run.sh" """
-    def out=sh (script: cmd, returnStdout: true).trim()
+    def out=cmd.execute().text
     return out
 }
 def checkBuildRunning(){

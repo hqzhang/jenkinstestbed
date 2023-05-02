@@ -74,7 +74,7 @@ pipeline {
                     echo "init=$env.initMenu"
                     
                     sh """
-                    ssh root@192.168.0.16 ls -al workspace/myscripts
+                    pwd ; ls ~/.ssh ;ls -al /tmp/id_rsa
                     """
                     withCredentials([sshUserPrivateKey(credentialsId: 'b2c30d83-4635-4fe4-870c-91b9fafef3c9',
                              keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {

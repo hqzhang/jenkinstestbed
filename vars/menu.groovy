@@ -27,7 +27,7 @@ def getCompList(String pack){
        if (var.contains(".tar.gz") ){
           if ( ! lss.isEmpty()){
             println "set map $key, $lss"
-            //map[key]=lss
+            map[key]=lss
             lss=[]
           } else { 
             key=var.split("\\.")[0]

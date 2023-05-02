@@ -15,11 +15,11 @@ def getPackList(String fileName){
 
 def getCompList(String pack){
     println "enter getCompList()================="
-    def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readlines()
+    def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
     def map=[:]
     def lss=[]
     def key=''
-    out.each{ var->
+    out.readLines().each{ var->
        if (var.contains(".tar.gz") ){
           if ( ! lss.isEmpty()){
             map[key]=lss

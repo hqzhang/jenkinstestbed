@@ -41,8 +41,9 @@ properties([
                         return ["Ludhiana", "Amritsar", "Jalandhar"]
                }''']]],
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
+            
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),
-            string(name: 'package', defaultValue: 'configuration.yaml', description: 'import configuration file'),
+        
             choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', omitValueField: false, 
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 

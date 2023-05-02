@@ -14,6 +14,7 @@ def getPackList(String fileName){
 }
 
 def getCompList(String pack){
+    def mykey=pack.split("\\.")[0]
     println "enter getCompList()================="
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
     println "out=$out"
@@ -23,28 +24,18 @@ def getCompList(String pack){
     def lss=[]
     def key=''
     out.each{ var->
-       println var
-       println "key=$key"
        if (var.contains(".tar.gz") ){
           if ( ! key.isEmpty()){
-            println "set map $key, $lss"
             map[key]=lss
+            key=var.split("\\.")[0]
+            key=var
             lss=[]
-            println "set key: $key"
-            key=var.split("\\.")[0]
-          } else { 
-            key=var.split("\\.")[0]
-            println "set key: $key"
-          }
-       } else { 
-        println "set lss"
-        lss.add(var) }
+          } else { key=var.split("\\.")[0]
+                   key=var }
+       } else { lss.add(var) }
     }
-    println "set map key:$key, lss:$lss"
     map[key]=lss
-    println "map=$map"
-    
-    return map
+    return map[mykey]
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()

@@ -13,7 +13,7 @@ def getPackList(String fileName){
     return out.readLines().collect{ it.split("/")[-1] }
 }
 
-def getCompList(String pack){
+def getCompList2(String pack){
     def mykey=pack
     println "enter getCompList()================="
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
@@ -40,33 +40,7 @@ def getCompList(String pack){
     println "$mykey=${map[mykey]}"
     return map[mykey]
 }
-def getCompList1(String pack){
-    def mykey=pack
-    println "enter getCompList()================="
-    def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
-    println "out=$out"
-    out=out.readLines()
-    println "out=$out"
-    def map=[:]
-    def lss=[]
-    def key=''
-    out.each{ var->
-       if (var.contains(".tar.gz") ){
-          if ( ! key.isEmpty()){
-            map[key]=lss
-            key=var.split("\\.")[0]
-            key=var
-            lss=[]
-          } else { key=var.split("\\.")[0]
-          key=var
-           }
-       } else { lss.add(var) }
-    }
-    map[key]=lss
-    println "map=$map"
-    println "$mykey=${map[mykey]}"
-    return map[mykey]
-}
+
 def getCompList(String mypack){
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     def map=[:]

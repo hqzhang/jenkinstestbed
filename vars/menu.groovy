@@ -14,7 +14,7 @@ def getPackList(String fileName){
 }
 
 def getCompList(String pack){
-    def mykey=pack.split("\\.")[0]
+    def mykey=pack
     println "enter getCompList()================="
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
     println "out=$out"
@@ -28,8 +28,11 @@ def getCompList(String pack){
           if ( ! key.isEmpty()){
             map[key]=lss
             key=var.split("\\.")[0]
+            key=var
             lss=[]
-          } else { key=var.split("\\.")[0] }
+          } else { key=var.split("\\.")[0]
+          key=var
+           }
        } else { lss.add(var) }
     }
     map[key]=lss

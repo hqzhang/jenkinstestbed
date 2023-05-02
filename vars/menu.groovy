@@ -7,6 +7,11 @@ import hudson.model.*
 import jenkins.*
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued
+def getCompList(){
+    def cmd="""ssh root@192.168.0.16 "cd /root/workspace/myscripts; ./run.sh" """
+    def out=sh (script: cmd, returnStdout: true).trim()
+    return out=
+}
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()
     def buildingJobs = Jenkins.instance.getAllItems(Job.class).findAll {

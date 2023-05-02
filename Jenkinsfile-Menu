@@ -63,6 +63,7 @@ def remote = [:]
 remote.name = "root"
 remote.host = "192.168.0.16"
 remote.allowAnyHosts = true
+println menu.getCompenentList()
 pipeline {
     agent any
     stages {
@@ -72,7 +73,7 @@ pipeline {
                     echo "STAGE: create List..."
                     echo "params======$params"
                     echo "init=$env.initMenu"
-                    
+                    println "get use function"
                     cmd="""ssh root@192.168.0.16 "cd /root/workspace/myscripts; ./run.sh" """
                     def out=sh (script: cmd, returnStdout: true).trim()
                     echo "out=$out"

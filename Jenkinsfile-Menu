@@ -73,9 +73,10 @@ pipeline {
                     echo "params======$params"
                     echo "init=$env.initMenu"
                     
-                    sh """
-                     ssh root@192.168.0.16 "cd /root/workspace/myscripts; ./run.sh"
-                    """
+                    cmd="""ssh root@192.168.0.16 "cd /root/workspace/myscripts; ./run.sh" """
+                    def out=sh (script: 'git --no-pager show -s --format=\'%ae\'', returnStdout: true).trim()
+                    echo "out=$out"
+                    
                     withCredentials([sshUserPrivateKey(credentialsId: 'b2c30d83-4635-4fe4-870c-91b9fafef3c9',
                              keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
                         remote.user = userName

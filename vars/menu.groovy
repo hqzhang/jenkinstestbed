@@ -31,7 +31,7 @@ def getCompList(String pack){
             lss=[]
           } else { 
             key=var.split("\\.")[0]
-            println "set key $key"
+            println "set key: $key"
           }
        } else { 
         println "set lss"
@@ -39,6 +39,7 @@ def getCompList(String pack){
     }
     println "set map $key, $lss"
     map[key]=lss
+    println "map=$map"
     
     return map
 }

@@ -53,15 +53,16 @@ def getCompList(String mypack){
     | """.stripMargin()
 }
 def gitCompVerify(){
-def pack='file.tar.gz'
+def mypack='file.tar.gz'
 def map=[:]
 def lss=[]
 def key=''
 def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
 out.each{ if (it.contains(".tar.gz") ){
   if ( ! key.isEmpty()){ map[key]=lss; key=it; lss=[] } else { key=it } }
-else { lss.add('"'+it+'"') } } ; map[key]=lss
-return """ return ${map[mypack]} """
+else { lss.add(it) } } ; map[key]=lss
+println map[mypack]
+return map[mypack]
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()

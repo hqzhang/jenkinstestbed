@@ -13,7 +13,7 @@ def getPackList(String fileName){
     return out.readLines().collect{ it.split("/")[-1] }
 }
 
-def getCompList(String package){
+def getCompList(String pack){
     println "enter getCompList()================="
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
     return out.readLines()

@@ -74,6 +74,7 @@ pipeline {
                     echo "init=$env.initMenu"
                     
                     sh """
+                     pwd
                      cp /tmp/id_rsa ~/.ssh
                      ls -alt ~/.ssh
                      ssh -t root@192.168.0.16 ls -al

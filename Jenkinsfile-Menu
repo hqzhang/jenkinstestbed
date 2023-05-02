@@ -65,6 +65,7 @@ remote.name = "root"
 remote.host = "192.168.0.16"
 remote.allowAnyHosts = true
 println menu.getCompList('mypack')
+println menu.gitCompVerify()
 pipeline {
     agent any
     stages {

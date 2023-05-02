@@ -36,7 +36,7 @@ properties([
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: '''if ( package == "configuration") { return ["component1:selected", "component2:selected", "component3"]} 
                         else if ( package == "solution") { return ["comp1", "comp2:selected", "comp3"]} 
-                        else if (package == "environment") { return ["cmp1", "cmp2", "cmp3:selected"] }''' ]]],
+                        else if ( package == "environment") { return ["cmp1", "cmp2", "cmp3:selected"] }''' ]]],
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
 
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),

@@ -64,7 +64,7 @@ def remote = [:]
 remote.name = "root"
 remote.host = "192.168.0.16"
 remote.allowAnyHosts = true
-println menu.getCompList('package')
+println menu.getCompList('myfile.tar.gz')
 pipeline {
     agent any
     stages {

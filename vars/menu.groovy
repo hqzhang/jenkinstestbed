@@ -16,7 +16,7 @@ def getPackList(String fileName){
 def getCompList(String pack){
     println "enter getCompList()================="
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
-    return out.readLines()
+    return out
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()

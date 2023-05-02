@@ -5,7 +5,7 @@ import jenkins.model.Jenkins
 import hudson.*
 import hudson.model.*
 import jenkins.*
-
+import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()
@@ -211,7 +211,7 @@ def getComponentsInfo(String fileName){
     println("Enter getComponentList() ")
     String fileConts = new File(fileName).text
     println ("-----------parsing-------")
-    def myyaml=new YamlSlurper()
+    def myyaml=new groovy.yaml.YamlSlurper()
     def map=myyaml.parseText(fileConts)['components']
     def names=[]
     def types=[]

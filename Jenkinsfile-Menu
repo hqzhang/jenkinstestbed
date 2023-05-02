@@ -34,9 +34,9 @@ properties([
                name: 'cities', randomName: 'choice-parameter-16677189047472', referencedParameters: 'package', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: '''if ( states == "Gujarat") { return ["component1:selected", "component2:selected", "component3"]} 
-                        else if ( states == "Maharashtra") { return ["Mumbai", "Pune:selected", "Nagpur"]} 
-                        else if (states == "Punjab") { return ["Ludhiana", "Amritsar", "Jalandhar:selected"] }''' ]]],
+               script: '''if ( package == "configuration") { return ["component1:selected", "component2:selected", "component3"]} 
+                        else if ( package == "solution") { return ["comp1", "comp2:selected", "comp3"]} 
+                        else if (package == "environment") { return ["cmp1", "cmp2", "cmp3:selected"] }''' ]]],
             choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
 
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),

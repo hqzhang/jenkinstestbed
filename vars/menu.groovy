@@ -10,7 +10,8 @@ import jenkins.*
 def getPackList(String fileName){
     println "enter getPackList()================="
     def out="ssh root@192.168.0.16 ls /root/workspace/myscripts/*.tar.gz".execute().text
-    return out
+
+    return out.readLines().collect{ it.split("/")[-1] }
 }
 def getCompList(String fileName){
     println "enter getCompList()================="

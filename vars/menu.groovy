@@ -10,7 +10,7 @@ import jenkins.*
 def getCompList(){
     def cmd="""ssh root@192.168.0.16 "cd /root/workspace/myscripts; ./run.sh" """
     def out=sh (script: cmd, returnStdout: true).trim()
-    return out=
+    return out
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()

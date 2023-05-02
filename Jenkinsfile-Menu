@@ -59,6 +59,10 @@ properties([
 println "begin pipeline"
 def map
 def list
+def remote = [:]
+remote.name = "root"
+remote.host = "192.168.0.16"
+remote.allowAnyHosts = true
 pipeline {
     agent any
     stages {

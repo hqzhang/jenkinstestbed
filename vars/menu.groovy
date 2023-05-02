@@ -24,6 +24,7 @@ def getCompList(String pack){
     def key=''
     out.each{ var->
        println var
+       println "key=$key"
        if (var.contains(".tar.gz") ){
           if ( ! key.isEmpty()){
             println "set map $key, $lss"

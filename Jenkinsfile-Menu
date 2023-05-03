@@ -19,8 +19,8 @@ println "------wksp=${wksp}"
 
 println "call getFileList"
 //println menu.getFileList('solution',wksp) 
-println "call getContent100"
-//println menu.getContent100('Config' ,wksp,repo,brch )
+println "call getContentTable"
+//println menu.getContentTable('Config' ,wksp,repo,brch )
 println "begin properties"
 //println menu.getPackList('mypath')
 println "=========*******************========="
@@ -52,7 +52,7 @@ properties([
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContent100('Config' ,wksp,repo,brch )]] ],
+                              script: menu.getContentTable('Config' ,wksp,repo,brch )]] ],
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component', omitValueField: false, 
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],

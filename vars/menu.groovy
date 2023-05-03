@@ -23,34 +23,6 @@ def getPackVerify(){
     return out
 }
 
-def getCompList2(String pack){
-    def mykey=pack
-    println "enter getCompList()================="
-    def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
-    println "out=$out"
-    out=out.readLines()
-    println "out=$out"
-    def map=[:]
-    def lss=[]
-    def key=''
-    out.each{ var->
-       if (var.contains(".tar.gz") ){
-          if ( ! key.isEmpty()){
-            map[key]=lss
-            key=var.split("\\.")[0]
-            key=var
-            lss=[]
-          } else { key=var.split("\\.")[0]
-          key=var
-           }
-       } else { lss.add(var) }
-    }
-    map[key]=lss
-    println "map=$map"
-    println "$mykey=${map[mykey]}"
-    return map[mykey]
-}
-
 def getCompList(String mypack){
     println "enter getCompList()"
     def mykey=mypack.split("\\.")[0] 
@@ -95,9 +67,7 @@ def checkBuildRunning(){
     buildingJobs.each {
         def jobName = it.toString()
         def val = jobName.split("\\[|\\]")
-
         // 'Abort jobs' is the name of the job I have created, and I do not want it to abort itself.
-
         if((val[1].trim())!='Abort jobs') {
             def job = Jenkins.instance.getItemByFullName(val[1].trim())
             for (build in job.builds) {
@@ -109,6 +79,7 @@ def checkBuildRunning(){
         }
     }
 }
+
 String buildScript(List values){
     def ret=values.collect { '"'+it+'"' }
     return "return ${ret}"
@@ -169,9 +140,8 @@ def getContent(String refvar ,String wksp, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
-//////////////////////////
 
-def getContent100(String refvar, String wksp, String repo ,String brch){
+def getContentTable(String refvar, String wksp, String repo ,String brch){
     println "enter getContent99=================================="
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""

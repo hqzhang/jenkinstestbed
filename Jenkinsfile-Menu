@@ -22,8 +22,8 @@ println "call getFileList"
 println "call getContent100"
 //println menu.getContent100('Config' ,wksp,repo,brch )
 println "begin properties"
-println menu.getPackList('mypath')
-println "=================="
+//println menu.getPackList('mypath')
+println "=========*******************========="
 println menu.getPackVerify()
 //println menu.getContent('Config' ,wksp,repo,brch )
 //////////
@@ -69,8 +69,8 @@ def remote = [:]
 remote.name = "root"
 remote.host = "192.168.0.16"
 remote.allowAnyHosts = true
-println menu.getCompList('mypack')
-println menu.gitCompVerify()
+//println menu.getCompList('mypack')
+//println menu.gitCompVerify()
 pipeline {
     agent any
     stages {

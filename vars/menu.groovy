@@ -42,6 +42,7 @@ def getCompList2(String pack){
 }
 
 def getCompList(String mypack){
+    println "enter getCompList()"
     def lss=[]
     def key=''
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()

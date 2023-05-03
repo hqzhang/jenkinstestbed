@@ -54,7 +54,7 @@ def getCompList(String mypack){
     return """def key='' 
     |def map=[:]
     |def lss=[]
-    |def mykey=mypack.split("\\.")[0] 
+    |def mykey=${mypack}.split("\\.")[0] 
     |def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     |out.each{ if (it.contains(".tar.gz") ){
     |if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
@@ -65,15 +65,16 @@ def getCompList(String mypack){
 }
 def gitCompVerify(){
 def mypack='file.tar.gz'
+def key='' 
 def map=[:]
 def lss=[]
-def key=''
+def mykey=mypack.split("\.")[0] 
 def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
 out.each{ if (it.contains(".tar.gz") ){
-  if ( ! key.isEmpty()){ map[key]=lss; key=it; lss=[] } else { key=it } }
-else { lss.add(it) } } ; map[key]=lss
-println map[mypack]
-return map[mypack]
+if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\.")[0]; lss=[] } else { key=it.split("\.")[0] } }
+else { lss.add('"'+it+'"') } } ; map[key]=lss
+println map
+return map[mykey]
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()

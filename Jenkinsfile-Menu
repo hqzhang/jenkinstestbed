@@ -39,7 +39,7 @@ properties([
                script: menu.getPackList('mypath') ]]],
             
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
-               name: 'compoents', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
+               name: 'components', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: menu.getCompList('mypack') ]]],

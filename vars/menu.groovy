@@ -48,7 +48,7 @@ def getCompList(String mypack){
     def key=''
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     out.each{ if (it.contains(".tar.gz") ){
-      if ( ! key.isEmpty()){ map[key]=lss; key=it; lss=[] } else { key=it } }
+      if ( ! key.isEmpty()){ map['"'+key+'"']=lss; key=it; lss=[] } else { key=it } }
     else { lss.add('"'+it+'"') } } ; map[key]=lss
     return """def map1=$map
     |def map=[:]

@@ -43,23 +43,24 @@ def getCompList2(String pack){
 
 def getCompList(String mypack){
     println "enter getCompList()"
+    def mykey=mypack.split("\\.")[0] 
     def map=[:]
     def lss=[]
     def key=''
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     out.each{ if (it.contains(".tar.gz") ){
-      if ( ! key.isEmpty()){ map['"'+key+'"']=lss; key=it; lss=[] } else { key=it } }
-    else { lss.add('"'+it+'"') } } ; map['"'+key+'"']=lss
-    return """def map1=$map
+    if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
+    else { lss.add('"'+it+'"') } } ; map[key]=lss
+    return """def key='' 
     |def map=[:]
     |def lss=[]
-    |def key=''
+    |def mykey=mypack.split("\\.")[0] 
     |def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     |out.each{ if (it.contains(".tar.gz") ){
-    |  if ( ! key.isEmpty()){ map[key]=lss; key=it; lss=[] } else { key=it } }
-    |else { lss.add(it) } } ; map[key]=lss
+    |if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
+    |else { lss.add('"'+it+'"') } } ; map[key]=lss
     |println map
-    |return map1[mypack]
+    |return map[mykey]
     | """.stripMargin()
 }
 def gitCompVerify(){

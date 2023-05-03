@@ -15,6 +15,7 @@ def getPackList(String mypath){
     | """.stripMargin()
 }
 def getPackVerify(){
+    println "enter getPackVerify()"
     def mypath='/root/workspace/myscripts'
     def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
     out=out.readLines().collect{ '"'+it.split("/")[-1]+'"' }

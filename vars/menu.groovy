@@ -7,10 +7,13 @@ import hudson.model.*
 import jenkins.*
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued/
-def getPackList(String fileName){
+def getPackList(String mypath){
     println "enter getPackList()================="
-    def out="ssh root@192.168.0.16 ls /root/workspace/myscripts/*.tar.gz".execute().text
-    return out.readLines().collect{ it.split("/")[-1] }
+    return """def myfile='/var/workspace/myscripts'
+    |def out="ssh root@192.168.0.16 ls ${myfile}/*.tar.gz".execute().text
+    |out=out.readLines().collect{ '"'+it.split("/")[-1]+'"' }
+    |return out
+    | """.stripMargin()
 }
 
 def getCompList2(String pack){

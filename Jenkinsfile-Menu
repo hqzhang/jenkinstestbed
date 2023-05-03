@@ -30,7 +30,12 @@ properties([
     parameters([
         separator(name: "building"),
 		    string( name: 'mypath', defaultValue: '/root/workspace/myscripts',description: ''),
-            choice( name: 'mypack', description: '', choices: menu.getPackList('') ),
+            [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
+               name: 'compoents', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypath', 
+               script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
+               script: [classpath: [], oldScript: '', sandbox: false, 
+               script: menu.getPackList('mypath') ]]],
+            
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compoents', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

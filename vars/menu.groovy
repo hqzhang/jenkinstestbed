@@ -14,6 +14,13 @@ def getPackList(String mypath){
     |return out
     | """.stripMargin()
 }
+def getPackVerify(){
+    def mypath='/root/workspace/myscripts'
+    def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
+    out=out.readLines().collect{ '"'+it.split("/")[-1]+'"' }
+    println "out=$out"
+    return out
+}
 
 def getCompList2(String pack){
     def mykey=pack
@@ -62,7 +69,6 @@ def getCompList(String mypack){
     |out.each{ if (it.contains(".tar.gz") ){
     |if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\\\.")[0]; lss=[] } else { key=it.split("\\\\.")[0] } }
     |else { lss.add(it+slt) } } ; map[key]=lss
-    |println map
     |return map[mykey]
     | """.stripMargin()
 }

@@ -194,6 +194,14 @@ def getContent(String refvar ,String wksp, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
+def getContentSimple(String refvar ,String wksp, String repo ,String brch){
+   def url="https://raw.githubusercontent.com/hqzhang"
+   def urlext=""
+   return """
+      |def map=getcompmap(wksp, url, repo, brch)
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
+      | """.stripMargin()
+}
 
 def getContentTable(String refvar, String wksp, String repo ,String brch){
     println "enter getContent99=================================="

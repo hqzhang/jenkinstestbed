@@ -84,6 +84,7 @@ def getCompList(String mypack){
     | """.stripMargin()
 }
 def gitCompVerify(){
+    println "-------------verify coop------------------------"
 def wksp='/var/root/.jenkins/workspace/agroovytest'
 def mypack='file.tar.gz'
 def key='' 
@@ -96,6 +97,7 @@ out.each{ if (it.contains(".tar.gz") ){
 if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
 else { lss.add('"'+it+slt+'"') } } ; map[key]=lss
 println map
+println "-------------verify coop------------------------"
 return map[mykey]
 }
 def checkBuildRunning(){

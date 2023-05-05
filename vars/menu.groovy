@@ -22,11 +22,10 @@ def executeCmd(String cmd, String directory){
     while ((line = reader.readLine()) != null) {
         output = output +line+ "\n"
     }
-    
-    println( "-----------------")
-    println("exitValue: " + err)
-    println( "-----------------")
-    println output
+    if ( err != 0){
+        println("exitValue: " + err)
+        error("debug for cmd:$cmd")
+    }
     return output
 }
 def exeCmd(String cmd){
@@ -62,7 +61,7 @@ def getPackVerify(){
 }
 def test(){
     println "enter test()---------1-----------"
-    def cmd="ssh -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
+    def cmd="ssh1 -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
     def dir="/var/root/.jenkins/workspace/agroovytest"
     def out=executeCmd(cmd,dir)
    

@@ -93,10 +93,11 @@ def lss=[]
 def slt=':selected'
 def mykey=mypack.split("\\.")[0] 
 def out=execmd("ssh root@192.168.0.16 < ./run.sh", wksp)
-out.each{ if (it.contains(".tar.gz") ){
+println "out:$out"
+out.readLines().each{ if (it.contains(".tar.gz") ){
 if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
 else { lss.add('"'+it+slt+'"') } } ; map[key]=lss
-println map
+println "map:$map"
 println "-------------verify coop------------------------"
 return map[mykey]
 }

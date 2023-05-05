@@ -122,7 +122,7 @@ def checkBuildRunning(){
             def job = Jenkins.instance.getItemByFullName(val[1].trim())
             //println Jenkins.instance.getWorkspaceByFullName(val[1].trim())
             for (build in job.builds) {
-                println "build=$build"
+                //println "build=$build"
                 if (build.isBuilding()) {
                     //println ("currentbuild:"); println currentBuild
                     println("build:"); println build

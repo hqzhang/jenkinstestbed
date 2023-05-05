@@ -23,7 +23,7 @@ def executeCmd(String cmd, String directory){
         output = output +line+ "\n"
     }
     if ( err != 0){
-        println("exitValue: " + err)
+        println("exitValue: " + output)
         error("debug for cmd:$cmd")
     }
     return output
@@ -43,9 +43,17 @@ def exeCmd(String cmd){
     }
     return out
 }
+def test(){
+    println "enter test()---------1-----------"
+    def cmd="ssh1 -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
+    def dir="/var/root/.jenkins/workspace/agroovytest"
+    def out=executeCmd(cmd,dir)
+    println "out=$out"
+    println "end test()----------2----------" 
+}
 def getPackList(String mypath){
     println "enter getPackList()================="
-    return """def out="ssh root@192.168.0.16 ls \${mypath}/*.tar.gz".execute().text
+    return """def out="ssh1 root@192.168.0.16 ls \${mypath}/*.tar.gz".execute().text
     |out=out.readLines().collect{ it.split("/")[-1] }
     |return out
     | """.stripMargin()
@@ -59,16 +67,7 @@ def getPackVerify(){
     println "end getPackVerify()--------------------"
     return out
 }
-def test(){
-    println "enter test()---------1-----------"
-    def cmd="ssh -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
-    def dir="/var/root/.jenkins/workspace/agroovytest"
-    def out=executeCmd(cmd,dir)
-   
-    println "out=$out"
-    println "end test()----------2----------"
-    
-}
+
 def getCompList(String mypack){
     println "enter getCompList()"
     def mykey=mypack.split("\\.")[0] 

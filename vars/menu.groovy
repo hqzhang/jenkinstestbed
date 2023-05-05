@@ -23,8 +23,8 @@ def executeCmd(String cmd, String directory){
         output = output +line+ "\n"
     }
     if ( err != 0){
-        println("exitValue: " + output)
-        error("debug for cmd:$cmd")
+        println("ERROR: " + output)
+        error("Debug for cmd:$cmd")
     }
     return output
 }

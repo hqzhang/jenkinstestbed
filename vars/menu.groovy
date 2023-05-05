@@ -38,7 +38,7 @@ def exeCmd(String cmd){
     def err=proc.err.text
     def code=proc.exitValue()
     if ( code !=0 ) {
-        println("Error:$err")
+        println("Error11:$err")
         error("Jump out for debug")
     }
     return out

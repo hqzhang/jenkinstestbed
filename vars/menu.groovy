@@ -62,9 +62,10 @@ def getPackVerify(){
 def test(){
     def cmd="ssh -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
     def dir="/var/root/.jenkins/workspace/agroovytest"
-    def out=exeCmd(cmd)
+    def out=executeCmd(cmd,dir)
+   
     println "out=$out"
-    out=executeCmd(cmd,dir)
+     out=exeCmd(cmd)
     println "out=$out"
 }
 def getCompList(String mypack){

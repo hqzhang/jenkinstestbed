@@ -25,7 +25,7 @@ println "begin properties"
 //println menu.getPackList('mypath')
 println "=========*******************========="
 println menu.getPackVerify()
-//println menu.getContent('Config' ,wksp,repo,brch )
+println menu.getContentSimple('Config' ,wksp,repo,brch )
 println exeCmd("cat run.sh",wksp)
 println menu.test()
 //////////
@@ -63,7 +63,7 @@ properties([
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContent('Config' ,wksp,repo,brch )]] ],
+                              script: menu.getContentSimple('Config' ,wksp,repo,brch )]] ],
                               
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
              

@@ -2,9 +2,11 @@
 import org.yaml.snakeyaml.Yaml
 import org.yaml.snakeyaml.DumperOptions
 import jenkins.model.Jenkins
+import jenkins.*
 import hudson.*
 import hudson.model.*
-import jenkins.*
+import hudson.model.Run
+
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued/
 def execmd(String cmd, String directory){
@@ -103,6 +105,11 @@ return map[mykey]
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()
+    Jenkins jenkins = Jenkins.getInstance()
+    Run<?, ?> build = jenkins.getQueue().getItems()[0].getFuture().get()
+    String workspace = build.getWorkspace().getRemote()
+    System.out.println("Workspace: " + workspace)
+
     def buildingJobs = Jenkins.instance.getAllItems(Job.class).findAll {
         it.isBuilding()
     }

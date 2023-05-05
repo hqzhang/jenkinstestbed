@@ -26,7 +26,7 @@ println "begin properties"
 println "=========*******************========="
 println menu.getPackVerify()
 //println menu.getContent('Config' ,wksp,repo,brch )
-println menu.gitCompVerify()
+println exeCmd("cat run.sh",wksp)
 //////////
 properties([
     //pipelineTriggers([bitbucketPush()]),

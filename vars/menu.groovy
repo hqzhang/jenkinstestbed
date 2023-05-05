@@ -84,13 +84,14 @@ def getCompList(String mypack){
     | """.stripMargin()
 }
 def gitCompVerify(){
+def wksp='/var/root/.jenkins/workspace/agroovytest'
 def mypack='file.tar.gz'
 def key='' 
 def map=[:]
 def lss=[]
 def slt=':selected'
 def mykey=mypack.split("\\.")[0] 
-def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
+def out=execmd("ssh root@192.168.0.16 < ./run.sh", wksp)
 out.each{ if (it.contains(".tar.gz") ){
 if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
 else { lss.add('"'+it+slt+'"') } } ; map[key]=lss

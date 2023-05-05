@@ -194,6 +194,7 @@ def getContent(String refvar ,String wksp, String repo ,String brch){
       | """.stripMargin()
 }
 def getContentSimple(String refvar ,String wksp, String repo ,String brch){
+    println "enter getContentSimple()================74582375270=================="
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""
    return """

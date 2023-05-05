@@ -52,21 +52,25 @@ def getPackList(String mypath){
     | """.stripMargin()
 }
 def getPackVerify(){
-    println "enter getPackVerify()"
+    println "enter getPackVerify()--------------------"
     def mypath='/root/workspace/myscripts'
     def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
     out=out.readLines().collect{ '"'+it.split("/")[-1]+'"' }
     println "out=$out"
+    println "end getPackVerify()--------------------"
     return out
 }
 def test(){
+    println "enter test()---------1-----------"
     def cmd="ssh -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
     def dir="/var/root/.jenkins/workspace/agroovytest"
     def out=executeCmd(cmd,dir)
    
     println "out=$out"
+    println "enter test()----------2----------"
      out=exeCmd(cmd)
     println "out=$out"
+    println "enter test()----------3----------"
 }
 def getCompList(String mypack){
     println "enter getCompList()"

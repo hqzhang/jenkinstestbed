@@ -7,32 +7,25 @@ import hudson.model.*
 import jenkins.*
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued/
-def executeCmd(String cmd, String directory){
+def exeCmd(String cmd, String directory){
     ProcessBuilder procBuilder = new ProcessBuilder("bash", "-c", cmd);
     procBuilder.directory(new File(directory))
     procBuilder.redirectErrorStream(true);
     def proc = procBuilder.start()
     proc.waitFor()
-    
     def err=proc.exitValue()
     def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()))
-   
     def line = null
-    def output=''
-    while ((line = reader.readLine()) != null) {
-        output = output +line+ "\n"
-    }
+    def out=''
+    while ((line = reader.readLine()) != null) { out += line+ "\n" }
     if ( err != 0){
-        println("ERROR: " + output)
+        println("ERROR: $out")
         error("Debug for cmd:$cmd")
     }
-    return output
+    return out
 }
 def exeCmd(String cmd){
-    
     def proc=cmd.execute()
-    //def b = new StringBuffer()
-    //proc.consumeProcessErrorStream(b)
     proc.waitFor()
     def out=proc.in.text
     def err=proc.err.text

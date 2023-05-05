@@ -7,6 +7,43 @@ import hudson.model.*
 import jenkins.*
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued/
+def executeCmd(String cmd, String directory){
+    ProcessBuilder procBuilder = new ProcessBuilder("bash", "-c", cmd);
+    procBuilder.directory(new File(directory))
+    procBuilder.redirectErrorStream(true);
+    def proc = procBuilder.start()
+    proc.waitFor()
+    
+    def err=proc.exitValue()
+    def reader = new BufferedReader(new InputStreamReader(proc.getInputStream()))
+   
+    def line = null
+    def output=''
+    while ((line = reader.readLine()) != null) {
+        output = output +line+ "\n"
+    }
+    
+    println( "-----------------")
+    println("exitValue: " + err)
+    println( "-----------------")
+    println output
+    return output
+}
+def exeCmd(String cmd){
+    
+    def proc=cmd.execute()
+    //def b = new StringBuffer()
+    //proc.consumeProcessErrorStream(b)
+    proc.waitFor()
+    def out=proc.in.text
+    def err=proc.err.text
+    def code=proc.exitValue()
+    if ( code !=0 ) {
+        println("Error:$err")
+        error("Jump out for debug")
+    }
+    return out
+}
 def getPackList(String mypath){
     println "enter getPackList()================="
     return """def out="ssh root@192.168.0.16 ls \${mypath}/*.tar.gz".execute().text
@@ -22,7 +59,14 @@ def getPackVerify(){
     println "out=$out"
     return out
 }
-
+def test(){
+    def cmd="ssh -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
+    def dir="/var/root/.jenkins/workspace/agroovytest"
+    def out=exeCmd(cmd)
+    println "out=$out"
+    out=executeCmd(cmd,dir)
+    println "out=$out"
+}
 def getCompList(String mypack){
     println "enter getCompList()"
     def mykey=mypack.split("\\.")[0] 

@@ -105,10 +105,10 @@ return map[mykey]
 }
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()
-    Jenkins jenkins = Jenkins.getInstance()
-    Run<?, ?> mybuild1 = jenkins.getQueue().getItems()[0].getFuture().get()
-    String workspace = mybuild.getWorkspace().getRemote()
-    System.out.println("Workspace: " + workspace)
+    def  jenkins = Jenkins.getInstance()
+    def mybuild = jenkins.getQueue().getItems()[0].getFuture().get()
+    def workspace = mybuild.getWorkspace().getRemote()
+    println("Workspace: " + workspace)
 
     def buildingJobs = Jenkins.instance.getAllItems(Job.class).findAll {
         it.isBuilding()

@@ -26,7 +26,7 @@ println "begin properties"
 println "=========*******************========="
 println menu.getPackVerify()
 println menu.getContentSimple('Config' ,wksp,repo,brch )
-println menu.getContentSimpleVerify(wksp, url, repo, brch )
+println menu.getContentSimpleVerify(wksp, repo, brch )
 println exeCmd("cat run.sh",wksp)
 println menu.test()
 //////////

@@ -1,6 +1,5 @@
 
-def call(String wksp, String url, String repo ,String brch){
-   
+def call(String wksp, String repo ,String brch){
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""
     def mf ="ls ${wksp}/release  ".execute().text

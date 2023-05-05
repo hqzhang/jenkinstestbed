@@ -116,13 +116,14 @@ def checkBuildRunning(){
     buildingJobs.each {
         def jobName = it.toString()
         def val = jobName.split("\\[|\\]")
+        println "val=$val"
         // 'Abort jobs' is the name of the job I have created, and I do not want it to abort itself.
         if((val[1].trim())!='Abort jobs') {
             def job = Jenkins.instance.getItemByFullName(val[1].trim())
             for (build in job.builds) {
                 if (build.isBuilding()) {
                     println(build)
-                    println build.getWorkspace()
+                    
                     //build.doStop();
                 }
             }

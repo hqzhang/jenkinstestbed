@@ -202,6 +202,12 @@ def getContentSimple(String refvar ,String wksp, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
+def getContentSimpleVerify(wksp, url, repo, brch ){
+     println "enter getContentSimpleverify()================74582375270=================="
+    def Config='solution'
+    def map=getcompmap(wksp, url, repo, brch)
+    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[Config]}</textarea> """
+}
 
 def getContentTable(String refvar, String wksp, String repo ,String brch){
     println "enter getContent99=================================="

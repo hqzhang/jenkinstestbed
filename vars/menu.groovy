@@ -106,7 +106,7 @@ return map[mykey]
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()
    
-    //def mybuild = Jenkins.instance.getQueue().getItems()[0].getFuture().get()
+    def mybuild = Jenkins.instance.getQueue().getItems()[0].getFuture().get()
     //def workspace = mybuild.getWorkspace().getRemote()
     //println("Workspace: " + workspace)
 

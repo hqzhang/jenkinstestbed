@@ -40,7 +40,7 @@ def test(){
     println "enter test()---------1-----------"
     def cmd="ssh1 -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
     def dir="/var/root/.jenkins/workspace/agroovytest"
-    def out=executeCmd(cmd,dir)
+    def out=exeCmd(cmd,dir)
     println "out=$out"
     println "end test()----------2----------" 
 }

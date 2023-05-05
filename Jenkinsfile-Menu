@@ -27,6 +27,7 @@ println "=========*******************========="
 println menu.getPackVerify()
 //println menu.getContent('Config' ,wksp,repo,brch )
 println exeCmd("cat run.sh",wksp)
+println menu.test()
 //////////
 properties([
     //pipelineTriggers([bitbucketPush()]),

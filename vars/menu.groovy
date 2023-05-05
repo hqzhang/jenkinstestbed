@@ -7,7 +7,7 @@ import hudson.model.*
 import jenkins.*
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued/
-def exeCmd(String cmd, String directory){
+def execmd(String cmd, String directory){
     ProcessBuilder procBuilder = new ProcessBuilder("bash", "-c", cmd);
     procBuilder.directory(new File(directory))
     procBuilder.redirectErrorStream(true);
@@ -24,7 +24,7 @@ def exeCmd(String cmd, String directory){
     }
     return out
 }
-def exeCmd(String cmd){
+def execmd(String cmd){
     def proc=cmd.execute()
     proc.waitFor()
     def out=proc.in.text

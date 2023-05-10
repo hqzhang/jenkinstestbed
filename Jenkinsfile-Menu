@@ -29,7 +29,7 @@ println menu.getContentSimple('Config' ,wksp,repo,brch )
 println menu.getContentSimpleVerify(wksp, repo, brch )
 println exeCmd("cat run.sh",wksp)
 println menu.getCompList('mypack')
-println menu.gitCompVerify()
+println menu.getCompVerify()
 //////////
 properties([
     //pipelineTriggers([bitbucketPush()]),

@@ -96,7 +96,7 @@ pipeline {
                     println "anth=$anth"
                     sh """
                         export nums="\\"$anth\\""
-                        export str="$sts"
+                        export str="$strs"
                         ./run
                     """
                     //println menu.getCompList('mypack')

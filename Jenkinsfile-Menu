@@ -93,7 +93,7 @@ pipeline {
                     def anth=nums.join('-')
                     println "anth=$anth"
                     sh """
-                        #export nums=$anth"
+                        export nums=$anth
                         ./run
                     """
                     //println menu.getCompList('mypack')

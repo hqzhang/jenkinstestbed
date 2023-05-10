@@ -24,12 +24,13 @@ println "call getContentTable"
 println "begin properties"
 //println menu.getPackList('mypath')
 println "=========*******************========="
-println menu.getPackVerify()
+/*println menu.getPackVerify()
 println menu.getContentSimple('Config' ,wksp,repo,brch )
 println menu.getContentSimpleVerify(wksp, repo, brch )
 println exeCmd("cat run.sh",wksp)
 println menu.getCompList('mypack')
-println menu.getCompVerify()
+println menu.getCompVerify()*/
+menu.getPackList('/root/workspace/myscripts')
 //////////
 properties([
     //pipelineTriggers([bitbucketPush()]),

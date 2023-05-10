@@ -46,36 +46,24 @@ def test(){
     println "end test()----------2----------" 
 }
 def getPackList(String mypath){
-    println "enter getPackList()======!!!!!!==========="
-    def cmd="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz"
-    println "cmd=$cmd"
+    println "enter getPackList()"
     def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
     out=out.readLines().collect{ it }
     println "out=$out"
-    println "enter getPackList()======eeeeeee==========="
-    return out
-    
-}
-def getPackVerify(){
-    println "enter getPackVerify()--------------------"
-    def mypath='/root/workspace/myscripts'
-    def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
-    out=out.readLines().collect{ '"'+it.split("/")[-1]+'"' }
-    println "out=$out"
-    println "end getPackVerify()--------------------"
     return out
 }
 
 def getCompList(String mypack){
     println "enter getCompList()"
-    def mykey=mypack.split("\\.")[0] 
-    def map=[:]
-    def lss=[]
-    def key=''
+    def mykey=mypack.split("\\/")[-1].split("\\.")[0] 
+    println "mykey=$mykey"
+    def map=[:], lss=[], key='', sel=':selected';
     def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     out.each{ if (it.contains(".tar.gz") ){
     if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
-    else { lss.add('"'+it+'"') } } ; map[key]=lss
+    else { lss.add(it+slt) } } ; map[key]=lss
+    println "map=$map"
+    println "mkey=${map[mykey]}"
     return """def key='' 
     |def map=[:]
     |def lss=[]
@@ -84,7 +72,7 @@ def getCompList(String mypack){
     |def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     |out.each{ if (it.contains(".tar.gz") ){
     |if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\\\.")[0]; lss=[] } else { key=it.split("\\\\.")[0] } }
-    |else { lss.add('"'+it+slt+'"') } } ; map[key]=lss
+    |else { lss.add(it+slt) } } ; map[key]=lss
     |return map[mykey]
     | """.stripMargin()
 }

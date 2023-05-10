@@ -64,10 +64,7 @@ def getCompList(String mypack){
     else { lss.add(it+sel) } } ; map[key]=lss
     println "map=$map"
     println "mkey=${map[mykey]}"
-    return """def key='' 
-    |def map=[:]
-    |def lss=[]
-    |def sel=':selected'
+    return """def map=[:], lss=[], key='', sel=':selected';
     |def mykey=${mypack}.split("\\\\.")[0] 
     |def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     |out.each{ if (it.contains(".tar.gz") ){

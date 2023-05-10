@@ -90,15 +90,11 @@ pipeline {
                     echo "components=${env.compNames}"
                     echo "init=$env.initMenu"
                     println "get use function"
-                    def nums=[1414, 285]
-                    def strs=[ "ab","cd"]
-                    def anth=nums.join(' ')
-                     strs=strs.join(' ')
-                    println "anth=$anth"
                     sh """
-                        export nums="\\"$anth\\""
-                        export str="$strs"
-                        ./run
+                    comps=( "a" "b")
+                        for i in "${!comps[@]}";do
+                     echo "$i    ${comps[$i]}"
+                    done
                     """
                     //println menu.getCompList('mypack')
                    

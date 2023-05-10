@@ -39,7 +39,6 @@ def execmd(String cmd){
     return out
 }
 def test(){
-    ç
     def cmd="ssh -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
     def dir="/var/root/.jenkins/workspace/agroovytest"
     def out=exeCmd(cmd,dir)
@@ -48,6 +47,8 @@ def test(){
 }
 def getPackList(String mypath){
     println "enter getPackList()======!!!!!!==========="
+    def cmd="ssh root@192.168.0.16 ls \${mypath}/*.tar.gz"
+    println "cmd=$cmd"
     def out="ssh root@192.168.0.16 ls \${mypath}/*.tar.gz".execute().text
     out=out.readLines().collect{ it.split("/")[-1] }
     println "out=$out"

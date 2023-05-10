@@ -87,6 +87,7 @@ def getCompList(String mypack){
 }
 def getCompVerify(){
     println "-------------getCompVerify()------------------------"
+def mypack='file.tar.gz'
 def key='' 
 def map=[:]
 def lss=[]
@@ -97,6 +98,7 @@ out.each{ if (it.contains(".tar.gz") ){
 if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
 else { lss.add(it+slt) } } ; map[key]=lss
 println "map:$map"
+println "mykey:$mykey"
 println "-------------getCompVerify()-----------------------"
 //return map[mykey]
 }

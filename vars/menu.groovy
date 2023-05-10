@@ -81,7 +81,7 @@ def getCompList(String mypack){
     |def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
     |out.each{ if (it.contains(".tar.gz") ){
     |if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\\\.")[0]; lss=[] } else { key=it.split("\\\\.")[0] } }
-    |else { lss.add(it+slt) } } ; map[key]=lss
+    |else { lss.add('"'+it+slt+'"') } } ; map[key]=lss
     |return map[mykey]
     | """.stripMargin()
 }
@@ -96,7 +96,7 @@ def mykey=mypack.split("\\.")[0]
 def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
 out.each{ if (it.contains(".tar.gz") ){
 if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
-else { lss.add(it+slt) } } ; map[key]=lss
+else { lss.add('"'+it+slt+'"') } } ; map[key]=lss
 println "map:$map"
 println "mykey:$mykey"
 def ret=map[mykey]

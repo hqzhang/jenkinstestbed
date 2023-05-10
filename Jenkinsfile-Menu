@@ -90,10 +90,13 @@ pipeline {
                     echo "init=$env.initMenu"
                     println "get use function"
                     def nums=[1414, 285]
+                    def strs=[ "ab","cd"]
                     def anth=nums.join(' ')
+                     strs=strs.join(' ')
                     println "anth=$anth"
                     sh """
                         export nums="\\"$anth\\""
+                        export str="$sts"
                         ./run
                     """
                     //println menu.getCompList('mypack')

@@ -90,9 +90,9 @@ pipeline {
                     echo "components=${env.compNames}"
                     echo "init=$env.initMenu"
                     println "get use function"
+                    def comps=["b","a"]
                     sh """
-                    comps=( "a" "b")
-                        for i in "${!comps[@]}";do
+                    for i in "${!comps[@]}";do
                      echo "$i    ${comps[$i]}"
                     done
                     """

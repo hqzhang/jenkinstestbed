@@ -90,7 +90,7 @@ pipeline {
                     echo "init=$env.initMenu"
                     println "get use function"
                     def nums=[1414, 285]
-                    def anth=nums.join(' ')
+                    def anth=nums.join('-')
                     println "anth=$anth"
                     sh """
                         export nums=$anth"

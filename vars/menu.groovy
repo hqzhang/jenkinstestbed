@@ -85,24 +85,22 @@ def getCompList(String mypack){
     |return map[mykey]
     | """.stripMargin()
 }
-def gitCompVerify(){
-    println "-------------verify coop------------------------"
-def wksp='/var/root/.jenkins/workspace/agroovytest'
-def mypack='file.tar.gz'
+def getCompVerify(){
+    println "-------------getCompVerify()------------------------"
 def key='' 
 def map=[:]
 def lss=[]
 def slt=':selected'
 def mykey=mypack.split("\\.")[0] 
-def out=execmd("ssh -q -t root@192.168.0.16 < ./run.sh", wksp)
-println "out:$out"
-out.readLines().each{ if (it.contains(".tar.gz") ){
+def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
+out.each{ if (it.contains(".tar.gz") ){
 if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
-else { lss.add('"'+it+slt+'"') } } ; map[key]=lss
+else { lss.add(it+slt) } } ; map[key]=lss
 println "map:$map"
-println "-------------verify coop------------------------"
-return map[mykey]
+println "-------------getCompVerify()-----------------------"
+//return map[mykey]
 }
+
 def checkBuildRunning(){
     //Jenkins.instance.queue.clear()
    

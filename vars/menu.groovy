@@ -48,10 +48,10 @@ def test(){
 }
 def getPackList(String mypath){
     println "enter getPackList()================="
-    return """def out="ssh root@192.168.0.16 ls \${mypath}/*.tar.gz".execute().text
-    |out=out.readLines().collect{ it.split("/")[-1] }
-    |return out
-    | """.stripMargin()
+    def out="ssh root@192.168.0.16 ls \${mypath}/*.tar.gz".execute().text
+    out=out.readLines().collect{ it.split("/")[-1] }
+    return out
+    
 }
 def getPackVerify(){
     println "enter getPackVerify()--------------------"

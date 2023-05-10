@@ -35,12 +35,12 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
 		    string( name: 'mypath', defaultValue: '/root/workspace/myscripts',description: ''),
-            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
+            /*[$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'mypack', randomName: 'choice-parameter-16677189047473', referencedParameters: 'mypath', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: menu.getPackList('mypath') ]]],
-            
+               script: menu.getPackList('mypath') ]]],*/
+            choice( name: 'mypack', description: '', choices: menu.getPackList('/root/workspace/myscripts') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'components', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

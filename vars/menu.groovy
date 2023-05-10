@@ -76,21 +76,17 @@ def getCompList(String mypack){
 }
 def getCompVerify(){
     println "-------------getCompVerify()------------------------"
-def mypack='file.tar.gz'
-def key='' 
-def map=[:]
-def lss=[]
-def slt=':selected'
-def mykey=mypack.split("\\.")[0] 
-def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text.readLines()
-out.each{ if (it.contains(".tar.gz") ){
-if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
-else { lss.add('"'+it+slt+'"') } } ; map[key]=lss
-println "map:$map"
-println "mykey:$mykey"
-def ret=map[mykey]
-println "-------------getCompVerify()----------${ret}-------------"
+    def mypack='/root/workspace/myscripts/file.tar.gz'
+def map=[:], lss=[], key='', sel=':selected';
+def mykey=mypack.split("\\/")[-1].split("\\.")[0] 
+def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
+out.readLines().each{ if (it.contains(".tar.gz") ){
+if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } 
+else { key=it.split("\\.")[0] } }
+else { lss.add(it+sel) } } ; map[key]=lss
+println "map=$map"
 return map[mykey]
+
 }
 
 def checkBuildRunning(){

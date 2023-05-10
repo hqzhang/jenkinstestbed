@@ -101,7 +101,7 @@ println "map:$map"
 println "mykey:$mykey"
 def ret=map[mykey]
 println "-------------getCompVerify()----------${ret}-------------"
-//return map[mykey]
+return map[mykey]
 }
 
 def checkBuildRunning(){

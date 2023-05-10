@@ -91,11 +91,16 @@ pipeline {
                     echo "init=$env.initMenu"
                     println "get use function"
                     def comps=["b","a"]
-                    sh """
-                    for i in "${!comps[@]}";do
-                     echo "$i    ${comps[$i]}"
-                    done
-                    """
+                    def versions=["1","2"]
+                    comps.eachWithIndex{ var, id->
+                          echo "com=$comps[id]"
+                          echo "ver=$versions[id]"
+
+                    }
+                     
+                        sh """
+                        echo comp
+                        """
                     //println menu.getCompList('mypack')
                    
                     

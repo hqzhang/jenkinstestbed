@@ -1,1 +1,1 @@
-echo -ne '\n' | git status
+echo "nums=$nums"

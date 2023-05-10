@@ -31,7 +31,7 @@ println exeCmd("cat run.sh",wksp)
 println menu.getCompList('mypack')
 println menu.getCompVerify()*/
 menu.getPackList('/root/workspace/myscripts')
-println memu.getCompList('/root/workspace/myscripts/file.tar.gz')
+println menu.getCompList('/root/workspace/myscripts/file.tar.gz')
 //////////
 properties([
     //pipelineTriggers([bitbucketPush()]),

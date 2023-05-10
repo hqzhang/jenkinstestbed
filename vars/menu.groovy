@@ -49,7 +49,7 @@ def getPackList(String mypath){
     println "enter getPackList()======!!!!!!==========="
     def cmd="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz"
     println "cmd=$cmd"
-    def out="ssh root@192.168.0.16 ls \${mypath}/*.tar.gz".execute().text
+    def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
     out=out.readLines().collect{ it.split("/")[-1] }
     println "out=$out"
     println "enter getPackList()======eeeeeee==========="

@@ -89,6 +89,13 @@ pipeline {
                     echo "params======$params"
                     echo "init=$env.initMenu"
                     println "get use function"
+                    def nums=[1414 285]
+                    def anth=nums.join(' ')
+                    println "anth=$anth"
+                    sh """
+                        export nums=$anth"
+                        ./run
+                    """
                     //println menu.getCompList('mypack')
                    
                     

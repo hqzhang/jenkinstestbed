@@ -99,7 +99,8 @@ if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key
 else { lss.add(it+slt) } } ; map[key]=lss
 println "map:$map"
 println "mykey:$mykey"
-println "-------------getCompVerify()-----------------------"
+def ret=map[mykey]
+println "-------------getCompVerify()----------${ret}-------------"
 //return map[mykey]
 }
 

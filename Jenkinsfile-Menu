@@ -91,6 +91,7 @@ pipeline {
                 script {
                     echo "STAGE: create List..."
                     echo "params======$params"
+                    echo "components=${env.components}"
                     echo "init=$env.initMenu"
                     println "get use function"
                     def nums=[1414, 285]

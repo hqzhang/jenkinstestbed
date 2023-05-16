@@ -167,13 +167,11 @@ def getFileContent(String SolutionDetail,String wksp ){
 //
 def getSolution(String refvar ){
     println "enter getSolution()=========================="
-   def script="run.sh ${refvar}"
+    def my='OKNG'
+   def script="./run.sh ${refvar}"
    def out="ssh hongqizhang@localhost ./run.sh".execute().text
    println "out=$out"
-   /*return """def wksp=\"${wksp}\"
-      |def url=\"${url}\"
-      |def urlext=\"${urlext}\"
-      |def mf ="ls \${wksp}/release  ".execute().text
+   /*return """
       |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
       |def map=[:]
       |out.each { map[it]="curl -k \${url}/${repo}/${brch}/release/\${it}.yaml\$urlext".execute().text

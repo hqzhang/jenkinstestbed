@@ -34,7 +34,8 @@ println menu.getCompVerify()
 menu.getPackList('/root/workspace/myscripts')
 println menu.getCompList('/root/workspace/myscripts/file.tar.gz')
 println menu.getCompVerify()*/
-println menu.getSolution('ComName')
+println menu.getContentTableVerify()
+
 //////////
 properties([
     //pipelineTriggers([bitbucketPush()]),

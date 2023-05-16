@@ -244,6 +244,26 @@ def getContentSimpleVerify(){
     def map=getcompmap(wksp, repo, brch)
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[Config]}</textarea> """
 }
+def getContentTableVerify(){
+def wksp="/var/root/.jenkins/workspace/agroovytest"
+def url="https://raw.githubusercontent.com/hqzhang"
+def yaml = new Yaml()
+def ret=''
+ret="curl -k ${url}/groovytest/mymenu/release/${Config}.yaml".execute().text
+ret="cat ${wksp}/release/${Config}.yaml".execute().text
+ret=(Map)yaml.load(ret)
+mymap=ret['components']
+def rendered = "<table><tr>"
+mymap.each { mark="-"; 
+ it.each { kk,vv->
+  if ( kk != "name") {  mark="&nbsp;&nbsp;" }
+  rendered = """${rendered}<tr>
+  <td><input name="value" alt="${kk}" json="${kk}" type="checkbox" style="opacity:0" class=" " checked>
+  <span>${mark}&nbsp;</span>
+  <label name="value" class=" " value="${kk}">${kk}</label></td>
+  <td><input  type="text" class=" " name="value" value="${vv}"> </br> </td></tr> """    } }
+return "${rendered}</tr></table>"
+}
 
 def getContentTable(String refvar){
     println "enter getContent99=================================="
@@ -258,7 +278,7 @@ def getContentTable(String refvar){
     |def yaml = new Yaml()
     |def ret=''
     |ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}.yaml${urlext}".execute().text
-    |ret="cat \${wksp}/release/\${it}.yaml".execute().text
+    |ret="cat \${wksp}/release/\${${refvar}}.yaml".execute().text
     |ret=(Map)yaml.load(ret)
     |mymap=ret['components']
     |def rendered = "<table><tr>"

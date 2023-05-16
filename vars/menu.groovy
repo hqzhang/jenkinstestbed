@@ -165,6 +165,22 @@ def getFileContent(String SolutionDetail,String wksp ){
     convertScript(ret)
 }
 
+def getSolution(String refvar ){
+   def script="run.sh ${refvar}"
+   def out="ssh hongqizhang@localhost ${script}".execute().text
+   println "out=$out"
+   /*return """def wksp=\"${wksp}\"
+      |def url=\"${url}\"
+      |def urlext=\"${urlext}\"
+      |def mf ="ls \${wksp}/release  ".execute().text
+      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
+      |def map=[:]
+      |out.each { map[it]="curl -k \${url}/${repo}/${brch}/release/\${it}.yaml\$urlext".execute().text
+      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/release/\${it}.yaml".execute().text } }
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
+      | """.stripMargin()*/
+}
+
 def getContent(String refvar ,String wksp, String repo ,String brch){
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""

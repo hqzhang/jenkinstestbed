@@ -179,7 +179,10 @@ def getContent(String refvar ,String wksp, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
-def getContentSimple(String refvar ,String wksp, String repo ,String brch){
+def getContentSimple(String refvar ){
+    def wksp=getWksp()
+    def repo=getRepo()
+    def brch=getBranch()
     println "enter getContentSimple()================74582375270=================="
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""
@@ -188,8 +191,11 @@ def getContentSimple(String refvar ,String wksp, String repo ,String brch){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
       | """.stripMargin()
 }
-def getContentSimpleVerify(String wksp, String repo, String brch ){
+def getContentSimpleVerify(){
      println "enter getContentSimpleverify()================74582375270=================="
+      def wksp=getWksp()
+    def repo=getRepo()
+    def brch=getBranch()
     def Config='solution'
     def map=getcompmap(wksp, repo, brch)
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[Config]}</textarea> """

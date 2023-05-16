@@ -70,11 +70,11 @@ properties([
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 
             string(name: 'ComName', defaultValue: 'ANV_TRDENTRY_TO', description: 'input file to backup'),
-            /*[$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest', omitValueField: false, 
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest', omitValueField: false, 
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'ComName', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getSolution('ComName' )]] ],*/
+                              script: menu.getSolution('ComName' )]] ],
 
              
 ])

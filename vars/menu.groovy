@@ -164,7 +164,7 @@ def getFileContent(String SolutionDetail,String wksp ){
     def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
     convertScript(ret)
 }
-
+//
 def getSolution(String refvar ){
    def script="run.sh ${refvar}"
    def out="ssh hongqizhang@localhost ${script}".execute().text

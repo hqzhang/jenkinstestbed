@@ -181,9 +181,12 @@ def getSolution(String refvar ){
       | """.stripMargin()*/
 }
 
-def getContent(String refvar ,String wksp, String repo ,String brch){
+def getContent(String refvar ){
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""
+   def wksp=getWksp()
+    def repo=getRepo()
+    def brch=getBranch()
    return """def wksp=\"${wksp}\"
       |def url=\"${url}\"
       |def urlext=\"${urlext}\"
@@ -217,10 +220,13 @@ def getContentSimpleVerify(){
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[Config]}</textarea> """
 }
 
-def getContentTable(String refvar, String wksp, String repo ,String brch){
+def getContentTable(String refvar){
     println "enter getContent99=================================="
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""
+    def wksp=getWksp()
+    def repo=getRepo()
+    def brch=getBranch()
     return """import org.yaml.snakeyaml.Yaml
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"

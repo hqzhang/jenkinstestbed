@@ -202,8 +202,8 @@ def getContentSimple(String refvar ){
    def url="https://raw.githubusercontent.com/hqzhang"
    def urlext=""
    return """
-      |def map=getcompmap(wksp, url, repo, brch)
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
+      |def out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text 
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${out}</textarea> \"\"\"
       | """.stripMargin()
 }
 def getContentSimpleVerify(){

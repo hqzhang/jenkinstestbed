@@ -40,15 +40,14 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
 		    string( name: 'mypath', defaultValue: '/root/workspace/myscripts',description: ''),
-            
+
             choice( name: 'mypack', description: '', choices: menu.getPackList('/root/workspace/myscripts') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compNames', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: menu.getCompList('mypack') ]]],
-            choice( name: 'Soltail', description: '', choices: [ brch,jobstr,repo] ),
-
+           
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),
         
             choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),

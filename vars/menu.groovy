@@ -164,7 +164,36 @@ def getFileContent(String SolutionDetail,String wksp ){
     def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
     convertScript(ret)
 }
-//
+
+def parseSolution(String data){
+    def flag=false
+    def start=true
+    type=''
+    def lss=[]
+    def map=[:]
+    rawdata.split("\n").each {
+        kv=it.tokenize(":")
+        if (it.contains('name')){
+            if ( !start ) {
+            lss.add(map); map=[:]
+            map[kv[0]]=kv[1]
+            } else { start=false }
+            map[kv[0]]=kv[1]
+        } else if (it.contains('daemon')){ 
+            flag=true; return true
+        } else if ( flag && it.contains('type')){ 
+            type=kv[1]; return true
+        } else if (type != ''){
+            lss.each { cmp->
+                if (cmp['type']==type){
+                    cmp['version']=kv[1];type = ''
+                }
+            }
+        } else { map[kv[0]]=kv[1]}
+    }
+    return lss
+}
+
 def getSolution(String refvar ){
     println "enter getSolution()=========================="
    def ref='OKNG'

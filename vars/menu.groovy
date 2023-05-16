@@ -227,13 +227,11 @@ def getContentTable(String refvar){
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"
     |def yaml = new Yaml()
-    |def mf ="ls \${wksp}/release  ".execute().text
-    |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
-    |def map=[:]
-    |out.each { map[it]="curl -k \${url}/${repo}/${brch}/release/\${it}.yaml${urlext}".execute().text
-    |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/release/\${it}.yaml".execute().text } 
-    |map[it]=(Map)yaml.load(map[it]) }
-    |mymap=map[${refvar}]['components']
+    |def ret=''
+    |ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}.yaml${urlext}".execute().text
+    |ret="cat \${wksp}/release/\${it}.yaml".execute().text
+    |ret=(Map)yaml.load(ret)
+    |mymap=ret['components']
     |def rendered = "<table><tr>"
     |mymap.each { mark="-"; 
     | it.each { kk,vv->

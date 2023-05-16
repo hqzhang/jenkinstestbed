@@ -21,13 +21,13 @@ println "------wksp=${wksp}"
 println "call getFileList"
 //println menu.getFileList('solution',wksp) 
 println "call getContentTable"
-//println menu.getContentTable('Config' ,wksp,repo,brch )
+//println menu.getContentTable('Config' )
 println "begin properties"
 //println menu.getPackList('mypath')
 println "=========*******************========="
 /*println menu.getPackVerify()
-println menu.getContentSimple('Config' ,wksp,repo,brch )
-println menu.getContentSimpleVerify(wksp, repo, brch )
+println menu.getContentSimple('Config'  )
+println menu.getContentSimpleVerify( )
 println exeCmd("cat run.sh",wksp)
 println menu.getCompList('mypack')
 println menu.getCompVerify()*/
@@ -61,12 +61,12 @@ properties([
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContent('Config' ,wksp,repo,brch )]] ],
+                              script: menu.getContent('Config' )]] ],
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest', omitValueField: false, 
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContentSimple('Config' ,wksp,repo,brch )]] ], 
+                              script: menu.getContentSimple('Config'  )]] ], 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 
             string(name: 'ComName', defaultValue: 'ANV_TRDENTRY_TO', description: 'input file to backup'),

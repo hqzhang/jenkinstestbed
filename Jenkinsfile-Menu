@@ -30,10 +30,10 @@ println menu.getContentSimple('Config'  )
 println menu.getContentSimpleVerify( )
 println exeCmd("cat run.sh",wksp)
 println menu.getCompList('mypack')
-println menu.getCompVerify()*/
+println menu.getCompVerify()
 menu.getPackList('/root/workspace/myscripts')
 println menu.getCompList('/root/workspace/myscripts/file.tar.gz')
-println menu.getCompVerify()
+println menu.getCompVerify()*/
 println menu.getSolution('ComName')
 //////////
 properties([

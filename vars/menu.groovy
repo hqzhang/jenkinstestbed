@@ -166,6 +166,7 @@ def getFileContent(String SolutionDetail,String wksp ){
 }
 //
 def getSolution(String refvar ){
+    println "enter getSolution()=========================="
    def script="run.sh ${refvar}"
    def out="ssh hongqizhang@localhost ${script}".execute().text
    println "out=$out"

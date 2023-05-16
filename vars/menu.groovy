@@ -171,7 +171,7 @@ def getSolution(String refvar ){
    def script="./run.sh ${ref}"
    def out="ssh hongqizhang@localhost ${script}".execute().text
    println "out=$out"
-   return """def script="./run.sh \${refvar}"
+   return """def script="./run.sh \${${refvar}}"
       |def out="ssh hongqizhang@localhost \${script}".execute().text
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${out}</textarea> \"\"\"
       | """.stripMargin()

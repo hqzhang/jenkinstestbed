@@ -66,8 +66,8 @@ properties([
 
             choice( name: 'ComName', description: '', choices: ['ANV_TRDENTRY_TO','XYZ']),
            
-            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest', omitValueField: false, 
-            randomName: 'choice-parameter-138673186839723', referencedParameters: 'ComName', 
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest',
+             omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'ComName', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
                               script: menu.getSolution('ComName' )]] ],

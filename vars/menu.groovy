@@ -151,16 +151,13 @@ def getEnvar(){
     env.BRCH=brch
 }
 
-def getFileContent(String SolutionDetail,String wksp ){
+def getFileContent(String SolutionDetail){
+    def wksp=getWksp()
     def url="https://raw.githubusercontent.com/hqzhang/ansibletest"
     def mf ="ls ${wksp}/release  ".execute().text
-    def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
-    def map=[:]
-    myls.each { file->
-            my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/release/${file}.xml".execute().text 
-            map[ file]= my_tag
-    }
-    my_tag=map[SolutionDetail]
+    //def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
+    //def map=[:]
+    my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/release/${SolutionDetail}.xml".execute().text 
     def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
     convertScript(ret)
 }
@@ -215,12 +212,9 @@ def getContent(String refvar ){
    return """def wksp=\"${wksp}\"
       |def url=\"${url}\"
       |def urlext=\"${urlext}\"
-      |def mf ="ls \${wksp}/release  ".execute().text
-      |def out=mf.readLines().collect{ it.split("\\\\.")[0]}
-      |def map=[:]
-      |out.each { map[it]="curl -k \${url}/${repo}/${brch}/release/\${it}.yaml\$urlext".execute().text
-      |if ( map[it].contains('404: Not Found')){ map[it]="cat \${wksp}/release/\${it}.yaml".execute().text } }
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map[${refvar}]}</textarea> \"\"\"
+      |def map="curl -k \${url}/${repo}/${brch}/release/\${${SolutionDetail}}.yaml\$urlext".execute().text
+      |map="cat \${wksp}/release/\${${SolutionDetail}}.yaml".execute().text 
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map}</textarea> \"\"\"
       | """.stripMargin()
 }
 def getContentSimple(String refvar ){
@@ -331,8 +325,9 @@ def stringParse(String str){
     return [ components: lss ]
 }
 
-def getFileList(String dft, String wksp ){
+def getFileList(String dft){
     println "enter getFileList().."
+    def wksp=getWksp()
     def mf ="ls ${wksp}/release  ".execute().text
     println "mf=$mf"
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
@@ -347,13 +342,16 @@ def getFileList(String dft, String wksp ){
     out.add(0, out.remove(index))
     return out 
 }
-def getFileList88(String dft,String wksp){
+
+def getFileList88(String dft){
+    def wksp=getWksp()
     def mf ="ls ${wksp}/release  ".execute().text
     def out=mf.readLines().collect{ it.split("\\.")[0] }
-
     return out
 }
-def getFileDft(String dft, String wksp){
+
+def getFileDft(String dft){
+    def wksp=getWksp()
    return """def wksp=\"${wksp}\"
       |def mf ="ls \${wksp}/release  ".execute().text
       |def out=mf.readLines().collect{ 

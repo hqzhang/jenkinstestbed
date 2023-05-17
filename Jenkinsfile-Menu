@@ -5,7 +5,7 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 println GroovySystem.version
-menu.checkBuildRunning()
+/*menu.checkBuildRunning()
 def repo=menu.getRepo()
 println "------repo=$repo"
 
@@ -14,12 +14,12 @@ println "------jobstr=$jobstr"
 
 
 def wksp=menu.getWksp()
-println "------wksp=${wksp}"
+println "------wksp=${wksp}"*/
 
 
 
 println "call getFileList"
-//println menu.getFileList('solution',wksp) 
+//println menu.getFileList('solution') 
 println "call getContentTable"
 //println menu.getContentTable('Config' )
 println "begin properties"
@@ -28,7 +28,7 @@ println "=========*******************========="
 /*println menu.getPackVerify()
 println menu.getContentSimple('Config'  )
 println menu.getContentSimpleVerify( )
-println exeCmd("cat run.sh",wksp)
+println exeCmd("cat run.sh")
 println menu.getCompList('mypack')
 println menu.getCompVerify()
 menu.getPackList('/root/workspace/myscripts')
@@ -51,7 +51,7 @@ properties([
            
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),
         
-            choice( name: 'Config', description: '', choices: menu.getFileList('solution',wksp) ),
+            choice( name: 'Config', description: '', choices: menu.getFileList('solution') ),
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', omitValueField: false, 
             randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],

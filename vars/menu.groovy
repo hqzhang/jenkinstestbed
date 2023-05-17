@@ -212,7 +212,7 @@ def getContent(String refvar ){
       |def urlext=\"${urlext}\"
       |//def map="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}.yaml\$urlext".execute().text
       |def map="cat \${wksp}/release/\${${refvar}}.yaml".execute().text 
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map}</textarea> \"\"\"
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="10">\${map}</textarea> \"\"\"
       | """.stripMargin()
 }
 def getContentSimple(String refvar ){

@@ -197,7 +197,7 @@ def getSolution(String refvar ){
    println "out=$out"
    return """def script="./run.sh \${${refvar}}"
       |def out="ssh hongqizhang@localhost \${script}".execute().text
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${out}</textarea> \"\"\"
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="25"\${out}</textarea> \"\"\"
       | """.stripMargin()
 }
 
@@ -212,7 +212,7 @@ def getContent(String refvar ){
       |def urlext=\"${urlext}\"
       |//def map="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}.yaml\$urlext".execute().text
       |def map="cat \${wksp}/release/\${${refvar}}.yaml".execute().text 
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="10">\${map}</textarea> \"\"\"
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="25">\${map}</textarea> \"\"\"
       | """.stripMargin()
 }
 def getContentSimple(String refvar ){
@@ -224,7 +224,7 @@ def getContentSimple(String refvar ){
     return """
       |def out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text
       |def line=out.split("\\n").size()
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="\${line}" cols="10">\${out}</textarea> \"\"\"
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="\${line}" cols="25">\${out}</textarea> \"\"\"
       | """.stripMargin()
 }
 def getContentSimpleVerify(){
@@ -234,7 +234,7 @@ def getContentSimpleVerify(){
     def brch=getBranch()
     def Config='solution'
     def map=getcompmap(wksp, repo, brch)
-    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="40">${map[Config]}</textarea> """
+    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="25">${map[Config]}</textarea> """
 }
 def getContentTableVerify(){
 def wksp="/var/root/.jenkins/workspace/agroovytest"

@@ -39,7 +39,7 @@ def execmd(String cmd){
     return out
 }
 def test(){
-    def cmd="ssh -q -t root@192.168.0.16 < /var/root/.jenkins/workspace/agroovytest/run.sh "
+    def cmd="ssh -q -t hongqizhang@localhost < /var/root/.jenkins/workspace/agroovytest/run.sh "
     def dir="/var/root/.jenkins/workspace/agroovytest"
     def out=exeCmd(cmd,dir)
     println "out=$out"
@@ -47,7 +47,7 @@ def test(){
 }
 def getPackList(String mypath){
     println "enter getPackList()"
-    def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
+    def out="ssh hongqizhang@localhost ls ${mypath}/*.tar.gz".execute().text
     out=out.readLines().collect{ it }
     println "out=$out"
     return out
@@ -58,7 +58,7 @@ def getCompList(String mypack){
     def mykey=mypack.split("\\/")[-1].split("\\.")[0] 
     println "mykey=$mykey"
     def map=[:], lss=[], key='', sel=':selected';
-    def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
+    def out="ssh hongqizhang@localhost /Users/hongqizhang/workspace/myscripts/run.sh".execute().text
     out.readLines().each{ if (it.contains(".tar.gz") ){
     if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } else { key=it.split("\\.")[0] } }
     else { lss.add(it+sel) } } ; map[key]=lss
@@ -66,7 +66,7 @@ def getCompList(String mypack){
     println "mkey=${map[mykey]}"
     return """def map=[:], lss=[], key='', sel=':selected';
     |def mykey=mypack.split("\\\\/")[-1].split("\\\\.")[0] 
-    |def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
+    |def out="ssh hongqizhang@localhost /Users/hongqizhang/workspace/myscripts/run.sh".execute().text
     |out.readLines().each{ if (it.contains(".tar.gz") ){
     |if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\\\.")[0]; lss=[] } 
     |else { key=it.split("\\\\.")[0] } }
@@ -79,7 +79,7 @@ def getCompVerify(){
     def mypack='/root/workspace/myscripts/file.tar.gz'
 def map=[:], lss=[], key='', sel=':selected';
 def mykey=mypack.split("\\/")[-1].split("\\.")[0] 
-def out="ssh root@192.168.0.16 /root/workspace/myscripts/run.sh".execute().text
+def out="ssh hongqizhang@localhost /Users/hongqizhang/workspace/myscripts/run.sh".execute().text
 out.readLines().each{ if (it.contains(".tar.gz") ){
 if ( ! key.isEmpty()){ map[key]=lss; key=it.split("\\.")[0]; lss=[] } 
 else { key=it.split("\\.")[0] } }

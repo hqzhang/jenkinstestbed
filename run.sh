@@ -1,5 +1,5 @@
 #!/bin/bash
-packs=`ls /root/workspace/myscripts/*.tar.gz`
+packs=`ls /Users/hongqizhang/workspace/myscripts/*.tar.gz`
 cd /tmp
 for var in ${packs};do
   myvar=`basename $var`

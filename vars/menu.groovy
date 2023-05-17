@@ -155,8 +155,6 @@ def getFileContent(String SolutionDetail){
     def wksp=getWksp()
     def url="https://raw.githubusercontent.com/hqzhang/ansibletest"
     def mf ="ls ${wksp}/release  ".execute().text
-    //def myls = mf.readLines().collect{ it.split()[0].minus('.xml')}
-    //def map=[:]
     my_tag="curl -k https://raw.githubusercontent.com/hqzhang/ansibletest/main/release/${SolutionDetail}.xml".execute().text 
     def ret= "<textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\">${my_tag}</textarea>"
     convertScript(ret)
@@ -212,8 +210,8 @@ def getContent(String refvar ){
    return """def wksp=\"${wksp}\"
       |def url=\"${url}\"
       |def urlext=\"${urlext}\"
-      |def map="curl -k \${url}/${repo}/${brch}/release/\${${SolutionDetail}}.yaml\$urlext".execute().text
-      |map="cat \${wksp}/release/\${${SolutionDetail}}.yaml".execute().text 
+      |//def map="curl -k \${url}/${repo}/${brch}/release/\${${SolutionDetail}}.yaml\$urlext".execute().text
+      |def map="cat \${wksp}/release/\${${SolutionDetail}}.yaml".execute().text 
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${map}</textarea> \"\"\"
       | """.stripMargin()
 }
@@ -221,17 +219,17 @@ def getContentSimple(String refvar ){
     def wksp=getWksp()
     def repo=getRepo()
     def brch=getBranch()
-    println "enter getContentSimple()================74582375270=================="
-   def url="https://raw.githubusercontent.com/hqzhang"
-   def urlext=""
-   return """
-      |def out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text 
-      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="8" cols="40">\${out}</textarea> \"\"\"
+    def url="https://raw.githubusercontent.com/hqzhang"
+    def urlext=""
+    return """
+      |def out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text
+      |def line=out.split('\n').size()
+      |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="\${line}" cols="20">\${out}</textarea> \"\"\"
       | """.stripMargin()
 }
 def getContentSimpleVerify(){
-     println "enter getContentSimpleverify()================74582375270=================="
-      def wksp=getWksp()
+    println "enter getContentSimpleverify()================74582375270=================="
+    def wksp=getWksp()
     def repo=getRepo()
     def brch=getBranch()
     def Config='solution'
@@ -243,7 +241,7 @@ def wksp="/var/root/.jenkins/workspace/agroovytest"
 def url="https://raw.githubusercontent.com/hqzhang"
 def yaml = new Yaml()
 def ret=''
-ret="curl -k ${url}/groovytest/mymenu/release/${Config}.yaml".execute().text
+//ret="curl -k ${url}/groovytest/mymenu/release/${Config}.yaml".execute().text
 ret="cat ${wksp}/release/${Config}.yaml".execute().text
 ret=(Map)yaml.load(ret)
 mymap=ret['components']
@@ -271,7 +269,7 @@ def getContentTable(String refvar){
     |def url=\"${url}\"
     |def yaml = new Yaml()
     |def ret=''
-    |ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}.yaml${urlext}".execute().text
+    |//ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}.yaml${urlext}".execute().text
     |ret="cat \${wksp}/release/\${${refvar}}.yaml".execute().text
     |ret=(Map)yaml.load(ret)
     |mymap=ret['components']
@@ -318,10 +316,8 @@ def stringParse(String str){
             map[ data[2*i]] = data[2*i+1]
         }
     }
-    println "map=$map"
     lss.add(map)
     println "lss=$lss"
-    
     return [ components: lss ]
 }
 

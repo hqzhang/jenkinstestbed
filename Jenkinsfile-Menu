@@ -35,9 +35,9 @@ println menu.getCompVerify()*/
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
-		    string( name: 'mypath', defaultValue: '/root/workspace/myscripts',description: ''),
+		    // string( name: 'mypath', defaultValue: '/root/workspace/myscripts',description: ''),
 
-            choice( name: 'mypack', description: '', choices: menu.getPackList('/root/workspace/myscripts') ),
+            choice( name: 'mypack', description: '', choices: menu.getPackList('/Users/hongqizhang/workspace/myscripts') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compNames', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

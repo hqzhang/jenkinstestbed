@@ -232,7 +232,7 @@ def getContentSimpleVerify(){
     println "enter getContentSimpleverify()================74582375270=================="
     def SolutionConfig='solution'
     def out="cat /var/root/.jenkins/workspace/acgroovytest/release/${SolutionConfig}.yaml".execute().text
-    if (out.isEmpty()) { out="curl -k https://raw.githubusercontent.com/hqzhang/groovytest/mymenu/release/${SolutionConfig}.yaml".execute().text }
+    if (out.isEmpty()) { out="curl -k https://bitbucket.org/wave-cloud/groovytest/raw/mymenuchange/release/${SolutionConfig}.yaml".execute().text }
     out=out.replaceAll('components:\n','')
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }

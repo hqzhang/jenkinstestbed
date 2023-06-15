@@ -16,12 +16,12 @@ println "------wksp=${wksp}"*/
 println "call getFileList"
 println menu.getFileList('solution') 
 /*println "call getContentTable"
-//println menu.getContentTable('Config' )
+//println menu.getContentTable('SolutionConfig' )
 println "begin properties"
 //println menu.getPackList('mypath')
 println "=========*******************========="
 println menu.getPackVerify()*/
-println menu.getContentSimple('Config'  )
+println menu.getContentSimple('SolutionConfig'  )
 println menu.getContentSimpleVerify( )
 /*println exeCmd("cat run.sh")
 println menu.getCompList('mypack')
@@ -35,33 +35,30 @@ println menu.getCompVerify()*/
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
-		    // string( name: 'mypath', defaultValue: '/root/workspace/myscripts',description: ''),
-
             choice( name: 'mypack', description: '', choices: menu.getPackList('/Users/hongqizhang/workspace/myscripts') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compNames', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: menu.getCompList('mypack') ]]],
-           
             booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),
         
-            choice( name: 'Config', description: '', choices: menu.getFileList('solution') ),
+            choice( name: 'SolutionConfig', description: '', choices: menu.getFileList('solution') ),
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 
-             omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
+             omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContentTable('Config' )]] ],
+                              script: menu.getContentTable('SolutionConfig' )]] ],
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component', 
-             omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
+             omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
              script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContent('Config' )]] ],
+                              script: menu.getContent('SolutionConfig' )]] ],
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest',
-             omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'Config', 
+             omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContentSimple('Config')]] ], 
+                              script: menu.getContentSimple('SolutionConfig')]] ], 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 
             choice( name: 'ComName', description: '', choices: ['ANV_TRDENTRY_TO','XYZ']),

@@ -20,10 +20,10 @@ println "call getContentTable"
 println "begin properties"
 //println menu.getPackList('mypath')
 println "=========*******************========="
-println menu.getPackVerify()
+println menu.getPackVerify()*/
 println menu.getContentSimple('Config'  )
 println menu.getContentSimpleVerify( )
-println exeCmd("cat run.sh")
+/*println exeCmd("cat run.sh")
 println menu.getCompList('mypack')
 println menu.getCompVerify()
 menu.getPackList('/root/workspace/myscripts')

@@ -222,8 +222,8 @@ def getContentSimple(String refvar ){
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""
     return """
-      |def out="curl -k ${url}/${repo}/${brch}/release/\${${refvar}}.yaml${urlext}".execute().text
-      |if (out.isEmpty()) { out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text }
+      |def out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text
+      |if (out.isEmpty()) { out="curl -k ${url}/${repo}/${brch}/release/\${${refvar}}.yaml${urlext}".execute().text }
       |out=out.replaceAll('components:\\n','')
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
       | """.stripMargin()

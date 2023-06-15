@@ -223,6 +223,7 @@ def getContentSimple(String refvar ){
     def urlext=""
     return """
       |def out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text
+      |out=out.replaceAll('components:','')
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
       | """.stripMargin()
 }

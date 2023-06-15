@@ -324,9 +324,9 @@ def getFileList(String dft){
     println "enter getFileList().."
     def wksp=getWksp()
     def mf ="ls ${wksp}/release  ".execute().text
-    println "mf=$mf"
+    println "mf1=$mf"
     def out=mf.readLines().collect{  it.split("\\.")[0] } 
-    println "out=$out"
+    println "out2=$out"
     def index=0
     if (out.isEmpty()){
         return [ dft ]
@@ -335,6 +335,7 @@ def getFileList(String dft){
         if ( it.contains(dft) ){ index=id }
     }
     out.add(0, out.remove(index))
+    println "out3=$out"
     return out 
 }
 

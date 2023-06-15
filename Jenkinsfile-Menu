@@ -12,10 +12,10 @@ def jobstr = menu.getJob()
 println "------jobstr=$jobstr"
 def wksp=menu.getWksp()
 println "------wksp=${wksp}"*/
-/*
+
 println "call getFileList"
-//println menu.getFileList('solution') 
-println "call getContentTable"
+println menu.getFileList('solution') 
+/*println "call getContentTable"
 //println menu.getContentTable('Config' )
 println "begin properties"
 //println menu.getPackList('mypath')

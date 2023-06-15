@@ -233,8 +233,9 @@ def getContentSimpleVerify(){
     def repo=getRepo()
     def brch=getBranch()
     def Config='solution'
-    def map=getcompmap(wksp, repo, brch)
-    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="8" cols="25">${map[Config]}</textarea> """
+    def out="cat /var/root/.jenkins/workspace/acgroovytest/release/${Config}.yaml".execute().text
+    out=out.replaceAll('components:','')
+    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 def getContentTableVerify(){
 def wksp="/var/root/.jenkins/workspace/agroovytest"

@@ -223,7 +223,7 @@ def getContentSimple(String refvar ){
     def urlext=""
     return """
       |def out="cat ${wksp}/release/\${${refvar}}.yaml".execute().text
-      |out=out.replaceAll('components:','')
+      |out=out.replaceAll('components:\\n','')
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
       | """.stripMargin()
 }
@@ -234,7 +234,7 @@ def getContentSimpleVerify(){
     def brch=getBranch()
     def Config='solution'
     def out="cat /var/root/.jenkins/workspace/acgroovytest/release/${Config}.yaml".execute().text
-    out=out.replaceAll('components:','')
+    out=out.replaceAll('components:\n','')
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 def getContentTableVerify(){

@@ -231,7 +231,7 @@ def getContentSimple(String refvar ){
 }
 def getContentTest(String refvar ){
    return """
-   |return getContentSimpleTest(\${${refvar})
+   |return getContentSimpleTest(\${${refvar}})
    | """.stripMargin()
 }
 

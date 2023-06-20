@@ -230,11 +230,13 @@ def getContentSimple(String refvar ){
       | """.stripMargin()
 }
 def getContentTest(String refvar ){
+    println "enter getContentTest()........."
    return """
    |return getContentSimpleTest(\${${refvar}})
    | """.stripMargin()
 }
 def getVerify(){
+     println "enter getVerify()........."
     def refvar='solution'
     return getContentSimpleTest(refvar)
 }

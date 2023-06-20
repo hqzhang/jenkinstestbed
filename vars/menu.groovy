@@ -229,6 +229,12 @@ def getContentSimple(String refvar ){
       |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
       | """.stripMargin()
 }
+def getContentTest(String refvar ){
+   return """
+   |return getContentSimpleTest(\${${refvar})
+   | """.stripMargin()
+}
+
 def getContentSimpleVerify(){
     println "enter getContentSimpleverify()================74582375270=================="
     def SolutionConfig='solution'

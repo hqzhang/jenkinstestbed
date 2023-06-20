@@ -67,7 +67,7 @@ properties([
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'ComName', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContentSimple('ComName')]] ],
+                              script: menu.getContentTest('ComName')]] ],
 
              
 ])

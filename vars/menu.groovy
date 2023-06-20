@@ -234,7 +234,10 @@ def getContentTest(String refvar ){
    |return getContentSimpleTest(\${${refvar}})
    | """.stripMargin()
 }
-
+def getVerify(){
+    def refvar='solution'
+    return getContentSimpleTest(${refvar})
+}
 def getContentSimpleVerify(){
     println "enter getContentSimpleverify()================74582375270=================="
     def SolutionConfig='solution'

@@ -32,6 +32,7 @@ println menu.getCompVerify()*/
 //println menu.getContentTableVerify()
 println menu.getContentTest('ComName')
 println menu.getVerify()
+println "===================="
 //////////
 properties([
     //pipelineTriggers([bitbucketPush()]),

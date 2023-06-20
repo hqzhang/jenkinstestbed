@@ -236,7 +236,7 @@ def getContentTest(String refvar ){
 }
 def getVerify(){
     def refvar='solution'
-    return getContentSimpleTest(${refvar})
+    return getContentSimpleTest(refvar)
 }
 def getContentSimpleVerify(){
     println "enter getContentSimpleverify()================74582375270=================="

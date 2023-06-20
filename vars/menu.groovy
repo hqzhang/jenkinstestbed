@@ -232,7 +232,7 @@ def getContentSimple(String refvar ){
 def getContentTest(String refvar ){
     println "enter getContentTest()........."
    return """
-   |return getContentSimpleTest(refvar)
+   |return getContentSimpleTest(${refvar})
    | """.stripMargin()
 }
 def getVerify(){

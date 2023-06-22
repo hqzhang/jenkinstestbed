@@ -1,5 +1,6 @@
 components:
-  - name: config
+  - !component
+    name: config
     type: AA
     version: 1122
     path:  X/Y/Z

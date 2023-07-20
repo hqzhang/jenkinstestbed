@@ -34,7 +34,7 @@ def getFileScript(String mypath, String dft){
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
-            choice( name: 'mypack', description: '', choices: getFile('/Users/hongqizhang/workspace/myscripts','myfile') ),
+            choice( name: 'mypack', description: '', choices: getFile('/root/workspace/myscripts','myfile') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compNames', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

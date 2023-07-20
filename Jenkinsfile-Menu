@@ -67,7 +67,7 @@ properties([
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: getServerScript('Environment') ]]],
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'File', randomName: 'choice-parameter-16677189047479', referencedParameters: 'Environment', 
+               name: 'File', randomName: 'choice-parameter-16677189047479', referencedParameters: 'filebackup', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: getFileScript('/root/workspace/myscripts','myfile') ]]],

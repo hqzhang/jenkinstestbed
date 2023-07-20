@@ -57,7 +57,7 @@ def getFile(String mypath, String dft){
     out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
     return tmp
 }         
-def getFileScript(String getFileScript, String dft){
+def getFileScript(String mypath, String dft){
     println("enter getFileScript()....")
   return """tmp=[]
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text

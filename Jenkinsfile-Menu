@@ -20,16 +20,15 @@ String buildDefault(List out,String key){
 }
 String setDefault(List out,String key){
    def tmp=[]
-   def sel=':seleced'
    out.each{
-    if(it.contains(key)){ tmp.add('"'+it+sel+'"') } 
+    if(it.contains(key)){ tmp.add(0,'"'+it+'"') } 
     else { tmp.add('"'+it+'"') } } 
    return tmp
 }         
 String getServerScript(String refvar){
     def map=[:]
     envList.eachWithIndex{ it,index->
-       map[it]=buildDefault(serversList[it]['APP'],defaultList[index])
+       map[it]=setDefault(serversList[it]['APP'],defaultList[index])
     }
     return """def map=${map}
     |return map[${refvar}]

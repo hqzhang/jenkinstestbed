@@ -10,9 +10,7 @@ def getFile(String mypath,String type, String dft){
     def index=0
     def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
     out=out.readLines().collect{it}
-    out.eachWithIndex{ it, id-> 
-    if ( it.contains(dft) ){ index=id } }
-    out.add(0, out.remove(index))
+    buildDefault(List out,String key)
     return out
 }         
 

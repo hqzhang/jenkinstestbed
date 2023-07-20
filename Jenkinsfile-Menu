@@ -52,8 +52,7 @@ def getFileScript(String mypath, String dft){
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
   |out=out.readLines()
   |out.eachWithIndex{ it, id-> 
-  |if ( it.contains(\"${dft}\") ){ index=id } }
-  |out.add(0, out.remove(index))
+  |if(it.contains(key)){ tmp.add('"'+it+sel+'"') } else { tmp.add('"'+it+'"') } } 
   |return out
   |""".stripMargin()
 }

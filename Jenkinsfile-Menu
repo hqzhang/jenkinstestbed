@@ -57,7 +57,7 @@ def getFile(String wksp, String dft){
     out.each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
     return tmp
 }         
-def getFileScript(String mypath, String dft){
+def getFileScript(String wksp, String dft){
     println("enter getFileScript()....")
   return """tmp=[]
   |def out="ls ${wksp}/release  ".execute().text

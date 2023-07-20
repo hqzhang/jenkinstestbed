@@ -5,11 +5,35 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 println GroovySystem.version
-
+def buildDefault(List out,String key){
+   def tmp=[]
+   out.eachWithIndex{ it,id-> 
+   if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
+   return tmp
+}         
+def getFile(String mypath, String dft){
+    println("enter getFile()")
+    def out="ssh root@192.168.0.16 ls ${mypath}/*.${tar.gz}".execute().text
+    out=out.readLines().collect{it}
+    out.eachWithIndex{ it, id-> 
+    if ( it.contains(dft) ){ index=id } }
+    out.add(0, out.remove(index))
+    return out
+}         
+def getFileScript(String mypath,String type, String dft){
+  return """def index=0
+  |def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
+  |out=out.readLines().collect{it}
+  |out.eachWithIndex{ it, id-> 
+  |if ( it.contains(\"${dft}\") ){ index=id } }
+  |out.add(0, out.remove(index))
+  |return out
+  |""".stripMargin()
+}
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
-            choice( name: 'mypack', description: '', choices: menu.getPackList('/Users/hongqizhang/workspace/myscripts') ),
+            choice( name: 'mypack', description: '', choices: menu.getFile('/Users/hongqizhang/workspace/myscripts','myfile') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compNames', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

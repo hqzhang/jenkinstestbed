@@ -10,7 +10,7 @@ def getFile(String mypath,String type, String dft){
     def index=0
     def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
     out=out.readLines().collect{it}
-    buildDefault(List out,String key)
+    buildDefault( out,dft)
     return out
 }         
 

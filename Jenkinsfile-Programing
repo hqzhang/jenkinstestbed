@@ -55,45 +55,4 @@ pipeline {
       }
     }
   }
-}}
-def getFileScript(String mypath,String type, String dft){
-  return """
-  |def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
-  |out=out.readLines().collect{it}
-  |out.eachWithIndex{ it, id-> 
-  |if ( it.contains(\"${dft}\") ){ index=id } }
-  |out.add(0, out.remove(index))
-  |return out
-  |""".stripMargin()
-}
-println getFileScript('/root/workspace/myscripts','tar.gz','myfile')
-println getFile('/root/workspace/myscripts','tar.gz','myfile')
-properties([
-    //pipelineTriggers([bitbucketPush()]),
-    parameters([
-            text( name: 'multlines', description: '', defaultValue: "a\n b\n c"),
-            choice( name: 'mypack', description: '', choices: getFile('/root/workspace/myscripts','tar.gz','myfile') ),
-            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'dynpack', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
-               script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
-               script: [classpath: [], oldScript: '', sandbox: false, 
-               script:getFileScript('/root/workspace/myscripts/','tar.gz','myfile') ]]],
-            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'secpack', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
-               script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
-               script: [classpath: [], oldScript: '', sandbox: false, 
-               script:getFileScript('/root/workspace/myscripts','tar.gz','myfile') ]]],
-        ])])
-pipeline {
-  agent any
-
-  stages {
-    stage('Demo Active Choices Parameter') {
-      steps {
-        echo "$params"
-        //echo "File Selected ${file}"
-        //echo "Content Selected ${components}"
-      }
-    }
-  }
 }

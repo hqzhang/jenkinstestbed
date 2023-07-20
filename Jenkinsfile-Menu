@@ -13,6 +13,7 @@ def buildDefault(List out,String key){
 }         
 def getFile(String mypath, String dft){
     println("enter getFile()")
+    def index=0
     def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
     out=out.readLines().collect{it}
     out.eachWithIndex{ it, id-> 

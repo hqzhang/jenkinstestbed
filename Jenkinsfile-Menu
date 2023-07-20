@@ -5,35 +5,7 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 println GroovySystem.version
-/*menu.checkBuildRunning()
-def repo=menu.getRepo()
-println "------repo=$repo"
-def jobstr = menu.getJob()
-println "------jobstr=$jobstr"
-def wksp=menu.getWksp()
-println "------wksp=${wksp}"*/
 
-println "call getFileList"
-println menu.getFileList('solution') 
-/*println "call getContentTable"
-//println menu.getContentTable('SolutionConfig' )
-println "begin properties"
-//println menu.getPackList('mypath')
-println "=========*******************========="
-println menu.getPackVerify()*/
-println menu.getContentSimple('SolutionConfig'  )
-println menu.getContentSimpleVerify( )
-/*println exeCmd("cat run.sh")
-println menu.getCompList('mypack')
-println menu.getCompVerify()
-menu.getPackList('/root/workspace/myscripts')
-println menu.getCompList('/root/workspace/myscripts/file.tar.gz')
-println menu.getCompVerify()*/
-//println menu.getContentTableVerify()
-println menu.getContentTest('ComName')
-println menu.getVerify()
-println "===================="
-//////////
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
@@ -65,7 +37,7 @@ properties([
 
             choice( name: 'ComName', description: '', choices: ['solution','config']),
            
-            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest',
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTestSecond',
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'ComName', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 

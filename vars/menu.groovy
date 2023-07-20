@@ -351,7 +351,14 @@ def getFileList(String dft){
     println "out3=$out"
     return out 
 }
-
+def getFile(String mypath,String type, String dft){
+  println("enter test()")
+  def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
+  out=out.readLines().collect{ it.split("/")[-1] }
+  out.eachWithIndex{ it, id-> if ( it.contains(dft) ){ index=id } }
+  out.add(0, out.remove(index))
+  return out
+}
 def getFileList88(String dft){
     def wksp=getWksp()
     def mf ="ls ${wksp}/release  ".execute().text

@@ -12,7 +12,11 @@ def serversList=['DEV': ['APP': ['s1','ss22','ss33'] ],
               'BAT': ['APP': ['s3','s55'] ] ]
 @groovy.transform.Field
 def defaultList=['ss', 's55', 's23']
-
+String buildDft(List out,String key){
+   def tmp=[]
+   out.eachWithIndex{ it,id-> 
+   if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
+   return
 String buildDefault(List out,String key){
    def tmp=[]
    out.eachWithIndex{ it,id-> 
@@ -39,6 +43,7 @@ def getFile(String mypath, String dft){
     out.add(0, out.remove(index))
     return out
 }         
+
 def getFileScript(String mypath, String dft){
   return """def index=0
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
@@ -52,7 +57,7 @@ def getFileScript(String mypath, String dft){
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
-            choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
+            choice( name: 'Environment', description: '', choices: buildDft(envList,'BAT') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 

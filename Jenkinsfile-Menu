@@ -28,7 +28,7 @@ properties([
              script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
                               script: menu.getContent('SolutionConfig' )]] ],
-            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'CompTest1',
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component1',
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 

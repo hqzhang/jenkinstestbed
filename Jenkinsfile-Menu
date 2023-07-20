@@ -18,14 +18,14 @@ String buildDefault(List out,String key){
       if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
    return tmp
 }
-String setDefault(List out,String key){
+/*String setDefault(List out,String key){
    def tmp=[]
    def sel=':seleced'
    out.each{
     if(it.contains(key)){ tmp.add('"'+it+sel+'"') } 
     else { tmp.add('"'+it+'"') } } 
    return tmp
-}         
+} */       
 String getServerScript(String refvar){
     def map=[:]
     envList.eachWithIndex{ it,index->

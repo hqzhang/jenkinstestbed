@@ -14,20 +14,22 @@ def serversList=['DEV': ['APP': ['s1','ss22','ss33'] ],
 def defaultList=['ss', 's55', 's23']
 String buildDft(List out,String key){
    def tmp=[]
-   out.eachWithIndex{ it,id-> 
-   if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
+   out.each{
+      if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
    return tmp
 }
-String buildDefault(List out,String key){
+String setDefault(List out,String key){
    def tmp=[]
-   out.eachWithIndex{ it,id-> 
-   if(it.contains(key)){ tmp.add(0, '"'+it+'"') } else { tmp.add('"'+it+'"') } }
+   def sel=':seleced'
+   out.each{
+    if(it.contains(key)){ tmp.add('"'+it+sel+'"') } 
+    else { tmp.add('"'+it+'"') } } 
    return tmp
 }         
 String getServerScript(String refvar){
     def map=[:]
     envList.eachWithIndex{ it,index->
-       map[it]=buildDefault(serversList[it]['APP'],defaultList[index])
+       map[it]=setDefault(serversList[it]['APP'],defaultList[index])
     }
     return """def map=${map}
     |return map[${refvar}]

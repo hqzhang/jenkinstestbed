@@ -49,12 +49,12 @@ def getPackScript(String mypath, String dft){
   |return tmp
   |""".stripMargin()
 }
-def getFile(String mypath, String dft){
+def getFile(String wksp, String dft){
     println("enter getFile()")
     def tmp=[]
-    def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
-    out=out.readLines().collect{ it.split("/")[-1] }
-    out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
+    def out="ls ${wksp}/release  ".execute().text
+    out.readLines().collect{  it.split("\\.")[0] } 
+    out.each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
     return tmp
 }         
 def getFileScript(String mypath, String dft){

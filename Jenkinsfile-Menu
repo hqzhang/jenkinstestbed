@@ -50,7 +50,7 @@ def getFile(String mypath, String dft){
 def getFileScript(String mypath, String dft){
   return """def index=0
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
-  |out=out.readLines().collect{it}
+  |out=out.readLines()
   |out.eachWithIndex{ it, id-> 
   |if ( it.contains(\"${dft}\") ){ index=id } }
   |out.add(0, out.remove(index))

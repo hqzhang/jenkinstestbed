@@ -5,12 +5,30 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 println GroovySystem.version
-def buildDefault(List out,String key){
+@groovy.transform.Field
+def envList=['DEV','BAT']
+@groovy.transform.Field
+def serversList=['DEV': ['APP': ['s1','ss22','ss33'] ],
+              'BAT': ['APP': ['s3','s55'] ] ]
+@groovy.transform.Field
+def defaultList=['ss', 's55', 's23']
+
+String buildDefault(List out,String key){
    def tmp=[]
    out.eachWithIndex{ it,id-> 
    if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
    return tmp
 }         
+String getServerScript(String refvar){
+    def map=[:]
+    envList.eachWithIndex{ it,index->
+       map[it]=buildDefault(serversList[it]['APP'],defaultList[index])
+    }
+    return """def map=${map}
+    |return map[${refvar}]
+    |""".stripMargin()
+}
+ 
 def getFile(String mypath, String dft){
     println("enter getFile()")
     def index=0
@@ -34,13 +52,22 @@ def getFileScript(String mypath, String dft){
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
-            choice( name: 'mypack', description: '', choices: getFile('/root/workspace/myscripts','myfile') ),
+            choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
-               name: 'compNames', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
+               name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: menu.getCompList('mypack') ]]],
-            booleanParam(name: 'initMenu', defaultValue: false, description: 'set for init menu'),
+               script: getServerScript('Environment') ]]],
+            [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
+               name: 'File', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 
+               script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
+               script: [classpath: [], oldScript: '', sandbox: false, 
+               script: getFileScript('/root/workspace/myscripts','myfile') ]]],
+            [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
+               name: 'compNames', randomName: 'choice-parameter-16677189047472', referencedParameters: 'File', 
+               script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
+               script: [classpath: [], oldScript: '', sandbox: false, 
+               script: menu.getCompList('File') ]]],
         
             choice( name: 'SolutionConfig', description: '', choices: menu.getFileList('solution') ),
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 

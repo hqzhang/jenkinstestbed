@@ -1,4 +1,4 @@
-String buildDefault(List out,String key){
+def buildDefault(List out,String key){
    def tmp=[]
    out.eachWithIndex{ it,id-> 
    if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
@@ -7,11 +7,11 @@ String buildDefault(List out,String key){
 def getFile(String mypath,String type, String dft){
     println("enter getFile()")
     def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
-    String buildDefault(List out,String key){
-    def tmp=[]
-   out.eachWithIndex{ it,id-> 
-   if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
-   return tmp
+    out=out.readLines().collect{it}
+    out.eachWithIndex{ it, id-> 
+    if ( it.contains(dft) ){ index=id } }
+    out.add(0, out.remove(index))
+    return out
 }         
 
 def getFileScript(String mypath,String type, String dft){

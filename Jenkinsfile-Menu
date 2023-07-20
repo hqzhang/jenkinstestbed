@@ -18,14 +18,14 @@ String buildDefault(List out,String key){
       if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
    return tmp
 }
-/*String setDefault(List out,String key){
+String setDefault(List out,String key){
    def tmp=[]
    def sel=':seleced'
    out.each{
     if(it.contains(key)){ tmp.add('"'+it+sel+'"') } 
     else { tmp.add('"'+it+'"') } } 
    return tmp
-} */       
+}         
 String getServerScript(String refvar){
     def map=[:]
     envList.eachWithIndex{ it,index->
@@ -38,16 +38,20 @@ String getServerScript(String refvar){
  
 def getFile(String mypath, String dft){
     println("enter getFile()")
+    def index=0
     def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
-    out=out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
+    out=out.readLines().collect{it}
+    out.eachWithIndex{ it, id-> 
+    if ( it.contains(dft) ){ index=id } }
+    out.add(0, out.remove(index))
     return out
 }         
 
 def getFileScript(String mypath, String dft){
-  return """
+  return """tmp=[]
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
-  |out=out.readLines().each{ if( it.contains(\"${dft}\") ){ tmp.add(0,it) } else { tmp.add(it) } }
-  |return out
+  |out.readLines().each{ if( it.contains(\"${dft}\") ){ tmp.add(0,it) } else { tmp.add(it) } }
+  |return tmp
   |""".stripMargin()
 }
 properties([

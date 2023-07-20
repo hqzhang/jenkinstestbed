@@ -16,7 +16,7 @@ def getFile(String mypath,String type, String dft){
 }         
 
 def getFileScript(String mypath,String type, String dft){
-  return """
+  return """def index=0
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.${type}".execute().text
   |out=out.readLines().collect{it}
   |out.eachWithIndex{ it, id-> 

@@ -5,6 +5,9 @@ brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 println "------branch=${brch}"
 println GroovySystem.version
+def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
+   def wksp="/var/root/.jenkins/workspace/${jobstr}"
+   println "wksp=$wksp"
 @groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field
@@ -32,19 +35,37 @@ String getServerScript(String refvar){
     |""".stripMargin()
 }
 def getPack(String mypath, String dft){
-    println("enter getFile()")
+    println("enter getPack()")
     def tmp=[]
     def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
     out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
     return tmp
 }         
 def getPackScript(String mypath, String dft){
+   println("enter getPackScript()")
   return """tmp=[]
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
   |out.readLines().each{ if( it.contains(\"${dft}\") ){ tmp.add(0,it) } else { tmp.add(it) } }
   |return tmp
   |""".stripMargin()
 }
+def getFile(String mypath, String dft){
+    println("enter getFile()")
+    def tmp=[]
+    def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
+    out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
+    return tmp
+}         
+def getFileScript(String mypath, String dft){
+   def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
+   def wksp="/var/root/.jenkins/workspace/${jobstr}"
+  return """tmp=[]
+  |def out="ssh root@192.168.0.16 ls ${wksp}/release".execute().text
+  |out.readLines().each{ if( it.contains(\"${dft}\") ){ tmp.add(0,it) } else { tmp.add(it) } }
+  |return tmp
+  |""".stripMargin()
+}
+
 
 properties([
     //pipelineTriggers([bitbucketPush()]),
@@ -60,11 +81,11 @@ properties([
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: getPackScript('/root/workspace/myscripts','myfile') ]]],
-            [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
-               name: 'compNames', randomName: 'choice-parameter-16677189047798', referencedParameters: 'Package', 
+            [ $class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
+               name: 'SolutionConfig', randomName: 'choice-parameter-16677189047798', referencedParameters: 'Package', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: menu.getCompList('Package') ]]],
+               script: menu.getFileScript(wksp,'solution') ]]],
         
             choice( name: 'SolutionConfig', description: '', choices: menu.getFileList('solution') ),
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 

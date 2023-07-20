@@ -14,15 +14,12 @@ def serversList=['DEV': ['APP': ['s1','ss22','ss33'] ],
 def defaultList=['ss', 's55', 's23']
 String buildDefault(List out,String key){
    def tmp=[]
-   out.each{
-      if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
+   out.each{ if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
    return tmp
 }
 String setDefault(List out,String key){
    def tmp=[]
-   out.each{
-    if(it.contains(key)){ tmp.add(0,'"'+it+'"') } 
-    else { tmp.add('"'+it+'"') } } 
+   out.each{ if(it.contains(key)){ tmp.add(0,'"'+it+'"') }  else { tmp.add('"'+it+'"') } } 
    return tmp
 }         
 String getServerScript(String refvar){
@@ -34,18 +31,13 @@ String getServerScript(String refvar){
     |return map[${refvar}]
     |""".stripMargin()
 }
- 
 def getFile(String mypath, String dft){
     println("enter getFile()")
-    def index=0
+    def tmp=[]
     def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
-    out=out.readLines().collect{it}
-    out.eachWithIndex{ it, id-> 
-    if ( it.contains(dft) ){ index=id } }
-    out.add(0, out.remove(index))
-    return out
+    out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
+    return tmp
 }         
-
 def getFileScript(String mypath, String dft){
   return """tmp=[]
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
@@ -53,6 +45,7 @@ def getFileScript(String mypath, String dft){
   |return tmp
   |""".stripMargin()
 }
+
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
@@ -67,11 +60,11 @@ properties([
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: getFileScript('/root/workspace/myscripts','myfile') ]]],
-            /*[$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
+            [$class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'compNames', randomName: 'choice-parameter-16677189047798', referencedParameters: 'File', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: menu.getCompList('File') ]]],*/
+               script: menu.getCompList('File') ]]],
         
             choice( name: 'SolutionConfig', description: '', choices: menu.getFileList('solution') ),
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 

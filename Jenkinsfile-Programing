@@ -26,7 +26,7 @@ def getFileScript(String mypath,String type, String dft){
   |return out
   |""".stripMargin()
 }
-println getFileScript('/root/workspace/myscripts','tar.gz','myfile')
+//println getFileScript('/root/workspace/myscripts','tar.gz','myfile')
 println getFile('/root/workspace/myscripts','tar.gz','myfile')
 properties([
     //pipelineTriggers([bitbucketPush()]),

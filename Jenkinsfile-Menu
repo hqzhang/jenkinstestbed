@@ -13,7 +13,7 @@ def envList=['DEV','BAT']
 @groovy.transform.Field
 def serversList=[DEV: ['s11','ss22','ss33'],
                  BAT: ['s44','s55','s66'] ] 
-@groovy.transform.Fiel
+@groovy.transform.Field
 def defaultList=['ss33', 's55']
 String buildDefault(List out,String key){
    def tmp=[]

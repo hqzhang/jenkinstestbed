@@ -86,7 +86,7 @@ properties([
                name: 'SolutionConfig', randomName: 'choice-parameter-16677189047798', referencedParameters: 'Package', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: menu.getFileScript(wksp,'solution') ]]],
+               script: getFileScript(wksp,'solution') ]]],
         
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 

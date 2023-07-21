@@ -71,7 +71,7 @@ def verify(){
     println "enter verify()"
     def tmp=[]
 def out="ls /var/root/.jenkins/workspace/acgroovytest/release  ".execute().text
-out.readLines().collect{  it.split("\\.")[0] } 
+out=out.readLines().collect{  it.split("\\.")[0] } 
 out.each{ if( it.contains("solution") ){ tmp.add(0,it) } else { tmp.add(it) } }
 return tmp
 }

@@ -65,13 +65,13 @@ def getFileScript(String wksp, String dft){
   |return tmp
   |""".stripMargin()
 }
-def verify(){
-    println "enter verify()"
-    def tmp=[]
-def out="ls /var/root/.jenkins/workspace/acgroovytest/release  ".execute().text
-out=out.readLines().collect{  it.split("\\.")[0] } 
-out.each{ if( it.contains("solution") ){ tmp.add(0,it) } else { tmp.add(it) } }
-return tmp
+def getContentScript(String wksp, String refvar ){
+    println("enter getContentScript()....")
+    return """
+    |def out="cat ${wksp}/release/\${${refvar}}".execute().text
+    |out=out.replaceAll('components:\\n','')
+    |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
+    | """.stripMargin()
 }
 println getFile(wksp, 'solution')
 println getFileScript(wksp, 'solution')
@@ -102,7 +102,7 @@ properties([
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContentSimple('SolutionConfig')]] ], 
+                              script: getContentScript(wksp,'SolutionConfig')]] ], 
 
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 

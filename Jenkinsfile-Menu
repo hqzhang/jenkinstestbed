@@ -11,10 +11,10 @@ println "wksp=$wksp"
 @groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field
-def serversList=['DEV': ['APP': ['s1','ss22','ss33'] ],
-                 'BAT': ['APP': ['s3','s55'] ] ]
-@groovy.transform.Field
-def defaultList=['ss', 's55', 's23']
+def serversList=[DEV: ['s11','ss22','ss33'],
+                 BAT: ['s44','s55','s66'] ] 
+@groovy.transform.Fiel
+def defaultList=['ss33', 's55']
 String buildDefault(List out,String key){
    def tmp=[]
    out.each{ if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }

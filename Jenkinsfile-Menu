@@ -74,7 +74,7 @@ def getContentScript(String wksp, String refvar ){
     | """.stripMargin()
 }
 println getFile(wksp, 'solution')
-println getFileScript(wksp, 'solution')
+println getContentScript(wksp, 'SolutionConfig')
 println verify()
 properties([
     //pipelineTriggers([bitbucketPush()]),

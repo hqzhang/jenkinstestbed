@@ -8,12 +8,12 @@ println GroovySystem.version
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def wksp="/var/root/.jenkins/workspace/${jobstr}"
 println "wksp=$wksp"
-//@groovy.transform.Field
+@groovy.transform.Field
 def envList=['DEV','BAT']
-//@groovy.transform.Field
+@groovy.transform.Field
 def serversList=['DEV': ['APP': ['s1','ss22','ss33'] ],
                  'BAT': ['APP': ['s3','s55'] ] ]
-//@groovy.transform.Field
+@groovy.transform.Field
 def defaultList=['ss', 's55', 's23']
 String buildDefault(List out,String key){
    def tmp=[]

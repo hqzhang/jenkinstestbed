@@ -53,6 +53,7 @@ def getFile(String wksp, String dft){
     println("enter getFile()")
     def tmp=[]
     def out="ls ${wksp}/release  ".execute().text
+    println "out=$out"
     out.readLines().collect{  it.split("\\.")[0] } 
     out.each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
     return tmp

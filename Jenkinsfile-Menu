@@ -82,7 +82,7 @@ properties([
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
                script: getPackScript('/root/workspace/myscripts','myfile') ]]],
-            /*[ $class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
+            [ $class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'SolutionConfig', randomName: 'choice-parameter-16677189047798', referencedParameters: 'Package', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
@@ -98,7 +98,7 @@ properties([
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContentSimple('SolutionConfig')]] ], */
+                              script: menu.getContentSimple('SolutionConfig')]] ], 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 
              

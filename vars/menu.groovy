@@ -281,7 +281,7 @@ def getContentTable(String refvar){
     |def url=\"${url}\"
     |def yaml = new Yaml()
     |def ret=''
-    |//ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}.yaml${urlext}".execute().text
+    |//ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}${urlext}".execute().text
     |ret="cat \${wksp}/release/\${${refvar}}.yaml".execute().text
     |ret=(Map)yaml.load(ret)
     |mymap=ret['components']

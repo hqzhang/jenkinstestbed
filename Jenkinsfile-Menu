@@ -38,7 +38,9 @@ def getPack(String mypath, String dft){
     println("enter getPack()")
    tmp=[]
   def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
+  println "out=$out"
   out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
+  println "out=$out"
   return tmp
 }         
 def getPackScript(String mypath, String dft){
@@ -73,8 +75,8 @@ def getContentScript(String wksp, String refvar ){
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
 }
-println getFile(wksp, 'solution')
-println getContentScript(wksp, 'SolutionConfig')
+println getPack('/root/workspace/myscripts','myfile')
+//println getContentScript(wksp, 'SolutionConfig')
 
 properties([
     //pipelineTriggers([bitbucketPush()]),

@@ -82,7 +82,7 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
-            //choice( name: 'getPack', description: '', choices: getPack('/root/workspace/myscripts','myfile') ),
+            choice( name: 'getPack', description: '', choices: getPack('/root/workspace/myscripts','myfile') ),
             choice( name: 'getFile', description: '', choices: getFile(wksp,'solution') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 

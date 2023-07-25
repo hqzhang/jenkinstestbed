@@ -28,7 +28,7 @@ String setDefault(List out,String key){
 String getServerScript(String refvar){
     def map=[:]
     envList.eachWithIndex{ it,index->
-       map[it]=buildDefault(serversList[it],defaultList[index])
+       map[it]=setDefault(serversList[it],defaultList[index])
     }
     return """def map=\"${map}\"
     |return map[${refvar}]

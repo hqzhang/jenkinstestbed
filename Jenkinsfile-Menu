@@ -13,7 +13,8 @@ def repo=scm.getUserRemoteConfigs().toString()
 println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 println "repo=$repo"
-
+@groovy.transform.Field
+def mybrch=brch
 @groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field
@@ -90,7 +91,7 @@ String getBranches( String myurl, String dft ){
 }
 String getFileHub(String repo, String folder ){
    def ret=[]
-   def cmd = """curl https://api.github.com/repos/${repo}/git/trees/${brch}?recursive=2  """
+   def cmd = """curl https://api.github.com/repos/${repo}/git/trees/${mybrch}?recursive=2  """
    println "cmd=$cmd"
    def out = cmd.execute().text
    def jsonSlurper = new JsonSlurper()
@@ -100,7 +101,7 @@ String getFileHub(String repo, String folder ){
 }
 def getFileBit(String repo, String folder){
     println "ener getFileBit()"
-    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/$brch}/releases"
+    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/${mybrch}/releases"
     def ret=[]
     def cmd="curl --request GET ${repoPR}  "
     println "$cmd"
@@ -115,7 +116,7 @@ def getFileBit(String repo, String folder){
 def getFileBitScript(String repo, String folder){
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/release"
+    |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/${mybrch}/release"
     |def cmd="curl --request GET \${repoPR}  "
     |def out=cmd.execute().text
     |def json=new JsonSlurper()

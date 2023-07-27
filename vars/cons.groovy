@@ -162,6 +162,8 @@ String getFileHub(String repo, String folder ){
    def out = cmd.execute().text
    def jsonSlurper = new JsonSlurper()
    def obj = jsonSlurper.parseText(out)
+   println "obj=$obj"
+   
    obj['tree'].each{
       if(it['path'].contains("${folder}/") ) { tmp.add(it['path'])}
     }

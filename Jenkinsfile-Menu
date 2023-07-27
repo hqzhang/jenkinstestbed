@@ -94,12 +94,24 @@ String getFileHub(String repo, String folder ){
    def out = cmd.execute().text
    def jsonSlurper = new JsonSlurper()
    def obj = jsonSlurper.parseText(out)
+   
    obj['tree'].each{
       if(it['path'].contains("${folder}/") ) { tmp.add(it['path'])}
     }
    return tmp
 }
-
+def getFileBit(String repo, String folder){
+    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/master/releases"
+    def ret=[]
+    def cmd="curl --request GET ${repoPR}  "
+    def out=exeCmd(cmd)
+  
+    def json=new JsonSlurper()
+    def obj=json.parseText(out)
+  
+    obj['values'].each { ret.add(it['path'])}
+    return ret
+    }
 println getPack('/root/workspace/myscripts','myfile')
 //println getContentScript(wksp, 'SolutionConfig')
 
@@ -108,7 +120,8 @@ properties([
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
-            choice( name: 'getFileBit', description: '', choices: getFileHub("hqzhang/groovytest","releases") ),
+            choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases") ),
+            choice( name: 'getFileBit', description: '', choices: getFileBit("hqzhang/groovytest","releases") ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 

@@ -147,20 +147,25 @@ String getBranches( String myurl='' ){
 }
 String getFileBit(String mycmd='' ){
    if ( !mycmd?.trim() ) { 
-      mycmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/master?recursive=1 "
+      mycmd = "curl -u "hqzhang:LknMlBaa0gKeZMCBweh3AFE0" -X GET https://bitbucket.org/rest/api/1.0/projects/myproject/repos/groovytest/browse"
    }
    def mf = mycmd.execute().text
    def ret = mf.readLines().collect{ it.split()[0].minus('.xml')}
    buildScript(ret)
 }
 
-String getFileHub(String mycmd='' ){
-   if ( !mycmd?.trim() ) { 
-      mycmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/master?recursive=1 "
-   }
-   def mf = mycmd.execute().text
-   def ret = mf.readLines().collect{ it.split()[0].minus('.xml')}
-   buildScript(ret)
+import groovy.json.JsonSlurper
+String getFileHub(String repo, String folder ){
+   def tmp=[]
+   def cmd = """curl https://api.github.com/repos/${repo}/git/trees/master?recursive=2  """
+   println "cmd=$cmd"
+   def out = cmd.execute().text
+   def jsonSlurper = new JsonSlurper()
+   def obj = jsonSlurper.parseText(out)
+   obj['tree'].each{
+      if(it['path'].contains("${folder}/") ) { tmp.add(it['path'])}
+    }
+   return tmp
 }
 
 String getFiles(String mycmd='' ){
@@ -181,6 +186,6 @@ String getEnvironment(String val='',List values=[]){
    }
 }
 
-
+println getFileHub("hqzhang/groovytest","releases")
 
 

@@ -85,8 +85,17 @@ String getBranches( String myurl, String dft ){
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    return buildDefault(ret, dft)
 }
-String getFileBit(){
-
+String getFileHub(String repo, String folder ){
+   def tmp=[]
+   def cmd = """curl https://api.github.com/repos/${repo}/git/trees/master?recursive=2  """
+   println "cmd=$cmd"
+   def out = cmd.execute().text
+   def jsonSlurper = new JsonSlurper()
+   def obj = jsonSlurper.parseText(out)
+   obj['tree'].each{
+      if(it['path'].contains("${folder}/") ) { tmp.add(it['path'])}
+    }
+   return tmp
 }
 
 println getPack('/root/workspace/myscripts','myfile')
@@ -97,7 +106,7 @@ properties([
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
-            choice( name: 'getFile', description: '', choices: getFile(wksp,'solution') ),
+            choice( name: 'getFileBit', description: '', choices: getFileHub("hqzhang/groovytest","releases") ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 

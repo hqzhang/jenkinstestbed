@@ -115,7 +115,7 @@ def getFileBitScript(String repo, String folder){
     return """import groovy.json.JsonSlurper
     |def ret=[]
     |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/master/releases"
-    |def cmd="curl --request GET ${repoPR}  "
+    |def cmd="curl --request GET \${repoPR}  "
     |def out=cmd.execute().text
     |def json=new JsonSlurper()
     |def obj=json.parseText(out)

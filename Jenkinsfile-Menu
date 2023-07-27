@@ -83,7 +83,7 @@ String getBranches( String myurl, String dft ){
    if ( !myurl?.trim() ) { myurl = url  }
    def gettags = ("git ls-remote --heads  $myurl  ").execute().text
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
-   return buildbuildDefault(ret, dft)
+   return buildDefault(ret, dft)
 }
 String getFileBit(){
 

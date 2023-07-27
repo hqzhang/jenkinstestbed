@@ -1,11 +1,8 @@
 //////
 
-def brch= scm.branches[0].toString()
-brch=brch.substring(2,)
-
+def brch= scm.branches[0].toString().substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 import groovy.json.JsonSlurper
-
 println "------branch11=${brch}"
 println GroovySystem.version
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
@@ -15,7 +12,7 @@ println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 println "repo=$repo"
 @groovy.transform.Field
-def mybrch=scm.branches.toString().substring(3,9)
+def mybrch="{brch}"
 @groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field

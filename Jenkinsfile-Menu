@@ -3,7 +3,7 @@
 def brch= scm.branches[0].toString()
 brch=brch.substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
-println "------branch=${brch}"
+println "------branch11=${brch}"
 println GroovySystem.version
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def wksp="/var/root/.jenkins/workspace/${jobstr}"

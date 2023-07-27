@@ -100,7 +100,7 @@ String getFileHub(String repo, String folder,String brch ){
    def obj = jsonSlurper.parseText(out)
    obj['tree'].each{ if(it['path'].contains("${folder}/") ) { ret.add(it['path'])}  }
    if (ret.isEmpty()) {return ['NotFound']}
-   
+
    return ret
 }
 String getFileHubScript(String repo, String folder,String brch ){
@@ -152,7 +152,7 @@ properties([
             choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
             //choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases",'mytest') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'getFileBitScript', randomName: 'choice-parameter-16677189047460', referencedParameters: 'Environment', 
+               name: 'getFileBitScript', randomName: 'choice-parameter-16677189047450', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: getFileHubScript("hqzhang/groovytest","releases",'mytest') ]]],

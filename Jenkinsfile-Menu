@@ -107,7 +107,7 @@ def getFileBit(String repo, String folder){
     def ret=[]
     def cmd="curl -u $USERNAME:$PASSWORD --request GET ${repoPR}  "
     //def cmd="curl --request GET ${repoPR}  "
-    def out=exeCmd(cmd)
+    def out=cmd.execute().text
   
     def json=new JsonSlurper()
     def obj=json.parseText(out)

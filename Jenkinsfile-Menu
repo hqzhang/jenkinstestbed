@@ -79,11 +79,11 @@ def getContentScript(String wksp, String refvar ){
     | """.stripMargin()
 }
 
-String getBranches( String myurl='' ){
+String getBranches( String myurl, String dft ){
    if ( !myurl?.trim() ) { myurl = url  }
    def gettags = ("git ls-remote --heads  $myurl  ").execute().text
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
-   return buildbuildDefault(ret, 'master')
+   return buildbuildDefault(ret, dft)
 }
 String getFileBit(){
 
@@ -96,7 +96,7 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
-            choice( name: 'getBranches', description: '', choices: getBranches(repo) ),
+            choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
             choice( name: 'getFile', description: '', choices: getFile(wksp,'solution') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 

@@ -85,6 +85,9 @@ String getBranches( String myurl='' ){
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    buildScript(ret)
 }
+String getFileBit(){
+    
+}
 
 println getPack('/root/workspace/myscripts','myfile')
 //println getContentScript(wksp, 'SolutionConfig')
@@ -93,7 +96,7 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
-            choice( name: 'getPack', description: '', choices: getPack('/root/workspace/myscripts','myfile') ),
+            choice( name: 'getBranches', description: '', choices: getBranches(repo) ),
             choice( name: 'getFile', description: '', choices: getFile(wksp,'solution') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 

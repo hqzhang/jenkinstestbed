@@ -94,24 +94,19 @@ String getFileHub(String repo, String folder ){
    def out = cmd.execute().text
    def jsonSlurper = new JsonSlurper()
    def obj = jsonSlurper.parseText(out)
-   
-   obj['tree'].each{
-      if(it['path'].contains("${folder}/") ) { ret.add(it['path'])}
-    }
+   obj['tree'].each{ if(it['path'].contains("${folder}/") ) { ret.add(it['path'])}  }
    return ret
 }
 def getFileBit(String repo, String folder){
     println "ener getFileBit()"
     def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/master/releases"
     def ret=[]
-   
     def cmd="curl --request GET ${repoPR}  "
     def out=cmd.execute().text
-
     def json=new JsonSlurper()
     def obj=json.parseText(out)
-  
     obj['values'].each { ret.add(it['path'])}
+
     return ret
     }
 

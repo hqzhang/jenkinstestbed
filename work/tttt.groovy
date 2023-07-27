@@ -89,15 +89,20 @@ String getFileHub(String repo, String folder ){
     }
    return tmp
 }
-USERNAME='fredzhang123'
-PASSWORD='ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3'
-def getFileBit(String repo, String folder){
+@groovy.transform.Field
+def USERNAME='fredzhang123'
+@groovy.transform.Field
+def PASSWORD='ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3'
+def getFileBit(){
+    println "ener getFileBit()"
+    def repo="wave-cloud/groovytest"
+    def folder="releases"
     def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/master/releases"
     def ret=[]
-    //def cmd="curl -u $USERNAME:$PASSWORD --request GET ${repoPR}  "
-    def cmd="curl --request GET ${repoPR}  "
+    def cmd="curl -u fredzhang123:ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3 --request GET ${repoPR}  "
+    //def cmd="curl --request GET ${repoPR}  "
     def out=cmd.execute().text
-  
+    println "out=$out"
     def json=new JsonSlurper()
     def obj=json.parseText(out)
   
@@ -105,5 +110,5 @@ def getFileBit(String repo, String folder){
     return ret
     }
 
-println getFileBit("wave-cloud/groovytest","releases")
+println getFileBit()
 

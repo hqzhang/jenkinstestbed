@@ -99,10 +99,11 @@ def getFileBit(){
     def folder="releases"
     def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/master/releases"
     def ret=[]
-    def cmd="curl -u fredzhang123:ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3 --request GET ${repoPR}  "
-    //def cmd="curl --request GET ${repoPR}  "
+    //def cmd="curl -u fredzhang123:ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3 --request GET ${repoPR}  "
+    def cmd="curl --request GET ${repoPR}  "
+    println "cmd=$cmd"
     def out=cmd.execute().text
-    println "out=$out"
+
     def json=new JsonSlurper()
     def obj=json.parseText(out)
   

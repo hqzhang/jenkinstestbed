@@ -14,8 +14,6 @@ println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 println "repo=$repo"
 @groovy.transform.Field
-def user='fredzhang123:ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3'
-@groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field
 def serversList=[DEV: ['s11','ss22','ss33'],
@@ -23,14 +21,14 @@ def serversList=[DEV: ['s11','ss22','ss33'],
 @groovy.transform.Field
 def defaultList=['ss33', 's55']
 String buildDefault(List out,String key){
-   def tmp=[]
-   out.each{ if(it.contains(key)){ tmp.add(0, it) } else { tmp.add(it) } }
-   return tmp
+   def ret=[]
+   out.each{ if(it.contains(key)){ ret.add(0, it) } else { ret.add(it) } }
+   return ret
 }
 String setDefault(List out,String key){
-   def tmp=[]
-   out.each{ if(it.contains(key)){ tmp.add(0,'"'+it+'"') }  else { tmp.add('"'+it+'"') } } 
-   return tmp
+   def rest=[]
+   out.each{ if(it.contains(key)){ ret.add(0,'"'+it+'"') }  else { ret.add('"'+it+'"') } } 
+   return ret
 }         
 String getServerScript(String refvar){
     def map=[:]
@@ -43,35 +41,35 @@ String getServerScript(String refvar){
 }
 def getPack(String mypath, String dft){
     println("enter getPack()")
-   tmp=[]
-  def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
-  println "out=$out"
-  out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
-  println "out=$out"
-  return tmp
+    ret=[]
+    def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
+    println "out=$out"
+    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
+    println "out=$out"
+    return ret
 }         
 def getPackScript(String mypath, String dft){
    println("enter getPackScript()")
-  return """tmp=[]
+  return """ret=[]
   |def out="ssh root@192.168.0.16 ls ${mypath}/*.tar.gz".execute().text
-  |out.readLines().each{ if( it.contains(\"${dft}\") ){ tmp.add(0,it) } else { tmp.add(it) } }
-  |return tmp
+  |out.readLines().each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
+  |return ret
   |""".stripMargin()
 }
 def getFile(String wksp, String dft){
     println("enter getFile()")
-    def tmp=[]
+    def ret=[]
     def out="ls ${wksp}/release  ".execute().text
     println "out=$out"
-    out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
-    return tmp
+    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
+    return ret
 }         
 def getFileScript(String wksp, String dft){
     println("enter getFileScript()....")
-  return """def tmp=[]
+  return """def ret=[]
   |def out="ls ${wksp}/release  ".execute().text
-  |out.readLines().each{ if( it.contains(\"${dft}\") ){ tmp.add(0,it) } else { tmp.add(it) } }
-  |return tmp
+  |out.readLines().each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
+  |return ret
   |""".stripMargin()
 }
 def getContentScript(String wksp, String refvar ){
@@ -90,7 +88,7 @@ String getBranches( String myurl, String dft ){
    return buildDefault(ret, dft)
 }
 String getFileHub(String repo, String folder ){
-   def tmp=[]
+   def ret=[]
    def cmd = """curl https://api.github.com/repos/${repo}/git/trees/master?recursive=2  """
    println "cmd=$cmd"
    def out = cmd.execute().text
@@ -98,23 +96,21 @@ String getFileHub(String repo, String folder ){
    def obj = jsonSlurper.parseText(out)
    
    obj['tree'].each{
-      if(it['path'].contains("${folder}/") ) { tmp.add(it['path'])}
+      if(it['path'].contains("${folder}/") ) { ret.add(it['path'])}
     }
-   return tmp
+   return ret
 }
 def getFileBit(String repo, String folder){
     def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/master/releases"
     def ret=[]
-    //def cmd="curl -u $USERNAME:$PASSWORD --request GET ${repoPR}  "
     def cmd="curl --request GET ${repoPR}  "
     def out=cmd.execute().text
-  
     def json=new JsonSlurper()
     def obj=json.parseText(out)
-  
     obj['values'].each { ret.add(it['path'])}
+
     return ret
-    }
+}
 //println getPack('/root/workspace/myscripts','myfile')
 println getFileBit("hqzhang/groovytest","releases")
 

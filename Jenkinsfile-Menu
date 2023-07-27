@@ -103,19 +103,20 @@ String getFileHub(String repo, String folder ){
    return tmp
 }
 def getFileBit(String myrepo, String folder){
+    println "enter getFileBit()"
     def repoPR="https://api.bitbucket.org/2.0/repositories/$myrepo/src/master/releases"
     def ret=[]
     def cmd="curl -u $user --request GET ${repoPR}  "
     def out = cmd.execute().text
-  
+    println "out=$out"
     def json=new JsonSlurper()
     def obj=json.parseText(out)
-  
+    println "obj=$obj"
     obj['values'].each { ret.add(it['path'])}
     return ret
     }
-println getPack('/root/workspace/myscripts','myfile')
-//println getContentScript(wksp, 'SolutionConfig')
+//println getPack('/root/workspace/myscripts','myfile')
+println getFileBit("hqzhang/groovytest","releases")
 
 properties([
     //pipelineTriggers([bitbucketPush()]),

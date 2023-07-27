@@ -104,7 +104,7 @@ def getFileBit(String myrepo, String folder){
     def repoPR="https://api.bitbucket.org/2.0/repositories/$myrepo/src/master/releases"
     def ret=[]
     def cmd="curl --request GET ${repoPR}  "
-    def out=exeCmd(cmd)
+    def out = cmd.execute().text
   
     def json=new JsonSlurper()
     def obj=json.parseText(out)

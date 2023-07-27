@@ -140,7 +140,7 @@ properties([
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
-            choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases",'test') ),
+            choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases",'mytest') ),
             choice( name: 'getFileBit', description: '', choices: getFileBit("wave-cloud/groovytest","release",brch) ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'getFileBitScript', randomName: 'choice-parameter-16677189047460', referencedParameters: 'Environment', 

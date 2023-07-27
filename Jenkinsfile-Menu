@@ -99,7 +99,7 @@ String getFileHub(String repo, String folder,String brch ){
 }
 def getFileBit(String repo, String folder, String brch){
     println "ener getFileBit()"
-    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/${brch}/releases"
+    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/${brch}/release"
     def ret=[]
     def cmd="curl --request GET ${repoPR}  "
     println "$cmd"

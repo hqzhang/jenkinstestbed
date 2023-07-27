@@ -83,10 +83,10 @@ String getBranches( String myurl='' ){
    if ( !myurl?.trim() ) { myurl = url  }
    def gettags = ("git ls-remote --heads  $myurl  ").execute().text
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
-   buildScript(ret)
+   return buildbuildDefault(ret, 'master')
 }
 String getFileBit(){
-    
+
 }
 
 println getPack('/root/workspace/myscripts','myfile')

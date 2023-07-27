@@ -9,7 +9,7 @@ def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def wksp="/var/root/.jenkins/workspace/${jobstr}"
 def repo=scm.getUserRemoteConfigs().toString()
 println "repo=$repo"
-repo=repo.substring(17, repo.length()-12).split('/')[2]
+repo=repo.substring(17, repo.length()-12)
 println "repo=$repo"
 @groovy.transform.Field
 def envList=['DEV','BAT']

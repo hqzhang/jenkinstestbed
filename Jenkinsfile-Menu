@@ -13,8 +13,7 @@ def repo=scm.getUserRemoteConfigs().toString()
 println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 println "repo=$repo"
-@groovy.transform.Field
-def brch=scm.branches.toString().substring(3,9)
+
 @groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field

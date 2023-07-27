@@ -33,7 +33,7 @@ String getServerScript(String refvar){
     envList.eachWithIndex{ it,index->
        map[it]=setDefault(serversList[it],defaultList[index])
     }
-    return """def map=\"${map}\"
+    return """def map=${map}
     |return map[${refvar}]
     |""".stripMargin()
 }

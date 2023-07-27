@@ -2,6 +2,7 @@
 
 def brch= scm.branches[0].toString()
 brch=brch.substring(2,)
+
 library("bitbucket-groovytest-lib@${brch}") _
 import groovy.json.JsonSlurper
 
@@ -14,7 +15,7 @@ println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 println "repo=$repo"
 @groovy.transform.Field
-def mybrch=brch
+def mybrch=scm.branches.toString().substring(3,9)
 @groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field

@@ -7,7 +7,9 @@ println "------branch=${brch}"
 println GroovySystem.version
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def wksp="/var/root/.jenkins/workspace/${jobstr}"
-println "wksp=$wksp"
+def repo=scm.getUserRemoteConfigs().toString()
+repo=repo.substring(17, repo.length()-12).split('/')[2]
+println "repo=$repo"
 @groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field
@@ -75,6 +77,14 @@ def getContentScript(String wksp, String refvar ){
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
 }
+
+String getBranches( String myurl='' ){
+   if ( !myurl?.trim() ) { myurl = url  }
+   def gettags = ("git ls-remote --heads  $myurl  ").execute().text
+   def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
+   buildScript(ret)
+}
+
 println getPack('/root/workspace/myscripts','myfile')
 //println getContentScript(wksp, 'SolutionConfig')
 

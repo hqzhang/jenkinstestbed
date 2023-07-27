@@ -145,6 +145,23 @@ String getBranches( String myurl='' ){
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    buildScript(ret)
 }
+String getFileBit(String mycmd='' ){
+   if ( !mycmd?.trim() ) { 
+      mycmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/master?recursive=1 "
+   }
+   def mf = mycmd.execute().text
+   def ret = mf.readLines().collect{ it.split()[0].minus('.xml')}
+   buildScript(ret)
+}
+
+String getFileHub(String mycmd='' ){
+   if ( !mycmd?.trim() ) { 
+      mycmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/master?recursive=1 "
+   }
+   def mf = mycmd.execute().text
+   def ret = mf.readLines().collect{ it.split()[0].minus('.xml')}
+   buildScript(ret)
+}
 
 String getFiles(String mycmd='' ){
    if ( !mycmd?.trim() ) { 

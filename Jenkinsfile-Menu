@@ -101,10 +101,12 @@ String getFileHub(String repo, String folder ){
    return ret
 }
 def getFileBit(String repo, String folder){
+    println "enter getFileBit"
     def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/master/releases"
     def ret=[]
     def cmd="curl --request GET ${repoPR}  "
     def out=cmd.execute().text
+    println "out=$out"
     def json=new JsonSlurper()
     def obj=json.parseText(out)
     obj['values'].each { ret.add(it['path'])}

@@ -14,6 +14,8 @@ println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 println "repo=$repo"
 @groovy.transform.Field
+def brch=scm.branches.toString().substring(3,9)
+@groovy.transform.Field
 def envList=['DEV','BAT']
 @groovy.transform.Field
 def serversList=[DEV: ['s11','ss22','ss33'],
@@ -89,7 +91,7 @@ String getBranches( String myurl, String dft ){
 }
 String getFileHub(String repo, String folder ){
    def ret=[]
-   def cmd = """curl https://api.github.com/repos/${repo}/git/trees/master?recursive=2  """
+   def cmd = """curl https://api.github.com/repos/${repo}/git/trees/${brch}?recursive=2  """
    println "cmd=$cmd"
    def out = cmd.execute().text
    def jsonSlurper = new JsonSlurper()
@@ -99,7 +101,7 @@ String getFileHub(String repo, String folder ){
 }
 def getFileBit(String repo, String folder){
     println "ener getFileBit()"
-    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/master/releases"
+    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/$brch}/releases"
     def ret=[]
     def cmd="curl --request GET ${repoPR}  "
     println "$cmd"
@@ -114,7 +116,7 @@ def getFileBit(String repo, String folder){
 def getFileBitScript(String repo, String folder){
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/master/releases"
+    |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/release"
     |def cmd="curl --request GET \${repoPR}  "
     |def out=cmd.execute().text
     |def json=new JsonSlurper()
@@ -124,20 +126,20 @@ def getFileBitScript(String repo, String folder){
     | """.stripMargin()
 }
 //println getPack('/root/workspace/myscripts','myfile')
-println getFileBit("wave-cloud/groovytest","releases")
+println getFileBit("wave-cloud/groovytest","release")
 
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
-            choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases") ),
-            choice( name: 'getFileBit', description: '', choices: getFileBit("wave-cloud/groovytest","releases") ),
+            choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","release") ),
+            choice( name: 'getFileBit', description: '', choices: getFileBit("wave-cloud/groovytest","release") ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'getFileBitScript', randomName: 'choice-parameter-16677189047460', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: getFileBitScript("wave-cloud/groovytest","releases") ]]],
+               script: getFileBitScript("wave-cloud/groovytest","release") ]]],
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'Server', randomName: 'choice-parameter-16677189047472', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 

@@ -89,6 +89,7 @@ String getBranches( String myurl, String dft){
 }
 String getFileHub(String repo, String folder,String brch ){
    def ret=[]
+            brch='test'
    def cmd = """curl https://api.github.com/repos/${repo}/git/trees/${brch}?recursive=2  """
    println "cmd=$cmd"
    def out = cmd.execute().text

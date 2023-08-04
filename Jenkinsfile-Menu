@@ -150,8 +150,9 @@ def getFileBitScript(String repo, String folder, String brch){
     |return ret
     | """.stripMargin()
 }
-//println getPack('/root/workspace/myscripts','myfile')
-println getFileBit("wave-cloud/groovytest","release",brch)
+println getBranchScript(repo,brch)
+println getFileHubScript("hqzhang/groovytest","releases",'mytest')
+println getFileBitScript("wave-cloud/groovytest","release",brch)
 
 properties([
     //pipelineTriggers([bitbucketPush()]),

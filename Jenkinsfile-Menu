@@ -159,7 +159,7 @@ def gitVerify(){
     def jsonSlurper = new JsonSlurper()
     def obj = jsonSlurper.parseText(out)
     println "obj=${obj['tree']}"
-    obj['tree'].each{ if(it['path'].contains("releases/") ) { ret.add(it['path'])}  }
+    obj['tree'].each{ if(it['path'].contains("release/") ) { ret.add(it['path'])}  }
     if (ret.isEmpty()) {return ['NotFound']}
     return ret
 }
@@ -183,7 +183,7 @@ properties([
                name: 'getFileHubScript', randomName: 'choice-parameter-16677189047450', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script: getFileHubScript("hqzhang/groovytest","releases",'mytest') ]]],
+               script: getFileHubScript("hqzhang/groovytest","release",'mytest') ]]],
 
             //choice( name: 'getFileBit', description: '', choices: getFileBit("wave-cloud/groovytest","release",brch) ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,

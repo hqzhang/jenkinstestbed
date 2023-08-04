@@ -145,8 +145,8 @@ def getFileBitScript(String repo, String folder, String brch){
     |def out=cmd.execute().text
     |def json=new JsonSlurper()
     |def obj=json.parseText(out)
-    |if (ret.isEmpty()) {return ['NotFound']}
     |obj['values'].each { ret.add(it['path'])}
+    |if (ret.isEmpty()) {return ['NotFound']}
     |return ret
     | """.stripMargin()
 }

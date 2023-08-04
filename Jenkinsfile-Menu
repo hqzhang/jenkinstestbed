@@ -86,11 +86,19 @@ def getContentScript(String wksp, String refvar ){
     | """.stripMargin()
 }
 
-String getBranches( String myurl, String dft){
-   if ( !myurl?.trim() ) { myurl = url  }
+String getBranches( String repo, String dft){
+   def url="https://fredzhang123@bitbucket.org/${repo}"
    def gettags = ("git ls-remote --heads  $myurl  ").execute().text
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    return buildDefault(ret, dft)
+}
+String getBranchScript(String repo, String dft ){
+   return """def ret=[]
+   |def out = "git ls-remote --heads https://fredzhang123@bitbucket.org/${repo}".execute().text
+   |out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
+   |out.each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
+   |return ret
+   | """.stripMargin()
 }
 String getFileHub(String repo, String folder,String brch ){
    def ret=[]
@@ -149,10 +157,16 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
-            choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
+            //choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
+            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
+               name: 'getBranchScript', randomName: 'choice-parameter-16677189047440', referencedParameters: 'Environment', 
+               script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
+               script: [classpath: [], oldScript: '', sandbox: true, 
+               script: getBranchScript(repo,brch) ]]],
+
             //choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases",'mytest') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'getFileBitScript', randomName: 'choice-parameter-16677189047450', referencedParameters: 'Environment', 
+               name: 'getFileHubScript', randomName: 'choice-parameter-16677189047450', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: getFileHubScript("hqzhang/groovytest","releases",'mytest') ]]],

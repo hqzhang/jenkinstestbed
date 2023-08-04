@@ -47,18 +47,18 @@ def getPackScript(String mypath, String dft){
 }
 def getFile(String wksp, String dft){
     println("enter getFile()")
-    def tmp=[]
+    def ret=[]
     def out="ls ${wksp}/release  ".execute().text
     println "out=$out"
-    out.readLines().each{ if( it.contains(dft) ){ tmp.add(0,it) } else { tmp.add(it) } }
-    return tmp
+    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
+    return ret
 }         
 def getFileScript(String wksp, String dft){
     println("enter getFileScript()....")
-  return """def tmp=[]
+  return """def ret=[]
   |def out="ls ${wksp}/release  ".execute().text
-  |out.readLines().each{ if( it.contains(\"${dft}\") ){ tmp.add(0,it) } else { tmp.add(it) } }
-  |return tmp
+  |out.readLines().each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
+  |return ret
   |""".stripMargin()
 }
 def getContentScript(String wksp, String refvar ){
@@ -75,6 +75,14 @@ String getBranches( String myurl, String dft ){
    def gettags = ("git ls-remote --heads  $myurl  ").execute().text
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    return buildDefault(ret, dft)
+}
+String getBranchesScript(String myurl, String dft ){
+   return """def ret=[]
+   |def out = "git ls-remote --heads  ${myurl}  ".execute().text
+   |out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
+   |out.each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
+   |return ret
+   | """.stripMargin()
 }
 String getFileHub(String repo, String folder ){
    def tmp=[]

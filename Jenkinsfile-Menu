@@ -158,7 +158,7 @@ def brchVerify(){
     return ret
 }
  
-def hubVerify(){
+def gitVerify(){
     def ret=[]
     def cmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/mytest?recursive=2  "
     def out = cmd.execute().text

@@ -154,15 +154,14 @@ def getFileBitScript(String repo, String folder, String brch){
 def gitVerify(){
     println "enter gitVerify"
     def cmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/mytest?recursive=2  "
-def out = cmd.execute().text
-println "out=$out"
-def jsonSlurper = new JsonSlurper()
-def obj = jsonSlurper.parseText(out)
-println "obj=${obj['tree']}"
-obj['tree'].each{ if(it['path'].contains("releases/") ) { ret.add(it['path'])}  }
-if (ret.isEmpty()) {return ['NotFound']}
-return ret
- 
+    def out = cmd.execute().text
+    println "out=$out"
+    def jsonSlurper = new JsonSlurper()
+    def obj = jsonSlurper.parseText(out)
+    println "obj=${obj['tree']}"
+    obj['tree'].each{ if(it['path'].contains("releases/") ) { ret.add(it['path'])}  }
+    if (ret.isEmpty()) {return ['NotFound']}
+    return ret
 }
  
 println gitVerify()

@@ -151,6 +151,7 @@ def getFileBitScript(String repo, String folder, String brch){
     | """.stripMargin()
 }
 def brchVerify(){
+    println "enter brchVerify"
     def ret=[]
     def out = "git ls-remote --heads https://fredzhang123@bitbucket.org/https://fredzhang123@bitbucket.org/wave-cloud/groovytest.git".execute().text
     out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
@@ -159,6 +160,7 @@ def brchVerify(){
 }
  
 def gitVerify(){
+    println "enter gitVerify"
     def ret=[]
     def cmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/mytest?recursive=2  "
     def out = cmd.execute().text
@@ -170,6 +172,7 @@ def gitVerify(){
 }
  
 def bitVerify(){
+    println "enter bitVerify"
 def ret=[]
 def repoPR="https://api.bitbucket.org/2.0/repositories/wave-cloud/groovytest/src/mymenuchange/release"
 def cmd="curl --request GET ${repoPR}  "

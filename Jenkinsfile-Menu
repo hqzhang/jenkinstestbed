@@ -182,7 +182,7 @@ return ret
 }
 println brchVerify()
 println gitVerify()
-println hubVerify()
+println bitVerify()
 
 properties([
     //pipelineTriggers([bitbucketPush()]),

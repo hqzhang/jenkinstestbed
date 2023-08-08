@@ -167,7 +167,7 @@ def gitVerify(){
     return ret
 }
  
-println gitVerify()
+//println gitVerify()
 
 
 properties([

@@ -154,7 +154,7 @@ def getFileBitScript(String repo, String folder, String brch){
     | """.stripMargin()
 }
 
-def gitVerify(){
+def gitPackVerify(){
     println "enter gitVerify"
     def cmd = "curl https://api.github.com/repos/hqzhang/groovytest/git/trees/mytest?recursive=2  "
     def out = cmd.execute().text
@@ -167,7 +167,7 @@ def gitVerify(){
     return ret
 }
  
-//println gitVerify()
+println getPackVerify()
 
 
 properties([

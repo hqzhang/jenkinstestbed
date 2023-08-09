@@ -52,15 +52,26 @@ def getPack(String mypath, String dft){
     out.readLines().each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
     if (ret.isEmpty()) {return ['NotFound']}
     return ret
+} 
+def getPackList(String mypath, String dft){
+    println("enter getPack()")
+    ret=[]
+    def out="ssh ${target} ls ${mypath}/*.tar.gz".execute().text
+    println "out=$out"
+    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
+    if (ret.isEmpty()) {return ['NotFound']}
+    return """def ret=${ret}
+    |return ret
+    |""".stripMargin()
 }         
-def getPackScript(String mypath, String dft){
+/*def getPackScript(String mypath, String dft){
   println("enter getPackScript()")
   return """ret=[]
   |def out="ssh ${target} ls ${mypath}/*.tar.gz".execute().text
   |out.readLines().each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
   |return ret
   |""".stripMargin()
-}
+}*/
 def getFile(String wksp, String dft){
     println("enter getFile()")
     def ret=[]
@@ -68,10 +79,20 @@ def getFile(String wksp, String dft){
     println "out=$out"
     out.readLines().each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
     if (ret.isEmpty()) {return ['NotFound']}
-
     return ret
-}         
-def getFileScript(String wksp, String dft){
+} 
+def getFileList(String wksp, String dft){
+    println("enter getFile()")
+    def ret=[]
+    def out="ls ${wksp}/release  ".execute().text
+    println "out=$out"
+    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
+    if (ret.isEmpty()) {return ['NotFound']}
+    return """def ret=${ret}
+    |return ret
+    |""".stripMargin()
+}                
+/*def getFileScript(String wksp, String dft){
     println("enter getFileScript()....")
   return """def ret=[]
   |def out="ls ${wksp}/release  ".execute().text
@@ -79,7 +100,7 @@ def getFileScript(String wksp, String dft){
   |if (ret.isEmpty()) {return ['NotFound']}
   |return ret
   |""".stripMargin()
-}
+}*/
 def getContentScript(String wksp, String refvar ){
     println("enter getContentScript()....")
     return """

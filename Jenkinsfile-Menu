@@ -64,14 +64,14 @@ def getPackList(String mypath, String dft){
     |return ret
     |""".stripMargin()
 }         
-/*def getPackScript(String mypath, String dft){
+def getPackScript(String mypath, String dft){
   println("enter getPackScript()")
   return """ret=[]
   |def out="ssh ${target} ls ${mypath}/*.tar.gz".execute().text
   |out.readLines().each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
   |return ret
   |""".stripMargin()
-}*/
+}
 def getFile(String wksp, String dft){
     println("enter getFile()")
     def ret=[]

@@ -120,7 +120,7 @@ String getBranchList(String repo, String dft ){
    def ret=[]
    def out = "git ls-remote --heads ${repo}".execute().text
    out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
-   out.each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
+   out.each{ if( it.contains(dft) ){ ret.add(0,it) } else { ret.add(it) } }
    return """ def ret=${ret}
    |return ret
    | """.stripMargin()

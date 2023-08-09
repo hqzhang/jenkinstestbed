@@ -116,6 +116,15 @@ String getBranches( String repo, String dft){
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    return buildDefault(ret, dft)
 }
+String getBranchList(String repo, String dft ){
+   def ret=[]
+   def out = "git ls-remote --heads ${repo}".execute().text
+   out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
+   out.each{ if( it.contains(\"${dft}\") ){ ret.add(0,it) } else { ret.add(it) } }
+   return """ def ret=${ret}
+   |return ret
+   | """.stripMargin()
+}
 String getBranchScript(String repo, String dft ){
    return """def ret=[]
    |def out = "git ls-remote --heads ${repo}".execute().text
@@ -200,7 +209,7 @@ properties([
                name: 'getBranchScript', randomName: 'choice-parameter-16677189047440', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: getBranchScript(repo,brch) ]]],
+               script: getBranchList(repo,brch) ]]],
 
             //choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases",'mytest') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,

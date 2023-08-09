@@ -1,3 +1,3 @@
 def greet(name) {
-    sayHello()
+    sayHello.xxx(name)
 }

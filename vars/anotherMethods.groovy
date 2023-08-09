@@ -1,3 +1,3 @@
 def double(x) {
-    return x * 2
+    return "HQ welcom"
 }

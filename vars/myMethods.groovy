@@ -1,3 +1,3 @@
 def greet(name) {
-    return anotherMethods.double(name.length())
+    return anotherMethods.double()
 }

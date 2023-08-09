@@ -229,7 +229,7 @@ properties([
              
 ])
 ])////
-general-pipeline()
+mypipeline( params )
 /*
 println "begin pipeline"
 def map

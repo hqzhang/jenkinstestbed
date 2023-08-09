@@ -1,7 +1,7 @@
 //////
 
-def call(){
-println "begin pipeline"
+def call(Map params){
+println "begin pipeline=$params"
 def map
 def list
 def remote = [:]

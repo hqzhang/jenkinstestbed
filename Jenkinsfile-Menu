@@ -245,6 +245,7 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
+                    myMethods.greet("Alice")
                     echo "params======$params"
                     echo "components=${env.compNames}"
                     echo "init=$env.initMenu"

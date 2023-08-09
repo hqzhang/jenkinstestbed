@@ -179,7 +179,7 @@ def getFileBitList(String repo, String folder, String brch){
     def out=cmd.execute().text
     def json=new JsonSlurper()
     def obj=json.parseText(out)
-    obj['values'].each { ret.add(it['path'])}
+    obj['values'].each { ret.add('"'+it['path']+'"')}
     if (ret.isEmpty()) {return ['NotFound']}
     return """return ${ret} """
     

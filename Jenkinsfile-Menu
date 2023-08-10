@@ -60,9 +60,7 @@ def getPackList(String mypath, String dft){
     println "out=$out"
     out.readLines().each{ if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } else { ret.add('"'+it+'"') } }
     if (ret.isEmpty()) {return ['NotFound']}
-    return """def ret=${ret}
-    |return ret
-    |""".stripMargin()
+    return """ return ${ret} """
 }         
 def getPackScript(String mypath, String dft){
   println("enter getPackScript()")
@@ -88,9 +86,7 @@ def getFileList(String wksp, String dft){
     println "out=$out"
     out.readLines().each{ if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } else { ret.add('"'+it+'"') } }
     if (ret.isEmpty()) {return ['NotFound']}
-    return """def ret=${ret}
-    |return ret
-    |""".stripMargin()
+    return """ return ${ret} """
 }                
 /*def getFileScript(String wksp, String dft){
     println("enter getFileScript()....")
@@ -121,9 +117,7 @@ String getBranchList(String repo, String dft ){
    def out = "git ls-remote --heads ${repo}".execute().text
    out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    out.each{ if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } else { ret.add('"'+it+'"') } }
-   return """ def ret1=${ret}
-   |return ${ret}
-   | """.stripMargin()
+   return """ return ${ret} """
 }
 String getBranchScript(String repo, String dft ){
    return """def ret=[]
@@ -144,10 +138,7 @@ String getFileHubList(String repo, String folder,String brch ){
    obj['tree'].each{ if(it['path'].contains(folder) ) { ret.add('"'+it['path']+'"')}  }
    println "obj=$obj"
    if (ret.isEmpty()) {return ['NotFound']}
-   println "ret=$ret"
-   return """ def ret=${ret}
-   |return ret
-   | """.stripMargin()
+   return """ return ${ret} """
 
 }
 
@@ -187,9 +178,7 @@ def getFileBitList(String repo, String folder, String brch){
     def obj=json.parseText(out)
     obj['values'].each { ret.add('"'+it['path']+'"')}
     if (ret.isEmpty()) {return ['NotFound']}
-    return """def ret=${ret}
-    |return ret
-    | """.stripMargin()
+    return """ return ${ret} """
     
     }
 

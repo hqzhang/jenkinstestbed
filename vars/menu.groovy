@@ -115,7 +115,7 @@ def checkBuildRunning(){
                 if (build.isBuilding()) {
                     //println ("currentbuild:"); println currentBuild
                     println("build:"); println build
-                    //build.doStop();
+                    build.doStop();
                 }
             }
         }

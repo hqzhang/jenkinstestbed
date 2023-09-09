@@ -135,7 +135,9 @@ if (job) {
                 //println "build=$build"
                 if (build.isBuilding()) {
                     //println ("currentbuild:"); println currentBuild
-                    println("build:"); println build
+                    println("build:");
+                    def num=build.split('#')
+                    println num[1]
                     //build.doStop();
                 }
             }

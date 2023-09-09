@@ -92,7 +92,25 @@ return map[mykey]
 def checkBuildRunning(){
     println "enter checkBuildRunning()"
     //Jenkins.instance.queue.clear()
-   
+ /*  def jobName = 'YourJobName' // Replace with the name of your Jenkins job
+   def buildNumber = 1 // Replace with the build number you want to retrieve the workspace path for
+
+// Get the Jenkins instance
+def jenkins = Jenkins.instance
+// Get the job
+def job = jenkins.getItemByFullName(jobName)
+if (job) {
+    // Get the build by build number
+    def build = job.getBuildByNumber(buildNumber)
+    if (build) {
+        // Get the workspace path for the build
+        def workspacePath = build.getWorkspace().toString()
+        println("Workspace Path for ${jobName} build #${buildNumber}: ${workspacePath}")
+    } else {
+        println("Build #${buildNumber} for ${jobName} does not exist.")
+    }
+} 
+}*/
     //def mybuild = Jenkins.instance.getQueue().getItems()[0].getFuture().get()
     //def workspace = mybuild.getWorkspace().getRemote()
     //println("Workspace: " + workspace)
@@ -101,10 +119,11 @@ def checkBuildRunning(){
         it.isBuilding()
     }
     println(buildingJobs)
+    
     buildingJobs.each {
         def jobName = it.toString()
+        println "jobName=$jobName"
         def val = jobName.split("\\[|\\]")
-        
         println "val=$val"
         // 'Abort jobs' is the name of the job I have created, and I do not want it to abort itself.
         if((val[1].trim())!='Abort jobs') {

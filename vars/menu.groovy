@@ -108,6 +108,8 @@ def checkBuildRunning(){
         println "val=$val"
         // 'Abort jobs' is the name of the job I have created, and I do not want it to abort itself.
         if((val[1].trim())!='Abort jobs') {
+            def my=val[1].trim()
+            println my
             def job = Jenkins.instance.getItemByFullName(val[1].trim())
             println Jenkins.instance.getWorkspaceByFullName(val[1].trim())
             for (build in job.builds) {

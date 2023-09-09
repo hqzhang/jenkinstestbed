@@ -136,9 +136,12 @@ if (job) {
                 if (build.isBuilding()) {
                     //println ("currentbuild:"); println currentBuild
                     println("build:");
-                    def num=build.toString().substring(14,)
-                    println num
+                    def buildNumber=build.toString().substring(14,)
+                    println buildNumber
                     //build.doStop();
+                    def mybuild = job.getBuildByNumber(buildNumber)
+                    def workspacePath = mybuild.getWorkspace().toString()
+                    println("Workspace Path for ${jobName} build #${buildNumber}: ${workspacePath}")
                 }
             }
         }

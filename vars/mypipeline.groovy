@@ -17,6 +17,7 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
+                    println(menu.getWksp())
                     myMethods.greet("Alice")
                     echo "params======$params"
                     echo "components=${env.compNames}"

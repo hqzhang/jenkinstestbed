@@ -308,7 +308,9 @@ def getJob(){
 }
 def getWksp(){
     def jobstr=getJob()
-    def wksp="/var/root/.jenkins/workspace/${jobstr}"
+    //def wksp="/var/root/.jenkins/workspace/${jobstr}"
+    def wksp=''
+    node{ wksp=env.WORKSPACE }
     return wksp
 }
 def stringParse(String str){

@@ -136,7 +136,7 @@ if (job) {
                 if (build.isBuilding()) {
                     //println ("currentbuild:"); println currentBuild
                     println("build:");
-                    def buildNumber=build.toString().substring(14,)
+                    def buildNumber=build.toString().substring(14,).toInteger()
                     println buildNumber
                     //build.doStop();
                     def mybuild = job.getBuildByNumber(buildNumber)

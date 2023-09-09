@@ -136,7 +136,7 @@ if (job) {
                 if (build.isBuilding()) {
                     //println ("currentbuild:"); println currentBuild
                     println("build:");
-                    def num=build.split('#')
+                    def num=build.split('\#')
                     println num[1]
                     //build.doStop();
                 }

@@ -136,7 +136,7 @@ if (job) {
                 if (build.isBuilding()) {
                     //println ("currentbuild:"); println currentBuild
                     println("build:");
-                    def num=build.toString().substring(3,)
+                    def num=build.toString().substring(14,)
                     println num
                     //build.doStop();
                 }

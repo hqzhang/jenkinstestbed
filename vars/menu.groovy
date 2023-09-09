@@ -90,7 +90,7 @@ return map[mykey]
 }
 
 def getWorkspace(){
-   def jobName = 'agroovytest' // Replace with the name of your Jenkins job
+   def jobName = 'acgroovytest' // Replace with the name of your Jenkins job
    def buildNumber = 279 // Replace with the build number you want to retrieve the workspace path for
 
 // Get the Jenkins instance

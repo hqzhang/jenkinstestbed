@@ -7,7 +7,8 @@ println "------branch11=${brch}"
 println GroovySystem.version
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def wksp="/var/root/.jenkins/workspace/${jobstr}"
-println(menu.getWksp())
+String currentDir = new File(".").getAbsolutePath()
+println(currentDir)
 def repo=scm.getUserRemoteConfigs().toString()
 println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)

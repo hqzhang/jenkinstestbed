@@ -89,6 +89,27 @@ return map[mykey]
 
 }
 
+def getWorkspace(){
+   def jobName = 'agroovytest' // Replace with the name of your Jenkins job
+   def buildNumber = 279 // Replace with the build number you want to retrieve the workspace path for
+
+// Get the Jenkins instance
+def jenkins = Jenkins.instance
+// Get the job
+def job = jenkins.getItemByFullName(jobName)
+if (job) {
+    // Get the build by build number
+    def build = job.getBuildByNumber(buildNumber)
+    if (build) {
+        // Get the workspace path for the build
+        def workspacePath = build.getWorkspace().toString()
+        println("Workspace Path for ${jobName} build #${buildNumber}: ${workspacePath}")
+    } else {
+        println("Build #${buildNumber} for ${jobName} does not exist.")
+    }
+} 
+}
+
 def checkBuildRunning(){
     println "enter checkBuildRunning()"
     //Jenkins.instance.queue.clear()

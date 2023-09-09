@@ -90,6 +90,7 @@ return map[mykey]
 }
 
 def checkBuildRunning(){
+    println "enter checkBuildRunning()"
     //Jenkins.instance.queue.clear()
    
     //def mybuild = Jenkins.instance.getQueue().getItems()[0].getFuture().get()
@@ -99,9 +100,11 @@ def checkBuildRunning(){
     def buildingJobs = Jenkins.instance.getAllItems(Job.class).findAll {
         it.isBuilding()
     }
+    println(buildingJobs)
     buildingJobs.each {
         def jobName = it.toString()
         def val = jobName.split("\\[|\\]")
+        
         println "val=$val"
         // 'Abort jobs' is the name of the job I have created, and I do not want it to abort itself.
         if((val[1].trim())!='Abort jobs') {

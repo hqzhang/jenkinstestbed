@@ -117,7 +117,7 @@ def checkBuildRunning(){
     def index=scriptDir.indexOf('jobs')
     println "index: $index"
     scriptDir = scriptDir.substring(0,index)
-    println "scriptDir: $scriptDir+$job"
+    println "scriptDir: $scriptDir/workspace/$job"
    
 
     //Jenkins.instance.queue.clear()

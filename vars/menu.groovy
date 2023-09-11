@@ -114,7 +114,8 @@ def checkBuildRunning(){
     println "enter checkBuildRunning()"
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     println "scriptDir: $scriptDir"
-    println System.getProperty("user.dir");
+    String currentDir = new File(".").getAbsolutePath()
+    println "currentDir: $currentDir"
 
     //Jenkins.instance.queue.clear()
  /*  def jobName = 'YourJobName' // Replace with the name of your Jenkins job

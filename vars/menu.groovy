@@ -113,6 +113,8 @@ if (job) {
 def checkBuildRunning(){
     println "enter checkBuildRunning()"
     def scriptDir = getClass().protectionDomain.codeSource.location.path
+    def index=scriptDir.indexOf('jobs')
+    def scriptDir= scriptDir[0,index]
     println "scriptDir: $scriptDir"
     String currentDir = new File(".").getAbsolutePath()
     println "currentDir: $currentDir"
@@ -363,9 +365,10 @@ def getJob(){
 }
 def getWksp(){
     def jobstr=getJob()
+    def scriptDir = getClass().protectionDomain.codeSource.location.path
+    def index=scriptDir.indexOf('jobs')
+    
     def wksp="/var/root/.jenkins/workspace/${jobstr}"
-    
-    
     return wksp
 }
 def stringParse(String str){

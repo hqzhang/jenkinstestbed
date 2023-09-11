@@ -116,7 +116,7 @@ def checkBuildRunning(){
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     def index=scriptDir.indexOf('jobs')
     println "index: $index"
-    scriptDir = scriptDir.substring(,index)
+    scriptDir = scriptDir.substring(0,index)
     println "scriptDir: $scriptDir+$job"
    
 

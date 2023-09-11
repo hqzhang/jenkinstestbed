@@ -112,12 +112,12 @@ if (job) {
 
 def checkBuildRunning(){
     println "enter checkBuildRunning()"
+    def job=getJob()
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     def index=scriptDir.indexOf('jobs')
-    def scriptDir= scriptDir[0,index]
+    scriptDir= scriptDir[0,index]
     println "scriptDir: $scriptDir"
-    String currentDir = new File(".").getAbsolutePath()
-    println "currentDir: $currentDir"
+   
 
     //Jenkins.instance.queue.clear()
  /*  def jobName = 'YourJobName' // Replace with the name of your Jenkins job

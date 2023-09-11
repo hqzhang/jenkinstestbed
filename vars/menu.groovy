@@ -114,6 +114,8 @@ def checkBuildRunning(){
     println "enter checkBuildRunning()"
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     println "scriptDir: $scriptDir"
+    println System.getProperty("user.dir");
+
     //Jenkins.instance.queue.clear()
  /*  def jobName = 'YourJobName' // Replace with the name of your Jenkins job
    def buildNumber = 1 // Replace with the build number you want to retrieve the workspace path for

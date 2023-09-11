@@ -116,7 +116,7 @@ def checkBuildRunning(){
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     def index=scriptDir.indexOf('jobs')
     println "index: $index"
-    scriptDir = scriptDir[1:index]
+    scriptDir = scriptDir.substring(1,index)
     println "scriptDir: $scriptDir"
    
 
@@ -349,7 +349,7 @@ def getWksp(){
     def jobstr=getJob()
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     def index=scriptDir.indexOf('jobs')
-    
+     scriptDir.substring(1,index)
     def wksp="/var/root/.jenkins/workspace/${jobstr}"
     return wksp
 }

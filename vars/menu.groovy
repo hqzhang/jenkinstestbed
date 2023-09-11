@@ -157,7 +157,6 @@ if (job) {
         if((val[1].trim())!='Abort jobs') {
             def my=val[1].trim()
             println "my=$my"
-            def job = Jenkins.instance.getItemByFullName(val[1].trim())
            
             for (build in job.builds) {
                 //println "build=$build"

@@ -116,8 +116,8 @@ def checkBuildRunning(){
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     def index=scriptDir.indexOf('jobs')
     println "index: $index"
-    scriptDir = scriptDir.substring(1,index)
-    println "scriptDir: $scriptDir"
+    scriptDir = scriptDir.substring(,index)
+    println "scriptDir: $scriptDir+$job"
    
 
     //Jenkins.instance.queue.clear()

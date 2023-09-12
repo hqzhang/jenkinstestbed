@@ -349,7 +349,7 @@ def getWksp(){
     def jobstr=getJob()
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     def index=scriptDir.indexOf('jobs')
-    def tmpscriptDir.substring(1,index)
+    def tmp=scriptDir.substring(1,index)
     def wksp="${tmp}${jobstr}"
     return wksp
 }

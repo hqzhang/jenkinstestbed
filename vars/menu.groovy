@@ -336,7 +336,7 @@ def getWksp(){
     println "wscriptDirksp!!!!=$scriptDir"
     def index=scriptDir.indexOf('jobs')
     def tmp=scriptDir.substring(1,index)
-    def wksp="${tmp}${jobstr}"
+    def wksp="${tmp}workspace/${jobstr}"
     println "wksp!!!!=$wksp"
     return wksp
 }

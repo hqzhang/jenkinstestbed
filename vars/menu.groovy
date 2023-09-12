@@ -97,7 +97,7 @@ def getEnvironment(){
                'library.bitbucket-groovytest-lib.version']
     getEnvironment().each { k,v->
        println "$k=$v"
-       list.echo{
+       list.each{
            if ( k == it) {
               println "$k=$v"
            }

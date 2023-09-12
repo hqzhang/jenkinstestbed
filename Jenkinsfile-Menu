@@ -3,7 +3,7 @@
 def brch= scm.branches[0].toString().substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
 menu.getWksp()
-menu.checkBuildRunning()
+menu.getEnvironment()
 
 import groovy.json.JsonSlurper
 println "------branch11=${brch}"

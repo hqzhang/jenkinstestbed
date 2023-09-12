@@ -99,6 +99,10 @@ def getEnvironment(){
             }
         }
     }
+    println "WORKSPACE=${JENKINS_HOME}/workspace/${JOB_NAME}"
+    def repo=scm.getUserRemoteConfigs().toString()
+    repo=repo.substring(17, repo.length()-12).split('/')[2]
+    println "REPO=$repo"
 }
 
 def checkBuildRunning(){

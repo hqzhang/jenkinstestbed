@@ -93,10 +93,11 @@ def getEnvironment(){
     def list=['JENKINS_HOME','JOB_NAME','BUILD_NUMBER','JENKINS_HOME',\
               'library.bitbucket-groovytest-lib.version']
     env.getEnvironment().each { k,v->
-       println "$k=$v"
-    }
-    list.each {
-        println it
+        if ( it == k ) {
+            list.each {
+                println "$it=$v"
+            }
+        }
     }
 }
 

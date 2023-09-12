@@ -95,6 +95,9 @@ def getEnvironment(){
     env.getEnvironment().each { k,v->
        println "$k=$v"
     }
+    list.each {
+        println it
+    }
 }
 
 def checkBuildRunning(){

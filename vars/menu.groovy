@@ -90,18 +90,8 @@ return map[mykey]
 }
 
 def getEnvironment(){
-    def list=[ 'JENKINS_HOME',
-                'JOB_NAME',
-               'BUILD_NUMBER',
-               'JENKINS_HOME',
-               'library.bitbucket-groovytest-lib.version']
-    getEnvironment().each { k,v->
+    env.getEnvironment().each { k,v->
        println "$k=$v"
-       /*list.each{
-           if ( k == it) {
-              println "$k=$v"
-           }
-       }*/
     }
 }
 

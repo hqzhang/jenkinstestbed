@@ -349,8 +349,8 @@ def getWksp(){
     def jobstr=getJob()
     def scriptDir = getClass().protectionDomain.codeSource.location.path
     def index=scriptDir.indexOf('jobs')
-     scriptDir.substring(1,index)
-    def wksp="/var/root/.jenkins/workspace/${jobstr}"
+    def tmpscriptDir.substring(1,index)
+    def wksp="${tmp}${jobstr}"
     return wksp
 }
 def stringParse(String str){

@@ -348,11 +348,11 @@ def getJob(){
 def getWksp(){
     def jobstr=getJob()
     def scriptDir = getClass().protectionDomain.codeSource.location.path
-    println "wscriptDirksp=$scriptDir"
+    println "wscriptDirksp!!!!=$scriptDir"
     def index=scriptDir.indexOf('jobs')
     def tmp=scriptDir.substring(1,index)
     def wksp="${tmp}${jobstr}"
-    println "wksp=$wksp"
+    println "wksp!!!!=$wksp"
     return wksp
 }
 def stringParse(String str){

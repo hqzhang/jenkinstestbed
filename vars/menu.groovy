@@ -351,6 +351,7 @@ def getWksp(){
     def index=scriptDir.indexOf('jobs')
     def tmp=scriptDir.substring(1,index)
     def wksp="${tmp}${jobstr}"
+    println "wksp=$wksp"
     return wksp
 }
 def stringParse(String str){

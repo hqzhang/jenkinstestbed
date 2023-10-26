@@ -31,7 +31,7 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             text( name: 'multlines', description: '', defaultValue: "a\n b\n c"),
-            choice( name: 'mypack', description: '', choices: getFile('/root/workspace/myscripts','tar.gz','myfile') ),
+            /*choice( name: 'mypack', description: '', choices: getFile('/root/workspace/myscripts','tar.gz','myfile') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'dynpack', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
@@ -41,7 +41,7 @@ properties([
                name: 'secpack', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: false, 
-               script:getFileScript('/root/workspace/myscripts','tar.gz','myfile') ]]],
+               script:getFileScript('/root/workspace/myscripts','tar.gz','myfile') ]]],*/
         ])])
 pipeline {
   agent any

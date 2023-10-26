@@ -61,7 +61,7 @@ pipeline {
         build job: 'trest',
          parameters: [
         string(name: 'testPara', value: String.valueOf(env.multlines)),
-        string(name: 'testChoice', value: 'prefix-' + String.valueOf(env.CHOICES))
+        string(name: 'testChoice', value: String.valueOf(env.CHOICES))
     ]
       }
     }

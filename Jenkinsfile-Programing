@@ -50,7 +50,7 @@ pipeline {
   stages {
     stage('Demo Active Choices Parameter') {
       steps {
-        echo "$params"
+        echo "params=$params"
         //echo "File Selected ${file}"
         //echo "Content Selected ${components}"
       }
@@ -58,10 +58,10 @@ pipeline {
     stage('call anther job') {
       steps {
         echo "$params"
-        build job: 'acgroovytest',
+        build job: 'trest',
          parameters: [
-        string(name: 'passed_build_number_param', value: String.valueOf(BUILD_NUMBER)),
-        string(name: 'complex_param', value: 'prefix-' + String.valueOf(BUILD_NUMBER))
+        string(name: 'testPara', value: String.valueOf(env.multlines)),
+        string(name: 'testChoice', value: 'prefix-' + String.valueOf(env.CHOICES))
     ]
       }
     }

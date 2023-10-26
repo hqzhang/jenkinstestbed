@@ -31,6 +31,7 @@ properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             text( name: 'multlines', description: '', defaultValue: "a\n b\n c"),
+            choice(name: 'CHOICES', choices: ['one', 'two', 'three'], description: ''),
             /*choice( name: 'mypack', description: '', choices: getFile('/root/workspace/myscripts','tar.gz','myfile') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'dynpack', randomName: 'choice-parameter-16677189047472', referencedParameters: 'mypack', 

@@ -341,12 +341,16 @@ def getJob(){
     return jobstr
 }
 def getWksp(){
+    println "Enter getWksp()"
     def jobstr=getJob()
+    println "jobstr = $jobstr"
     def scriptDir = getClass().protectionDomain.codeSource.location.path
-    println "wscriptDirksp!!!!=$scriptDir"
+    println "scriptDir = $scriptDir"
     def index=scriptDir.indexOf('jobs')
-    def tmp=scriptDir.substring(1,index)
-    def wksp="${tmp}workspace/${jobstr}"
+    println "index = $index"
+    def script=scriptDir.substring(1,index)
+    println "script = $script"
+    def wksp="${script}workspace/${jobstr}"
     println "wksp!!!!=$wksp"
     return wksp
 }

@@ -58,9 +58,11 @@ pipeline {
     stage('call anther job') {
       steps {
         echo "$params"
-        build job: 'trest',
+        build job: 'acgroovytest',
          parameters: [
         string(name: 'testPara', value: String.valueOf(env.multlines)),
+        string(name: 'testChoice', value: String.valueOf(env.CHOICES))
+         string(name: 'testPara', value: String.valueOf(env.multlines)),
         string(name: 'testChoice', value: String.valueOf(env.CHOICES))
     ]
       }

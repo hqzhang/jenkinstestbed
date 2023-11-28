@@ -29,18 +29,21 @@ def defaultList=['ss333', 's555']
 def target="hongqizhang@localhost"
 
 String buildDefault(List out,String key){
+   println("enter buildDefault()")
    def ret=[]
    out.each{ if(it.contains(key)){ ret.add(0, it) } else { ret.add(it) } }
    if (ret.isEmpty()) {return ['NotFound']}
    return ret
 }
 String setDefault(List out,String key){
+   println("enter setDefault()")
    def ret=[]
    out.each{ if(it.contains(key)){ ret.add(0,'"'+it+'"') }  else { ret.add('"'+it+'"') } } 
    if (ret.isEmpty()) {return ['NotFound']}
    return ret
 }         
 String getServerList(String refvar){
+   println("enter getServerList()")
     def map=[:]
     envList.eachWithIndex{ it,index->
        map[it]=setDefault(serversList[it],defaultList[index])
@@ -51,7 +54,7 @@ String getServerList(String refvar){
 }
 
 def getPackList(String mypath, String dft){
-    println("enter getPack()")
+    println("enter getPackList()")
     ret=[]
     def out="ssh ${target} ls ${mypath}/*.tar.gz".execute().text
     //println "out=$out"
@@ -69,7 +72,7 @@ def getPackScript(String mypath, String dft){
 }
 
 def getFileList(String wksp, String dft){
-    println("enter getFile()")
+    println("enter getFileList()")
     def ret=[]
     def out="ls ${wksp}/release  ".execute().text
     //println "out=$out"
@@ -96,6 +99,7 @@ def getContentScript(String wksp, String refvar ){
 }
 
 String getBranchList(String repo, String dft ){
+    println("enter getBranchList()....")
    def ret=[]
    def out = "git ls-remote --heads ${repo}".execute().text
    out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
@@ -103,6 +107,7 @@ String getBranchList(String repo, String dft ){
    return """ return ${ret} """
 }
 String getBranchScript(String repo, String dft ){
+   println "Enter getBranchScript()"
    return """def ret=[]
    |def out = "git ls-remote --heads ${repo}".execute().text
    |out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
@@ -126,6 +131,7 @@ String getFileHubList(String repo, String folder,String brch ){
 }
 
 String getFileHubScript(String repo, String folder,String brch ){
+   println "Enter getFileHubScript()"
    return """import groovy.json.JsonSlurper
    |def ret=[]
    |def cmd = "curl https://api.github.com/repos/${repo}/git/trees/${brch}?recursive=2  "
@@ -154,6 +160,7 @@ def getFileBitList(String repo, String folder, String brch){
 }
 
 def getFileBitScript(String repo, String folder, String brch){
+    println "ener getFileBitScript()"
     return """import groovy.json.JsonSlurper
     |def ret=[]
     |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/release"
@@ -167,7 +174,7 @@ def getFileBitScript(String repo, String folder, String brch){
     | """.stripMargin()
 }
 
-println getFileHubList("hqzhang/groovytest","release",'mytest')
+//println getFileHubList("hqzhang/groovytest","release",'mytest')
 
 
 properties([

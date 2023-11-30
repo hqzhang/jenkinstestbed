@@ -40,6 +40,15 @@ def getKeys(String input,String key){
    return map
 }
 
-println getKeys(download,'/repository/')
+def out=getKeys(deploy,'/bin/')
+def getBase(Map out){
+   def list=[]
+  out.each { type, mypath->
+      def index = mypath.lastIndexOf('/')
+      list.add( mypath[0..index-1])
+  }
+  return list
+}
+println getBase(out)
 
 

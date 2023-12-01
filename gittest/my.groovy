@@ -72,3 +72,20 @@ def originalString = "abc_def"
 def convertedString = originalString.toUpperCase()
 
 println(convertedString)
+@Grab('org.yaml:snakeyaml:1.29')
+import org.yaml.snakeyaml.Yaml
+import groovy.yaml.YamlSlurper
+
+
+def data = """
+- !comp
+   name: abc
+- !comp
+   Name: elf
+"""
+println GroovySystem.version
+
+def config = new YamlSlurper().parseText(data)
+config.each { entry ->
+    println(entry)
+}

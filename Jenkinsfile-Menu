@@ -174,6 +174,22 @@ def getFileBitScript(String repo, String folder, String brch){
     | """.stripMargin()
 }
 
+import groovy.yaml.YamlSlurper
+
+   def test(){
+   def data = """
+   - !comp
+      name: abc
+   - !comp
+      Name: elf
+   """
+   println GroovySystem.version
+
+   def config = new YamlSlurper().parseText(data)
+   config.each { entry ->
+      println(entry)
+   }
+}
 //println getFileHubList("hqzhang/groovytest","release",'mytest')
 
 

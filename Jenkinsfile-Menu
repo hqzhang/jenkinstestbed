@@ -185,10 +185,10 @@ def getFileBitScript(String repo, String folder, String brch){
    """
    println GroovySystem.version
 
-   def config = new YamlSlurper().parseText(data)
+   /*def config = new YamlSlurper().parseText(data)
    config.each { entry ->
       println(entry)
-   }
+   }*/
 }
 //println getFileHubList("hqzhang/groovytest","release",'mytest')
 

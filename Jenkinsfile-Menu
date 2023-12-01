@@ -174,7 +174,7 @@ def getFileBitScript(String repo, String folder, String brch){
     | """.stripMargin()
 }
 
-import groovy.yaml.YamlSlurper
+//import groovy.yaml.YamlSlurper
 
    def test(){
    def data = """

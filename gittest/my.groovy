@@ -68,3 +68,7 @@ def separate(String input){
    return map
 }
 println separate(input)
+def originalString = "abc_def"
+def convertedString = originalString.toUpperCase()
+
+println(convertedString)

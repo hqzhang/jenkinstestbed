@@ -51,4 +51,20 @@ def getBase(Map out){
 }
 println getBase(out)
 
-
+def input = "abc1234"
+def separate(String input){
+   def map=[]
+   def match= input =~ /(\D+)(\d+)/
+   def name = (input =~ /\D+/).findAll()
+   def number= (input =~ /\d+/).findAll()
+   println name
+   println number
+   if (match) {
+      map.add(match[0][1])
+      map.add(match[0][2])
+   } else {
+      println "No match found"
+   }
+   return map
+}
+println separate(input)

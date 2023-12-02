@@ -174,32 +174,13 @@ def getFileBitScript(String repo, String folder, String brch){
     | """.stripMargin()
 }
 
-//import groovy.yaml.YamlSlurper
-
-   def test(){
-   def data = """
-   - !comp
-      name: abc
-   - !comp
-      Name: elf
-   """
-   withGroovy(tool:'3.0.0'){
-      println GroovySystem.version
-   }
-
-   /*def config = new YamlSlurper().parseText(data)
-   config.each { entry ->
-      println(entry)
-   }*/
-}
-//println getFileHubList("hqzhang/groovytest","release",'mytest')
 
 
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
-            //choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
+          /*  //choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'getBranchList', randomName: 'choice-parameter-16677189047440', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
@@ -249,7 +230,7 @@ properties([
                      script: [classpath: [], oldScript: '', sandbox: false, 
                               script: menu.getContentTable('SolutionConfig' )]] ],
            
-            string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
+            string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),*/
 
              
 ])

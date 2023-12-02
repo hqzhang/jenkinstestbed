@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    test()
+                    foo.readYamlFileString()
                     println(menu.getWksp())
                     myMethods.greet("Alice")
                     echo "params======$params"

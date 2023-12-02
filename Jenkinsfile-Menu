@@ -235,8 +235,8 @@ properties([
              
 ])
 ])////
-mypipeline( params )
-/*
+//myypipeline( params )
+
 println "begin pipeline"
 def map
 def list
@@ -255,6 +255,19 @@ pipeline {
                     echo "STAGE: create List..."
                     myMethods.greet("Alice")
                     echo "params======$params"
+                    withGroovy(tool:'4.0.11') {
+                    //import groovy.yaml.YamlSlurper
+
+                       def data = """
+                       - !comp
+                          name: abc
+                       - !comp
+                          Name: elf
+                       """
+                    
+                    sh 'groovy --version'
+                    foo.readYamlFileString()
+                }
                     echo "components=${env.compNames}"
                     echo "init=$env.initMenu"
                     println "get use function"
@@ -276,5 +289,5 @@ pipeline {
         }
    }
 }
-*/
+
 

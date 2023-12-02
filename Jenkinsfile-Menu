@@ -261,7 +261,7 @@ pipeline {
                      println GroovySystem.version
                       sh """groovy --version
                       
-                      groovy 
+                      groovy rungroovy.groovy
                       
                       """
                        def data = """

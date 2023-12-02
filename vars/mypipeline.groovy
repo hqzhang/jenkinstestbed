@@ -28,9 +28,10 @@ pipeline {
                        """
                     
                     sh 'groovy --version'
+                    foo.readYamlFileString()
                 }
                 
-                    foo.readYamlFileString()
+                    
                     println(menu.getWksp())
                     myMethods.greet("Alice")
                     echo "params======$params"

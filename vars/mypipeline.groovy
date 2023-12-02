@@ -17,10 +17,23 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    withGroovy(tool:'4.0.11'){
-                        println "expecting 4.0.11"
-                        println GroovySystem.version
-                    }
+                    withGroovy(tool:'3.0.8') {
+                    //import groovy.yaml.YamlSlurper
+
+                       def data = """
+                       - !comp
+                          name: abc
+                       - !comp
+                          Name: elf
+                       """
+                       withGroovy(tool:'3.0.0'){
+                          println GroovySystem.version
+                       }
+                    
+                    
+                    sh 'groovy --version'
+                }
+                
                     foo.readYamlFileString()
                     println(menu.getWksp())
                     myMethods.greet("Alice")

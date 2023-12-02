@@ -2,7 +2,6 @@ import groovy.yaml.YamlSlurper
 
 println GroovySystem.version
 
-
 def readYamlFileExt(String fileName){
     String fileConts = new File(fileName).text
     println ("-----------parsing-------")

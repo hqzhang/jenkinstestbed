@@ -256,7 +256,7 @@ pipeline {
                     myMethods.greet("Alice")
                     echo "params======$params"
                     withGroovy(tool:'4.0.11') {
-                    //import groovy.yaml.YamlSlurper
+                    import groovy.yaml.YamlSlurper
 
                        def data = """
                        - !comp

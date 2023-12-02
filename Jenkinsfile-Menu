@@ -265,7 +265,7 @@ pipeline {
                           Name: elf
                        """
                     
-                    sh 'groovy --version'
+                    println GroovySystem.version
                     foo.readYamlFileString()
                 }
                     echo "components=${env.compNames}"

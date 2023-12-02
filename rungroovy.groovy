@@ -1,6 +1,5 @@
+#!/usr/bin/env groovy
 import groovy.yaml.YamlSlurper
-
-println GroovySystem.version
 
 def readYamlFileExt(String fileName){
     String fileConts = new File(fileName).text
@@ -8,7 +7,6 @@ def readYamlFileExt(String fileName){
     def myyaml=new YamlSlurper()
     return  myyaml.parseText(fileConts)
 }
-
 def readYamlFileString(){
     def myyaml=new YamlSlurper()
     def data = """
@@ -20,6 +18,7 @@ def readYamlFileString(){
     def myfile="/Users/hongqizhang/workspace/groovytest/work/configuration.yml"
     println readYamlFileExt(myfile)
     println  myyaml.parseText(data)
+    println "Environment version "
     println GroovySystem.version
 }
 readYamlFileString()

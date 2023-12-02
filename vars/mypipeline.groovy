@@ -26,7 +26,7 @@ pipeline {
                        - !comp
                           Name: elf
                        """
-                       withGroovy(tool:'3.0.0'){
+                       withGroovy(tool:'4.0.11'){
                           println GroovySystem.version
                        }
                     

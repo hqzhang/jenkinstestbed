@@ -255,9 +255,11 @@ pipeline {
                     echo "STAGE: create List..."
                     myMethods.greet("Alice")
                     echo "params======$params"
-                    withGroovy(tool:'3.0.8') {
+                    withGroovy(tool:'4.0.11') {
+                     println "expect 4.0.11"
                     //import groovy.yaml.YamlSlurper
-
+                     println GroovySystem.version
+                      sh "groovy --version"
                        def data = """
                        - !comp
                           name: abc
@@ -265,7 +267,7 @@ pipeline {
                           Name: elf
                        """
                     
-                    println "expecting 4.0.11"
+                    
                     println GroovySystem.version
                     foo.readYamlFileString()
                 }

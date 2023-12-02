@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    withGroovy(tool:'4.0.11') {
+                    withGroovy(tool:'3.0.8') {
                     //import groovy.yaml.YamlSlurper
 
                        def data = """

@@ -17,7 +17,8 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    withGroovy(tool:'3.0.8'){
+                    withGroovy(tool:'4.0.11'){
+                        println "expecting 4.0.11"
                         println GroovySystem.version
                     }
                     foo.readYamlFileString()

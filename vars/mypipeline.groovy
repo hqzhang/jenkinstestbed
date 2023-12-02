@@ -17,6 +17,9 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
+                    withGroovy(tool:'3.0.8'){
+                        println GroovySystem.version
+                    }
                     foo.readYamlFileString()
                     println(menu.getWksp())
                     myMethods.greet("Alice")

@@ -1,17 +1,17 @@
 
-import groovy.yaml.YamlSlurper
+
 println GroovySystem.version
 
 
 def readYamlFileExt(String fileName){
     String fileConts = new File(fileName).text
     println ("-----------parsing-------")
-    def myyaml=new YamlSlurper()
+    def myyaml=new groovy.yaml.YamlSlurper()
     return  myyaml.parseText(fileConts)
 }
 
 def readYamlFileString(){
-    def myyaml=new YamlSlurper()
+    def myyaml=new groovy.yaml.YamlSlurper()
     def data = """
 - !comp
    name: abc

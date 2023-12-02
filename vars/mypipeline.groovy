@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     echo "STAGE: create List..."
-                    withGroovy(tool:'3.0.8') {
+                    withGroovy(tool:'4.0.11') {
                     //import groovy.yaml.YamlSlurper
 
                        def data = """
@@ -26,10 +26,6 @@ pipeline {
                        - !comp
                           Name: elf
                        """
-                       withGroovy(tool:'4.0.11'){
-                          println GroovySystem.version
-                       }
-                    
                     
                     sh 'groovy --version'
                 }

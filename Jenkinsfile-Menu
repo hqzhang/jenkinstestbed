@@ -255,7 +255,7 @@ pipeline {
                     echo "STAGE: create List..."
                     myMethods.greet("Alice")
                     echo "params======$params"
-                    withGroovy(tool:'4.0.11') {
+                    withGroovy(tool:'3.0.8') {
                     //import groovy.yaml.YamlSlurper
 
                        def data = """

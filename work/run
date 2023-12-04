@@ -1,0 +1,8 @@
+
+myfile="/Users/hongqizhang/workspace/wavecloud/groovytest/work/configuration.yml"
+str="persons:\n  - !person\n    name: 'emily'\n    age: 19";
+groovy -Ddata=${myfile} -e "import groovy.yaml.YamlSlurper; \
+def fileName=System.getProperty('data'); \
+def data=new File(fileName).text; \
+println new YamlSlurper().parseText(data) "
+

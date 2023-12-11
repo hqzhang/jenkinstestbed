@@ -21,4 +21,3 @@ def readYamlFileString(){
     println "Environment version "
     println GroovySystem.version
 }
-readYamlFileString()

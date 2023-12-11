@@ -259,21 +259,9 @@ pipeline {
                      println "expect 4.0.11"
                     //import groovy.yaml.YamlSlurper
                      println GroovySystem.version
-                      sh """groovy --version
+                     sh """groovy --version
+                     groovy rungroovy.groovy
                       
-                      groovy rungroovy.groovy
-                      
-                      """
-                       def data = """
-                       - !comp
-                          name: abc
-                       - !comp
-                          Name: elf
-                       """
-                    
-                    
-                    println GroovySystem.version
-                    foo.readYamlFileString()
                   }
                     echo "components=${env.compNames}"
                     echo "init=$env.initMenu"

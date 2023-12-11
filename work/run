@@ -1,8 +1,16 @@
-
-myfile="/Users/hongqizhang/workspace/wavecloud/groovytest/work/configuration.yml"
-str="persons:\n  - !person\n    name: 'emily'\n    age: 19";
-groovy -Ddata=${myfile} -e "import groovy.yaml.YamlSlurper; \
-def fileName=System.getProperty('data'); \
-def data=new File(fileName).text; \
-println new YamlSlurper().parseText(data) "
+def runWithGroovy(String cmd, String version, String fileName){
+    script{
+        withGroovy(tool:'4.0.11'){
+            def cmd= """
+                groovy --version
+                myfile="/Users/hongqizhang/workspace/wavecloud/groovytest/work/configuration.yml"
+                groovy -Ddata=${myfile} -e "import groovy.yaml.YamlSlurper; \
+                    def fileName=System.getProperty('data'); \
+                    def data=new File(fileName).text; \
+                    println new YamlSlurper().parseText(data) "
+            """
+            return sh(returnStdout: true, script: $cmd).trim()
+        }
+    }
+}
 

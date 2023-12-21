@@ -1,6 +1,5 @@
 
-def justTest(){
+def justTest(String mytarget){
     println "Enter justTest()"
-    println "abc=$abc"
-    println "xyz=$xyz"
+    println "ssh -t -q $mytarget"
 }

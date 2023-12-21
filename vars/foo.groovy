@@ -12,6 +12,13 @@ def readYamlFileExt(String fileName){
 def readYamlFileString(){
     withGroovy(tool:'4.0.11') {
     sh """groovy --version
-        ./rungroovy.groovy              
+        ./rungroovy.groovy 
+        """             
     }
+}
+
+def justTest(){
+    println "Enter justTest()"
+    println "abc=$abc"
+    println "xyz=$xyz"
 }

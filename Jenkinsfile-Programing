@@ -27,8 +27,8 @@ def getFileScript(String mypath,String type, String dft){
   |""".stripMargin()
 }
 def test(){
-   println env.abc
-   println env.xyz
+   println target
+   println finalTarget
 
 }
 //println getFileScript('/root/workspace/myscripts','tar.gz','myfile')
@@ -70,10 +70,9 @@ pipeline {
         echo "$params"
         script {
           test()
-          println env.abc
-          println env.xyz
+          
           foo.justTest(target)
-          foo.justTest(finalTarget)
+          foo.justTest(finalTaget)
         }
         /*build job: 'acgroovytest',
          parameters: [

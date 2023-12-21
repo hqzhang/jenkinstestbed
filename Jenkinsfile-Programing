@@ -28,7 +28,7 @@ def getFileScript(String mypath,String type, String dft){
 }
 def test(){
    println target
-   println finalTarget
+   println server
 
 }
 //println getFileScript('/root/workspace/myscripts','tar.gz','myfile')
@@ -61,7 +61,7 @@ pipeline {
         //echo "Content Selected ${components}"
         script {
         env.target = "tgrpavl@bagrppav01"
-        env.finalTaget  = "tgrpanvl@bagrpapv06"
+        env.server  = "tgrpanvl@bagrpapv06"
         }
       }
     }
@@ -72,7 +72,7 @@ pipeline {
           test()
           
           foo.justTest(target)
-          foo.justTest(finalTaget)
+          foo.justTest(server)
         }
         /*build job: 'acgroovytest',
          parameters: [

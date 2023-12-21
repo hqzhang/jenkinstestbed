@@ -71,7 +71,8 @@ pipeline {
         echo "$params"
         script {
           test()
-          
+          env.target = "tgrpavl@bagrpxxxxxpav01"
+          env.server  = "tgrpanvl@bagrpyyyyyapv06"
           foo.justTest(target)
           foo.justTest(server)
         }

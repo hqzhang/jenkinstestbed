@@ -1,4 +1,5 @@
-
+def brch= scm.branches[0].toString().substring(2,)
+library("bitbucket-groovytest-lib@${brch}") _
 String buildDefault(List out,String key){
    def tmp=[]
    out.eachWithIndex{ it,id-> 
@@ -71,6 +72,7 @@ pipeline {
           test()
           println env.abc
           println env.xyz
+          foo.justTest()
         }
         /*build job: 'acgroovytest',
          parameters: [

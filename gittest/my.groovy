@@ -2,10 +2,11 @@
 import groovy.yaml.YamlSlurper
 println GroovySystem.version
 def data = """
-- !comp
-   name: abc
-- !comp
-   Name: elf
+comp:
+-  type: abc
+   version: 123
+-  type: efg
+   version: 456
 """
 def readYamlFile(String fileName){
     println "enter readYamlFile "
@@ -29,3 +30,22 @@ def secondsToDate(long seconds) {
 def secondsSince1970 = 1639200000 // Replace this with the actual seconds value
 def formattedDate = secondsToDate(secondsSince1970)
 println "Formatted Date: ${formattedDate}"
+
+data = """
+comp:
+- type: daemon
+  version: 123
+- type: efg
+  version: 456
+"""
+my=
+l = [1, 4, 6, 2, 6, 1]
+
+print("List before calling remove function:")
+print(l)
+for var in l:
+   if var==3:
+      l.remove(var)
+
+print("List after calling remove function:")
+print(l)

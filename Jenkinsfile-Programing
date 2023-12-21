@@ -25,6 +25,11 @@ def getFileScript(String mypath,String type, String dft){
   |return out
   |""".stripMargin()
 }
+def test(){
+   println env.abc
+   println env.xyz
+
+}
 //println getFileScript('/root/workspace/myscripts','tar.gz','myfile')
 //println getFile('/root/workspace/myscripts','tar.gz','myfile')
 properties([
@@ -53,18 +58,27 @@ pipeline {
         echo "params=$params"
         //echo "File Selected ${file}"
         //echo "Content Selected ${components}"
+        script {
+        env.abc = "0.0.4-SNAPSHOT"
+        env.xyz  = "1.1.4-SNAPSHOT"
+        }
       }
     }
     stage('call anther job') {
       steps {
         echo "$params"
-        build job: 'acgroovytest',
+        script {
+          test()
+          println env.abc
+          println env.xyz
+        }
+        /*build job: 'acgroovytest',
          parameters: [
         string(name: 'testPara', value: String.valueOf(env.multlines)),
         string(name: 'testChoice', value: String.valueOf(env.CHOICES))
          string(name: 'testPara', value: String.valueOf(env.multlines)),
-        string(name: 'testChoice', value: String.valueOf(env.CHOICES))
-    ]
+        string(name: 'testChoice', value: String.valueOf(env.CHOICES))*/
+    
       }
     }
   }

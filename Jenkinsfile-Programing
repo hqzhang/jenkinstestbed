@@ -29,7 +29,7 @@ def getFileScript(String mypath,String type, String dft){
 def test(){
    println target
    println server
-
+   println finalTarget
 }
 //println getFileScript('/root/workspace/myscripts','tar.gz','myfile')
 //println getFile('/root/workspace/myscripts','tar.gz','myfile')
@@ -62,6 +62,7 @@ pipeline {
         script {
         env.target = "tgrpavl@bagrppav01"
         env.server  = "tgrpanvl@bagrpapv06"
+        env.finalTarget="justestfinaltarget"
         }
       }
     }

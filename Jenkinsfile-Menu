@@ -255,14 +255,13 @@ pipeline {
                     echo "STAGE: create List..."
                     myMethods.greet("Alice")
                     echo "params======$params"
-                    withGroovy(tool:'4.0.11') {
-                     println "expect 4.0.11"
-                    //import groovy.yaml.YamlSlurper
-                     println GroovySystem.version
-                     sh """groovy --version
-                     groovy rungroovy.groovy
-                      
-                  }
+                    sh """
+                        echo "just test" > release/test.yaml
+                        git add release/test.yaml
+                        git commit -m "ok"
+                        git push 
+
+                    """
                     echo "components=${env.compNames}"
                     echo "init=$env.initMenu"
                     println "get use function"

@@ -258,7 +258,7 @@ pipeline {
                     sh """
                         git checkout mymenuchange
                         git branch
-                        echo "just test" > release/test.yaml
+                        echo "just test" >> release/test.yaml
                         git add release/test.yaml
                         git commit -m "ok"
                         git push 

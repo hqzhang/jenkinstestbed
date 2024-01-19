@@ -256,6 +256,8 @@ pipeline {
                     myMethods.greet("Alice")
                     echo "params======$params"
                     sh """
+                        git checkout mymenuchange
+                        git branch
                         echo "just test" > release/test.yaml
                         git add release/test.yaml
                         git commit -m "ok"

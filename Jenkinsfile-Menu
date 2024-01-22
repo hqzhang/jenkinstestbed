@@ -255,7 +255,15 @@ pipeline {
                     echo "STAGE: create List..."
                     myMethods.greet("Alice")
                     echo "params======$params"
-                    sh """
+                    withCredentials([usernamePassword(credentialsId: '7881845f-cb99-407a-8a31-ead60535fcaa', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                        def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
+                        sh "git config user.email hongqi@example.com"
+                        sh "git config user.name hongqi"
+                        sh "git add ."
+                        sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
+                        sh "git push https://${GIT_USERNAME}:${encodedPassword}@github.com/${GIT_USERNAME}/example.git"
+                    }
+                    /*sh """
                         git checkout mymenuchange
                         git branch
                         echo test >> release/test.yaml
@@ -263,7 +271,7 @@ pipeline {
                         git commit -m "ok"
                         git push 
 
-                    """
+                    """*/
                     echo "components=${env.compNames}"
                     echo "init=$env.initMenu"
                     println "get use function"

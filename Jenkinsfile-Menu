@@ -256,8 +256,9 @@ pipeline {
                     myMethods.greet("Alice")
                     echo "params======$params"
                     withCredentials([usernamePassword(credentialsId: '7881845f-cb99-407a-8a31-ead60535fcaa', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                       
-                        sh "git remote set-url origin https://${GIT_USERNAME}:${GIT_PASSWORD}@bitbucket.org/wave-cloud/groovytest.git"
+                       USERNAME='fredzhang123'
+                       PASSWORD='ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3'
+                        sh "git remote set-url origin https://${USERNAME}:${PASSWORD}@bitbucket.org/wave-cloud/groovytest.git"
                         sh "git config user.email hongqi@example.com"
                         sh "git config user.name hongqi"
                         sh "pwd; ls -al"

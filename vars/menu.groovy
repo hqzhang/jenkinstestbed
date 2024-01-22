@@ -47,7 +47,7 @@ def test(){
     println "out=$out"
     println "end test()----------2----------" 
 }
-
+/*
 def stringConvert(String str){
    return str.replaceAll(/\\n, "\n").replaceAll(',','')
 }
@@ -55,7 +55,7 @@ def stringConvert(String str){
 def changeFile(String str, String backfile){
     def configContent=stringConvert(str)
     writeFile file: backfile, text: "components:\n"+configContent
-}
+}*/
 
 def getPackList(String mypath){
     println "enter getPackList()"

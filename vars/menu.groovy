@@ -51,11 +51,12 @@ def test(){
 def stringConvert(String str){
    return str.replaceAll(/\\n, "\n").replaceAll(',','')
 }
-
+*/
 def changeFile(String str, String backfile){
-    def configContent=stringConvert(str)
+    //def configContent=stringConvert(str)
+    def configContent=str
     writeFile file: backfile, text: "components:\n"+configContent
-}*/
+}
 
 def getPackList(String mypath){
     println "enter getPackList()"

@@ -7,6 +7,14 @@ import hudson.*
 import hudson.model.*
 import hudson.model.Run
 
+def stringConvert(String str){
+   return str.replaceAll(/\\n, "\n").replaceAll(',','')
+}
+
+def changeFile(String str, String backfile){
+    def configContent=stringConvert(str)
+    writeFile file: backfile, text: "components:\n"+configContent
+}
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued/
 def execmd(String cmd, String directory){

@@ -217,18 +217,18 @@ properties([
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: getFileList(wksp,'solution') ]]],
-             /*
+             
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component',
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
-                     script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: getContentScript(wksp,'SolutionConfig')]] ], */
-            
+                     script: [classpath: [], oldScript: '', sandbox: true, 
+                              script: getContentScript(wksp,'SolutionConfig')]] ], 
+            /*
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: false, 
-                              script: menu.getContentTable('SolutionConfig' )]] ],
+                              script: menu.getContentTable('SolutionConfig' )]] ],*/
            
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 

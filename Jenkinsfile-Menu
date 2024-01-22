@@ -272,21 +272,7 @@ pipeline {
                         git push 
 
                     """*/
-                    echo "components=${env.compNames}"
-                    echo "init=$env.initMenu"
-                    println "get use function"
-                    def comps=["b","a"]
-                    def versions=["1","2"]
-                    comps.eachWithIndex{ var, id->
-                          echo "com=$comps[id]"
-                          echo "ver=$versions[id]"
-
-                    }
-                     
-                        sh """
-                        echo comp
-                        """
-                    //println menu.getCompList('mypack')
+                    
     
                 }
             }

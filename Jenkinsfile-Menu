@@ -261,22 +261,14 @@ pipeline {
                         sh "git remote set-url origin https://${USERNAME}:${PASSWORD}@bitbucket.org/wave-cloud/groovytest.git"
                         sh "git config user.email hongqi@example.com"
                         sh "git config user.name hongqi"
-                        sh "pwd; ls -al"
+                        sh "git pull origin mymenuchange"
                         menu.changeFile(env.component, "release/${env.backfile}")
                         sh "git add ."
                         sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"
                         sh "git push origin mymenuchange"
                         
                     }
-                    /*sh """
-                        git checkout mymenuchange
-                        git branch
-                        echo test >> release/test.yaml
-                        git add release/test.yaml
-                        git commit -m "ok"
-                        git push 
-
-                    """*/
+                   
                     
     
                 }

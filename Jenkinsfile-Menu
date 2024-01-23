@@ -262,6 +262,7 @@ pipeline {
                         sh "git config user.email hongqi@example.com"
                         sh "git config user.name hongqi"
                         sh "git pull origin mymenuchange"
+                        sh "git branch"
                         menu.changeFile(env.component, "release/${env.backfile}")
                         sh "git add ."
                         sh "git commit -m 'Triggered Build: ${env.BUILD_NUMBER}'"

@@ -198,6 +198,7 @@ def getFileBitScript(){
 }
 
 println getFileBitList("wave-cloud/upload-t","release",'master') 
+println getContBitScript('SolutionConfig')
 
 properties([
     //pipelineTriggers([bitbucketPush()]),

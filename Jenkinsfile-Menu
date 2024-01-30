@@ -197,7 +197,7 @@ def getFileBitScript(){
     | """.stripMargin()
 }
 
-
+println getFileBitList("wave-cloud/upload-t","release",'master') )
 
 properties([
     //pipelineTriggers([bitbucketPush()]),

@@ -281,7 +281,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: '7881845f-cb99-407a-8a31-ead60535fcaa', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                        USERNAME='fredzhang123'
                        PASSWORD='ATBBFSVPkWdLh9LjtZpc2wWXeNqADB6891B3'
-                        sh "git remote set-url origin https://${USERNAME}:${PASSWORD}@bitbucket.org/wave-cloud/groovytest.git"
+                        sh "git remote set-url origin https://${USERNAME}:${PASSWORD}@bitbucket.org/wave-cloud/upload-t.git"
                         sh "git config user.email hongqi@example.com"
                         sh "git config user.name hongqi"
                         sh "git pull origin mymenuchange"

@@ -164,7 +164,7 @@ String getFileHubScript(String repo, String folder,String brch ){
 }
 
 def getFileBitList(String repo, String folder, String brch){
-    println "ener getFileBit()"
+    println "ener getFileBitList()"
     def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/${brch}/${folder}"
     def ret=[]
     def cmd="curl --request GET ${repoPR}  "
@@ -216,9 +216,9 @@ properties([
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: getFileHubList("hqzhang/groovytest","release",'mytest') ]]],
-
-            //choice( name: 'getFileBit', description: '', choices: getFileBit("wave-cloud/groovytest","release",brch) ),
-            [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
+            */
+            choice( name: 'getFileBitList', description: '', choices: getFileBitList("wave-cloud/groovytest","release",'master') ),
+            /*[$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
                name: 'getFileBitList', randomName: 'choice-parameter-16677189047460', referencedParameters: 'Environment', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 

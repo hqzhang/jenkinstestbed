@@ -97,7 +97,23 @@ def getContentScript(String wksp, String refvar ){
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
 }
-
+def getContHubScript(String repo, String refvar,String folder, String brch ){
+    println("enter getContentScript()....")
+    return """
+    |def out="wget https://bitbucket.org/wave-cloud/${repo}/raw/${brch}/${folder}/\${${refvar}}".execute().text
+    |out=out.replaceAll('components:\\n','')
+    |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
+    | """.stripMargin()
+}
+def getContBitScript(String repo, String refvar, String folder, String brch ){
+    println("enter getContentScript()....")
+    def cmd="wget https://raw.githubusercontent.com/hqzhang/${repo}/${brch}/${folder}/${refvar}"
+    return """
+    |def out="wget https://raw.githubusercontent.com/hqzhang/${repo}/${brch}/${folder}/\${${refvar}}".execute().text
+    |out=out.replaceAll('components:\\n','')
+    |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
+    | """.stripMargin()
+}
 String getBranchList(String repo, String dft ){
     println("enter getBranchList()....")
    def ret=[]
@@ -146,7 +162,7 @@ String getFileHubScript(String repo, String folder,String brch ){
 
 def getFileBitList(String repo, String folder, String brch){
     println "ener getFileBit()"
-    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/${brch}/release"
+    def repoPR="https://api.bitbucket.org/2.0/repositories/$repo/src/${brch}/${folder}"
     def ret=[]
     def cmd="curl --request GET ${repoPR}  "
     println "$cmd"
@@ -159,11 +175,15 @@ def getFileBitList(String repo, String folder, String brch){
     
 }
 
-def getFileBitScript(String repo, String folder, String brch){
+//def getFileBitScript(String repo, String folder, String brch){
+def getFileBitScript(){
     println "ener getFileBitScript()"
+    def repo='upload-t'
+    def folder='release'
+    def brch='master'
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/release"
+    |def repoPR="https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/${folder}"
     |def cmd="curl --request GET \${repoPR}  "
     |def out=cmd.execute().text
     |def json=new JsonSlurper()
@@ -216,13 +236,13 @@ properties([
                name: 'SolutionConfig', randomName: 'choice-parameter-16677189047798', referencedParameters: 'filebackup', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: getFileList(wksp,'solution') ]]],
+               script: getFileBitScript() ]]],
              
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component',
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: true, 
-                              script: getContentScript(wksp,'SolutionConfig')]] ], 
+                              script: getContBitScriptgetContentScript(wksp,'SolutionConfig')]] ], 
             /*
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 

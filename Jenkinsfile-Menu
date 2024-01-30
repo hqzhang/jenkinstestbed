@@ -105,9 +105,12 @@ def getContHubScript(String repo, String refvar,String folder, String brch ){
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
 }
-def getContBitScript(String repo, String refvar, String folder, String brch ){
+//def getContBitScript(String repo, String refvar, String folder, String brch ){
+def getContBitScript(String refvar){
     println("enter getContentScript()....")
-    def cmd="wget https://raw.githubusercontent.com/hqzhang/${repo}/${brch}/${folder}/${refvar}"
+    def repo='upload-t'
+    def folder='release'
+    def brch='master'
     return """
     |def out="wget https://raw.githubusercontent.com/hqzhang/${repo}/${brch}/${folder}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
@@ -242,7 +245,7 @@ properties([
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: true, 
-                              script: getContBitScriptgetContentScript(wksp,'SolutionConfig')]] ], 
+                              script: getContBitScript('SolutionConfig')]] ], 
             /*
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 

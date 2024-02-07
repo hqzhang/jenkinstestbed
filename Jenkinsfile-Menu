@@ -176,7 +176,7 @@ println menu.getFileBitScript()
 println menu.getContentScript("SolutionConfig")
 
 println menu.verify1()
-println menu.verify2()
+println menu.verify2('release/a.yaml')
 println "---------------------"
 properties([
     //pipelineTriggers([bitbucketPush()]),

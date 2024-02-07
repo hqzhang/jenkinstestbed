@@ -433,7 +433,7 @@ def verify1(){
     if (ret.isEmpty()) {return ['NotFound']}
     return ret
 }
-def verify2(){
+def verify2(String SolutionConfig){
     println("enter verify2()....")
     def SolutionConfig="release/config.yaml"
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/master/${SolutionConfig}".execute().text

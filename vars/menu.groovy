@@ -435,7 +435,8 @@ def verify1(){
 }
 def verify2(String SolutionConfig){
     println("enter verify2()....")
-    def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/master/${SolutionConfig}".execute().text
+    def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/master/${SolutionConfig}"
+    out=out.execute().text
     out=out.replaceAll('components:\n','')
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 

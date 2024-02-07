@@ -423,3 +423,22 @@ def getContentScript(String refvar){
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
 }
+
+def verify1(){
+    //import groovy.json.JsonSlurper
+    println("enter verify1()....")
+    def ret=[]
+    def out="curls --request GET https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release".execute().text
+    def obj=new JsonSlurper().parseText(out)
+    obj['values'].each { ret.add(it['path'])}
+    if (ret.isEmpty()) {return ['NotFound']}
+    return ret
+}
+def verify2(){
+    println("enter verify2()....")
+    def SolutionConfig="release/config.yaml"
+    def out="curl https://bitbucket.org//hqzhang/solution-repo/raw/master/${SolutionConfig}".execute().text
+    out=out.replaceAll('components:\n','')
+    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
+
+}

@@ -170,10 +170,10 @@ def verify(String brch){
    out=out.replaceAll('components:\n','')
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
-
-println verify(brch)
-println "----------"
-
+println "---------------------"
+println verify1(brch)
+println verify2(brch)
+println "---------------------"
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([

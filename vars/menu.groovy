@@ -427,7 +427,7 @@ def getContentScript(String refvar){
 def verify1(){
     println("enter verify1()....")
     def ret=[]
-    def out="curl --request GET https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release"
+    def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release"
     println "cmd=$out"
     out=out.execute().text
     def obj=new JsonSlurper().parseText(out)

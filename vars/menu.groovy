@@ -427,7 +427,7 @@ def getContentScript(String refvar){
 def verify1(){
     println("enter verify1()....")
     def ret=[]
-    def out="curl --request GET https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release".execute().text
+    def out="curls --request GET https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release".execute().text
     def obj=new JsonSlurper().parseText(out)
     obj['values'].each { ret.add(it['path'])}
     if (ret.isEmpty()) {return ['NotFound']}
@@ -435,7 +435,6 @@ def verify1(){
 }
 def verify2(String SolutionConfig){
     println("enter verify2()....")
-    //def SolutionConfig="release/config.yaml"
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/master/${SolutionConfig}".execute().text
     out=out.replaceAll('components:\n','')
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """

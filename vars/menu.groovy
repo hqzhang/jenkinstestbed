@@ -406,7 +406,7 @@ def getFileBitScript(){
     def folder="release"
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def out="curls --request GET https://api.bitbucket.org/2.0/repositories/${repos}/src/${brch}/${folder}".execute().text
+    |def out="curl --request GET https://api.bitbucket.org/2.0/repositories/${repos}/src/${brch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}
     |if (ret.isEmpty()) {return ['NotFound']}
@@ -427,7 +427,7 @@ def getContentScript(String refvar){
 def verify1(){
     println("enter verify1()....")
     def ret=[]
-    def out="curls --request GET https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release".execute().text
+    def out="curl --request GET https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release".execute().text
     def obj=new JsonSlurper().parseText(out)
     obj['values'].each { ret.add(it['path'])}
     if (ret.isEmpty()) {return ['NotFound']}

@@ -398,38 +398,23 @@ def writeYamlFile(output,data){
     yaml = new Yaml(options)
     yaml.dump(data, new FileWriter(output)) 
 }
-/*
-def getComponentsInfo(String fileName){
-    println("Enter getComponentList() ")
-    String fileConts = new File(fileName).text
-    println ("-----------parsing-------")
-    def myyaml=new groovy.yaml.YamlSlurper()
-    def map=myyaml.parseText(fileConts)['components']
-    def names=[]
-    def types=[]
-    def vers=[]
-    map.each { comp ->
-       println (comp)
-       comp.each{ k, v-> 
-          if (v instanceof Map){
-            v.each{ kk,vv->
-               if(k=='configurations' && kk=='Path'){ 
-                  def tmp=vv.split("/")
-                  types.add(tmp[1])
-                  vers.add(tmp[2])
-                }
-               
-            }
-          } else {
-             if (k=='name'){ names.add(v)}
-          }
-       }
-      
-    }
-    map=[:]
-    map['names']=names
-    map['types']=types
-    map['vers']=vers
-    println ("-----------parsing-------")
-    return map
-}*/
+
+def getFileBitScript(String repo, String folder, String brch){
+    return """import groovy.json.JsonSlurper
+    |def ret=[]
+    |def out="curl --request GET https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/release".execute().text
+    |def obj=new JsonSlurper().parseText(out)
+    |obj['values'].each { ret.add(it['path'])}
+    |if (ret.isEmpty()) {return ['NotFound']}
+    |return ret
+    | """.stripMargin()
+}
+
+def getContentScript(String wksp, String refvar,String brch ){
+    println("enter getContentScript()....")
+    return """
+    |def out="curl https://bitbucket.org/wave-cloud/groovytest/raw/${brch}/\${${refvar}}".execute().text
+    |out=out.replaceAll('components:\\n','')
+    |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
+    | """.stripMargin()
+}

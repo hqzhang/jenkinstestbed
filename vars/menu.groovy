@@ -401,12 +401,12 @@ def writeYamlFile(output,data){
 
 def getFileBitScript(){
     println("enter getFileBitScript()....")
-    def repo="hqzhang/solution-repo"
+    def repos="hqzhang/solution-repo"
     def brch="master"
     def folder="release"
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def out="curl --request GET https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/${folder}".execute().text
+    |def out="curls --request GET https://api.bitbucket.org/2.0/repositories/${repos}/src/${brch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}
     |if (ret.isEmpty()) {return ['NotFound']}
@@ -416,7 +416,7 @@ def getFileBitScript(){
 
 def getContentScript(String refvar){
     println("enter getContentScript()....")
-    def repo="hqzhang/solution-repo"
+    def repos="hqzhang/solution-repo"
     def brch="master"
     return """def out="curl https://bitbucket.org//${repos}/raw/${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')

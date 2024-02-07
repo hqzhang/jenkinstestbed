@@ -6,7 +6,7 @@ import jenkins.*
 import hudson.*
 import hudson.model.*
 import hudson.model.Run
-
+import groovy.json.JsonSlurper
 //import groovy.yaml.YamlSlurper
 //// Remove everything which is currently queued/
 def execmd(String cmd, String directory){
@@ -425,7 +425,7 @@ def getContentScript(String refvar){
 }
 
 def verify1(){
-    //import groovy.json.JsonSlurper
+   
     println("enter verify1()....")
     def ret=[]
     def out="curls --request GET https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/master/release".execute().text

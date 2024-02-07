@@ -85,8 +85,8 @@ def getFileScript(String wksp, String dft){
 def getContentScript(String wksp, String refvar,String brch ){
     println("enter getContentScript()....")
     return """
-    |def out="cat ${wksp}/release/\${${refvar}}".execute().text
-    |out="curl https://bitbucket.org/wave-cloud/groovytest/raw/${brch}/release/\${${refvar}}".execute().text
+    |def out="cat ${wksp}/\${${refvar}}".execute().text
+    |out="curl https://bitbucket.org/wave-cloud/groovytest/raw/${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
@@ -214,7 +214,7 @@ properties([
                name: 'SolutionConfig', randomName: 'choice-parameter-16677189047798', referencedParameters: 'filebackup', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: getFileList(wksp,'solution') ]]],
+               script: getFileBitScript("wave-cloud/groovytest","release",brch)  ]]],
 
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component',
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 

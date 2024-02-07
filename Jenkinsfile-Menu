@@ -163,10 +163,16 @@ def getFileBitScript(String repo, String folder, String brch){
     |return ret
     | """.stripMargin()
 }
+def verify(){
+   def SolutionConfig="solution.yaml"
+   def out="cat /var/root/.jenkins/workspace/agroovytest/release/${SolutionConfig}".execute().text
+   //out="curl https://bitbucket.org/wave-cloud/groovytest/raw/6b7ccf8a307e6a92e97cb92b936b56d2007ecd3e/release/${SolutionConfig}"
+   out=out.replaceAll('components:\n','')
+   return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
+}
 
-println getFileHubList("hqzhang/groovytest","release",'mytest')
-
-
+println verify()
+println "----------"
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([

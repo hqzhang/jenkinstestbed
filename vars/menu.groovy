@@ -402,11 +402,11 @@ def writeYamlFile(output,data){
 def getFileBitScript(){
     println("enter getFileBitScript()....")
     def repos="hqzhang/solution-repo"
-    def brch="master"
+    def brch="getsolution"
     def folder="release"
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def out="curl --request GET https://api.bitbucket.org/2.0/repositories/${repos}/src/${brch}/${folder}".execute().text
+    |def out="curl https://api.bitbucket.org/2.0/repositories/${repos}/src/${brch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}
     |if (ret.isEmpty()) {return ['NotFound']}
@@ -417,7 +417,7 @@ def getFileBitScript(){
 def getContentScript(String refvar){
     println("enter getContentScript()....")
     def repos="hqzhang/solution-repo"
-    def brch="master"
+    def brch="getsolution"
     return """def out="curl https://bitbucket.org/${repos}/raw/${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
@@ -436,6 +436,10 @@ def verify1(){
     if (ret.isEmpty()) {return ['NotFound']}
     return ret
 }
+
+////
+
+
 def verify2(String SolutionConfig){
     println("enter verify2()....")
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/master/${SolutionConfig}"

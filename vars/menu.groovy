@@ -399,10 +399,14 @@ def writeYamlFile(output,data){
     yaml.dump(data, new FileWriter(output)) 
 }
 
-def getFileBitScript(String repo, String folder, String brch){
+def getFileBitScript(String repo){
+    println("enter getFileBitScript()....")
+    def repo="hqzhang/solution-repo"
+    def brch="master"
+    def folder="release"
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def out="curl --request GET https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/release".execute().text
+    |def out="curl --request GET https://api.bitbucket.org/2.0/repositories/${repo}/src/${brch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}
     |if (ret.isEmpty()) {return ['NotFound']}
@@ -410,10 +414,11 @@ def getFileBitScript(String repo, String folder, String brch){
     | """.stripMargin()
 }
 
-def getContentScript(String wksp, String refvar,String brch ){
+def getContentScript(String refvar){
     println("enter getContentScript()....")
-    return """
-    |def out="curl https://bitbucket.org/wave-cloud/groovytest/raw/${brch}/\${${refvar}}".execute().text
+    def repo="hqzhang/solution-repo"
+    def brch="master"
+    return """def out="curl https://bitbucket.org//${repos}/raw/${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()

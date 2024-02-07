@@ -214,13 +214,13 @@ properties([
                name: 'SolutionConfig', randomName: 'choice-parameter-16677189047798', referencedParameters: 'filebackup', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: menu.getFileBitScript("wave-cloud/groovytest","release",brch)  ]]],
+               script: menu.getFileBitScript()  ]]],
 
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Component',
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: true, 
-                              script: menu.getContentScript(wksp,'SolutionConfig',brch)]] ], 
+                              script: menu.getContentScript('SolutionConfig')]] ], 
 
             [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML', name: 'Components', 
              omitValueField: false, randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 

@@ -418,7 +418,7 @@ def getContentScript(String refvar){
     println("enter getContentScript()....")
     def repos="hqzhang/solution-repo"
     def brch="master"
-    return """def out="curl https://bitbucket.org//${repos}/raw/${brch}/\${${refvar}}".execute().text
+    return """def out="curl https://bitbucket.org/${repos}/raw/${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
@@ -437,7 +437,7 @@ def verify1(){
 def verify2(){
     println("enter verify2()....")
     def SolutionConfig="release/config.yaml"
-    def out="curl https://bitbucket.org//hqzhang/solution-repo/raw/master/${SolutionConfig}".execute().text
+    def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/master/${SolutionConfig}".execute().text
     out=out.replaceAll('components:\n','')
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 

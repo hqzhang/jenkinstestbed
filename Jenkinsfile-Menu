@@ -86,6 +86,7 @@ def getContentScript(String wksp, String refvar ){
     println("enter getContentScript()....")
     return """
     |def out="cat ${wksp}/release/\${${refvar}}".execute().text
+    |out="curl https://bitbucket.org/wave-cloud/groovytest/raw/6b7ccf8a307e6a92e97cb92b936b56d2007ecd3e/release/\${${refvar}}"
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()

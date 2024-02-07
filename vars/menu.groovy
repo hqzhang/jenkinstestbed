@@ -402,10 +402,11 @@ def writeYamlFile(output,data){
 def getFileBitScript(){
     println("enter getFileBitScript()....")
     def repos="hqzhang/solution-repo"
-    def brch="getsolution"
+    def branch="getsolution"
     def folder="release"
     return """import groovy.json.JsonSlurper
     |def ret=[]
+    |def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}".execute().text
     |def out="curl https://api.bitbucket.org/2.0/repositories/${repos}/src/${brch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}
@@ -417,8 +418,9 @@ def getFileBitScript(){
 def getContentScript(String refvar){
     println("enter getContentScript()....")
     def repos="hqzhang/solution-repo"
-    def brch="getsolution"
-    return """def out="curl https://bitbucket.org/${repos}/raw/${brch}/\${${refvar}}".execute().text
+    def branch="getsolution"
+    return """def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}".execute().text
+    |def out="curl https://bitbucket.org/${repos}/raw/${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
@@ -427,7 +429,8 @@ def getContentScript(String refvar){
 def verify1(){
     println("enter verify1()....")
     def ret=[]
-    def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/getsolution/release"
+    def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution".execute().text
+    def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${brch}/release"
     println "cmd=$out"
     out=out.execute().text
     def obj=new JsonSlurper().parseText(out)

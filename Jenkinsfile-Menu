@@ -171,8 +171,8 @@ def verify(String brch){
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 println "---------------------"
-println verify1(brch)
-println verify2(brch)
+println menu.verify1(brch)
+println menu.verify2(brch)
 println "---------------------"
 properties([
     //pipelineTriggers([bitbucketPush()]),

@@ -399,7 +399,7 @@ def writeYamlFile(output,data){
     yaml.dump(data, new FileWriter(output)) 
 }
 
-def getFileBitScript(String repo){
+def getFileBitScript(){
     println("enter getFileBitScript()....")
     def repo="hqzhang/solution-repo"
     def brch="master"

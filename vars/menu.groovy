@@ -420,7 +420,7 @@ def getContentScript(String refvar){
     def repos="hqzhang/solution-repo"
     def branch="getsolution"
     return """def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}".execute().text
-    |def out="curl https://bitbucket.org/${repos}/raw/${brch}/\${${refvar}}".execute().text
+    |def out="curl https://bitbucket.org/${repos}/raw/\${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()

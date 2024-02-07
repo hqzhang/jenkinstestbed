@@ -82,11 +82,11 @@ def getFileScript(String wksp, String dft){
   |return ret
   |""".stripMargin()
 }
-def getContentScript(String wksp, String refvar ){
+def getContentScript(String wksp, String refvar,String brch ){
     println("enter getContentScript()....")
     return """
     |def out="cat ${wksp}/release/\${${refvar}}".execute().text
-    |out="curl https://bitbucket.org/wave-cloud/groovytest/raw/6b7ccf8a307e6a92e97cb92b936b56d2007ecd3e/release/\${${refvar}}"
+    |out="curl https://bitbucket.org/wave-cloud/groovytest/raw/${brch}/release/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
     | """.stripMargin()
@@ -163,16 +163,17 @@ def getFileBitScript(String repo, String folder, String brch){
     |return ret
     | """.stripMargin()
 }
-def verify(){
+def verify(String brch){
    def SolutionConfig="solution.yaml"
    def out="cat /var/root/.jenkins/workspace/agroovytest/release/${SolutionConfig}".execute().text
-   out="curl https://bitbucket.org/wave-cloud/groovytest/raw/6b7ccf8a307e6a92e97cb92b936b56d2007ecd3e/release/${SolutionConfig}"
+   out="curl https://bitbucket.org/wave-cloud/groovytest/raw/${brch}/release/${SolutionConfig}".execute().text
    out=out.replaceAll('components:\n','')
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 
-println verify()
+println verify(brch)
 println "----------"
+
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([

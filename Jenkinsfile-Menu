@@ -172,7 +172,7 @@ def verify(String brch){
 }
 println "---------------------"
 def ret=[]
-def cmd="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution |cut -c1-40 ".execute().text
+def cmd="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution |cut -c0-40 ".execute().text
 println "cmd=$cmd"
 def branch=cmd.substring(0,40)
 println "branch040=$branch"
@@ -183,8 +183,8 @@ def obj=new JsonSlurper().parseText(out)
 println "obj=${obj['values']}"
 obj['values'].each { ret.add(it['path'])}
 if (ret.isEmpty()) {return ['NotFound']}
-   println "ret=$ret"
-retrun
+println "ret=$ret"
+
 println menu.getFileBitScript() 
 println menu.getContentScript("SolutionConfig")
 println menu.verify1()

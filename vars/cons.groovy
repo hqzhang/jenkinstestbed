@@ -145,10 +145,10 @@ String getBranches( String myurl='' ){
    def ret = gettags.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    buildScript(ret)
 }
-String getFileBit(String mycmd='' ){
-   if ( !mycmd?.trim() ) { 
-      mycmd = "curl -u "hqzhang:LknMlBaa0gKeZMCBweh3AFE0" -X GET https://bitbucket.org/rest/api/1.0/projects/myproject/repos/groovytest/browse"
-   }
+String getFileBit(){
+   //if ( !mycmd?.trim() ) { 
+   def  mycmd = "curl -u "hqzhang:LknMlBaa0gKeZMCBweh3AFE0" -X GET https://bitbucket.org/rest/api/1.0/projects/myproject/repos/groovytest/browse"
+   //}
    def mf = mycmd.execute().text
    def ret = mf.readLines().collect{ it.split()[0].minus('.xml')}
    buildScript(ret)

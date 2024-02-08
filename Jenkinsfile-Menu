@@ -171,10 +171,17 @@ def verify(String brch){
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 println "---------------------"
+def ret=[]
 def mybrch "git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution | cut -f1 ".execute().text
 println "mybrch=$mybrch"
 def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${mybrch}/release".execute().text
 println "out=$out"
+def obj=new JsonSlurper().parseText(out)
+println "obj=${obj['values']}"
+obj['values'].each { ret.add(it['path'])}
+if (ret.isEmpty()) {return ['NotFound']}
+   println "ret=$ret"
+retrun
 println menu.getFileBitScript() 
 println menu.getContentScript("SolutionConfig")
 println menu.verify1()

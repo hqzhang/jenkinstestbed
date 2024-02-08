@@ -172,11 +172,10 @@ def verify(String brch){
 }
 println "---------------------"
 def ret=[]
-def cmd="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution".execute().text
+def cmd="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution |cut -c1-40 ".execute().text
 println "cmd=$cmd"
-cmd=cmd.execute().text
 def branch=cmd.substring(0,40)
-println "branch=$branch"
+println "branch0-40=$branch"
 cmd="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release"
 println "cmd=$cmd"
 def out=cmd.execute().text

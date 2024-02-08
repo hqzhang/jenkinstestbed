@@ -171,16 +171,11 @@ def verify(String brch){
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 println "---------------------"
-println menu.getFileBitScript()
-   
+println "git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution | cut f1 ".execute().text
+println menu.getFileBitScript() 
 println menu.getContentScript("SolutionConfig")
-
 println menu.verify1()
 println menu.verify2('release/a.yaml')
-
-println "---------------------"
-println "git --version".execute().text
-println "git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git".execute().text
 println "======================="
 properties([
     //pipelineTriggers([bitbucketPush()]),

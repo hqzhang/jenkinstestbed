@@ -146,6 +146,7 @@ String getBranches( String myurl='' ){
    buildScript(ret)
 }
 String getFileBit(){
+   println("Enter getFileBit()")
    //if ( !mycmd?.trim() ) { 
    def  mycmd = "curl -u "hqzhang:LknMlBaa0gKeZMCBweh3AFE0" -X GET https://bitbucket.org/rest/api/1.0/projects/myproject/repos/groovytest/browse"
    //}

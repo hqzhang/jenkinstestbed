@@ -112,12 +112,12 @@ String getFileHubList(String repo, String folder,String brch ){
    def ret=[]
    def cmd = """curl https://api.github.com/repos/${repo}/git/trees/${brch}?recursive=2  """
    def out = cmd.execute().text
-   println "out=$out"
+   //println "out=$out"
    def jsonSlurper = new JsonSlurper()
    def obj = jsonSlurper.parseText(out)
    obj['tree'].each{ if(it['path'].contains(folder) ) { ret.add('"'+it['path']+'"')}  }
    println "obj=$obj"
-   if (ret.isEmpty()) {return ['NotFound']}
+   //if (ret.isEmpty()) {return ['NotFound']}
    return """ return ${ret} """
 
 }

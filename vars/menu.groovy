@@ -408,7 +408,6 @@ def getFileBitScript(){
     return """import groovy.json.JsonSlurper
     |def ret=[]
     |def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${brch}".execute().text.substring(0,40)
-    |branch=${brch}
     |def out="curl https://api.bitbucket.org/2.0/repositories/${repos}/src/\${branch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}

@@ -404,6 +404,7 @@ def getFileBitScript(){
     def repos="hqzhang/solution-repo"
     def branch="getsolution"
     def folder="release"
+    //curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/getsolution/release
     return """import groovy.json.JsonSlurper
     |def ret=[]
     |def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}|cut -f1".execute().text

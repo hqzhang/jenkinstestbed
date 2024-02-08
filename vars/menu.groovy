@@ -270,7 +270,7 @@ return "${rendered}</tr></table>"
 }
 
 def getContentTable(String refvar){
-    println "enter getContent99=================================="
+    println "enter getContentTable()=================================="
     def url="https://raw.githubusercontent.com/hqzhang"
     def urlext=""
     def wksp=getWksp()

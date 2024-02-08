@@ -171,7 +171,10 @@ def verify(String brch){
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 println "---------------------"
-println "git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution | cut f1 ".execute().text
+def mybrch "git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution | cut -f1 ".execute().text
+println "mybrch=$mybrch"
+def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${mybrch}/release".execute().text
+println "out=$out"
 println menu.getFileBitScript() 
 println menu.getContentScript("SolutionConfig")
 println menu.verify1()

@@ -444,8 +444,9 @@ println "ret=$ret"
 
 def verify2(String SolutionConfig){
     println("enter verify2()....")
-   def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution|cut -f1".execute().text
-def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${brch}/${SolutionConfig}".execute().text
-out=out.replaceAll('components:\n','')
+   def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
+
+   def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
+   out=out.replaceAll('components:\n','')
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }

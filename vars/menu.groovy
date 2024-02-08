@@ -430,9 +430,9 @@ def getContentScript(String refvar){
 def verify1(){
     println("enter verify1()....")
 def ret=[]
-def cmd="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution |cut -c0-40 ".execute().text
-def branch=cmd.substring(0,40)
-cmd="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
+def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
+
+def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
 def obj=new JsonSlurper().parseText(out)
 obj['values'].each { ret.add(it['path'])}
 if (ret.isEmpty()) {return ['NotFound']}

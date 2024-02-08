@@ -429,22 +429,38 @@ def getContentScript(String refvar){
 
 def verify1(){
     println("enter verify1()....")
-    def ret=[]
+    /*def ret=[]
     def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
-
     def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
     def obj=new JsonSlurper().parseText(out)
     obj['values'].each { ret.add(it['path'])}
     if (ret.isEmpty()) {return ['NotFound']}
-    println "ret=$ret"
+    println "ret=$ret"*/
+    def ret=[]
+    def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution".execute().text.substring(0,40)
+    def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
+    def obj=new JsonSlurper().parseText(out)
+    obj['values'].each { ret.add(it['path'])}
+    if (ret.isEmpty()) {return ['NotFound']}
     return ret
 }
 
 def verify2(String SolutionConfig){
     println("enter verify2()....")
-    def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
+    /*def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
+    def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
+    out=out.replaceAll('components:\n','')*/
 
+    def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
     out=out.replaceAll('components:\n','')
+
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
+
+
+
+
+
+
+

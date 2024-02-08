@@ -406,7 +406,7 @@ def getFileBitScript(){
     def folder="release"
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}|cut -f1 -d$'\t'".execute().text
+    |def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}|cut -f1".execute().text
     |def out="curl https://api.bitbucket.org/2.0/repositories/${repos}/src/\${brch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}
@@ -419,7 +419,7 @@ def getContentScript(String refvar){
     println("enter getContentScript()....")
     def repos="hqzhang/solution-repo"
     def branch="getsolution"
-    return """def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}|cut -f1 -d$'\t'".execute().text
+    return """def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${branch}|cut -f1".execute().text
     |def out="curl https://bitbucket.org/${repos}/raw/\${brch}/\${${refvar}}".execute().text
     |out=out.replaceAll('components:\\n','')
     |return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${out}</textarea> \"\"\"
@@ -429,7 +429,7 @@ def getContentScript(String refvar){
 def verify1(){
     println("enter verify1()....")
     def ret=[]
-    def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution |cut -f1 -d$'\t'".execute().text
+    def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution |cut -f1".execute().text
     println "brch=$brch"
     def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${brch}/release".execute().text
     def obj=new JsonSlurper().parseText(out)
@@ -442,7 +442,7 @@ def verify1(){
 
 def verify2(String SolutionConfig){
     println("enter verify2()....")
-    def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution|cut -f1 -d$'\t'".execute().text
+    def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution|cut -f1".execute().text
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${brch}/${SolutionConfig}".execute().text
     out=out.replaceAll('components:\n','')
     return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """

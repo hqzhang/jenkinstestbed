@@ -429,6 +429,7 @@ def getContentScript(String refvar){
 
 def verify1(){
     println("enter verify1()....")
+    return new GroovyShell().evaluate(getFileBitScript())
     /*def ret=[]
     def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
     def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
@@ -441,7 +442,7 @@ def verify1(){
     def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
     def obj=new JsonSlurper().parseText(out)
     obj['values'].each { ret.add(it['path'])}
-    if (ret.isEmpty()) {return ['NotFound']}*/
+    if (ret.isEmpty()) {return ['NotFound']}
     
 def ret=[]
 def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution|cut -f1".execute().text
@@ -450,20 +451,21 @@ def obj=new JsonSlurper().parseText(out)
 obj['values'].each { ret.add(it['path'])}
 if (ret.isEmpty()) {return ['NotFound']}
 
-    return ret
+    return ret*/
 }
 
 def verify2(String SolutionConfig){
     println("enter verify2()....")
+    return new GroovyShell().evaluate(getFileBitScript(getContentScript("SolutionConfig")))
     /*def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
-    out=out.replaceAll('components:\n','')*/
+    out=out.replaceAll('components:\n','')
 
     def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
     out=out.replaceAll('components:\n','')
 
-    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
+    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """*/
 }
 
 

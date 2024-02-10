@@ -430,42 +430,15 @@ def getContentScript(String refvar){
 def verify1(){
     println("enter verify1().Shell...")
     return new GroovyShell().evaluate(getFileBitScript())
-    /*def ret=[]
-    def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
-    def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
-    def obj=new JsonSlurper().parseText(out)
-    obj['values'].each { ret.add(it['path'])}
-    if (ret.isEmpty()) {return ['NotFound']}
-    println "ret=$ret"
-    def ret=[]
-    def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution".execute().text.substring(0,40)
-    def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
-    def obj=new JsonSlurper().parseText(out)
-    obj['values'].each { ret.add(it['path'])}
-    if (ret.isEmpty()) {return ['NotFound']}
-    
-def ret=[]
-def brch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution|cut -f1".execute().text
-def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${brch}/release".execute().text
-def obj=new JsonSlurper().parseText(out)
-obj['values'].each { ret.add(it['path'])}
-if (ret.isEmpty()) {return ['NotFound']}
-
-    return ret*/
 }
 
-def verify2(String SolutionConfig){
+def verify2(String yamfile){
     println("enter verify2()....")
-    return new GroovyShell().evaluate(getContentScript("SolutionConfig"))
-    /*def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
-    def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
-    out=out.replaceAll('components:\n','')
-
-    def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
-    def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
-    out=out.replaceAll('components:\n','')
-
-    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """*/
+    def str="""def SolutionConfig=$yamfile;"""+getContentScript("SolutionConfig")
+    println str
+    //return new GroovyShell().evaluate(getContentScript("SolutionConfig"))
+    return new GroovyShell().evaluate(str)
+   
 }
 
 

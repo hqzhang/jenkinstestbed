@@ -428,7 +428,7 @@ def getContentScript(String refvar){
 }
 
 def verify1(){
-    println("enter verify1()....")
+    println("enter verify1().Shell...")
     return new GroovyShell().evaluate(getFileBitScript())
     /*def ret=[]
     def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)

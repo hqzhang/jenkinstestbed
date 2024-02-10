@@ -456,7 +456,7 @@ if (ret.isEmpty()) {return ['NotFound']}
 
 def verify2(String SolutionConfig){
     println("enter verify2()....")
-    return new GroovyShell().evaluate(getFileBitScript(getContentScript("SolutionConfig")))
+    return new GroovyShell().evaluate(getContentScript("SolutionConfig"))
     /*def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution ".execute().text.substring(0,40)
     def out="curl https://bitbucket.org/hqzhang/solution-repo/raw/${branch}/${SolutionConfig}".execute().text
     out=out.replaceAll('components:\n','')

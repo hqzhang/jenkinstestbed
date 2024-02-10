@@ -437,8 +437,8 @@ def verify2(String yamfile){
     def str="""def SolutionConfig=$yamfile;"""+getContentScript("SolutionConfig")
     println str
     //return new GroovyShell().evaluate(getContentScript("SolutionConfig"))
-    return new GroovyShell().evaluate(str)
-   
+    //return new GroovyShell().evaluate(str)
+    return "Please check"
 }
 
 

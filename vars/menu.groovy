@@ -432,13 +432,16 @@ def verify1(){
     return new GroovyShell().evaluate(getFileBitScript())
 }
 
-def verify2(String yamfile){
+def verify2(String yamfile, ){
     println("enter verify2()....")
-    def str="""def SolutionConfig="${yamfile}";"""+getContentScript("SolutionConfig")
+    def str="""def SolutionConfig="${yamfile}";"""+\
+       getContentScript("SolutionConfig")
     println str
     //return new GroovyShell().evaluate(getContentScript("SolutionConfig"))
     return new GroovyShell().evaluate(str)
 }
+
+
 
 
 

@@ -277,8 +277,15 @@ pipeline {
                     archiveArtifacts artifacts: 'file.extension'
     
                 }
+
             }
         }
-   }
+    }
+   post {
+        always {
+            archiveArtifacts artifacts: 'file.extension', fingerprint: true
+            
+        }
+    }
 }
 

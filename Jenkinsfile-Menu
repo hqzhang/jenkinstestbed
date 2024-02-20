@@ -238,8 +238,8 @@ properties([
              
 ])
 ])////
-mypipeline( params )
-/*
+//mypipeline( params )
+
 println "begin pipeline"
 def map
 def list
@@ -279,5 +279,4 @@ pipeline {
         }
    }
 }
-*/
 

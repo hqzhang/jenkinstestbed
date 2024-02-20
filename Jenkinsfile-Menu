@@ -273,6 +273,8 @@ pipeline {
                         echo comp
                         """
                     //println menu.getCompList('mypack')
+                    sh "echo ${env.BUILD_NUMBER}> file.extension"
+                    archiveArtifacts artifacts: 'file.extension'
     
                 }
             }

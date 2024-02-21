@@ -448,7 +448,7 @@ def getTypeScript(){
 }
 def getRollbackList(String refvar, String filter){
     def wksp=getWksp()
-    rturn """
+    return """
     |def ret=["ABC"]
     |ret.add(0,rollback)
     |if ( rollback !=  'on') { return ["Empty"] }

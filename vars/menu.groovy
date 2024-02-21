@@ -446,7 +446,7 @@ def getTypeScript(){
     return """import org.yaml.snakeyaml.Yaml
     |def ret=["A"]
     |def fileName="${wksp}/release/solution.yml"
-    |String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
+    |String fileConts = "cat \$fileName".execute().text.replaceAll('!component','')
     |Map map = (Map)new Yaml().load(fileConts)
     |map['components'].each{ ret.add('"'+it.type+'"') }
     |return ret

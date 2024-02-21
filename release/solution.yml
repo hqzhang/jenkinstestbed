@@ -1,0 +1,11 @@
+components:
+  - !component
+    type: daemon
+    version: 11
+  - !component
+    type: AA
+    version: 22
+  - !component
+    type: XX
+    version: 33
+   

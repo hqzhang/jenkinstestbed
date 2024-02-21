@@ -440,7 +440,7 @@ def getTypeScript(String refvar){
     return """import org.yaml.snakeyaml.Yaml
     |def ret=[],type=''
     |def fileName="${wksp}/solution/\${${refvar}}/solution.yml"
-    |String fileConts = "cat \$fileName".execute().text.replaceAll('- !component\n','').replaceAll('components:\n','')
+    |String fileConts = "cat \$fileName".execute().text.replaceAll('- !component\\n','').replaceAll('components:\\n','')
     |fileConts.readLines().eachWithIndex {it, idx-> var=it.split(': ') 
     |   if (idx%2==0) { type=var[-1]} else { ret.add( type+'/'+var[-1])}   }
     |return ret

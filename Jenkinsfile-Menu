@@ -242,7 +242,7 @@ properties([
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: menu.getRollbackList('rollback','PRIOR') ]]],
 
-            [ $class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
+            [ $class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
                name: 'TypeListScript', randomName: 'choice-parameter-16677189047799', referencedParameters: 'rollbacklist', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 

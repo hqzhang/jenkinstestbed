@@ -447,7 +447,7 @@ def getTypeVerify(){
     def fileName="${wksp}/release/solution.yml"
     String fileConts = new File(fileName).text.replaceAll('!component','')
     Map map = (Map)new Yaml().load(fileConts)
-    map['components'].each{ ret.add(it.type) }
+    map['components'].each{ ret.add('"'+it.type+'"') }
     return ret
 }
 

@@ -438,10 +438,14 @@ def getTypeScript(String refvar){
     println("enter getTypeScript()")
     def wksp=getWksp()
     return """import org.yaml.snakeyaml.Yaml
-    |def ret=[]
+    |def ret=["XYZ"]
+    |ret.add(0,${refvar})
     |def fileName="${wksp}/solution/\${${refvar}}/solution.yml"
+    |ret.add(0,fileName)
     |String fileConts = "cat \$fileName".execute().text.replaceAll('!component','')
+    |ret.add('"'+fileConts+'"')
     |Map map = (Map)new Yaml().load(fileConts)
+    |ret.add('"'+map.toString()+'"')
     |map['components'].each{ ret.add(it.type+"/"+it.version) }
     |return ret
     | """.stripMargin()

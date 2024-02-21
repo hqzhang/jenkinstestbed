@@ -234,19 +234,19 @@ properties([
                      script: [classpath: [], oldScript: '', sandbox: true, 
                               script: menu.getContentTable('SolutionConfig' )]] ],
 
-            booleanParam( name: 'rollback',  defaultValue: true),
+            booleanParam( name: 'startRollback',  defaultValue: true),
 
             [ $class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'rollbacklist', randomName: 'choice-parameter-16687189047799', referencedParameters: 'rollback', 
+               name: 'RollbackList', randomName: 'choice-parameter-16687189047799', referencedParameters: 'startRollback', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: menu.getRollbackList('rollback','PRIOR') ]]],
+               script: menu.getRollbackList('startRollback','PRIOR') ]]],
 
             [ $class: 'CascadeChoiceParameter', choiceType: 'PT_CHECKBOX', filterLength: 1, filterable: false,
-               name: 'TypeListScript', randomName: 'choice-parameter-16677189047799', referencedParameters: 'rollbacklist', 
+               name: 'RollbackTypeList', randomName: 'choice-parameter-16677189047799', referencedParameters: 'RollbackList', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: menu.getTypeScript('rollbacklist')  ]]],
+               script: menu.getTypeScript('RollbackList')  ]]],
 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 

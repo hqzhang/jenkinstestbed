@@ -453,9 +453,15 @@ def getTypeScript(){
     | """.stripMargin()
 }
 def getTypeVerify(){
-    def ret=[]
+    /*def ret=[]
     def wksp=getWksp()
     def fileName="${wksp}/release/solution.yml"
+    String fileConts = new File(fileName).text.replaceAll('!component','')
+    Map map = (Map)new Yaml().load(fileConts)
+    map['components'].each{ ret.add('"'+it.type+'"') }
+    return ret*/
+    def ret=[]
+    def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
     String fileConts = new File(fileName).text.replaceAll('!component','')
     Map map = (Map)new Yaml().load(fileConts)
     map['components'].each{ ret.add('"'+it.type+'"') }

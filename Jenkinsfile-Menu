@@ -274,7 +274,7 @@ pipeline {
                         """
                     //println menu.getCompList('mypack')
                     sh "echo ${env.BUILD_NUMBER}> file.extension"
-                    archiveArtifacts artifacts: 'file.extension'
+                    archiveArtifacts artifacts: 'file.extension', fingerprint: true
     
                 }
 
@@ -283,8 +283,8 @@ pipeline {
     }
    post {
         always {
-            archiveArtifacts artifacts: 'file.extension', fingerprint: true
-            
+            //archiveArtifacts artifacts: 'file.extension', fingerprint: true
+            println "do nothing"
         }
     }
 }

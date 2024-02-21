@@ -438,16 +438,11 @@ def getTypeScript(String refvar){
     println("enter getTypeScript()")
     def wksp=getWksp()
     return """import org.yaml.snakeyaml.Yaml
-    |def ret=["XYZ"]
-    |ret.add(0,${refvar})
+    |def ret=[],type=''
     |def fileName="${wksp}/solution/\${${refvar}}/solution.yml"
-    |ret.add(0,fileName)
-    |return ret
-    |String fileConts = "cat \$fileName".execute().text.replaceAll('!component','')
-    |ret.add('"'+fileConts+'"')
-    |Map map = (Map)new Yaml().load(fileConts)
-    |ret.add('"'+map.toString()+'"')
-    |map['components'].each{ ret.add(it.type+"/"+it.version) }
+    |String fileConts = "cat \$fileName".execute().text.replaceAll('- !component\n','').replaceAll('components:\n','')
+    |fileConts.readLines().eachWithIndex {it, idx-> var=it.split(': ') 
+    |   if (idx%2==0) { type=var[-1]} else { ret.add( type+'/'+var[-1])}   }
     |return ret
     | """.stripMargin()
 }
@@ -466,19 +461,16 @@ def getRollbackList(String refvar, String filter){
 
 def getTypeVerify(){
     println "enter getTypeVerify()"
-    /*def ret=[]
-    def wksp=getWksp()
-    def fileName="${wksp}/release/solution.yml"
-    String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
-    Map map = (Map)new Yaml().load(fileConts)
-    map['components'].each{ ret.add('"'+it.type+'"') }
-    return ret*/
-   
-def ret=[]
-def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
-String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
-Map map = (Map) new Yaml().load(fileConts)
-map['components'].each { ret.add(it.type)}
+   //import org.yaml.snakeyaml.Yaml
+def rollbacklist="release-PRIOR"
+def ret=[],type=''
+def fileName="/var/root/.jenkins/workspace/agroovytest/solution/${rollbacklist}/solution.yml"
+String fileConts = "cat $fileName".execute().text.replaceAll('- !component\n','').replaceAll('components:\n','')
+fileConts.readLines().eachWithIndex {it, idx ->
+    var=it.split(': ') 
+    if (idx%2==0) { type=var[-1]}
+    else { ret.add( type+'/'+var[-1])}
+}
 return ret
 }
  

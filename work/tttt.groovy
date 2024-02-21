@@ -131,15 +131,16 @@ map['components'].each { ret.add(it.type)}
 println ret*/
 
 import org.yaml.snakeyaml.Yaml
-def ret=["A"]
-def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
-ret.add(fileName)
-String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
-ret.add(fileConts)
-Map map = (Map)new Yaml().load(fileConts)
-
-def res = map['components'].toString()  // as string
-ret.add(res)
-println res
-map['components'].each{ ret.add(it.type+"/"+it.version) }
+def rollbacklist="release-PRIOR"
+def ret=[],type=''
+def fileName="/var/root/.jenkins/workspace/agroovytest/solution/${rollbacklist}/solution.yml"
+String fileConts = "cat $fileName".execute().text.replaceAll('- !component\n','').replaceAll('components:\n','')
+fileConts.readLines().eachWithIndex {it, idx ->
+    var=it.split(': ') 
+    if (idx%2==0) { type=var[-1]}
+    else { ret.add( type+'/'+var[-1])}
+}
+ 
 println ret
+  
+

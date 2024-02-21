@@ -477,7 +477,18 @@ map['components'].each { ret.add(it.type)}
 return ret
 }
  
+/*
+def ret=["ABC"]
+ret.add(0,rollback)
+if ( rollback !=  'on') { return ["Empty"] }
+def out ="ls /var/root/.jenkins/workspace/agroovytest/solution".execute().text
+out.readLines().each { if ( it.contains("PRIOR") )  { ret.add(0, it) }    } 
+return ret
+ ////////
 
+
+ 
+ */
 
 
 

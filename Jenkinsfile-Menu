@@ -174,8 +174,8 @@ println "---------------------"
 println menu.getFileBitScript()
    
 println menu.getContentScript("SolutionConfig")
-println menu.getTypeScript()
-println menu.getTypeVerify()
+//println menu.getTypeScript()
+//println menu.getTypeVerify()
 //println menu.verifytest()
 //println menu.verify2('release/a.yaml')
 

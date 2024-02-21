@@ -485,9 +485,15 @@ def out ="ls /var/root/.jenkins/workspace/agroovytest/solution".execute().text
 out.readLines().each { if ( it.contains("PRIOR") )  { ret.add(0, it) }    } 
 return ret
  ////////
+import org.yaml.snakeyaml.Yaml
+def ret=[]
+def fileName="/var/root/.jenkins/workspace/agroovytest/solution/${rollbacklist}/solution.yml"
+String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
+Map map = (Map)new Yaml().load(fileConts)
+map['components'].each{ ret.add(it.type+"/"+it.version) }
+return ret
 
 
- 
  */
 
 

@@ -251,11 +251,10 @@ def getContentSimpleVerify(){
 def getContentTableVerify(){
 def wksp="/var/root/.jenkins/workspace/agroovytest"
 def url="https://raw.githubusercontent.com/hqzhang"
-def yaml = new Yaml()
 def ret=''
 //ret="curl -k ${url}/groovytest/mymenu/release/${Config}.yaml".execute().text
 ret="cat ${wksp}/release/${Config}.yaml".execute().text
-ret=(Map)yaml.load(ret)
+ret=(Map)new Yaml().load(ret)
 mymap=ret['components']
 def rendered = "<table><tr>"
 mymap.each { mark="-"; 
@@ -279,11 +278,10 @@ def getContentTable(String refvar){
     return """import org.yaml.snakeyaml.Yaml
     |def wksp=\"${wksp}\"
     |def url=\"${url}\"
-    |def yaml = new Yaml()
     |def ret=''
     |//ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}${urlext}".execute().text
     |ret="cat \${wksp}/release/\${${refvar}}".execute().text
-    |ret=(Map)yaml.load(ret)
+    |ret=(Map)new Yaml().load(ret)
     |mymap=ret['components']
     |def rendered = "<table><tr>"
     |mymap.each { mark="-"; 
@@ -380,13 +378,11 @@ def getFileDft(String dft){
 }
 
 def readYamlString(String str){
-    Yaml yaml = new Yaml()
-    return  (Map) yaml.load(str)
+    return  (Map) new Yaml().load(str)
 }
 def readYamlFile(String fileName){
-    Yaml yaml = new Yaml()
     String fileConts = new File(fileName).text
-    return  (Map) yaml.load(fileConts)
+    return  (Map) new Yaml().load(fileConts)
 }
 
 def writeYamlFile(output,data){
@@ -444,7 +440,7 @@ def getTypeScript(){
     println("enter getTypeScript()")
     def wksp=getWksp()
     return """import org.yaml.snakeyaml.Yaml
-    |def ret=["A"]
+    |def ret=[]
     |def fileName="${wksp}/release/solution.yml"
     |String fileConts = "cat \$fileName".execute().text.replaceAll('!component','')
     |Map map = (Map)new Yaml().load(fileConts)
@@ -465,8 +461,7 @@ def getTypeVerify(){
 def ret=[]
 def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
 String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
-Yaml yaml = new Yaml()
-def Map  map = (Map) yaml.load(fileConts)
+Map map = (Map) new Yaml().load(fileConts)
 map['components'].each { ret.add(it.type)}
 return ret
 }

@@ -461,7 +461,7 @@ def getTypeVerify(){
     Map map = (Map)new Yaml().load(fileConts)
     map['components'].each{ ret.add('"'+it.type+'"') }
     return ret*/
-    import org.yaml.snakeyaml.Yaml
+   
 def ret=[]
 def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
 String fileConts = "cat $fileName".execute().text.replaceAll('!component','')

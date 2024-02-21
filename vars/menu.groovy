@@ -451,7 +451,7 @@ def getRollbackList(String refvar, String filter){
     def wksp=getWksp()
     return """
     |def ret=["ABC"]
-    |ret.add(0,rollback)
+    |ret.add(0,${refvar})
     |if ( ${refvar} !=  'on') { return ["Empty"] }
     |def out ="ls ${wksp}/solution".execute().text
     |out.readLines().each { if ( it.contains(\"${filter}\") )  { ret.add(0, it) }    } 

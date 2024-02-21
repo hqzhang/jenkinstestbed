@@ -280,7 +280,7 @@ def getContentTable(String refvar){
     |def ret=''
     |//ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}${urlext}".execute().text
     |ret="cat \${wksp}/release/\${${refvar}}".execute().text
-    |ret=(Map)new Yaml().load(ret)
+    |ret=(Map)new Yaml().load(ret)ƒ
     |def rendered = "<table><tr>"
     |ret['components'].each { mark="-"; 
     | it.each { kk,vv->
@@ -446,6 +446,18 @@ def getTypeScript(){
     |return ret
     | """.stripMargin()
 }
+def getRollbackList(String refvar, String filter){
+    def wksp=getWksp()
+    rturn """
+    |def ret=["ABC"]
+    |ret.add(0,rollback)
+    |if ( rollback !=  'on') { return ["Empty"] }
+    |def out ="ls ${wksp}/\${${refvar}}/solution".execute().text
+    |out.readLines().each { if ( it.contains(\"${filter}\") )  { ret.add(0, it) }    } 
+    |return ret
+    | """.stripMargin()
+}
+
 def getTypeVerify(){
     println "enter getTypeVerify()"
     /*def ret=[]

@@ -119,7 +119,7 @@ def getFileBit(){
     return ret
     }
 
-println getFileBit()
+//println getFileBit()
 /*
 import org.yaml.snakeyaml.Yaml
 def ret=[]
@@ -133,7 +133,13 @@ println ret*/
 import org.yaml.snakeyaml.Yaml
 def ret=["A"]
 def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
+ret.add(fileName)
 String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
+ret.add(fileConts)
 Map map = (Map)new Yaml().load(fileConts)
+
+def res = map['components'].toString()  // as string
+ret.add(res)
+println res
 map['components'].each{ ret.add(it.type+"/"+it.version) }
 println ret

@@ -233,11 +233,21 @@ properties([
             script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                      script: [classpath: [], oldScript: '', sandbox: true, 
                               script: menu.getContentTable('SolutionConfig' )]] ],
+
+            booleanParam( name: 'rollback',  defaultValue: true)
+
             [ $class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'TypeListScript', randomName: 'choice-parameter-16677189047799', referencedParameters: 'filebackup', 
+               name: 'rollbacklist', randomName: 'choice-parameter-16677189047799', referencedParameters: 'rollback', 
+               script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
+               script: [classpath: [], oldScript: '', sandbox: true, 
+               script: menu.getRollbackList('rollback','PRIOR') ]]],
+
+            [ $class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
+               name: 'TypeListScript', randomName: 'choice-parameter-16677189047799', referencedParameters: 'rollbacklist', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: menu.getTypeScript()  ]]],
+
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 
              

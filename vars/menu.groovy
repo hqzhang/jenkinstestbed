@@ -442,6 +442,7 @@ def getTypeScript(String refvar){
     |ret.add(0,${refvar})
     |def fileName="${wksp}/solution/\${${refvar}}/solution.yml"
     |ret.add(0,fileName)
+    |return ret
     |String fileConts = "cat \$fileName".execute().text.replaceAll('!component','')
     |ret.add('"'+fileConts+'"')
     |Map map = (Map)new Yaml().load(fileConts)

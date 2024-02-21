@@ -273,7 +273,7 @@ pipeline {
                         echo comp
                         """
                     //println menu.getCompList('mypack')
-                    sh "echo ${env.BUILD_NUMBER}> file.extension"
+                    sh "echo Helloword > file.extension"
                     archiveArtifacts artifacts: 'file.extension', fingerprint: true
     
                 }

@@ -272,11 +272,24 @@ pipeline {
                         sh """
                         echo comp
                         """
+                  
+                    if (currentBuild.previousBuild) {
+                        try {
+                            copyArtifacts(projectName: currentBuild.projectName,
+                                          selector: specific("${currentBuild.previousBuild.number}"))
+                            def previousFile = readFile(file: "usefulfile.txt")
+                            echo("The current build is ${currentBuild.number}")
+                            echo("The previous build artifact was: ${previousFile}")
+                        } catch(err) {
+                            // ignore error
+                        }
+                    }
+                
                     //println menu.getCompList('mypack')
                     def build="${env.BUILD_NUMBER}"
                     println build
-                    sh "echo ${build} > file.extension"
-                    archiveArtifacts artifacts: 'file.extension', fingerprint: true
+                    sh "echo ${build} > usefulfile.txt"
+                    archiveArtifacts artifacts: 'usefulfile.txt', fingerprint: true
     
                 }
 

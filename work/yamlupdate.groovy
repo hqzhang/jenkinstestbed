@@ -203,8 +203,7 @@ def writeYamlFile(output,data){
     println ("-----------parsing-------")
     return map
 }
-println parseConfig1('configuration.yml')
-println GroovySystem.version
+
 
    
    

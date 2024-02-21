@@ -255,9 +255,8 @@ def ret=''
 //ret="curl -k ${url}/groovytest/mymenu/release/${Config}.yaml".execute().text
 ret="cat ${wksp}/release/${Config}.yaml".execute().text
 ret=(Map)new Yaml().load(ret)
-mymap=ret['components']
 def rendered = "<table><tr>"
-mymap.each { mark="-"; 
+ret['components'].each { mark="-"; 
  it.each { kk,vv->
   if ( kk != "name") {  mark="&nbsp;&nbsp;" }
   rendered = """${rendered}<tr>
@@ -282,9 +281,8 @@ def getContentTable(String refvar){
     |//ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}${urlext}".execute().text
     |ret="cat \${wksp}/release/\${${refvar}}".execute().text
     |ret=(Map)new Yaml().load(ret)
-    |mymap=ret['components']
     |def rendered = "<table><tr>"
-    |mymap.each { mark="-"; 
+    |ret['components'].each { mark="-"; 
     | it.each { kk,vv->
     |  if ( kk != "name") {  mark="&nbsp;&nbsp;" }
     |  rendered = \"\"\"\${rendered}<tr>

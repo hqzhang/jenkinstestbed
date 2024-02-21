@@ -444,7 +444,7 @@ def verify2(String yamfile){
 def getTypeVerify(){
     def ret=[]
     def wksp=getWksp()
-    def filename="${wkspace}/solution.yml"
+    def filename="${wksp}/solution.yml"
     String fileConts = new File(fileName).text.replaceAll('!component','')
     Map map = (Map)new Yaml().load(fileConts)
     map['components'].each{ ret.add(it.type) }

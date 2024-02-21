@@ -446,7 +446,7 @@ def getTypeScript(){
     return """import org.yaml.snakeyaml.Yaml
     |def ret=["A"]
     |def fileName="${wksp}/release/solution.yml"
-    |String fileConts = new File(fileName).text.replaceAll('!component','')
+    |String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
     |Map map = (Map)new Yaml().load(fileConts)
     |map['components'].each{ ret.add('"'+it.type+'"') }
     |return ret
@@ -457,24 +457,17 @@ def getTypeVerify(){
     /*def ret=[]
     def wksp=getWksp()
     def fileName="${wksp}/release/solution.yml"
-    String fileConts = new File(fileName).text.replaceAll('!component','')
+    String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
     Map map = (Map)new Yaml().load(fileConts)
     map['components'].each{ ret.add('"'+it.type+'"') }
     return ret*/
-    def ret=[]
-def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
-String fileConts = new File(fileName).text.replaceAll('!component','')
-Map map = (Map)new Yaml().load(fileConts)
-map['components'].each{ ret.add('"'+it.type+'"') }
-return ret
-}
-def verifytest(){
+    import org.yaml.snakeyaml.Yaml
 def ret=[]
-def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b getsolution".execute().text.substring(0,40)
-def out="curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/${branch}/release".execute().text
-def obj=new JsonSlurper().parseText(out)
-obj['values'].each { ret.add(it['path'])}
-if (ret.isEmpty()) {return ['NotFound']}
+def fileName="/var/root/.jenkins/workspace/agroovytest/release/solution.yml"
+String fileConts = "cat $fileName".execute().text.replaceAll('!component','')
+Yaml yaml = new Yaml()
+def Map  map = (Map) yaml.load(fileConts)
+map['components'].each { ret.add(it.type)}
 return ret
 }
  

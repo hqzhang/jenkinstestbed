@@ -434,18 +434,19 @@ def verify2(String yamfile){
     //return new GroovyShell().evaluate(getContentScript("SolutionConfig"))
     return new GroovyShell().evaluate(str)
 }
-def getTypeScript(){
+def getTypeScript(String refvar){
     println("enter getTypeScript()")
     def wksp=getWksp()
     return """import org.yaml.snakeyaml.Yaml
     |def ret=[]
-    |def fileName="${wksp}/release/solution.yml"
+    |def fileName="${wksp}/solution/\${${refvar}}/solution.yml"
     |String fileConts = "cat \$fileName".execute().text.replaceAll('!component','')
     |Map map = (Map)new Yaml().load(fileConts)
     |map['components'].each{ ret.add(it.type+"/"+it.version) }
     |return ret
     | """.stripMargin()
 }
+
 def getRollbackList(String refvar, String filter){
     def wksp=getWksp()
     return """

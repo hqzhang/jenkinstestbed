@@ -246,7 +246,7 @@ properties([
                name: 'TypeListScript', randomName: 'choice-parameter-16677189047799', referencedParameters: 'rollbacklist', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: menu.getTypeScript()  ]]],
+               script: menu.getTypeScript('rollbacklist')  ]]],
 
             string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
 

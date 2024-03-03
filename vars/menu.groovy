@@ -422,7 +422,7 @@ def getContentScript(String refvar){
 }
 def getString(String refvar){
     println("enter getContentScript()....")
-    return """return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${${refvar}</textarea> \"\"\" """
+    return """return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="10" cols="25">\${${refvar}}</textarea> \"\"\" """
 }
 
 def verify1(){

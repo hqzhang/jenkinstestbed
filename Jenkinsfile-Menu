@@ -247,7 +247,11 @@ properties([
                script: [classpath: [], oldScript: '', sandbox: true, 
                script: menu.getTypeScript('RollbackList')  ]]],
 
-            string(name: 'filebackup', defaultValue: 'backup.yaml', description: 'input file to backup'),
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML',  omitValueField: false, 
+                    name: 'filebackup',randomName: 'choice-parameter-138673186839723', referencedParameters: 'SolutionConfig', 
+                    script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
+                    script: [classpath: [], oldScript: '', sandbox: false, 
+                    script: menu.getString('SolutionConfig')]] ],
 
              
 ])

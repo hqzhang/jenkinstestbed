@@ -280,7 +280,7 @@ def getContentTable(String refvar){
     |def ret=''
     |//ret="curl -k \${url}/${repo}/${brch}/release/\${${refvar}}${urlext}".execute().text
     |ret="cat \${wksp}/release/\${${refvar}}".execute().text
-    |ret=(Map)new Yaml().load(ret)ƒ
+    |ret=(Map)new Yaml().load(ret)
     |def rendered = "<table><tr>"
     |ret['components'].each { mark="-"; 
     | it.each { kk,vv->

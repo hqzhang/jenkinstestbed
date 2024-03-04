@@ -69,7 +69,7 @@ def getFileList(String wksp, String dft){
     def ret=[]
     def out="ls ${wksp}/release  ".execute().text
     println "out=$out"
-    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } else { ret.add('"'+it+'"') } }
+    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } else { ret.add"'+it+'"') } }
     if (ret.isEmpty()) {return ['NotFound']}
     return """ return ${ret} """
 }                
@@ -183,6 +183,7 @@ println "---------------------"
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
+            separator(name: "building")
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             //choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
@@ -257,8 +258,7 @@ properties([
                     script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                     script: [classpath: [], oldScript: '', sandbox: true, 
                     script: menu.getStringInstant('SolutionConfig')]] ],
-
-             
+            separator(name: "end")        
 ])
 ])////
 //mypipeline( params )

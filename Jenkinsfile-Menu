@@ -252,7 +252,7 @@ properties([
                     script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                     script: [classpath: [], oldScript: '', sandbox: true, 
                     script: menu.getString('SolutionConfig')]] ],
-            [$class: 'DynamicReferenceParameter', choiceType: 'ET_FORMATTED_HTML',  omitValueField: false, 
+            [$class: 'DynamicReferenceParameter', choiceType: 'ET_TEXT_BOX',  omitValueField: false, 
                     name: 'filebackup1',randomName: 'choice-parameter-138683286839723', referencedParameters: 'SolutionConfig', 
                     script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                     script: [classpath: [], oldScript: '', sandbox: true, 

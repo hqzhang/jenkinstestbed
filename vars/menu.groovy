@@ -394,14 +394,12 @@ def writeYamlFile(output,data){
 }
 
 def getFileBitScript(){
-    println("enter getFileBitScript()....")
     def repos="hqzhang/solution-repo"
     def brch="getsolution"
     def folder="release"
-    //curl https://api.bitbucket.org/2.0/repositories/hqzhang/solution-repo/src/getsolution/release
     return """import groovy.json.JsonSlurper
     |def ret=[]
-    |def branch="git ls-remote https://hqzhang@bitbucket.org/hqzhang/solution-repo.git -b ${brch}".execute().text.substring(0,40)
+    |def branch="git ls-remote https://hqzhang@bitbucket.org/${repos}.git -b ${brch}".execute().text.substring(0,40)
     |def out="curl https://api.bitbucket.org/2.0/repositories/${repos}/src/\${branch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)
     |obj['values'].each { ret.add(it['path'])}
@@ -421,9 +419,12 @@ def getContentScript(String refvar){
     | """.stripMargin()
 }
 def getString(String refvar){
-    println("enter getContentScript()....")
     return """return \"\"\" <textarea name=\"value\"  value  class=\"setting-input  \" type=\"text\" rows="1" cols="1">\${${refvar}}</textarea> \"\"\" """
 }
+def getStringInstant(String refvar){
+    return """return \${${refvar}} """
+}
+
 
 def verify1(){
     println("enter verify1().Shell...")

@@ -63,16 +63,19 @@ def getPackScript(String mypath, String dft){
   |return ret
   |""".stripMargin()
 }
-
+/*
 def getFileList(String wksp, String dft){
     println("enter getFile()")
     def ret=[]
     def out="ls ${wksp}/release  ".execute().text
     println "out=$out"
-    out.readLines().each{ if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } else { ret.add"'+it+'"') } }
+    out.readLines().each{ 
+        if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } 
+    else { ret.add"'+it+'"') } }
     if (ret.isEmpty()) {return ['NotFound']}
+    }
     return """ return ${ret} """
-}                
+}  */              
 def getFileScript(String wksp, String dft){
     println("enter getFileScript()....")
   return """def ret=[]

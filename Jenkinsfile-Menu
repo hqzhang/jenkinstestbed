@@ -186,7 +186,9 @@ println "---------------------"
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
-            separator(name: "building")
+        base64File('myfile64'), 
+            file('myfile') ,    
+            separator(name: "building"),
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             //choice( name: 'getBranches', description: '', choices: getBranches(repo, 'master') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
@@ -261,9 +263,8 @@ properties([
                     script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                     script: [classpath: [], oldScript: '', sandbox: true, 
                     script: menu.getStringInstant('SolutionConfig')]] ],
-            separator(name: "end")   
-            base64File('myfile64'), 
-            file('myfile') ,    
+            separator(name: "end"),   
+            
 ])
 ])////
 //mypipeline( params )

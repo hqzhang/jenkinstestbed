@@ -258,7 +258,9 @@ properties([
                     script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: false, script: ''],
                     script: [classpath: [], oldScript: '', sandbox: true, 
                     script: menu.getStringInstant('SolutionConfig')]] ],
-            separator(name: "end")        
+            separator(name: "end")   
+            base64File('myfile64'), 
+            file('myfile') ,    
 ])
 ])////
 //mypipeline( params )

@@ -393,12 +393,13 @@ def writeYamlFile(output,data){
     yaml.dump(data, new FileWriter(output)) 
 }
 
-def getFileBitScript(){
+def getFileBitScript(String refvar){
     def repos="hqzhang/solution-repo"
     def brch="getsolution"
     def folder="release"
     return """import groovy.json.JsonSlurper
     |def ret=[]
+    |if ($refvar == 'on') return null
     |def branch="git ls-remote https://hqzhang@bitbucket.org/${repos}.git -b ${brch}".execute().text.substring(0,40)
     |def out="curl https://api.bitbucket.org/2.0/repositories/${repos}/src/\${branch}/${folder}".execute().text
     |def obj=new JsonSlurper().parseText(out)

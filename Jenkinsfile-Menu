@@ -1,24 +1,20 @@
 //////
 
+
+def repo=scm.getUserRemoteConfigs().toString()
+repo=repo.substring(9, repo.length()-8)
 def brch= scm.branches[0].toString().substring(2,)
-library("bitbucket-groovytest-lib@${brch}") _
-/*
-library identifier: 'custom-lib@main', retriever: modernSCM(
-  [$class: 'GitSCMSource',
-   remote: 'https://github.com/hqzhang/sharedlibrarytest.git',
-   credentialsId: ''])
-*/
+//library("bitbucket-groovytest-lib@${brch}") _
+library identifier: "custom-lib@brch", retriever: modernSCM(
+  [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
+
 import groovy.json.JsonSlurper
 println "------branch11=${brch}"
-println GroovySystem.version
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def wksp="/var/root/.jenkins/workspace/${jobstr}"
 println(menu.getWksp())
-def repo=scm.getUserRemoteConfigs().toString()
 println "repo=$repo"
-repo=repo.substring(9, repo.length()-8)
-println "repo=$repo"
-System.exit(1)
+
 @groovy.transform.Field
 def mybrch="{brch}"
 @groovy.transform.Field

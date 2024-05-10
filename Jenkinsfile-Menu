@@ -4,8 +4,10 @@
 def repo=scm.getUserRemoteConfigs().toString()
 repo=repo.substring(9, repo.length()-8)
 def brch= scm.branches[0].toString().substring(2,)
+println "repo=$repo"
+println "brch=$repo"
 //library("bitbucket-groovytest-lib@${brch}") _
-library identifier: "custom-lib@brch", retriever: modernSCM(
+library identifier: "custom-lib@${brch}", retriever: modernSCM(
   [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
 
 import groovy.json.JsonSlurper

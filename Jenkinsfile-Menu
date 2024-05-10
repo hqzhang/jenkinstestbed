@@ -7,12 +7,10 @@ library identifier: "bitbucket-groovytetlib@${brch}", retriever: modernSCM(
 
 import groovy.json.JsonSlurper
 println "------branch11=${brch}"
-//Thread[Running CpsFlowExecution[Owner[agroovytest/1378:agroovytest #1378]],5,main]
-//def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def jobstr = Thread.currentThread().toString()
-println "jobstr:$jobstr"
 jobstr=jobstr.split(' ')[-2].split(':')[-1]
 println "jobstr:$jobstr"
+
 def wksp="/var/root/.jenkins/workspace/${jobstr}"
 println(menu.getWksp())
 println "repo=$repo"

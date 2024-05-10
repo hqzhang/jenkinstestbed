@@ -1,7 +1,9 @@
 //////
 
 
-def repo=scm.getUserRemoteConfigs()[0].replace(' (null)','').replace('null => ','')
+def repo=scm.getUserRemoteConfigs()[0].replace(' (null)','')
+println "repo=$repo"
+repo=repo..replace('null => ','')
 def brch= scm.branches[0]
 //def brch= scm.branches[0].toString().substring(2,)
 println "repo=$repo"

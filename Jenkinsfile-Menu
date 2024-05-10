@@ -1,8 +1,8 @@
 //////
 
 
-def repo=scm.getUserRemoteConfigs()
-println repo.first()
+def repo=scm.getUserRemoteConfigs()[0]
+println repo
 println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 def brch= scm.branches[0].toString().substring(2,)

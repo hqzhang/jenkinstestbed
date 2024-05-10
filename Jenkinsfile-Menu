@@ -184,7 +184,7 @@ def verify(String brch){
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 println "---------------------"
-println menu.getFileBitScript()
+println menu.getFileBitScript('startRollback')
    
 println menu.getContentScript("SolutionConfig")
 //println menu.getTypeScript()

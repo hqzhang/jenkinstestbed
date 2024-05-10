@@ -1,8 +1,8 @@
 //////
 
 
-def repo=scm.getUserRemoteConfigs()[0]
-println repo.each { println "it:$it"}
+def repo=scm.getUserRemoteConfigs()[0][0]
+println repo.getClass()
 println "repo=$repo"
 repo=repo..replace('null => ','')
 def brch= scm.branches[0]

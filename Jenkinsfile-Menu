@@ -11,7 +11,7 @@ println "------branch11=${brch}"
 //def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]
 def jobstr = Thread.currentThread().toString()
 println "jobstr:$jobstr"
-jobstr=jobstr.split(' ')[0].split(':')
+jobstr=jobstr.split(' ')[-2].split(':')
 println "jobstr:$jobstr"
 def wksp="/var/root/.jenkins/workspace/${jobstr}"
 println(menu.getWksp())

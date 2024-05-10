@@ -2,6 +2,12 @@
 
 def brch= scm.branches[0].toString().substring(2,)
 library("bitbucket-groovytest-lib@${brch}") _
+/*
+library identifier: 'custom-lib@main', retriever: modernSCM(
+  [$class: 'GitSCMSource',
+   remote: 'https://github.com/hqzhang/sharedlibrarytest.git',
+   credentialsId: ''])
+*/
 import groovy.json.JsonSlurper
 println "------branch11=${brch}"
 println GroovySystem.version
@@ -12,6 +18,7 @@ def repo=scm.getUserRemoteConfigs().toString()
 println "repo=$repo"
 repo=repo.substring(9, repo.length()-8)
 println "repo=$repo"
+System.exit(1)
 @groovy.transform.Field
 def mybrch="{brch}"
 @groovy.transform.Field

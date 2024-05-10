@@ -1,7 +1,8 @@
 //////
 
 
-def repo=scm.getUserRemoteConfigs()[0].getName()
+def repo=scm.getUserRemoteConfigs()[0]
+println repo.getClass()
 println "repo=$repo"
 repo=repo..replace('null => ','')
 def brch= scm.branches[0]

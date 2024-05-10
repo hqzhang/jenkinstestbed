@@ -24,7 +24,8 @@ def defaultList=['ss333', 's555']
 @groovy.transform.Field
 def target="hongqizhang@localhost"
 println "**********"
-println System.getProperty("java.ext.dirs")
+import com.wavecloud.Hello
+def hl=new Hello()
 println "***********"
 //import com.wavecloud.Hello;
 //def hl=new Hello()

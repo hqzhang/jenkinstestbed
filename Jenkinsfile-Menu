@@ -200,7 +200,7 @@ println menu.getContentScript("SolutionConfig")
 //println menu.verifytest()
 //println menu.verify2('release/a.yaml')
 
-println "---------------------"
+println "---------parameters start------------"
 properties([
     //pipelineTriggers([bitbucketPush()]),
     parameters([
@@ -288,7 +288,7 @@ properties([
 ])////
 //mypipeline( params )
 
-println "begin pipeline"
+println "-----------begin pipeline-------"
 def map
 def list
 def remote = [:]

@@ -186,7 +186,7 @@ def verify(String brch){
 }
 println "---------------------"
 println "printenv".execute().text
-
+println "build=${env.BUILD_URL}"
 println menu.getFileBitScript('startRollback')
    
 println menu.getContentScript("SolutionConfig")

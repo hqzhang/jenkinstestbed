@@ -131,24 +131,16 @@ String convertScript( String str){
 def getBranch(){
     return scm.branches.toString().substring(3,9)
 }
+
 def getEnvar(){
-    def wksp
-    def jobstr
-    def build_no
-    def repo=scm.getUserRemoteConfigs().toString()
-    def brch= scm.branches.toString().substring(3,9)
-    println "repofull---------=$repo"
     repo=repo.substring(9, repo.length()-12).split('\\/')[4]
-    node {
-        wksp = env.WORKSPACE
-        jobstr= env.JOB_NAME
-        build_no=env.BUILD_NUMBER
-    }
-    env.WKSP=wksp
-    env.JOBSTR=jobstr
-    env.BLDNo=build_no
-    env.REPO=repo
-    env.BRCH=brch
+    def wksp = getClass().protectionDomain.codeSource.location.path
+    wksp = wksp.replace('/jobs/','/workspace/').split('/builds/')[0]
+    def job = env.JOB_NAME
+    def build_no=env.BUILD_NUMBER
+    def repo = scm.getUserRemoteConfigs()[0].toString()
+    repo = repo.replace(' (null)','').replace('null => ','')
+    def brch= scm.branches[0].toString().replace('*/','')
 }
 
 def getFileContent(String SolutionDetail){
@@ -303,11 +295,9 @@ def getJob(){
     return jobstr
 }
 def getWksp(){
-    def jobstr=getJob()
-    def wksp="/var/root/.jenkins/workspace/${jobstr}"
-    
-    node{ wksp=env.WORKSPACE }
-    return wksp
+    def ret = getClass().protectionDomain.codeSource.location.path
+    ret = ret.replace('/jobs/','/workspace/').split('/builds/')[0]
+    return ret
 }
 def stringParse(String str){
     def data=str.split(',')

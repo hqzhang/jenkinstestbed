@@ -6,4 +6,7 @@ class Class{
     static String sayHello(String str){
         return "Hello, ${str}!"
     }
+    public String sayGoodby(String str){
+        return "Goodbye, ${str}!"
+    }
 } 

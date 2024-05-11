@@ -3,3 +3,7 @@ def hello(){
 
 }
 def param="xyz"
+
+def getSth(){
+  return getClass().protectionDomain.codeSource.location.path
+}

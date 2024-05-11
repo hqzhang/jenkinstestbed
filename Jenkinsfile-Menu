@@ -7,7 +7,7 @@ def shlib = library identifier: "bitbucket-groovytest-lib@${brch}", retriever: m
 println com.wc.shlib.Cons.MAVEN
 println com.wc.shlib.Class.sayHello('HQ')
 //import shlib.com.wc.shlib.Class*/
-println new shlib.com.wc.shlib.Class().sayGoodbye('HQ')
+
 import groovy.json.JsonSlurper
 println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()

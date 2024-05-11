@@ -187,7 +187,7 @@ def verify(String brch){
 println "---------------------"
 println "printenv".execute().text
 println "build=${env.BUILD_URL}"
-println "env=${env}"
+println "env".execute().text
 env.getEnvironment().each { name, value -> println "Name: $name -> Value $value" }
 println menu.getFileBitScript('startRollback')
    

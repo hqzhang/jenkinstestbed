@@ -14,6 +14,6 @@ def getSth(){
   ret=ret.location
   println "loc=$ret"
   ret=ret.path.replace('/jobs/','/workspace/').split('/builds/')[0]
-  println "path=$ret"
+  println "wksp=$ret"
   return ret
 }

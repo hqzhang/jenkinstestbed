@@ -188,6 +188,7 @@ println "---------------------"
 println "printenv".execute().text
 println "build=${env.BUILD_URL}"
 println "env".execute().text
+println env.getClass()
 env.getEnvironment().each { name, value -> println "Name: $name -> Value $value" }
 println menu.getFileBitScript('startRollback')
    

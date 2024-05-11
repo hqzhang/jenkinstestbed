@@ -13,7 +13,7 @@ library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
 import groovy.json.JsonSlurper
 println "------branch11=${brch}"
 //def jobstr = Thread.currentThread().toString()
-jobstr=${env.JOB_NAME}
+jobstr="${env.JOB_NAME}"
 println "jobstr:$jobstr"
 
 def wksp="/var/root/.jenkins/workspace/${jobstr}"

@@ -185,8 +185,8 @@ def verify(String brch){
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
 println "---------------------"
-def envar="printenv".execute().text
-println "envar=$envar"
+println "printenv".execute().text
+
 println menu.getFileBitScript('startRollback')
    
 println menu.getContentScript("SolutionConfig")

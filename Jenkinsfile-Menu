@@ -190,7 +190,7 @@ println "build=${env.BUILD_URL}"
 println "env".execute().text
 println env.getClass()
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
-println menu.getFileBitScript('startRollback')
+println getClass().protectionDomain.codeSource.location.path
    
 println menu.getContentScript("SolutionConfig")
 //println menu.getTypeScript()

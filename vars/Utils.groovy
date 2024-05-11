@@ -13,7 +13,7 @@ def getSth(){
   println "CodeS=$ret"
   ret=ret.location
   println "loc=$ret"
-  ret=ret.path
+  ret=ret.path.split('/jobs/')[0]
   println "path=$ret"
   return ret
 }

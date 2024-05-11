@@ -1,4 +1,4 @@
-env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
+def envars=env.getEnvironment()
 
 //////////////use shared library same with Jenkinsfile///////////
 def envar="printenv".execute().text
@@ -7,13 +7,13 @@ println "envar=$envar"
 def repo = scm.getUserRemoteConfigs()[0].toString()
 repo = repo.replace(' (null)','').replace('null => ','')
 def brch= scm.branches[0].toString().replace('*/','')
-library identifier: "bitbucket-groovytetlib@${brch}", retriever: modernSCM(
+library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
   [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
 
 import groovy.json.JsonSlurper
 println "------branch11=${brch}"
-def jobstr = Thread.currentThread().toString()
-jobstr=jobstr.split(' ')[-2].split(':')[-1]
+//def jobstr = Thread.currentThread().toString()
+jobstr=${env.JOB_NAME}
 println "jobstr:$jobstr"
 
 def wksp="/var/root/.jenkins/workspace/${jobstr}"

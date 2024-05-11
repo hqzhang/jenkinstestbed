@@ -1,9 +1,4 @@
-def envars=env.getEnvironment()
-
 //////////////use shared library same with Jenkinsfile///////////
-def envar="printenv".execute().text
-println "envar=$envar"
-
 def repo = scm.getUserRemoteConfigs()[0].toString()
 repo = repo.replace(' (null)','').replace('null => ','')
 def brch= scm.branches[0].toString().replace('*/','')
@@ -11,14 +6,15 @@ library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
   [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
 
 import groovy.json.JsonSlurper
-println "------branch11=${brch}"
+println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()
-jobstr="${env.JOB_NAME}"
+def jobstr="${env.JOB_NAME}"
 println "jobstr:$jobstr"
-
-def wksp="/var/root/.jenkins/workspace/${jobstr}"
-println(menu.getWksp())
-println "repo=$repo"
+def wksp=Utils.getSth()
+println "wksp=$wksp"
+println "---------list all envar------------"
+println "build=${env.BUILD_URL}"
+env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
 
 @groovy.transform.Field
 def mybrch="{brch}"
@@ -186,13 +182,7 @@ def verify(String brch){
    out=out.replaceAll('components:\n','')
    return """ <textarea name="value"  value  class="setting-input  " type="text" rows="10" cols="25">${out}</textarea> """
 }
-println "---------------------"
-println "printenv".execute().text
-println "build=${env.BUILD_URL}"
-println "env".execute().text
-println env.getEnvironment().getClass()
-env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
-println Utils.getSth()
+
    
 println menu.getContentScript("SolutionConfig")
 //println menu.getTypeScript()

@@ -6,7 +6,7 @@ def shlib = library identifier: "bitbucket-groovytest-lib@${brch}", retriever: m
   [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
 
 println shlib.com.wc.shlib.Cons.MAVEN
-println shlib.com.wc.shlib.Class.sayHello()
+println shlib.com.wc.shlib.Class.sayHello('HQ')
 import groovy.json.JsonSlurper
 println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()

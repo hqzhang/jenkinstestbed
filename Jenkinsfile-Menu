@@ -4,8 +4,9 @@ repo = repo.replace(' (null)','').replace('null => ','')
 def brch= scm.branches[0].toString().replace('*/','')
 def shlib = library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
   [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
-import shlib.com.wc.shlib.*
+import shlib.com.wc.shlib.Cons
 println Cons.MAVEN
+import shlib.com.wc.shlib.Class
 println Class.sayHello('HQ')
 //import shlib.com.wc.shlib.Class
 println new Class().sayGoodbye('HQ')

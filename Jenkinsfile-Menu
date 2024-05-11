@@ -1,3 +1,5 @@
+env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
+
 //////////////use shared library same with Jenkinsfile///////////
 def envar="printenv".execute().text
 println "envar=$envar"

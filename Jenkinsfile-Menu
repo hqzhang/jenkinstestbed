@@ -190,7 +190,7 @@ println "build=${env.BUILD_URL}"
 println "env".execute().text
 println env.getEnvironment().getClass()
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
-println getClass().protectionDomain.codeSource.location.path
+println Utils.getSth()
    
 println menu.getContentScript("SolutionConfig")
 //println menu.getTypeScript()

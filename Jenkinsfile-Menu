@@ -6,7 +6,9 @@ def libver="bitbucket-groovytest-lib@Menu-demo-good"
 //  [$class: 'GitSCMSource', remote: repo, credentialsId: ''])  //from any repo without definiation src excluded
 //2): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)  //from local repo without definiation
 //3):library("bitbucket-groovytest-lib@${brch}") _         //from repo defined in system config, src excluded
-@Library('bitbucket-groovytest-lib@Menu-demo-good') _      //from repo defined in system config, vars/src/resouces included
+@Library('bitbucket-groovytest-lib@Menu-demo-good')      //from repo defined in system config, vars/src/resouces included
+import com.wc.Class
+//def test =  new com.wc.Class()
 import groovy.json.JsonSlurper
 println "branch=${brch}"
 def jobstr="${env.JOB_NAME}"
@@ -20,7 +22,7 @@ println "repo=$repo"
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
-println foo('HQ')
+//println foo('HQ')
 
 @groovy.transform.Field
 def mybrch="{brch}"

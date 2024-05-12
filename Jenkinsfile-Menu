@@ -2,22 +2,21 @@
 
 def brch= scm.branches[0].toString().replace('*/','')
 def libver="bitbucket-groovytest-lib@Menu-demo-good"
-//def shlib = library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
-//  [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
-//1): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)
-//2):library("bitbucket-groovytest-lib@${brch}") _
-@Library('bitbucket-groovytest-lib@Menu-demo-good') _
+//1) library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
+//  [$class: 'GitSCMSource', remote: repo, credentialsId: ''])  //from any repo without definiation src excluded
+//2): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)  //from local repo without definiation
+//3):library("bitbucket-groovytest-lib@${brch}") _         //from repo defined in system config, src excluded
+@Library('bitbucket-groovytest-lib@Menu-demo-good') _      //from repo defined in system config, vars/src/resouces included
 import groovy.json.JsonSlurper
-println "------branch=${brch}"
-//def jobstr = Thread.currentThread().toString()
+println "branch=${brch}"
 def jobstr="${env.JOB_NAME}"
 println "jobstr:$jobstr"
 def ret = getClass().protectionDomain.codeSource.location.path
+println "groovyshell=$ret"
+def wksp = menu.getWksp()
 println "wksp=$ret"
-ret = ret.replace('/jobs/','/workspace/').split('/builds/')[0]
-println "wksp=$ret"
-def repo = scm.getUserRemoteConfigs()[0].toString()
-repo = repo.replace(' (null)','').replace('null => ','')
+def repo = scm.getUserRemoteConfigs()[0].toString().replace(' (null)','').replace('null => ','')
+println "repo=$repo"
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }

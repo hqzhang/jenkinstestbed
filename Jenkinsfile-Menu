@@ -10,7 +10,7 @@ def myLib = shlib.com.wc.shlib
 //def myDyn = myLib.Class.builder(this)
 //println myLib.Cons.MAVEN 
 //println myLib.Class.sayHello('HQ')
-println foo('HQ')
+//println foo('HQ')
 import groovy.json.JsonSlurper
 println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()

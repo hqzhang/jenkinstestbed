@@ -4,8 +4,8 @@ def brch= scm.branches[0].toString().replace('*/','')
 //def shlib = library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
 //  [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
 //1): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)
-library("bitbucket-groovytest-lib@${brch}") _
-
+//2):library("bitbucket-groovytest-lib@${brch}") _
+@Library("bitbucket-groovytest-lib@${brch}") _
 import groovy.json.JsonSlurper
 println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()

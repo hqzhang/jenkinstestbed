@@ -6,7 +6,6 @@ def brch= scm.branches[0].toString().replace('*/','')
 //1): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)
 library("bitbucket-groovytest-lib@${brch}") _
 
-//println foo('HQ')
 import groovy.json.JsonSlurper
 println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()
@@ -16,6 +15,8 @@ def ret = getClass().protectionDomain.codeSource.location.path
 println "wksp=$ret"
 ret = ret.replace('/jobs/','/workspace/').split('/builds/')[0]
 println "wksp=$ret"
+def repo = scm.getUserRemoteConfigs()[0].toString()
+repo = repo.replace(' (null)','').replace('null => ','')
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }

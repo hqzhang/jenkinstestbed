@@ -12,7 +12,10 @@ println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()
 def jobstr="${env.JOB_NAME}"
 println "jobstr:$jobstr"
-println "wksp=$wksp"
+def ret = getClass().protectionDomain.codeSource.location.path
+println "wksp=$ret"
+ret = ret.replace('/jobs/','/workspace/').split('/builds/')[0]
+println "wksp=$ret"
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }

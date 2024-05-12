@@ -1,12 +1,12 @@
 //////////////use shared library same with Jenkinsfile///////////
 
 def brch= scm.branches[0].toString().replace('*/','')
-def libver="bitbucket-groovytest-lib@${brch}"
+def libver="bitbucket-groovytest-lib@Menu-demo-good"
 //def shlib = library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
 //  [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
 //1): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)
 //2):library("bitbucket-groovytest-lib@${brch}") _
-@Library(libver) _
+@Library('bitbucket-groovytest-lib@Menu-demo-good') _
 import groovy.json.JsonSlurper
 println "------branch=${brch}"
 //def jobstr = Thread.currentThread().toString()

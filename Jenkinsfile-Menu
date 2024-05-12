@@ -5,9 +5,9 @@ def brch= scm.branches[0].toString().replace('*/','')
 def shlib = library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
   [$class: 'GitSCMSource', remote: repo, credentialsId: ''])
 def myLib = shlib.com.wc.shlib
-def myDyn = myLib.Class.builder(this)
-println myLib.Cons.MAVEN
-println myLib.Class.sayHello('HQ')
+//def myDyn = myLib.Class.builder(this)
+//println myLib.Cons.MAVEN
+//println myLib.Class.sayHello('HQ')
 println foo('HQ')
 import groovy.json.JsonSlurper
 println "------branch=${brch}"

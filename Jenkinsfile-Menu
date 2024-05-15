@@ -8,7 +8,7 @@ def libver="bitbucket-groovytest-lib@Menu-demo-good"
 //2): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)  //from local repo without definiation
 //3):library("bitbucket-groovytest-lib@${brch}") _         //from repo defined in system config, src excluded
 @Library('bitbucket-groovytest-lib@Menu-demo-good')      //from repo defined in system config, vars/src/resouces included
-println scm.getClass()
+///println scm.getClass()
 //def test =  new com.wc.Class()
 import groovy.json.JsonSlurper
 println "branch=${brch}"

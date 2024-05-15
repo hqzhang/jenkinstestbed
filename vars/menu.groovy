@@ -133,12 +133,12 @@ def getBranch(){
 }
 
 def getURL(){
-    return wksp = getClass().protectionDomain
+    return scm.userRemoteConfigs[0].getName()
 }
 
 def initEnvars(){
     def wksp = getClass().protectionDomain.codeSource.location.path
-    wksp = wksp.replace('/jobs/','/workspace/').split('/builds/')[0]
+    env.scmWksp = wksp.replace('/jobs/','/workspace/').split('/builds/')[0]
     env.jobName = env.JOB_NAME
     env.buildNo=env.BUILD_NUMBER
     env.scmURL = scm.userRemoteConfigs[0].getUrl()

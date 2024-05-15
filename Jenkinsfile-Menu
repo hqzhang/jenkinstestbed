@@ -20,6 +20,8 @@ def wksp = menu.getWksp()
 println "wksp=$ret"
 def repo = scm.getUserRemoteConfigs()[0].toString().replace(' (null)','').replace('null => ','')
 println "repo=$repo"
+def tmp=scm.getClass()
+println("tmp:$tmp")
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }

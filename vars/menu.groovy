@@ -133,6 +133,11 @@ def getBranch(){
 }
 
 def getURL(){
+    def obj=scm.userRemoteConfigs[0]
+    println obj.getUrl()
+    println obj.getCredentialsId()
+    println obj.getRefspec()
+    println obj.getName()
     return scm.userRemoteConfigs[0].getUrl()
 }
 

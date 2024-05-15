@@ -132,19 +132,17 @@ def getBranch(){
     return scm.branches.toString().substring(3,9)
 }
 
-def getURL(){
-    return scm.userRemoteConfigs[0].getUrl()
+def getURLWS(){
+    return wksp = getClass().protectionDomain
 }
 
-def getEnvar(){
-    repo=repo.substring(9, repo.length()-12).split('\\/')[4]
+def initEnvars(){
     def wksp = getClass().protectionDomain.codeSource.location.path
     wksp = wksp.replace('/jobs/','/workspace/').split('/builds/')[0]
-    def job = env.JOB_NAME
-    def build_no=env.BUILD_NUMBER
-    def repo = scm.getUserRemoteConfigs()[0].toString()
-    repo = repo.replace(' (null)','').replace('null => ','')
-    def brch= scm.branches[0].toString().replace('*/','')
+    env.jobName = env.JOB_NAME
+    env.buildNo=env.BUILD_NUMBER
+    env.scmURL = scm.userRemoteConfigs[0].getUrl()
+    env.scmBranch = scm.branches[0].toString().replace('*/','')
 }
 
 def getFileContent(String SolutionDetail){

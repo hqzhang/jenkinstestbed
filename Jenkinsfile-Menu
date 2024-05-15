@@ -8,9 +8,9 @@ def libver="bitbucket-groovytest-lib@Menu-demo-good"
 //2): library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)  //from local repo without definiation
 //3):library("bitbucket-groovytest-lib@${brch}") _         //from repo defined in system config, src excluded
 @Library('bitbucket-groovytest-lib@Menu-demo-good')      //from repo defined in system config, vars/src/resouces included
-menu.initEnvars()
+
 import groovy.json.JsonSlurper
-println "branch=${scmBranch}"
+
 def jobstr="${env.JOB_NAME}"
 println "jobstr:$jobstr"
 def ret = getClass().protectionDomain.codeSource.location.path
@@ -20,6 +20,7 @@ println "wksp=$ret"
 def repo = scm.getUserRemoteConfigs()[0].toString().replace(' (null)','').replace('null => ','')
 println "repo=$repo"
 def mybr=menu.getURL()
+menu.initEnvars()
 println "repo=$mybr"
 
 /*

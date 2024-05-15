@@ -33,7 +33,6 @@ GIT_BRANCH = "GIT_BRANCH";
     public static final String GIT_URL = "GIT_URL";
 
 */
-println("tmp:$tmp")
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }

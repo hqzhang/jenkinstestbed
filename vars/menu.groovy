@@ -133,7 +133,7 @@ def getBranch(){
 }
 
 def getURL(){
-    return scm.GIT_URL
+    return scm.userRemoteConfigs.toString()
 }
 
 def getEnvar(){

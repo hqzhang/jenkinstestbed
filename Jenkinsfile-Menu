@@ -20,7 +20,7 @@ def wksp = menu.getWksp()
 println "wksp=$ret"
 def repo = scm.getUserRemoteConfigs()[0].toString().replace(' (null)','').replace('null => ','')
 println "repo=$repo"
-def mybr=scm.GIT_URL
+def mybr=menu.getURL()
 println "repo=$mybr"
 
 /*

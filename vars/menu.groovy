@@ -132,6 +132,10 @@ def getBranch(){
     return scm.branches.toString().substring(3,9)
 }
 
+def getURL(){
+    return scm.GIT_URL
+}
+
 def getEnvar(){
     repo=repo.substring(9, repo.length()-12).split('\\/')[4]
     def wksp = getClass().protectionDomain.codeSource.location.path

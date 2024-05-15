@@ -132,7 +132,7 @@ def getBranch(){
     return scm.branches.toString().substring(3,9)
 }
 
-def getURLWS(){
+def getURL(){
     return wksp = getClass().protectionDomain
 }
 

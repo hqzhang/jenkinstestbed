@@ -20,7 +20,19 @@ def wksp = menu.getWksp()
 println "wksp=$ret"
 def repo = scm.getUserRemoteConfigs()[0].toString().replace(' (null)','').replace('null => ','')
 println "repo=$repo"
-def tmp=scm.getClass()
+def mybr=scm.GIT_URL
+println "repo=$mybr"
+
+/*
+GIT_BRANCH = "GIT_BRANCH";
+    public static final String GIT_LOCAL_BRANCH = "GIT_LOCAL_BRANCH";
+    public static final String GIT_CHECKOUT_DIR = "GIT_CHECKOUT_DIR";
+    public static final String GIT_COMMIT = "GIT_COMMIT";
+    public static final String GIT_PREVIOUS_COMMIT = "GIT_PREVIOUS_COMMIT";
+    public static final String GIT_PREVIOUS_SUCCESSFUL_COMMIT = "GIT_PREVIOUS_SUCCESSFUL_COMMIT";
+    public static final String GIT_URL = "GIT_URL";
+
+*/
 println("tmp:$tmp")
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"

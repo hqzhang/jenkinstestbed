@@ -225,10 +225,10 @@ properties([
             choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
             choice( name: 'repoName', choices: ['groovytest'], description: '' ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,
-               name: 'getBranchList', randomName: 'choice-parameter-16677189047440', referencedParameters: 'Environment', 
+               name: 'getBranchList', randomName: 'choice-parameter-16677189047440', referencedParameters: 'repoName', 
                script: [$class: 'GroovyScript', fallbackScript: [classpath: [], oldScript: '', sandbox: true, script: ''], 
                script: [classpath: [], oldScript: '', sandbox: true, 
-               script: getBranchList(repo,brch) ]]],
+               script: getBranchList('repoName') ]]],
 
             //choice( name: 'getFileHub', description: '', choices: getFileHub("hqzhang/groovytest","releases",'mytest') ),
             [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false,

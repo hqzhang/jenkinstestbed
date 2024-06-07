@@ -35,7 +35,7 @@ GIT_BRANCH = "GIT_BRANCH";
 println "---------list all envar------------"
 println "build=${env.BUILD_URL}"
 env.getEnvironment().each { name, value -> println "env.${name}=${value}" }
-println foo('HQ')
+//println foo('HQ')
 
 @groovy.transform.Field
 def mybrch="{brch}"

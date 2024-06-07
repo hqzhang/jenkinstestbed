@@ -128,8 +128,8 @@ def getContentScript(String wksp, String refvar,String brch ){
 String getBranchList(String refvar){
    def dft=''
    def repo='https://fredzhang123@bitbucket.org/wave-cloud/groovytest.git'
-   return """ 
-   |def ret=[]
+   return """ def ret=[]
+   |def myrepo=${repo}+${refvar}+'.git'
    |def out = "git ls-remote --heads ${repo}".execute().text
    |out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
    |out.each{ if( it.contains('') ){ ret.add(0,it) } else { ret.add(it) } }

@@ -125,12 +125,16 @@ def getContentScript(String wksp, String refvar,String brch ){
     | """.stripMargin()
 }
 
-String getBranchList(String repo, String dft ){
-   def ret=[]
-   def out = "git ls-remote --heads ${repo}".execute().text
-   out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
-   out.each{ if( it.contains(dft) ){ ret.add(0,'"'+it+'"') } else { ret.add('"'+it+'"') } }
-   return """ return ${ret} """
+String getBranchList(String refvar){
+   def dft=''
+   def repo='https://fredzhang123@bitbucket.org/wave-cloud/groovytest.git'
+   return """ 
+   |def ret=[]
+   |def out = "git ls-remote --heads ${repo}".execute().text
+   |out = out.readLines().collect { it.split()[1].replaceAll('refs/heads/', '') }
+   |out.each{ if( it.contains('') ){ ret.add(0,'"'+it+'"') } else { ret.add('"'+it+'"') } }
+   |return ret
+   |""".stripMargin()
 }
 String getBranchScript(String repo, String dft ){
    return """def ret=[]

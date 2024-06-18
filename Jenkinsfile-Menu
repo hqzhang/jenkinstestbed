@@ -11,11 +11,11 @@ import jenkins.model.*
 def credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f0' // Replace with your actual AWS credentials ID
 //credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f1'
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-  com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class, Jenkins.instance, null, null ).find{
-    it.id == credentialsId}
+                com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class, Jenkins.instance, null, null )
+                .find{ it.id == credentialsId }
 //def user=creds.username
-//def token=creds.password
-def cmd="curl -I -X POST http://hongqi:${creds.password}@localhost:9999/job/agroovytest/buildWithParameters"
+def token=creds.password
+def cmd="curl -I -X POST http://hongqi:${token}@localhost:9999/job/agroovytest/buildWithParameters"
 println "cmd=$cmd"
 println cmd.execute().text
 

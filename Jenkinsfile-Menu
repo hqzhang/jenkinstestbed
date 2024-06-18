@@ -15,8 +15,7 @@ import jenkins.model.*
 
 // Define the credentials ID used in Jenkins
 def credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f0' // Replace with your actual AWS credentials ID
-
-// Fetch the AWS credentials from Jenkins
+ credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f1'
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
     com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl.class,
     jenkins.model.Jenkins.instance,

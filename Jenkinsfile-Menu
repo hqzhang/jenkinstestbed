@@ -19,7 +19,7 @@ def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredenti
 
 println creds.username
 
-def cmd="curl -I -X POST http://hongqi:${awsSecretKey}@localhost:9999/job/agroovytest/buildWithParameters"
+def cmd="curl -I -X POST http://hongqi:${awsSecretKey}@localhost:9999/job/roovytest/buildWithParameters"
 
 println cmd.execute().text
 

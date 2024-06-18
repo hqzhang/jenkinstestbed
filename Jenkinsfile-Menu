@@ -6,6 +6,12 @@ menu.getWksp()
 menu.getEnvironment()
 
 import groovy.json.JsonSlurper
+
+
+echo "trigger groovytest job"
+def cmd="curl -I -X POST http://hongqi:11d6be40c8017f81a24f7982cb2e8c2ce3@localhost:9999/job/agroovytest/buildWithParameters"
+println cmd.execute().text
+
 println "------branch11=${brch}"
 println GroovySystem.version
 def jobstr = Thread.currentThread().toString().substring(38,).split('/')[0]

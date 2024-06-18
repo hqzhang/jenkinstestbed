@@ -16,10 +16,10 @@ def credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f0' // Replace with your 
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
   com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class, Jenkins.instance, null, null ).find{
     it.id == credentialsId}
-
+def token=creds.username
 println creds.username
 
-def cmd="curl -I -X POST http://hongqi:${awsSecretKey}@localhost:9999/job/roovytest/buildWithParameters"
+def cmd="curl -I -X POST http://hongqi:${token}@localhost:9999/job/roovytest/buildWithParameters"
 
 println cmd.execute().text
 

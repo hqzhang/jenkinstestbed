@@ -8,14 +8,18 @@ menu.getEnvironment()
 import groovy.json.JsonSlurper
 import jenkins.model.*
 
-def credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f0' // Replace with your actual AWS credentials ID
+def token=11d6be40c8017f81a24f7982cb2e8c2ce3
+println "origintoke=$token"
+
+def credentialsId = '29d32713-b584-4106-9714-bb9b9599d5bc' // Replace with your actual AWS credentials ID
 //credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f1'
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
                 com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class, Jenkins.instance, null, null )
                 .find{ it.id == credentialsId }
-//def user=creds.username
+def user=creds.username
 def token=creds.password
-println token
+println "user=$user"
+println "recoverytoken=$token"
 def cmd="curl -I -X POST http://hongqi:${token}@localhost:9999/job/agroovytest/buildWithParameters"
 println "cmd=$cmd"
 println cmd.execute().text

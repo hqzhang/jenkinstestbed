@@ -15,6 +15,7 @@ def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredenti
                 .find{ it.id == credentialsId }
 //def user=creds.username
 def token=creds.password
+println token
 def cmd="curl -I -X POST http://hongqi:${token}@localhost:9999/job/agroovytest/buildWithParameters"
 println "cmd=$cmd"
 println cmd.execute().text

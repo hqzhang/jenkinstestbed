@@ -17,8 +17,8 @@ def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredenti
   com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class, Jenkins.instance, null, null ).find{
     it.id == credentialsId}
 def token=creds.password
-println creds.password
 
+println "token=$token"
 def cmd="curl -I -X POST http://hongqi:${token}@localhost:9999/job/roovytest/buildWithParameters"
 
 println cmd.execute().text

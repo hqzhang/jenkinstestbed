@@ -12,23 +12,12 @@ import jenkins.model.*
 
 // Define the credentials ID used in Jenkins
 def credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f0' // Replace with your actual AWS credentials ID
- credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f1'
+/credentialsId = 'a469ce0f-626e-4a56-9b0e-0495369240f1'
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-    com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl.class,
-    jenkins.model.Jenkins.instance,
-    null, null ).find { it.id == credentialsId }
+  com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class, Jenkins.instance, null, null ).find{
+    it.id == credentialsId}
 
-if (creds == null) {
-    throw new RuntimeException("AWS credentials not found in Jenkins with ID: ${credentialsId}")}
-
-// Extract AWS access key and secret key from the credentials
-def awsAccessKey = creds.username
-def awsSecretKey = creds.password
-def region = 'us-east-1' // Define the AWS region
-
-// Initialize the S3 client
-echo "trigger groovytest job"
-//def tokenid='a469ce0f-626e-4a56-9b0e-0495369240f0'
+println creds.username
 
 def cmd="curl -I -X POST http://hongqi:${awsSecretKey}@localhost:9999/job/agroovytest/buildWithParameters"
 

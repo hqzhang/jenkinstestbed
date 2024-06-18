@@ -6,10 +6,7 @@ menu.getWksp()
 menu.getEnvironment()
 
 import groovy.json.JsonSlurper
-import com.amazonaws.auth.AWSStaticCredentialsProvider
-import com.amazonaws.auth.BasicAWSCredentials
-import com.amazonaws.services.s3.AmazonS3ClientBuilder
-import com.amazonaws.services.s3.model.Bucket
+
 import hudson.model.*
 import jenkins.model.*
 

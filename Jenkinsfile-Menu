@@ -16,7 +16,7 @@ def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredenti
 //def user=creds.username
 //def token=creds.password
 def cmd="curl -I -X POST http://hongqi:${creds.password}@localhost:9999/job/roovytest/buildWithParameters"
-
+println "cmd=$cmd"
 println cmd.execute().text
 
 println "------branch11=${brch}"

@@ -13,11 +13,11 @@ library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)
 //@Library('bitbucket-groovytest-lib@Menu-demo-good')      //from repo defined in system config, vars/src/resouces included
 
 
-properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT', 
-filterLength: 1, filterable: false, name: 'test', randomName: 'choice-parameter-10774153238147', 
-script: [$class: 'ScriptlerScript', isSandboxed: true, 
-scriptlerBuilder: <object of type org.jenkinsci.plugins.scriptler.builder.ScriptlerBuilder>]]])])
-
+properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
+ filterLength: 1, filterable: false, name: '', 
+ randomName: 'choice-parameter-11438029114587', script: [$class: 'ScriptlerScript', 
+ isSandboxed: true, scriptlerBuilder: [builderId: '1720470931120_1', parameters: [], 
+ propagateParams: false, scriptId: 'testid.groovy']]]])])
 
 pipeline {
     agent any

@@ -4,11 +4,14 @@ import org.json.XML;
 import org.json.JSONException;
 ////import java.nio.file.Files;
 //import java.nio.file.Path;
-library("my-shared-lib@master") _
-def sharedLibraryMethod() {
-  // Logic to generate dynamic choices
-  return ["Choice1", "Choice2", "Choice3"]
-}
+def brch= scm.branches[0].toString().replace('*/','')
+def libver="bitbucket-groovytest-lib@Menu-demo-good"
+//1) library identifier: "bitbucket-groovytest-lib@${brch}", retriever: modernSCM(
+//  [$class: 'GitSCMSource', remote: repo, credentialsId: ''])  //from any repo without definiation src excluded
+library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)  //from local repo without definiation
+//3):library("bitbucket-groovytest-lib@${brch}") _         //from repo defined in system config, src excluded
+//@Library('bitbucket-groovytest-lib@Menu-demo-good')      //from repo defined in system config, vars/src/resouces included
+
 
 properties([
   parameters([

@@ -15,7 +15,7 @@ library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)
 
 properties([
     parameters([
-        choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
+        choice( name: 'Environment', description: '', choices: ['DEV','BAT']  ),
         choice( name: 'Profile', description: '', choices: ['ADS.yaml','RTE.yaml'] ),
         [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, 
           name: 'testscriptler', randomName: 'choice-parameter-670607990498', 

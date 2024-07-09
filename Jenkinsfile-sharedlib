@@ -13,11 +13,17 @@ library identifier: "bitbucket-groovytest-lib@${brch}", retriever:legacySCM(scm)
 //@Library('bitbucket-groovytest-lib@Menu-demo-good')      //from repo defined in system config, vars/src/resouces included
 
 
-properties([parameters([[$class: 'ChoiceParameter', choiceType: 'PT_SINGLE_SELECT',
- filterLength: 1, filterable: false, name: '', 
- randomName: 'choice-parameter-11438029114587', script: [$class: 'ScriptlerScript', 
- isSandboxed: true, scriptlerBuilder: [builderId: '1720470931120_1', parameters: [], 
- propagateParams: false, scriptId: 'testid.groovy']]]])])
+properties([
+    parameters([
+        choice( name: 'Environment', description: '', choices: buildDefault(envList,'BAT') ),
+        choice( name: 'Profile', description: '', choices: ['ADS.yaml','RTE.yaml'] ),
+        [$class: 'CascadeChoiceParameter', choiceType: 'PT_SINGLE_SELECT', filterLength: 1, filterable: false, 
+          name: 'testscriptler', randomName: 'choice-parameter-670607990498', 
+          referencedParameters: 'Environment,Profile', 
+          script: [$class: 'ScriptlerScript', isSandboxed: true, 
+          scriptlerBuilder: [builderId: '1720544636065_1', 
+          parameters: [[name: 'Environment', value: '$Environment'], [name: 'Profile', value: '$Profile']],
+          propagateParams: false, scriptId: 'testid.groovy']]]])])
 
 pipeline {
     agent any

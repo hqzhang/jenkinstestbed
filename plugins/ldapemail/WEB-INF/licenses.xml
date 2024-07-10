@@ -1,0 +1,5 @@
+<l:dependencies xmlns:l='licenses'>
+  <l:dependency name='LDAP Email Plugin' groupId='com.mtvi.plateng.hudson' artifactId='ldapemail' version='0.8' url='http://wiki.jenkins-ci.org/display/JENKINS/LDAP+Email+Plugin'>
+    <l:description>Jenkins plugin that resolves email addresses through LDAP lookups.</l:description>
+  </l:dependency>
+</l:dependencies>

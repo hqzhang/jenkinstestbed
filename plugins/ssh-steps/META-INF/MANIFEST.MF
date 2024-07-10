@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: SSH Pipeline Steps
+Specification-Version: 2.0
+Implementation-Title: SSH Pipeline Steps
+Implementation-Version: 2.0.65.vd26b_5b_9b_de4d
+Group-Id: org.jenkins-ci.plugins
+Short-Name: ssh-steps
+Long-Name: SSH Pipeline Steps
+Url: https://github.com/jenkinsci/ssh-steps-plugin
+Compatible-Since-Version: 2.0.0
+Plugin-Version: 2.0.65.vd26b_5b_9b_de4d
+Hudson-Version: 2.361.1
+Jenkins-Version: 2.361.1
+Plugin-Dependencies: workflow-step-api:639.v6eca_cd8c04a_a_
+Plugin-Developers: Naresh Rayapati:nrayapati:
+Plugin-License-Name: Apache License, Version 2.0
+Plugin-License-Url: https://www.apache.org/licenses/LICENSE-2.0.txt
+Plugin-ScmUrl: https://github.com/jenkinsci/ssh-steps-plugin
+

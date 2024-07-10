@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='scriptler' version='334.v29792d5a_c058'><l:dependency name='Scriptler' groupId='org.jenkins-ci.plugins' artifactId='scriptler' version='334.v29792d5a_c058' url='https://github.com/jenkinsci/scriptler-plugin'><l:description>The Jenkins Plugins Parent POM Project</l:description></l:dependency></l:dependencies>

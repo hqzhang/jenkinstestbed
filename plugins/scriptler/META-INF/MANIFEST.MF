@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: Scriptler
+Specification-Version: 0.0
+Implementation-Title: Scriptler
+Implementation-Version: 334.v29792d5a_c058
+Group-Id: org.jenkins-ci.plugins
+Artifact-Id: scriptler
+Short-Name: scriptler
+Long-Name: Scriptler
+Url: https://github.com/jenkinsci/scriptler-plugin
+Plugin-Version: 334.v29792d5a_c058
+Hudson-Version: 2.387.3
+Jenkins-Version: 2.387.3
+Plugin-Dependencies: ionicons-api:56.v1b_1c8c49374e,sshd:3.312.v1c601b_c
+ 83b_0e,antisamy-markup-formatter:162.v0e6ec0fcfcf6,git-server:99.va_082
+ 6a_b_cdfa_d,script-security:1275.v23895f409fb_d,token-macro:384.vf35b_f
+ 26814ec
+Plugin-Developers: 
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/scriptler-plu
+ gin.git
+Plugin-ScmTag: 29792d5ac0587d9d75691b23a26c143da98d8647
+Plugin-ScmUrl: https://github.com/jenkinsci/scriptler-plugin
+Plugin-GitHash: 29792d5ac0587d9d75691b23a26c143da98d8647
+Implementation-Build: 29792d5ac0587d9d75691b23a26c143da98d8647
+

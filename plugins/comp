@@ -1,0 +1,11 @@
+set +x
+base="/Users/hongqizhang/.jenkins/plugins"
+list=$(ls )
+
+for var in $list; do
+
+   echo $var
+   ls "$base/$var" > /dev/null
+   echo $?
+done
+

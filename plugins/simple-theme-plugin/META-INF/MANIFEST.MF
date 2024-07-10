@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: Simple Theme Plugin
+Specification-Version: 0.0
+Implementation-Title: Simple Theme Plugin
+Implementation-Version: 146.v0e67db_a_9052e
+Group-Id: org.jenkins-ci.plugins
+Short-Name: simple-theme-plugin
+Long-Name: Simple Theme Plugin
+Url: https://github.com/jenkinsci/simple-theme-plugin
+Compatible-Since-Version: 0.5
+Plugin-Version: 146.v0e67db_a_9052e
+Hudson-Version: 2.361.1
+Jenkins-Version: 2.361.1
+Plugin-Developers: Tobias Gruetzmacher:TobiX:tobias-git@23.gs
+Plugin-License-Name: MIT License
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/simple-theme-plugin
+

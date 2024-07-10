@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: ogondza
+Build-Jdk: 1.8.0_292
+Extension-Name: permissive-script-security
+Specification-Title: Do not install unless you know what you are doing
+ . Turns on permissive mode of Script Security Plugin. Problematic sig
+ natures will be logged but access will not be rejected.
+Implementation-Title: permissive-script-security
+Implementation-Version: 0.7
+Group-Id: org.jenkins-ci.plugins
+Short-Name: permissive-script-security
+Long-Name: Permissive Script Security Plugin
+Url: https://github.com/jenkinsci/permissive-script-security-plugin
+Minimum-Java-Version: 1.8
+Plugin-Version: 0.7
+Hudson-Version: 2.107.3
+Jenkins-Version: 2.107.3
+Plugin-Dependencies: script-security:1.58
+Plugin-Developers: 
+

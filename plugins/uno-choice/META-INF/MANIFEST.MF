@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.5.2
+Build-Jdk-Spec: 17
+Specification-Title: Active Choices Plug-in
+Specification-Version: 2.6
+Implementation-Title: Active Choices Plug-in
+Implementation-Version: 2.6.4
+Group-Id: org.biouno
+Short-Name: uno-choice
+Long-Name: Active Choices Plug-in
+Url: https://github.com/jenkinsci/active-choices-plugin
+Compatible-Since-Version: 2.0
+Minimum-Java-Version: 8
+Plugin-Version: 2.6.4
+Hudson-Version: 2.332.3
+Jenkins-Version: 2.332.3
+Plugin-Dependencies: antisamy-markup-formatter:2.7,script-security:1175.
+ v4b_d517d6db_f0,scriptler:3.5;resolution:=optional
+Plugin-Developers: Bruno P. Kinoshita:kinow:,Ioannis K. Moutsatsos:imout
+ satsos:
+Plugin-License-Name: The MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmUrl: https://github.com/jenkinsci/active-choices-plugin
+

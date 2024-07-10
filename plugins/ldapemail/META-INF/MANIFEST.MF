@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Built-By: marcomiller
+Build-Jdk: 1.7.0_40
+Extension-Name: ldapemail
+Specification-Title: Jenkins plugin that resolves email addresses thro
+ ugh LDAP lookups.
+Implementation-Title: ldapemail
+Implementation-Version: 0.8
+Plugin-Class: com.mtvi.plateng.hudson.ldap.PluginImpl
+Group-Id: com.mtvi.plateng.hudson
+Short-Name: ldapemail
+Long-Name: LDAP Email Plugin
+Url: http://wiki.jenkins-ci.org/display/JENKINS/LDAP+Email+Plugin
+Plugin-Version: 0.8
+Hudson-Version: 1.436
+Jenkins-Version: 1.436
+Plugin-Developers: Justin Edelson:justinedelson:
+

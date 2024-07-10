@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Created-By: Maven Archiver 3.6.0
+Build-Jdk-Spec: 11
+Specification-Title: External Monitor Job Type Plugin
+Specification-Version: 0.0
+Implementation-Title: External Monitor Job Type Plugin
+Implementation-Version: 215.v2e88e894db_f8
+Group-Id: org.jenkins-ci.plugins
+Artifact-Id: external-monitor-job
+Short-Name: external-monitor-job
+Long-Name: External Monitor Job Type Plugin
+Url: https://github.com/jenkinsci/external-monitor-job-plugin
+Plugin-Version: 215.v2e88e894db_f8
+Hudson-Version: 2.361.4
+Jenkins-Version: 2.361.4
+Plugin-Developers: 
+Plugin-License-Name: The MIT license
+Plugin-License-Url: https://opensource.org/licenses/MIT
+Plugin-ScmConnection: scm:git:https://github.com/jenkinsci/external-moni
+ tor-job-plugin.git
+Plugin-ScmTag: 2e88e894dbf8c2c914ba71ce7a98ae0b7f2607fd
+Plugin-ScmUrl: https://github.com/jenkinsci/external-monitor-job-plugin
+Plugin-GitHash: 2e88e894dbf8c2c914ba71ce7a98ae0b7f2607fd
+Implementation-Build: 2e88e894dbf8c2c914ba71ce7a98ae0b7f2607fd
+

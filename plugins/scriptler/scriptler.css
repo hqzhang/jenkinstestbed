@@ -1,0 +1,33 @@
+.scriptler-inline {
+  display: inline;
+}
+
+.scriptler-inline div {
+  display: inline;
+}
+
+.scriptler-inline button {
+  padding: 0;
+}
+
+.scriptler-link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.scriptler-link-button:focus {
+  outline: none;
+}
+
+.scriptler-link-button:active {
+  color:red;
+}
+
+.scriptler-toolbar {
+  white-space: nowrap;
+}
+
+.scriptler-toolbar .scriptler-icon-slot {
+  margin-left: 8px;
+}
